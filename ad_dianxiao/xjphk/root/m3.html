@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title></title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/guid.js"></script>
+<script src="js/trackEvent.js"></script>
+<script src="js/control.js"></script>
+<style>
+html,body{background-color:#005396;}
+</style>
+<script>
+var is_index,_i = 0,_url='m4.html';
+$(document).ready(function(e) {
+	is_index = new iScroll("v3",{snap : true,momentum : false,vScrollbar : false,
+		hScrollbar : false,
+		onScrollEnd: function () {
+			
+			_i = this.currPageX;
+			_url = "m4.html?p=" + (_i+1);
+			
+			if(_i<=0){
+				$("#v3_l").hide();
+			}else{
+				$("#v3_l").show();
+			}
+			
+			if(_i>=5){
+				$("#v3_r").hide();
+			}else{
+				$("#v3_r").show();
+			}
+			/*
+			switch(_i){
+				case 0:track(channel,5983);break;
+				case 1:track(channel,5984);break;
+				case 2:track(channel,5985);break;
+			}*/
+		}});
+		$("#v3_l").hide();
+});
+
+</script>
+</head>
+
+<body onload="resetPage()">
+<div class="fxbg">
+	<div>
+		<img class="img" src="images/m3.png" alt=""/>
+		<a href="index.html" id="m0" class="fly"></a>
+		<a href="m1.html" id="m1" class="fly"></a>
+		<a href="m2.html" id="m2" class="fly"></a>
+	</div>
+
+	<div>
+		<div id="v3">
+			<ul>
+				<li><img class="img" src="images/a1.jpg" alt=""/></li>
+				<li><img class="img" src="images/a2.jpg" alt=""/></li>
+				<li><img class="img" src="images/a3.jpg" alt=""/></li>
+				<li><img class="img" src="images/a4.jpg" alt=""/></li>
+				<li><img class="img" src="images/a5.jpg" alt=""/></li>
+				<li><img class="img" src="images/a6.jpg" alt=""/></li>
+			</ul>
+			
+		</div>
+		
+		<img src="images/btn_left.png" class="fly" id="v3_l" onclick="is_index.scrollToPage('prev',0);" />
+		<img src="images/btn_right.png" class="fly" id="v3_r" onclick="is_index.scrollToPage('next',0);" />
+		
+		<div id="p3_1" class="fly" onclick="track(channel,10039+_i);location=_url;"></div>
+		<div id="p3_2" class="fly" onclick="location='m2.html';"></div>
+	</div>
+	
+	<div class="bottom"><img class="img" src="images/banner.png" alt=""/></div>
+</div>
+<!-- IBM UNICA NETINSIGHT TRACKING CODE v7.4.0 -->
+<!-- DO NOT EDIT THE BELOW THIS LINE-->
+<script type="text/javascript" src="http://www.australia.com/js/Cookie.js"></script>
+<script type="text/javascript" src="http://www.australia.com/js/vars.js"></script>
+<script type="text/javascript" src="http://www.australia.com/js/onclick.js"></script>
+<noscript><img src="http://pt200230.unica.com/ntpagetag.gif?js=0&site=australia" height="1" width="1" border="0" hspace="0" vspace="0" alt=""></noscript>
+<!-- TRACKING CODE END-->
+</body>
+</html>

@@ -1,0 +1,149 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>好兄弟，一起赢！推荐Cat赢好礼！</title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/trackEvent.js"></script>
+
+<style type="text/css">
+	html,body{
+		background-color:rgb(0,0,0);
+	}
+</style>
+<script type="text/javascript">
+	var rate = Math.floor(screen.width/screen.height * 100) / 100;
+	var stanRate = Math.floor( 640/960 * 100) / 100;
+	if(rate > stanRate){//宽 < 高 => to pad
+		window.location.href = "../pad/index.html";
+	}
+	else{
+		//继续在这页面=>iphone5页面
+	}
+
+$(document).ready(function(){
+	track(channel,5868);
+	$.cookie("c","1");
+	if($.cookie("c") != "1"){
+		alert("您的设备已禁用Cookie，将无法参加抽奖活动！");
+	}
+	if(request("utm_source")){
+		$.cookie("utm_source",request("utm_source"));
+		$.cookie("utm_medium",request("utm_medium"));
+		$.cookie("utm_content",request("utm_content"));
+		$.cookie("utm_campaign",request("utm_campaign"));
+	}else{
+		$.cookie("utm_source",request("hmsr"));
+		$.cookie("utm_medium",request("hmmd"));
+		$.cookie("utm_content",request("hmpl"));
+		$.cookie("utm_campaign",request("hmkw"));
+		$.cookie("hmci",request("hmci"));
+	}
+});
+</script>
+<script>
+  dataLayer = [];
+</script>
+</head>
+
+<body>
+<div class="fxbg">
+<img class="img" src="images/1.jpg" alt="" />
+<div class="btn1">
+	<a id="link2" class="fly"></a>
+	<a id="link1" class="fly"></a>
+</div>
+<div class="btn2">
+	<img src="images/m1.png" />
+    <a id="m1" class="fly"></a>
+    <a id="m2" class="fly"></a>
+    <a id="m3" class="fly"></a>
+    <a target="_blank" id="m4" class="fly"></a>
+</div>
+</div>
+<script type="text/javascript" src="js/MD5.js"></script>
+<script type="text/javascript" src="js/models.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript">
+function getParam(key){
+	var newkey = key + "=";
+	if(window.location.href.indexOf(newkey) < 0) return null;
+	var stIdx = window.location.href.indexOf(newkey) + newkey.length;
+	var endIdx = window.location.href.substr(stIdx + newkey.length).indexOf("&");//no-length
+	if(endIdx == -1){
+		endIdx = window.location.href.length;
+	}
+	else{
+		endIdx += (stIdx + newkey.length);
+	}
+	var value = window.location.href.substr(stIdx, endIdx - stIdx);
+	return value;
+}
+
+if(!!getParam("mobile")){//跳转登录判断
+	var mobile = getParam("mobile");
+	getUserInfo(mobile, function(data){
+		//{"mobile":"13766666666","identity":"Catwaji","name":"kkk","province":"","city":"","userid":"18258"}
+		//alert(JSON.stringify(data));
+		$.cookie("mobile", data.mobile);
+		$.cookie("identity", data.identity);
+		$.cookie("name", data.name);
+		$.cookie("province", data.province);
+		$.cookie("city", data.city);
+		$.cookie("userid", data.userid);
+	});
+}
+if(!!getParam("utm_source")){
+	$.cookie("utm_source", getParam("utm_source"));
+}
+if(!!getParam("utm_medium")){
+	$.cookie("utm_medium", getParam("utm_medium"));
+}
+if(!!getParam("utm_content")){
+	$.cookie("utm_content", getParam("utm_content"));
+}
+if(!!getParam("utm_campaign")){
+	$.cookie("utm_campaign", getParam("utm_campaign"));
+}
+if(!!getParam("hmci")){
+	$.cookie("hmci", getParam("utm_campaign"));
+}
+
+setModuleLinkTrack();
+
+
+document.getElementById("link1").onclick = function(){
+	dataLayer.push({'event':'gaevent','cat':'手机活动首页','act':'即刻推荐','lbl':''});
+	cms_phone_index_tuijian();
+}
+
+document.getElementById("link2").onclick = function(){
+	dataLayer.push({'event':'gaevent','cat':'手机活动首页','act':'查看活动介绍','lbl':''});
+	cms_phone_index_xiangqing();
+}
+window.onload = function(){
+	cms_phone_index_pv();
+}
+
+
+</script>
+<!-- Google Tag Manager -->
+<noscript><iframe src=""//www.googletagmanager.com/ns.html?id=GTM-WTGCHV""
+height=""0"" width=""0"" style=""display:none;visibility:hidden""></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WTGCHV');</script>
+<!-- End Google Tag Manager -->
+<div class="coverxxx" style="height:964px;"></div>
+</body>
+</html>

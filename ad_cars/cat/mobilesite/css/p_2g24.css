@@ -1,0 +1,120 @@
+ html, body {
+            background-color: #fff;
+        }
+        /*content样式*/
+        a {
+            text-decoration: none;
+        }
+        ul, li {
+            list-style: none;
+        }
+        .add {
+            background: #d7d7d7;
+        }
+        .content {
+            width: 640px;
+            min-height: 600px;
+        }
+        .content_one {
+            height: 70px;
+            padding-bottom: 0px;
+        }
+            .content_one a {
+                float: left;
+                width: 50%;
+                height: 70px;
+                line-height: 70px;
+                text-align: center;
+                font-size: 28px;
+                font-weight: bold;
+                color: #343434;
+            }
+        .content_two {
+            width: 583px;
+            height: 820px;
+            background: url(../images/wx.png);
+            margin: 0 auto;
+            display: none;
+            padding-bottom:130px
+        }
+        .content_three {
+            width: 640px;
+            height: 1650px;
+            background: url(../images/p_2g10.png);
+            position: relative;
+        }
+        .input_one, .input_two {
+            width: 156px;
+            height: 80px;
+            background: #ececec;
+            border: 1px #cacaca solid;
+            position: relative;
+        }
+        .input_one {
+            position: absolute;
+            top: 96px;
+            left: 170px;
+        }
+
+        .input_two {
+            position: absolute;
+            top: 96px;
+            right: 60px;
+        }
+        .content_four, .content_five {
+            width: 640px;
+            height: 198px;
+            position: relative;
+            display: none;
+        }
+        .content_four {
+            background: url(../images/p_2g11.png);
+        }
+
+        .content_five {
+            background: url(../images/p_2g11_1.png);
+        }
+        .a_one {
+            display: block;
+            width: 220px;
+            height: 50px;
+            position: absolute;
+            bottom: 26px;
+            left: 100px;
+        }
+        .a_two {
+            display: block;
+            width: 220px;
+            height: 50px;
+            position: absolute;
+            bottom: 26px;
+            right: 80px;
+        }
+        .menu {
+            position: relative;
+            width: 640px;
+            height: 66px;
+            background: #e7e7e7;
+            line-height: 66px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #4b4b4b;
+        }
+            .menu a {
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin-left: 25px;
+                color: black;
+                font-weight: normal;
+                float: left;
+                font-size: 22px;
+            }
+        .nav2 {
+            z-index: 11;
+            width: 100%;
+            height: 111px;
+            background: url(../images/wx2.png) 100% no-repeat;
+            box-shadow: 0px 0px 10px #000;
+        }

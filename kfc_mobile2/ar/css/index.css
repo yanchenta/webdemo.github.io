@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+
+html,body{ background:#1c5f29;}
+.container{width:638px;margin:0 auto;height:auto; position:relative;}
+.container div{width:100%;}
+div img{width:638px;display:block;}
+

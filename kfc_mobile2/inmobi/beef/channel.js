@@ -1,0 +1,1 @@
+var channel = '14', chann = 'inmobi';

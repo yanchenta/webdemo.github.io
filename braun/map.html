@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title>博朗</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<style type="text/css">
+		html body{
+			width:320px;
+			height:525px;
+			padding:0px 0px;
+			margin:0px 0px;
+			
+			background-image:url('images/map-bg.jpg');
+			background-size:320px 525px;
+			background-position:left top;
+			background-repeat:no-repeat;
+		}
+
+		.div-toindex{
+			position:absolute;
+			top:7px;
+			left:7px;
+			
+			width:30px;
+			height:30px;
+			
+			cursor:pointer;
+		}
+		.select-province{
+			position:absolute;
+			top:78px;
+			left:80px;
+			
+			width:70px;
+			height:30px;
+			
+			cursor:pointer;
+			display:none;
+		}
+		.select-city{
+			position:absolute;
+			top:78px;
+			left:80px;
+			
+			width:70px;
+			height:30px;
+			
+			cursor:pointer;
+		}
+		.div-bmap{
+			position:absolute;
+			top:189px;
+			left:8px;
+			
+			width:304px;
+			height:275px;
+			
+			cursor:pointer;
+		}
+		.div-return{
+			position:absolute;
+			left:45px;
+			top:485px;
+			
+			width:100px;
+			height:25px;
+			
+			cursor:pointer;
+		}
+		.div-share{
+			position:absolute;
+			left:175px;
+			top:485px;
+			
+			width:100px;
+			height:25px;
+			
+			cursor:pointer;
+		}
+		
+	</style>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="div-toindex"></div>
+		<select class="select-province">
+			<option>北京</option>
+			<option>上海</option>
+		</select>
+		<select class="select-city">
+		</select>
+		<div id="baidu_map" class="div-bmap"></div>
+		<div class="div-return"></div>
+		<div class="div-share">
+		</div>
+		<!--分享模块-->    
+        <div class="pop sharepop" style="display:none;">
+            	
+            	<div class="sharecon">
+                	<a class="close" href="javascript:closePop('sharepop');">X</a>
+                	<h3><img src="images/sina_icon.png" alt="" width="16" />微博分享：</h3>
+                    <p>关注并@博朗官方账号以及三位好友，上<br />传参加互动活动的截图，即可参加抽奖。</p>
+                    <div class="line"></div>
+                    <h3><img src="images/weixin_icon.png" alt="" width="16" />分享朋友圈：</h3>
+                    <p>欢迎分享到微信，带朋友们玩玩吧。</p>
+                    <p><input type="text" value="http://static.adwo.com/ad/201405/braun/index.html" /></p>
+                    
+                    <a class="share_butt" href="javascript:shareWeibo();">分享</a>
+                    <a class="inputext" href="javascript:alert('点击输入框中链接手动复制哦~');">复制分享</a>
+                </div>
+            </div>
+	</div>
+	<div class="footer">
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/card.js"></script>
+<script type="text/javascript" src="js/delear2.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+<script type="text/javascript">
+	//初始化省份
+	function initSelectProvinces(){
+		var provinces = document.getElementsByClassName("select-province")[0];
+		
+		//append:
+		var option = document.createElement("option");
+		option.value = "";
+		option.innerHTML = "请选择";
+		provinces.appendChild(option);
+		
+		
+		for(var i = 0; i < deals.length; i++){
+			var option = document.createElement("option");
+			option.value = deals[i].t;
+			option.innerHTML = deals[i].t;
+			provinces.appendChild(option);
+		}
+	}
+	
+	/*function initSelectCities(province){
+		var optCities = document.getElementsByClassName("select-city")[0];
+		
+		//clear:
+		for(var i = optCities.childNodes.length - 1; i >= 0; i--){
+			optCities.removeChild(optCities.childNodes[i]);
+		}
+		
+		//append:
+		var option = document.createElement("option");
+		option.value = "";
+		option.innerHTML = "请选择";
+		optCities.appendChild(option);
+		
+		
+		for(var i = 0; i < deals.length; i++){
+			if(province == deals[i].t){
+				var cities = deals[i].s;
+				for(var j = 0; j < cities.length; j++){
+					var option = document.createElement("option");
+					option.value = cities[j].t;
+					option.innerHTML = cities[j].t;
+					optCities.appendChild(option);
+				}
+				break;
+			}
+		}
+	}
+	
+	
+	function getNearbyCityDelears(cityName){
+		var nearbyi = 0;
+		var nearbyj = 0;
+		
+		var isFound = false;
+		var rlt = null;
+		for(var i = 0; i < deals.length; i++){
+			var cities = deals[i].s;
+			for(var j = 0; j < cities.length; j++){
+				if(cityName == cities[j].t) {
+					rlt = {
+						city:cities[j],
+						delear:null,
+						loc:null
+					};
+					break;
+				}
+			}
+			if(isFound) break;
+		}
+		
+		return rlt;
+	}*/
+	
+	function getNearbyCityDelears2(curLoc){
+		//delearLoc.lng
+		//delearLoc.lat
+		var minDis = 10000;
+		
+		var nearbyi = 0;
+		var nearbyj = 0;
+		var nearbyk = 0;
+		
+		for(var i = 0; i < delears.length; i++){
+			var dis = Math.sqrt(Math.pow(delears[i].lng - curLoc.lng, 2) + Math.pow(delears[i].lat - curLoc.lat, 2));
+			if(dis < minDis){
+				minDis = dis;
+				nearbyi = i;
+			}
+		}
+		
+		var rlt = {
+			city:delears[nearbyi].city,
+			name:delears[nearbyi].dealername,
+			address:delears[nearbyi].dealeraddress,
+			lng:delears[nearbyi].latitude,
+			lat:delears[nearbyi].gratitude
+		};
+				
+		return rlt;
+	}
+	
+	//初始化城市
+	function initSelectCities2(){
+		var cities = [];
+		var isContained = false;
+		
+		for(var i = 0; i < delears.length; i++){
+			isContained = false;
+			for(var j = 0; j < cities.length; j++){
+				if(cities[j].city == delears[i].city){
+					isContained = true;
+				}
+			}
+			
+			if(!isContained){
+				cities.push(delears[i]);
+			}
+		}
+		
+		var optCities = document.getElementsByClassName("select-city")[0];
+		
+		//append:
+		var option = document.createElement("option");
+		option.value = "";
+		option.innerHTML = "请选择";
+		optCities.appendChild(option);
+		
+		for(var i = 0; i < cities.length; i++){
+			var opt = document.createElement("option");
+			opt.value = cities[i].city;
+			opt.innerHTML = cities[i].city;
+			
+			optCities.appendChild(opt);
+		}
+	}
+
+	
+	function getDelearsByCity2(cityName){
+		var nearbyi = 0;
+		var nearbyj = 0;
+		
+		var isFound = false;
+		var rlt = [];
+		
+		for(var i = 0; i < delears.length; i++){
+			if(cityName == delears[i].city) {
+				var obj = {
+					city:delears[i].city,
+					name:delears[i].dealername,
+					address:delears[i].dealeraddress,
+					lng:delears[i].latitude,
+					lat:delears[i].gratitude
+				};
+				rlt.push(obj);
+			}
+		}
+		return rlt;
+	}
+	
+	function setMap(centerLoc, spotsLoc){
+		
+		var map = new BMap.Map('baidu_map');
+		for(var i = 0; i < spotsLoc.length; i++){
+			var tmpPoint = new BMap.Point(spotsLoc[i].lng, spotsLoc[i].lat);
+			var marker = new BMap.Marker(tmpPoint,{title: (i+1)});
+			
+			var opts2 = {imageSize:new BMap.Size(15,20)};
+			var icon = new BMap.Icon("images/map-spot.png", new BMap.Size(15,20), opts2);
+			marker.setIcon(icon);
+			
+			marker.onclick = function(){
+				var infoWindowOpts = {
+					minWidth:350,     // 信息窗口宽度
+					minHeight:100,     // 信息窗口高度
+					title:this.tag.name  // 信息窗口标题
+				}
+				setTimeout(function(){
+					//clearInterval(inter);
+					
+					var _BMap_pop = document.getElementsByClassName("BMap_pop")[0];
+					
+					if(!_BMap_pop) return;
+					
+					_BMap_pop.onclick = function(){
+						this.style.display = "none";
+					}
+					
+					var subs = _BMap_pop.childNodes;
+					for(var i = 0; i < subs.length; i++){
+						if(!!subs[i].style){
+							subs[i].style.backgroundColor = "transparent";
+							subs[i].style.borderWidth = "0px";
+							subs[i].style.backgroundImage = null;
+						}
+						
+						if("img" == subs[i].tagName.toLowerCase()){
+							subs[i].style.display = "none";
+						}
+							
+						var subsubs = subs[i].childNodes
+						for(var j = 0; j < subsubs.length; j++){
+							if(!!subsubs[j].style){
+								subsubs[j].style.backgroundColor = "transparent";
+								subsubs[j].style.borderWidth = "0px";
+								subsubs[j].style.backgroundImage = null;
+							}
+							
+							if("img" == subsubs[j].tagName.toLowerCase()){
+								subsubs[j].style.display = "none";
+							}
+						}
+
+					}
+					
+					_BMap_pop.style.width = "200px";
+					_BMap_pop.style.height = "100px";
+					
+					_BMap_pop.style.backgroundImage = "url('images/map-notice.png')";
+					_BMap_pop.style.backgroundSize = "160px 110px";
+					_BMap_pop.style.backgroundPosition = "left 0px";
+					_BMap_pop.style.backgroundRepeat = "no-repeat";
+					
+					_BMap_pop.style.borderWidth = "0px";
+					
+					_BMap_pop.style.color = "white";
+					_BMap_pop.style.fontWeight = "700";
+					_BMap_pop.style.paddingTop = "100px";
+					
+					document.getElementsByClassName("BMap_shadow")[0].style.display = "none";
+					
+					var title = document.getElementsByClassName("BMap_bubble_title")[0];
+					title.style.marginRight = "10px";
+					title.style.marginTop = "0px";
+					title.style.width = "130px";
+					title.style.height = "20px";
+					title.style.fontSize = "12px";
+					
+					var content = document.getElementsByClassName("BMap_bubble_content")[0];
+					content.style.marginRight = "10px";
+					content.style.marginTop = "2px";
+					content.style.width = "130px";
+					content.style.height = "40px";
+					content.style.overflowY = "hidden";
+					content.style.fontSize = "12px";
+					
+					content.innerHTML = "地址:" + content.innerHTML;
+					
+					_BMap_pop.style.display = "block";
+					
+				}, 100);
+				var text = this.tag.address;
+				var infoWindow = new BMap.InfoWindow(text, infoWindowOpts);
+				
+				this.openInfoWindow(infoWindow);
+				this.closeInfoWindow();
+			};
+			marker.tag = spotsLoc[i];
+			
+			map.addOverlay(marker);
+		}
+		map.centerAndZoom(new BMap.Point(centerLoc.lng, centerLoc.lat), 12);
+		
+		/*//添加序号
+		setTimeout(function(){
+			var marks = document.getElementsByClassName("BMap_Marker");
+			for(var i = 0; i < marks.length / 2; i++){
+				marks[i].style.color = "white";
+				marks[i].style.fontSize = "25px";
+				marks[i].style.fontWeight = 700;
+				marks[i].style.textAlign = "center";
+				marks[i].style.paddingTop = "15px";
+				marks[i].innerHTML = marks[i].title;
+			}
+		}, 1000);*/
+	}
+	
+	document.getElementsByClassName("select-province")[0].onchange = function(){
+		//...
+		//initSelectCities(this.value);
+	}
+	
+	document.getElementsByClassName("select-city")[0].onchange = function(){
+		//...
+		var cityName = this.value;
+		if("" != cityName){
+			var rlt = getDelearsByCity2(cityName);
+			setMap(rlt[0], rlt);
+		}
+	};
+	document.getElementsByClassName("div-toindex")[0].onclick = function(){
+		window.location.href = "index.html";
+	};
+	document.getElementsByClassName("div-return")[0].onclick = function(){
+		//window.location.href = "index.html";
+		var param = getFromType();
+		
+		if(1 == param){
+			window.location.href = "photo.html";
+		}
+		else if(2 == param){
+			window.location.href = "photo2.html?";
+		}
+		else{
+			window.location.href = "index.html";
+		}
+	};
+	document.getElementsByClassName("div-share")[0].onclick = function(){
+		//...
+		//alert("share");
+		showShareMod();
+	};
+	
+	initSelectCities2();
+	
+	window.curLocation  = null;
+	window.showPosition = function(position, displayError){
+		//alert(position.coords.latitude + "," + position.coords.longitude);
+		window.curLocation = {
+			lng: position.coords.longitude,
+			lat: position.coords.latitude
+		}
+	}
+	window.onload = function(){
+		if (navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(window.showPosition);
+		}
+		setTimeout(function(){
+			//alert(window.curLocation.lng + "," + window.curLocation.lat);
+			
+			/*var loc = {lng:116.46440347, lat:39.91130154};
+			var rlt1 = getNearbyCityDelears2(loc);
+			var rlt2 = getDelearsByCity2(rlt1.city);
+			setMap(rlt1, rlt2);*/
+			
+			if(!!window.curLocation){
+				var cityInfo = getNearbyCityDelears2(window.curLocation);
+				var delears = getDelearsByCity2(cityInfo.city);
+				setMap(window.curLocation, delears);
+			}
+		}, 2000);
+	};
+	
+	function getFromType(){
+		var stIdx = window.location.href.indexOf('?param=');
+		if(stIdx >= 0){
+			var param = window.location.href.substring(stIdx + 7);
+			//alert(param);
+			return param;
+		}
+		else{
+			return null;
+		}
+	}
+	
+</script>
+</html>

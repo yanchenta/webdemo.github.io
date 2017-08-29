@@ -1,0 +1,1 @@
+var channel = '23', chann = 'renren';

@@ -1,0 +1,10 @@
+@import "reset.css";
+
+html,body{ background:#d6d6d6;}
+
+.container{width:320px; position:relative;margin:0 auto;}
+img{width:100%; display:block;}
+
+#info{width:185px;height:26px;line-height:26px; position:absolute;top:336px;right:16px;}
+#info input{width:128px;height:26px;border:none; background:none;}
+#info a{width:50px;height:100%; position:absolute;top:0;right:0;}

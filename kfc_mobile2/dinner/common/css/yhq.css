@@ -1,0 +1,191 @@
+@import "reset.css";
+
+html,body{ background:#2f133b;}
+body{
+	padding:0px;
+	margin:0px;
+	outline:none;
+	
+	
+}
+img {  
+	width:100%;
+
+}
+
+.btn{
+	position:absolute;
+    width: 100%;
+	bottom:7.5%;
+	left:0;
+	text-align:center;
+}
+.btn figure{
+	margin:0;
+}
+.btn a{
+	width:35%;
+	display:inline-block;
+}
+#btn-fx{
+	margin-right:10px;
+}
+
+.fx{
+	height:40%;
+	width:100%;
+	position:absolute;
+	left:0;
+	bottom:0;
+	box-shadow:0 -1px 4px #000;
+	display:none;
+	/*-webkit-animation:fadeInShare .5s;*/
+}
+@-webkit-keyframes fadeInShare{
+	0%{height:0px;top:0px;}
+	100%{height:330px;top-330px;}
+}
+.bg{
+	background-color:#000;
+	opacity:0.2;
+	width:100%;
+	position:absolute;
+	height:100%;
+	top:0;
+	left:0;
+	
+	display:none;
+}
+.fxbg{
+	position:relative;
+	height:100%;
+	min-width:320px;max-width:568px;margin:0 auto; 
+	-webkit-animation:shake 1s ease both;
+	
+}
+
+@-webkit-keyframes shake{
+	0%{opacity:0;-webkit-transform:translateX(-2000px)}
+	60%{opacity:1;-webkit-transform:translateX(30px)}
+	80%{-webkit-transform:translateX(-10px)}
+	100%{-webkit-transform:translateX(0)}
+}
+
+.sina{
+	margin-left:7% !important;
+	
+}
+.renren{
+	
+}
+.tencent{
+}
+.icon{
+	float:left;
+	width:26%;
+	height:auto;
+	margin-left:5%;
+	margin-top:7%;
+	padding:0 auto;
+	
+	text-align:center;
+	
+}
+.fx-font{
+	display:block;
+	margin-top:7%;
+	font-size:10px;
+	color:#fff;
+	height:2.2em;
+	-webkit-text-size-adjust:none;
+	text-align:center;
+}
+.icon img{
+	width:80%;
+	margin:0 auto;
+}
+#cancel{
+	float:left;
+	width:86%;
+	height:40px;
+	margin-left:7%;
+	margin-top:4%;
+	margin-bottom:6%;
+	background-color:#565c69;
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%, rgba(165,168,177,0.6)), color-stop(50%, rgba(97,102,119,0.6)), color-stop(51%, rgba(68,70,91,0.6)), color-stop(100%,rgba(85,91,109,0.6)));
+background-image: -moz-linear-gradient(top, rgba(165,168,177,0.6) 0%, rgba(97,102,119,0.6) 50%, rgba(68,70,91,0.6) 51%, rgba(85,91,109,0.6) 100%);
+background-image: -o-linear-gradient(top, rgba(165,168,177,0.6) 0%, rgba(97,102,119,0.6) 50%, rgba(68,70,91,0.6) 51%, rgba(85,91,109,0.6) 100%);
+background-image: linear-gradient(top, rgba(165,168,177,0.6) 0%, rgba(97,102,119,0.6) 50%, rgba(68,70,91,0.6) 51%, rgba(85,91,109,0.6) 100%);
+	display:block;
+	
+	font-size:24px;
+	line-height:40px;
+	color:#fff;
+	
+	text-decoration:none;
+	text-align:center;
+	border-radius:5px;
+	
+	border:1px solid;
+	border-color:#000;
+	text-shadow:0 0 4px #000;
+}
+.popup {
+	width:100%;
+	position: absolute;
+	top: 30%;
+	left: 0;
+	display:none;
+	-webkit-animation:popShake .5s ease ;
+}
+
+@-webkit-keyframes popShake{
+	0%{opacity:0;-webkit-transform:scale(.8)}
+	50%{opacity:1;-webkit-transform:scale(1.05)}
+	70%{-webkit-transform:scale(.9)}
+	100%{-webkit-transform:scale(1)}
+}
+
+.alert{
+	margin:0 auto;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	background: rgba(11,27,68,0.7) url(../images/white_line.png) no-repeat;
+	background-size:contain;
+	text-align: center;
+	box-shadow:0 0 4px #000;
+	width: 300px;
+	height: 158px;
+	color: #fff;
+}
+.alert h3,.alert > p{font-size:14px;}
+.alert h3{line-height:40px;}
+.alert > p{line-height:30px;margin-bottom:10px;}
+
+.ok{
+	float:left;
+	width:42%;
+	height:16%;
+	margin-left:5%;
+	margin-top:0%;
+	background-color:#565c69;
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%, rgba(165,168,177,0.8)), color-stop(50%, rgba(97,102,119,0.8)), color-stop(51%, rgba(68,70,91,0.8)), color-stop(100%,rgba(85,91,109,0.8)));
+background-image: -moz-linear-gradient(top, rgba(165,168,177,0.8) 0%, rgba(97,102,119,0.8) 50%, rgba(68,70,91,0.8) 51%, rgba(85,91,109,0.8) 100%);
+background-image: -o-linear-gradient(top, rgba(165,168,177,0.8) 0%, rgba(97,102,119,0.8) 50%, rgba(68,70,91,0.8) 51%, rgba(85,91,109,0.8) 100%);
+background-image: linear-gradient(top, rgba(165,168,177,0.8) 0%, rgba(97,102,119,0.8) 50%, rgba(68,70,91,0.8) 51%, rgba(85,91,109,0.8) 100%);
+	display:inline-block;
+	
+	font-size:18px;
+	padding-top:12px;
+	padding-bottom:8px;
+	color:#fff;
+	
+	text-decoration:none;
+	text-align:center;
+	line-height:20px;
+	border-radius:6px;
+	
+	border:1px solid;
+	border-color:#000;
+	text-shadow:0 0 4px #000;
+}

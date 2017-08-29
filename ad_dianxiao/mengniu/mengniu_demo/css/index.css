@@ -1,0 +1,27 @@
+@import "reset.css";
+
+html,body{ background:rgba(0,0,0,0);}
+
+.container{width:320px;height:480px; position:relative;margin:0 auto;}
+img{width:100%; display:block;}
+.animate{width:245px;height:251px; position:absolute;top:121px;left:60px;z-index:1;}
+.step{width:197px;height:198px; position:absolute;top:0;left:0;}
+.animate .step1{width:178px;height:178px;top:12px;left:12px;z-index:2;-webkit-animation:showHide 1s linear infinite;}
+.animate .step2{top:2px;left:2px;z-index:3;}
+.animate .step3{left:2px;top:2px;z-index:4;}
+.animate .step4{left:2px;top:2px;z-index:5;}
+.animate .step5{width:143px;height:143px;z-index:7;overflow:hidden; left:28px;top:28px; border-radius:1550px; -webkit-border-radius:155px;}
+.animate .step5 .num{width:100%;height:100%;  background:url(../images/list.png) top center repeat-y;background-size: cover;border-radius:155px; -webkit-border-radius:155px;}
+
+.animate .step6{width:202px;height:202px;z-index:6;}
+.animate .step7{width:254px;height:219px;z-index:8;top:-3px;left:-29px;}
+
+@-webkit-keyframes showHide{
+	50%{opacity:0;}
+}
+
+.banner{width:320px;height:50px; background:url(../images/banner_02.jpg) no-repeat; background-size:contain; position:absolute;bottom:0;left:0;}
+.text{width:117px;height:28px; position:absolute;top:11px;right:60px;}
+.text .text1{width:102px;}
+
+.close{width:40px;height:40px; background:url(../images/close.png) no-repeat; background-size:contain; position:absolute;top:-10px;right:65px;z-index:10; text-indent:-9990px;}

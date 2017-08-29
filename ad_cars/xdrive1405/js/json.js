@@ -1,0 +1,36 @@
+
+var dealers = [
+	{province:"黑龙江",cities:
+		[{city:"哈尔滨",dealers:[
+		"哈尔滨中宝",
+		"哈尔滨龙宝",
+		"哈尔滨中顺滨宝"]
+		}]
+	},{province:"吉林",cities:
+		[{city:"长春",dealers:[
+		"长春宝兴行",
+		"长春汇宝",
+		"长春中顺宝"]
+		}]
+	},{province:"辽宁",cities:
+		[{city:"大连",dealers:[
+		"大连星之宝",
+		"大连燕德宝",
+		"大连驰宝"]
+		},{city:"沈阳",dealers:[
+		"沈阳华宝",
+		"沈阳信宝行",
+		"沈阳中顺盛宝"]
+		},{city:"锦州",dealers:[
+		"锦州华宝"]
+		},{city:"鞍山",dealers:[
+		"鞍山晨宝"]
+		},{city:"营口",dealers:[
+		"营口燕德宝"]
+		},{city:"抚顺",dealers:[
+		"抚顺汇之宝"]
+		},{city:"本溪",dealers:[
+		"本溪汇盛宝"]
+		}]
+	}
+];

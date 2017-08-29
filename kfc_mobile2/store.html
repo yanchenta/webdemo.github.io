@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    	<title>KFC</title>
+        <link rel="stylesheet" type="text/css" href="common/reset.css">
+        <link rel="stylesheet" type="text/css" href="common/index.css">
+        <script src="common/jquery-1.4.4.min.js"></script>
+		<script src="common/jquery.cookie.js"></script>
+        <script src="common/trackEvent.js"></script>
+        <script src="common/iscroll.js"></script>
+		<script src="common/citys.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+		<script type="text/javascript" src="common/convertor.js"></script>
+        <script>
+		var _i;
+		var map;var g;var position;
+	var shopPoint;var position1;var positionCenter;
+			var cityname;
+			var userInfo = {};
+			var roam = false;
+		$(document).ready(function(e) {
+			//track(1, 5898);	
+			roam = $.cookie("roam") == "1";
+			cityname = $.cookie("cityname");
+			if(!cityname){
+				new BMap.LocalCity().get(function(city){
+					cityname = city.name;
+					setCity(cityname);
+					$("#city").text(getCityName());
+				});
+			}else{
+				$("#city").text(getCityName());
+			}
+			
+			$("#logo1,#c3_2,#c3_3").bind("load",function(){
+				$("#baidu_map").height(document.documentElement.clientHeight-$("#header").height()-$("#c3_3").height());
+			});
+			
+			if(roam){
+				map = new BMap.Map('baidu_map');
+				
+					$("#youraddress,#youraddress1").hide();
+				//new BMap.Geocoder().getPoint("", function(point){}, cityname);
+					map.centerAndZoom(cityname,16);
+				var cityid = getCityId();
+				if(cityid.length <= 3){
+					userInfo.provinceid = cityid;
+				}else{
+					userInfo.cityid = cityid;
+				}
+				
+				_ols = [];
+				$.ajax({
+					url : 'http://track.mobile1.com.cn/advmessage/dealer/getDealerByAreaIdJsonP.action?advid=95',
+					cache : false,
+					dataType : 'jsonp',
+					jsonpCallback : "eventcallback1",
+					data : userInfo,
+					success : function(json) {
+						var arr = json[0];
+						var html = "";
+						for(var i=0;i<arr.length;i++){
+							var gpoint = new BMap.Point(arr[i].longitude,arr[i].latitude);
+							html += '<div class="info" onclick="openInfo('+arr[i].dealerid+')"><div class="dealer"><div class="dealername">'+arr[i].dealerName+'店</div><div class="dealeraddress">'+arr[i].dealerAddress+'</div></div><div class="distance"> ></div></div>';
+							
+							BMap.Convertor.translate(gpoint,2,function(point,info){
+								
+								var iconEnd = new BMap.Icon("common/dealer.png", new BMap.Size(30,30), {anchor:new BMap.Size(15,15)});
+								var markerEnd = new BMap.Marker(point,{icon:iconEnd}); 
+								info.point = point;
+								markerEnd.info = info;
+								markerEnd.addEventListener("click",function(){
+									showInfo(this.info.dealerName,this.info.dealerAddress,point);
+								});
+								
+								map.addOverlay(markerEnd);
+								_ols.push(markerEnd);
+							},arr[i]);
+							
+						}
+						$("#infos").html(html);
+					}
+				});
+			
+			}else{
+				g = new BMap.Geolocation();
+				g.getCurrentPosition(getCurrentPositionCallback);
+			}
+			$("#input_search").bind("blur",search);
+		});
+			function getCurrentPositionCallback(gr) {				
+				map = new BMap.Map('baidu_map');
+				
+				if(gr){
+					map.centerAndZoom(gr.point, 16);
+                	position = gr.point;
+					positionCenter = position;
+					BMap.Convertor.translate(position,2,function(point){
+						position = point;
+						positionCenter = position;
+						var iconEnd = new BMap.Icon("common/my.png", new BMap.Size(20,20), {anchor:new BMap.Size(10,10)});
+						var markerEnd = new BMap.Marker(point,{icon:iconEnd}); 
+						map.addOverlay(markerEnd);
+						
+						map.setCenter(position);
+					});
+					
+					
+					
+					
+					new BMap.Geocoder().getLocation(gr.point,function(gr){
+											$(".graddress").text(gr.address);
+													});
+					map.setCenter(position);
+					userInfo.lng = position.lng;
+					userInfo.lat = position.lat;
+					userInfo.radius = 5000;
+				}else{
+					$(".graddress").text("无法获取您的当前位置");
+					map.setCenter(cityname);
+					new BMap.LocalCity().get(function(city){
+						position = city.center;
+						positionCenter = position;
+						userInfo.lng = city.center.lng;
+						userInfo.lat = city.center.lat;
+						userInfo.radius = 10000;
+					});
+				}
+				var cityid = getCityId();
+				if(cityid.length <= 3){
+					userInfo.areaid = cityid;
+				}else{
+					userInfo.cityid = cityid;
+				}
+				
+				_ols = [];
+				$.ajax({
+					url : 'http://track.mobile1.com.cn/advmessage/dealer/getDealerJsonP.action?advid=95',
+					cache : false,
+					dataType : 'jsonp',
+					jsonpCallback : "eventcallback1",
+					data : userInfo,
+					success : function(json) {
+						var arr = json[0];
+						var html = "";
+						for(var i=0;i<arr.length;i++){
+							var gpoint = new BMap.Point(arr[i].longitude,arr[i].latitude);
+							html += '<div class="info" onclick="openInfo('+arr[i].dealerid+')"><div class="dealer"><div class="dealername">'+arr[i].dealerName+'店</div><div class="dealeraddress">'+arr[i].dealerAddress+'</div></div><div class="distance">'+arr[i].distance+'米 ></div></div>';
+							
+							BMap.Convertor.translate(gpoint,2,function(point,info){
+								
+								var iconEnd = new BMap.Icon("common/dealer.png", new BMap.Size(30,30), {anchor:new BMap.Size(15,15)});
+								var markerEnd = new BMap.Marker(point,{icon:iconEnd}); 
+								info.point = point;
+								markerEnd.info = info;
+								markerEnd.addEventListener("click",function(){
+									showInfo(this.info.dealerName,this.info.dealerAddress,point);
+								});
+								
+								map.addOverlay(markerEnd);
+								_ols.push(markerEnd);
+							},arr[i]);
+							
+						}
+						$("#infos").html(html);
+					}
+				});
+            }
+			var _ols = [];
+			var _d = $("<div class='infoWindow'><div class='name'></div><div class='address'></div></div>");
+			function showInfo(name,address, point){
+				//var point = new BMap.Point(lng, lat);
+				_d.find(".name").text(name + "店");
+				_d.find(".address").text(address);
+				
+				var mySquare = new MarkerLableOverlay(point, _d[0]);
+                map.addOverlay(mySquare);
+				mySquare.draw();
+				mySquare.show();
+				return;
+				
+				
+				var infoWindow = new BMap.InfoWindow(d[0],
+						{
+							width: 200,
+							height: 50
+						});
+				map.openInfoWindow(infoWindow, point);
+			}
+			function openInfo(id){
+				_c('.c3_3');
+				
+				var ols = _ols;
+				for(var i=0;i<ols.length;i++){
+					if(ols[i].info.dealerid == id){
+						showInfo(ols[i].info.dealerName,ols[i].info.dealerAddress,ols[i].info.point);
+						position1 = ols[i].info.point;
+						setTimeout("map.setCenter(position1)",400);
+						return;
+					}
+				}
+			}
+			function _c(_a){
+				if(_a == ".c3_4"){
+					$("#search").hide();
+				}else{
+					$("#search").show();
+				}
+				$(".c3_2,.c3_3,.c3_4").hide();
+				$(_a).show();
+			}
+			
+// 定义自定义覆盖物的构造函数  
+function MarkerLableOverlay(center, div) {
+    this._center = center;
+    this._div = div;
+}
+// 继承API的BMap.Overlay  
+MarkerLableOverlay.prototype = new BMap.Overlay();
+// 实现初始化方法  
+MarkerLableOverlay.prototype.initialize = function (map) {
+    // 保存map对象实例  
+    this._map = map;
+	
+    // 将div添加到覆盖物容器中  
+    map.getPanes().markerPane.appendChild(this._div);
+	
+    return this._div;
+}
+// 实现绘制方法  
+MarkerLableOverlay.prototype.draw = function () {
+    // 根据地理坐标转换为像素坐标，并设置给容器  
+    var position = this._map.pointToOverlayPixel(this._center);
+    this._div.style.left = position.x - this._div.clientWidth / 2 + "px";
+    this._div.style.top = position.y - this._div.clientHeight + "px";
+}
+// 实现显示方法  
+MarkerLableOverlay.prototype.show = function () {
+    if (this._div) {
+        this._div.style.display = "";
+    }
+	positionCenter = this._center;
+	this._map.setCenter(this._center);
+}
+// 实现隐藏方法  
+MarkerLableOverlay.prototype.hide = function () {
+    if (this._div) {
+        this._div.style.display = "none";
+    }
+}
+function search(){
+	
+	userInfo.like = $("#input_search").val();
+	userInfo.provinceid = userInfo.areaid;
+	if($.trim(userInfo.like).length == 0){
+		//alert('请输入关键字');
+		return;
+	}
+	_ols = [];
+				$.ajax({
+					url : 'http://track.mobile1.com.cn/advmessage/dealer/getDealerByAreaIdJsonP.action?advid=95&limit=100',
+					cache : false,
+					dataType : 'jsonp',
+					jsonpCallback : "eventcallback1",
+					data : userInfo,
+					success : function(json) {
+						var arr = json[0];
+						if(arr.length == 0){
+							alert("没有搜索到相关店铺。");
+							return;
+						}else{
+							closeSearch();
+						}
+						var html = "";
+						for(var i=0;i<arr.length;i++){
+							var gpoint = new BMap.Point(arr[i].longitude,arr[i].latitude);
+							html += '<div class="info" onclick="openInfo('+arr[i].dealerid+')"><div class="dealer"><div class="dealername">'+arr[i].dealerName+'店</div><div class="dealeraddress">'+arr[i].dealerAddress+'</div></div><div class="distance"> > </div></div>';
+							
+							BMap.Convertor.translate(gpoint,2,function(point,info){
+								
+								var iconEnd = new BMap.Icon("common/dealer.png", new BMap.Size(30,30), {anchor:new BMap.Size(15,15)});
+								var markerEnd = new BMap.Marker(point,{icon:iconEnd}); 
+								info.point = point;
+								markerEnd.info = info;
+								markerEnd.addEventListener("click",function(){
+									showInfo(this.info.dealerName,this.info.dealerAddress,point);
+								});
+								
+								map.addOverlay(markerEnd);
+								_ols.push(markerEnd);
+							},arr[i]);
+							
+						}
+						$("#infos").html(html);
+					}
+				});
+}
+function closeSearch(){
+	_c('.c3_2,#refresh');$('#back').hide();
+}
+			function backOrReload(){
+				if($(".c3_2").css("display") != "none"){
+					location = "index.html";
+				}else{
+					window.location.reload();
+				}
+			}
+        </script>
+    </head>
+    
+    <body>
+    
+    	<div class="container">
+        	
+            <figure id="header">
+            	<div id="c3_1"><img id="logo1" src="common/logo1.png"/><span id="city" onclick="location='list.html'">上海市</span></div>
+				<img id="search" onclick="_c('.c3_4,#back');$('#refresh').hide();" src="common/s_search.png"/>
+				<img id="refresh" onclick="location = 'index.html';" src="common/s_home.png"/>
+				<img id="back" onclick="_c('.c3_2,#refresh');$('#back').hide();" src="common/s_back.png" style="display:none;"/>
+            </figure>
+			
+			<figure class="c3_2">
+            	<img id="c3_2" src="common/c3_2.png" alt="" />
+				<a id="c3_2_1" href="javascript:_c('.c3_2')" class="fly"></a>
+				<a id="c3_2_2" href="javascript:_c('.c3_3');setTimeout('map.setCenter(positionCenter);',400)" class="fly"></a>
+            </figure>
+			
+			<figure class="c3_2">
+            	<div id="youraddress">您的当前位置：<label class="graddress">正在获取中...</label></div>
+				<div id="infos"></div>
+            </figure>
+			
+			<figure class="c3_3">
+            	<img id="c3_3" src="common/c3_3.png" alt="" />
+				<a id="c3_2_1" href="javascript:_c('.c3_2')" class="fly"></a>
+				<a id="c3_2_2" href="javascript:_c('.c3_3');setTimeout('map.setCenter(positionCenter);',400)" class="fly"></a>
+            </figure>
+			<figure class="c3_3">
+            	<div id="youraddress1">您的当前位置：<label class="graddress">正在获取中...</label></div>
+				<div id="baidu_map"><br/><br/>正在获取您的位置，请在弹出提示中点击确认。</div>
+            </figure>
+			
+			<figure class="c3_4">
+				<div id="div_search">
+					<img src="common/s_search1.png" id="img_search"/>
+					<input type="text" id="input_search"  placeholder="请输入餐厅名称或地址关键字" />
+				</div>
+            	
+            </figure>
+        </div>
+	
+    </body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>郎牌特曲，暑假我们一起闯！</title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:1219px;
+			margin:0px 0px;
+			padding:0px 0px;
+			
+			background-image:url('images/letusgo-bg.jpg');
+			background-position:0px 0px;
+			background-size:640px 1219px;
+			background-repeat:no-repeat;
+		}
+		
+		.div-btn-return{
+			position:absolute;
+			top:20px;
+			right:18px;
+			
+			width:100px;
+			height:35px;
+			
+			cursor:pointer;
+		}
+		.text-name{
+			position:absolute;
+			top:580px;
+			left:140px;
+			
+			width:150px;
+			height:35px;
+		}
+		.select-city{
+			position:absolute;
+			top:580px;
+			left:460px;
+			
+			width:120px;
+			height:40px;
+		}
+		.text-phone{
+			position:absolute;
+			top:645px;
+			left:140px;
+			
+			width:435px;
+			height:35px;
+		}
+		.text-email{
+			position:absolute;
+			top:710px;
+			left:140px;
+			
+			width:435px;
+			height:35px;
+		}
+		.div-btn-submit{
+			position:absolute;
+			top:780px;
+			left:208px;
+			
+			width:227px;
+			height:50px;
+			
+			cursor:pointer;
+		}
+		
+		input{
+			font-size:20px;
+		}
+		select{
+			font-size:20px;
+		}
+		
+		.div-tmcode{
+			position:absolute;
+			left:273px;
+			top:922px;
+			
+			width:207px;
+			height:207px;
+			
+			cursor:pointer;
+		}
+		.div-bigtmcode{
+			position:fixed;
+			top:0px;
+			left:0px;
+			
+			width:640px;
+			height:1136px;
+			
+			background-image:url('images/index-top.png');
+			background-position:0px 0px;
+			background-size:640px 1136px;
+			background-repeat:no-repeat;
+			
+			display:none;
+		}
+		.div-close-bigtmcode{
+			position:absolute;
+			left:270px;
+			top:643px;
+			
+			width:100px;
+			height:100px;
+			
+			cursor:pointer;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="div-form">
+			<div class="div-btn-return"></div>
+			<input type="text" class="text-name"/>
+			<select class="select-city">
+				<!--<option value="北京">北京 </option>-->
+			</select>
+			<input type="text" class="text-phone"/>
+			<input type="text" class="text-email"/>
+			<div class="div-btn-submit"></div>
+			<div class="div-tmcode"></div>
+		</div>
+		<div class="div-bigtmcode">
+			<div class="div-close-bigtmcode">
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/ajaxes.js"></script>
+<script type="text/javascript" src="js/json.js"></script>
+<script type="text/javascript">
+	function initCity(){
+		var container = document.getElementsByClassName("select-city")[0];
+		
+		var option = document.createElement("option");
+		option.innerHTML = "请选择";
+		option.value = "";
+		container.appendChild(option);
+			
+		for(var i = 0; i < cities.length; i++){
+			var option = document.createElement("option");
+			option.innerHTML = cities[i].Name;
+			option.value = cities[i].Id;
+			
+			container.appendChild(option);
+		}
+	}
+	
+	initCity();
+	
+	document.getElementsByClassName("div-tmcode")[0].onclick = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_tdcode);
+		
+		document.getElementsByClassName("div-form")[0].style.display = "none";
+		document.getElementsByClassName("div-bigtmcode")[0].style.display = "block";
+	};
+	document.getElementsByClassName("div-close-bigtmcode")[0].onclick = function(){
+		
+		document.getElementsByClassName("div-bigtmcode")[0].style.display = "none";
+		document.getElementsByClassName("div-form")[0].style.display = "block";
+	};
+	document.getElementsByClassName("div-btn-return")[0].onclick = function(){
+		window.location.href = "index.html";
+	};
+	
+	document.getElementsByClassName("div-btn-submit")[0].onclick = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_letusgo_click);
+		
+		var text_name = document.getElementsByClassName("text-name")[0].value;
+		var select_cityId = document.getElementsByClassName("select-city")[0].value;
+		
+		var select_cityName = "";
+		if(document.getElementsByClassName("select-city")[0].selectedIndex > -1){
+			select_cityName = document.getElementsByClassName("select-city")[0].options[document.getElementsByClassName("select-city")[0].selectedIndex].text;
+		}
+		var text_phone = document.getElementsByClassName("text-phone")[0].value;
+		var text_email = document.getElementsByClassName("text-email")[0].value;
+		
+		
+		//姓名判断:
+		if("" === text_name){
+			alert("姓名不能为空！");
+			return;
+		}
+		if(!text_name.match(/^[a-z|A-Z|\u4e00-\u9fa5]{2,}$/)){
+			alert("姓名格式不正确！");
+			return;
+		}
+		if(text_name.length > 10){
+			alert('姓名位数不正确！');
+			return;
+		}
+		
+		if(null === select_cityId || "" === select_cityId){
+			alert('请选择城市');
+			return;
+		}
+		
+		//手机号码提示
+		if(!text_phone.match(/^[0-9]{11}$/)){
+			alert('请输入 11位手机号码！');
+			return;
+		}
+		
+		//邮箱验证
+		if("" === text_email){
+			alert("邮箱不能为空！");
+			return;
+		}
+		if(!text_email.match(/^[0-9a-zA-Z_]{1,}@[0-9a-zA-Z_]{1,}\.[0-9a-zA-Z_]{1,}$/)){
+			alert("邮箱格式不正确！");
+			return;
+		}
+		
+		var advid = 30023;
+		var _url = "http://ama.adwo.com/advmessage/adv/addResultJsonP.action";
+		_url += "?advid=" + advid;
+		_url += "&realname=" + text_name;
+		_url +=	"&mobile=" + text_phone;
+		_url += "&email=" + text_email;
+		
+		_url += "&cityid=" + select_cityId;
+		_url += "&cityname=" + select_cityName;
+		
+		ajax(_url, function(response){
+			//alert(response);
+			if(!!response[0]){
+				if(1 === response[0].success){
+					alert("恭喜你，提交成功！");
+				}
+				else{
+					alert("提交失败！" + response.info);
+				}
+			}
+		});
+	}
+</script>
+</html>

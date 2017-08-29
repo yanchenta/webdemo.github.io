@@ -1,0 +1,51 @@
+		html body{
+			width:640px;
+			max-width:640px;
+			height:960px;
+			max-height:960px;
+			margin:0px 0px;
+			
+			background-image:url('../images/share3-bg.jpg');
+			background-repeat:no-repeat;
+			background-position:left top;
+			background-size:640px 960px;
+		}
+		
+		.div-form{
+			position:absolute;
+			top:730px;
+			left:130px;
+			
+			width:400px;
+			height:220px;
+		}
+		.input-name{
+			position:absolute;
+			top:0px;
+			left:130px;
+			
+			width:225px;
+			height:50px;
+			
+			font-size:25px;
+		}
+		.input-phone{
+			position:absolute;
+			top:75px;
+			left:130px;
+			
+			width:225px;
+			height:50px;			
+			
+			font-size:25px;
+		}
+		.div-btn-submit{
+			position:absolute;
+			top:148px;
+			right:20px;
+			
+			width:165px;
+			height:60px;
+			
+			cursor:pointer;
+		}

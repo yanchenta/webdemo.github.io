@@ -1,0 +1,21 @@
+		html body{
+			width:320px;
+			height:525px;
+			padding:0px 0px;
+			margin:0px 0px;
+			
+			background-image:url("../images/i5/introduction-bg.jpg");
+			background-size:320px 525px;
+			background-position:left top;
+			background-repeat:no-repeat;
+		}
+		.div-to-index{
+			position:absolute;
+			top:424px;
+			right:33px;
+			
+			width:100px;
+			height:33px;
+			
+			cursor:pointer;
+		}

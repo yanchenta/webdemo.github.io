@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title></title>
+    <style>
+		html,body,div{margin:0;padding:0;}
+       .container{width:320px;height:50px;margin:0 auto; position:relative;}
+	   img{display:block;width:100%;}
+	   @-webkit-keyframes showHide{
+			50%{opacity:0;}
+		}
+	   
+    </style>
+<script>
+	window.onload = function(){
+	}
+	
+	function adwoAdClickCount(handler) {
+		window.location = "adwo://adwoAdClickCount&handler_" + handler;
+	}
+	
+	function onTouched() {
+		
+		var urI = window.location;
+	    var urL = String(urI);
+	    var urI_new = urL.replace("index.html","expand/index.html");
+		
+		setTimeout(function() {
+			window.location = urI_new;
+		},500);
+	}
+
+	
+
+	function post(url){
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.open('GET', url, true);
+			xmlhttp.send();
+		}
+	}
+</script>
+</head>
+<body style="margin:0;padding:0;">
+	
+        <div class="container" ontouchstart="adwoAdClickCount('onTouched');">
+        	<img src="banner.jpg" alt="" width="320" />  
+        </div>
+        
+        
+	</div>
+</body>
+</html>

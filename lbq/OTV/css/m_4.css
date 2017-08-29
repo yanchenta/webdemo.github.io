@@ -1,0 +1,103 @@
+@charset "utf-8";
+@import "reset.css";
+
+html,body{ font-family: "微软雅黑",Arial, Helvetica, sans-serif;}
+body{-webkit-text-size-adjust:none}
+figure img{width:100%;display:block;}
+a img{width:100%;display:block;}
+ul{list-style:none outside none;margin:0;padding:0;}
+
+
+/*在线报名 客户基本信息*/
+.content4-1{width:320px; height:460px; background:url(../images/460.jpg) no-repeat;zoom:1; margin:0 auto;}
+.home4{height:44px;width:320px;background-color:#f8b62c;-webkit-box-shadow: 5px 5px 10px #ededed;　-moz-box-shadow: 5px 5px 10px #ededed;　box-shadow: 5px 5px 10px #ededed;text-align: center;  z-index:5;}
+.home4 .backBut{width:90px;height:44px;line-height:44px;display:inline-block;float: left; cursor:pointer;}
+.home4 .backBut img{width: 31px;margin:3px 4px 0 11px;vertical-align: middle;}
+.home4 .backBut label{font-size:8px;color:#fff;vertical-align: middle;line-height: 44px;height: 44px;display: inline-block;}
+.home4 h3{ height:44px; line-height:44px; color:#fff; font-size:16px; font-weight:bold;}
+.home4 .backBut2{width:115px;height:44px; line-height:44px;display:inline-block;float: right;cursor:pointer;}
+.home4 .backBut2 img{width: 70px; height:27.5px;margin:3px 8px 0 4px;vertical-align: middle;}
+
+
+/*客户的基本信息*/
+.message{ width:300px; height:145px; margin:7px auto; border-radius:5px; border:1px solid #e2e2e2; border-bottom:none;background:#f8f8f8; }
+.message .tit{ height:38px; line-height:38px; background:#f8b62c;border-top-left-radius:3px; border-top-right-radius:3px; text-align:center; color:#fff;}
+.message_cont{ height:173px; }
+
+.uname{width:300px; height:36px; line-height:36px; background:#f8f8f8; color:#a0a0a0;border-bottom:1px solid #b6b6b6; }
+.mess{ float:left;}
+.uname label{ margin-left:13px; margin-right:3px;}
+.txtname{height:35px; line-height:35px; background:#f8f8f8; border:none; }
+.sex{ float:right;  display:inline-block; }
+.sex a{ width:50px; height:36px; display:block;border-right:1px solid #fff; color:#fefefe; text-align:center; line-height:36px; float:left; background:#898989;}
+.sex .girl{border-right:none;}
+.phone{width:300px; height:36px; line-height:36px; background:#f8f8f8; color:#a0a0a0;border-bottom:1px solid #b6b6b6; }
+
+.phone label{ margin-left:13px; margin-right:3px;}
+.phonetxt{height:35px; line-height:35px; background:#f8f8f8; border:none; }
+
+.address{width:300px; height:35px; background:#f8f8f8; color:#a0a0a0; }
+.address label{ margin-left:13px; margin-right:3px;}
+.addresstxt{ width:200px;height:35px; line-height:35px; /*-webkit-appearance:none;*/  background:#f8f8f8; border:none; }
+
+.scroll-area{ width:320px; height:161px; background:url(../images/4app-box2.png) no-repeat; background-size:320px 161px;}
+
+
+/*房屋的基本信息*/
+
+.house{ width:300px; height:188px; margin:7px auto; border-radius:5px; border:1px solid #e2e2e2;  }
+.house .tit{ height:38px; line-height:38px; background:#f8b62c;border-top-left-radius:3px; border-top-right-radius:3px; text-align:center; color:#fff;}
+.house_cont{ height:173px; }
+.house-jg{width:300px; height:36px; line-height:36px; background:#f8f8f8; color:#a0a0a0;border-bottom:1px solid #b6b6b6; }
+.house-jg label{ margin-left:13px; margin-right:3px;}
+.house-jg-txt{height:35px; line-height:35px; background:#f8f8f8; border:none; }
+
+.house-area{width:300px; height:36px; line-height:36px; background:#f8f8f8; color:#a0a0a0;border-bottom:1px solid #b6b6b6; }
+.house-area label{ margin-left:13px; margin-right:3px;}
+.house-area-txt{height:35px; line-height:35px; background:#f8f8f8; border:none; }
+
+.house-age{width:300px; height:36px; background:#f8f8f8; color:#a0a0a0; border-bottom:1px solid #b6b6b6;}
+.house-age label{ margin-left:13px; margin-right:3px;}
+.house-age-txt{ width:200px;height:36px; line-height:36px; /*-webkit-appearance:none;*/  background:#f8f8f8; border:none; }
+
+.house-nx{width:300px; height:36px; background:#f8f8f8; color:#a0a0a0; }
+.house-nx label{ margin-left:13px; margin-right:3px;}
+.house-nx-txt{ width:200px;height:36px; line-height:36px; /*-webkit-appearance:none;*/  background:#f8f8f8; border:none; }
+
+.scroll-area2{ width:320px; height:161px; background:url(../images/4app-box3.png) no-repeat; background-size:320px 161px;}
+
+
+/*墙面问题*/
+.wall{ width:300px; height:212px; margin:7px auto;border-radius:5px; border:1px solid #e2e2e2;  }
+.wall .tit{ height:38px; line-height:38px; background:#f8b62c;border-top-left-radius:3px; border-top-right-radius:3px; text-align:center; color:#fff;}
+.wall_cont{ height:173px; }
+.tab{ border:none; border-color:#b6b6b6;}
+
+.tab tr td{ height:35px; line-height:35px; text-align:center;color:#a0a0a0; font-size:14px;}
+.tab tr td a{width:148px;color:#a0a0a0; display:block;}
+.tab tr td a:hover,.tab tr td a:visited{ width:148px; background:#f8b62c; color:#fff;}
+
+.blank{ height:85px;}
+
+
+
+
+
+
+.nav{width:320px; position:relative; margin:0 auto; overflow:hidden;}
+.nav ul{width:421px;}
+.nav li,.nav a{width:67.5px;height:46px;}
+
+.nav1{ position:absolute;bottom:0px; left:0px; }
+.nav2{ position:absolute;bottom:0px; left:70px; }
+.nav3{ position:absolute;bottom:0px; left:141px; }
+.nav4{ position:absolute;bottom:0px; left:211px; }
+.nav6{ position:absolute;bottom:0px; left:352px; }
+.nav7{ position:absolute;bottom:0px;left:493px;}
+
+
+
+
+
+
+

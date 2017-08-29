@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>郎牌特曲，暑假我们一起闯！</title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:873px;
+			max-height:873px;
+			margin:0px 0px;
+			padding:0px 0px;
+			
+			background-image:url('images/index-bg.jpg');
+			background-position:left top;
+			background-size:640px 873px;
+			background-repeat:no-repeat;
+			
+			background-color:#E3D5C8;
+		}
+
+		
+		.div-tmcode{
+			position:absolute;
+			left:150px;
+			top:636px;
+			
+			width:130px;
+			height:130px;
+			
+			cursor:pointer;
+		}
+		
+		.div-letusgo{
+			position:absolute;
+			left:383px;
+			top:636px;
+			
+			width:207px;
+			height:50px;
+			
+			cursor:pointer;
+		}
+		
+		.div-introduction{
+			position:absolute;
+			left:383px;
+			top:715px;
+			
+			width:207px;
+			height:50px;
+			
+			cursor:pointer;
+		}
+		
+				
+		.div-bigtmcode{
+			position:absolute;
+			top:0px;
+			left:0px;
+			
+			width:640px;
+			height:1136px;
+			
+			background-image:url('images/index-top.png');
+			background-position:0px 0px;
+			background-size:640px 1136px;
+			background-repeat:no-repeat;
+			
+			display:none;
+		}
+		.div-btn-closetop{
+			position:absolute;
+			left:270px;
+			top:643px;
+			
+			width:100px;
+			height:100px;
+			
+			cursor:pointer;
+		}
+		.main-body{
+			background-color:yellow;
+			position:relative;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="index-bg-layer">
+			<div class="div-tmcode"></div>
+			<div class="div-letusgo"></div>
+			<div class="div-introduction"></div>
+		</div>
+		<div class="div-bigtmcode">
+			<div class="div-btn-closetop">
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/ajaxes.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript">
+	
+	document.getElementsByClassName("div-tmcode")[0].onclick = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_tdcode);
+		document.getElementsByClassName("div-bigtmcode")[0].style.display = "block";//显示上层
+		document.getElementsByClassName("index-bg-layer")[0].style.display = "none";//隐藏底层
+	}
+	document.getElementsByClassName("div-btn-closetop")[0].onclick = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_bigtdcode_close);
+		document.getElementsByClassName("div-bigtmcode")[0].style.display = "none";//隐藏上层
+		document.getElementsByClassName("index-bg-layer")[0].style.display = "block";//显示底层
+	}
+	
+	document.getElementsByClassName("div-letusgo")[0].onclick = function(){
+		var _url = "letusgo.html";
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_letusgo, _url);
+	}
+	
+	document.getElementsByClassName("div-introduction")[0].onclick = function(){
+		var _url = "introduction.html";
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_introduction, _url);
+	}
+	
+	window.onload = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_pv);
+		resetPage();
+	}
+
+</script>
+</html>

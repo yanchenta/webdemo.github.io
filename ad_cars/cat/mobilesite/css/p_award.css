@@ -1,0 +1,66 @@
+/*样式重置*/
+*{
+	padding: 0;
+	margin: 0;
+}
+a{
+	text-decoration: none;
+}
+/*frame样式*/
+.frame{
+	width: 640px;
+	position: relative;
+}
+/*header样式*/
+.header{
+	position: fixed;
+	top: 0;
+	width: 640px;
+	height: 96px;
+	background: url(../images/logo.png) no-repeat;
+}
+/*content样式*/
+.content{padding-bottom: 30px;
+}
+.content_pro{
+	width: 640px;
+	height: 112px;
+	background: url(../images/award.png);
+	position: relative;
+}
+.content_pro a{
+	position: absolute;
+	top: 28px;
+	left: 20px;
+}
+.aaa{
+	width: 640px;
+	height: 858px;
+	background: url(../images/333.png);
+}
+/*footer样式*/
+.footer{
+	padding: 0 10px 100px;
+}
+.footer a{
+	float: left;
+	width: 25%;
+}
+.footer a img{width: auto;height: auto;margin-left: 2px;margin-right: 2px;}
+.wen,.wen2{
+	float: left;
+	width: 300px;
+	height: 98px;
+}
+.bbb{
+	height: 100px;
+/*	width: 640px;*/
+	padding-left: 30px;
+	margin: 20px 0;
+}
+.wen{
+	background: url(../images/444.png);
+}
+.wen2{
+	background: url(../images/555.png);
+}

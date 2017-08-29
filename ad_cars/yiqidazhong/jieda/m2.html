@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    	<title>精彩试驾</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="js/jquery-1.4.4.min.js"></script>
+        <script src="js/trackEvent.js"></script>
+        <script src="js/dress.js"></script>
+        <script>
+		var cms_id = 605;
+		$(document).ready(function(e) {
+			track(1, 5904);
+    var provices='<option data-name="选择省份" value="">请选择</option>';
+				for(var i=0; i<data.length; i++){
+					provices += '<option data-name="'+data[i].provincename+'" value="'+data[i].provincename+'">'+data[i].provincename+'</option>';
+				}
+				
+				$('#province').html(provices);
+				
+				$('#province').bind('change',function(){
+					var citys='<option data-name="选择城市" value="">请选择</option>';
+					var dealername='<option data-name="选择经销商" value="">请选择</option>';
+					$('#citys').html(citys);
+					$('#dealername').html(dealername);
+					var currentId = $(this).val();
+					for(var i=0 ; i<data.length ; i++){
+						if(data[i].provincename == currentId){
+							for(var j=0; j<data[i].cities.length ; j++){
+								citys += '<option data-name="'+data[i].cities[j].areacityname+'" value="'+data[i].cities[j].areacityname+'">'+data[i].cities[j].areacityname+'</option>';
+							}
+							break;
+						}
+					}
+					$('#citys').html(citys);
+				});
+				
+				$('#citys').bind('change',function(){
+					var dealername='<option data-name="选择经销商" value="">请选择</option>';
+					$('#dealername').html(dealername);
+					var currentId = $(this).val();
+					for(var i=0 ; i<data.length ; i++){
+						for(var j=0; j<data[i].cities.length ; j++){
+							if(data[i].cities[j].areacityname == currentId){
+								for(var k=0;k<data[i].cities[j].dealers.length;k++){
+									dealername +='<option data-name="'+data[i].cities[j].dealers[k].dealername+'" value="'+data[i].cities[j].dealers[k].dealername+'">'+data[i].cities[j].dealers[k].dealername+'</option>';
+								}
+								break;
+							}
+							
+						}
+					}
+					$('#dealername').html(dealername);
+				});
+});
+
+
+
+			
+        	function sendInfo(){
+				var name = $.trim($("#name").val()), reg_ch = /[^\u4e00-\u9fa5]/,reg_en = /^[a-zA-Z]+$/;
+				if (!name) {
+					alert("请输入您的姓名！");
+					return
+				} else if (reg_ch.test(name)&&!reg_en.test(name)) {
+					alert("请输入中文姓名或英文姓名！");
+					return
+				}
+				
+				var tel = $.trim($("#mobile").val()), reg = /^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$$/;
+				if (!tel || !reg.test(tel)) {
+					alert("请输入正确的手机号码！");
+					return
+				}
+				
+				var province = $("#province").val();
+				if(province == ""){
+					alert("请选择您所在的省份！");
+					return
+				}
+				var citys = $("#citys").val();
+				if(citys == ""){
+					alert("请选择您所在的城市！");
+					return
+				}
+				var dealername = $("#dealername").val();
+				if(dealername == ""){
+					alert("请选择经销商！");
+					return
+				}
+				
+				var data = {
+						realname: name,
+						mobile: tel,
+						provincename:province,
+            			cityname:citys,
+						expand1:dealername,
+						cmsp:request("cmsp")
+					}
+					
+				showSubMod();
+				
+				var url = "http://track.mobile1.com.cn/advmessage/adv/addResultJsonP.action?advid=" + cms_id;
+				$.ajax({
+					url: url,
+					cache: false,
+					dataType : 'jsonp',
+					jsonpCallback: "eventcallback2",
+					data: data,
+					success: function(json) {
+						hideSubMod();
+						
+						if (json[0].success == 1) {
+							//$('.msg').fadeIn();
+							alert('预约试驾成功！');
+							document.getElementsByTagName('form')[0].reset();
+						}
+						else{
+							alert('手机号重复或者提交失败');
+						}
+					}
+				});
+			}
+			function showSubMod(){
+				$('.subload').fadeIn();
+			}
+			
+			function hideSubMod(){
+				$('.subload').fadeOut();
+			}
+        </script>
+    </head>
+    
+    <body class="index">
+    
+    	<div class="container">
+        	<figure>
+            	<img src="images/logo.jpg" alt="" />
+            </figure>
+            <figure>
+            	<img src="images/banner.jpg" alt="" />
+            </figure>
+            
+            <section id="register">
+                <form>
+                	<p>
+                    	<label class="title">姓　名</label>
+						<input id="name" type="text" placeholder="" />
+                    </p> 
+                    
+                    <p>
+                    	<label class="title">手机号</label>
+						<input id="mobile" type="tel" placeholder="" />
+                    </p>
+                    
+                    <p>
+                    	<label class="title">所在地</label>
+						<select id="province"><option value="">省份</option></select>
+                        <select id="citys"><option value="">城市</option></select>
+                    </p>
+                    
+					<p>
+                    	<label class="title">经销商</label>
+						<select id="dealername">
+							<option value="">选择经销商</option>
+						</select>
+                    </p>
+					
+                    <div class="butt">
+                    	<a href="javascript:sendInfo();track(1, 5905);">提交</a>
+                    </div>
+                </form>
+                
+            </section>
+           	<section id="menu">
+            	<img id="bigbanner" src="images/m2.png" />
+                <a id="m1" href="index.html"></a>
+            </section>
+            
+            <div class="subload" style="display:none;">
+            	<h2>数据提交中，请稍后...</h2>
+            </div>
+            
+            <div class="msg" style="display:none;">
+            	<div class="box">
+                	<h3>感谢您的申请</h3>
+                    <p>我们会根据您的选择偏好，为您推荐最适合的车型，后续将会联系您以确认试驾事宜。</p>
+                    <a>确 认</a>
+                </div>
+                <img src="images/close.png"/>
+            </div>
+            
+        </div>
+	
+    </body>
+
+</html>

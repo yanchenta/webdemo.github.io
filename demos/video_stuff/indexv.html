@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title></title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:640px;
+			
+			margin:0px 0px;
+			padding:0px 0px;
+		}
+		input[type=button]{
+			font-size:25px;
+			margin-top:10px;
+			margin-left:10px;
+		}
+		
+		#btn_submit{
+			height:35px;
+			width:100px;
+		}
+		#myVideo{
+			margin:20px;
+			display:none;
+		}
+		.noneBlock{
+			position:absolute;
+			top:0px;
+			left:0px;
+			min-width:500px;
+			width:100%;
+			min-height:500px;
+			height:100%;
+			background-color:rgba(0,0,0,0.6);
+			z-index:2;
+			
+			display:none;
+			
+			
+			color:white;
+			text-align:center;
+			padding-top:200px;
+		}
+		
+		.coverBlock{
+			position:absolute;
+			top:0px;
+			left:0px;
+			min-width:500px;
+			width:100%;
+			min-height:500px;
+			height:100%;
+			background-color:rgba(0,0,0,0.6);
+			z-index:2;
+			
+			display:block;
+			
+			font-size:40px;
+			color:white;
+			text-align:center;
+			padding-top:200px;
+		}
+		#fake_button{
+			height:50px;
+			width:200px;
+		}
+		#myfile{
+			height:50px;
+			width:200px;
+			
+			position:absolute;
+			left:0px;
+			top:0px;
+			
+			margin-left:10px;
+			margin-top:10px;
+			
+			opacity:0;
+			z-index:9999;
+		}
+		
+		#btn_submit{
+			height:50px;
+			width:200px;
+		}
+
+	</style>
+</head>
+<body>
+	<form id="myform" name="myform" action="#" method="post" enctype="multipart/form-data" target="tmpIframe">
+		<input id="fake_button" type="button" value="摄像/视频选取"/>
+		<input type="file" name="upload" id="myfile"/>
+		<span id="fileinfo" stye="inline-height:50px;height:50px;"></span>
+		<br/>
+		<input id="btn_submit" type="button" value="上传"/><span style="color:red;padding-left:10px;">上传后自动预览视频</span>
+	</form>
+	<iframe id="tmpIframe" name="tmpIframe" style="display:none;"></iframe>
+	<video id="myVideo" width="600" controls="controls" autoplay="autoplay"  preload="preload" webkit-playsinline>
+		<!--<source id="myVideoSource" src="" type="video/mp4"/>-->
+	</video>
+	<div id="cover"  class="noneBlock">
+		请等待视频上传...
+	</div>
+	<script type="text/javascript">
+		/*function isLowerIosVersion() {
+			// 判断是否 iPhone 或者 iPod
+			if(navigator.userAgent.match(/iPhone/i) 
+				|| navigator.userAgent.match(/iPod/i)
+				|| navigator.userAgent.match(/iPad/i)) {
+				// 判断系统版本号是否大于 4
+				return navigator.userAgent.match(/OS [4-5]_\d[_\d]* like Mac OS X/i);
+			} else {
+				return false;
+			}
+		}
+		alert(navigator.userAgent.toLowerCase());
+		//判断是否为ios高版本设备，如果是，则添加
+		if(!isLowerIosVersion()
+			|| navigator.userAgent.toLowerCase().indexOf("android") == -1){
+			// ... 
+			
+		}*/
+		
+		var fileElem = document.getElementById("myfile");
+		//fileElem.accept = "video/*";
+		fileElem.accept = "video/*";//能设置上的就设置上，设置不上的就设置不上。
+		
+		var curKey = null;
+		var curPlayUrl = null;
+		
+		document.getElementById("myfile").onchange = function(){
+			//info信息设置
+			var input_file = document.getElementById("myfile");
+			var name = "文件名:" + input_file.files[0].name;
+			var tsize = Math.ceil(input_file.files[0].size/1024/1024*100)/100;
+			var size = "大小:" + tsize + "M";
+			document.getElementById("fileinfo").innerHTML = name + ", " + size;
+			
+			//文件类型判断 '.mp4' 或者 '.mov' ,  '.3gg'
+			if(name.toLowerCase().indexOf(".mp4") == -1 &&
+				name.toLowerCase().indexOf(".3gp") == -1 &&
+				name.toLowerCase().indexOf(".mov") == -1){
+				alert("只能上传 '.mp4', '.mov' 或者 '.3gp' 的视频格式！");
+				//重置数据
+				document.getElementById("myform").reset();
+				document.getElementById("fileinfo").innerHTML = "";
+			}
+		};
+		//alert(document.getElementById("myfile").onchange);
+		
+		document.getElementById("btn_submit").onclick = function(){
+			var input_file = document.getElementById("myfile");
+			
+			if(!!input_file.files && input_file.files[0]){
+				//文件大小判断
+				if(input_file.files[0].size > 5242880){//>5M
+					alert("您上传的文件不能大于5M.");
+					return;
+				}
+			}
+			else{//没有文件，返回不上传
+				return;
+			}
+			
+			document.getElementById("cover").className = "coverBlock";
+			
+			var date = new Date();
+			
+			var year = date.getFullYear();//支持IE和火狐浏览器.
+			var month = date.getMonth() + 1;
+			var day = date.getDate();
+			var hour = date.getHours().toString();
+			var minite = date.getMinutes().toString();
+			var second = date.getSeconds().toString();
+			var m_second = date.getMilliseconds().toString();
+			
+			curKey = year + "_" + month + "_" + day + "_" + hour + "_" + minite + "_" + second + "_" + m_second + "_" + Math.floor(Math.random()*1000);
+			
+			
+			
+			var form = document.getElementById("myform");
+			form.action = "http://test.zhangkuo.net/advmessage/video/saveAsynchro.action?advid=9&userinfo=" + curKey;
+			form.submit();
+			
+			form.reset();
+			
+			
+			window.intervalStop = false;//continue interval
+			window.checkIntervalHandle2 = setInterval(function(){
+				//alert("hello!");
+				if(window.intervalStop){
+					document.getElementById("cover").className = "noneBlock";
+					clearInterval(window.checkIntervalHandle2);
+					
+					document.getElementById("myVideo").style.display = "block";
+					document.getElementById("myVideo").src = curPlayUrl;
+					return;
+				}
+				
+				//添加每次不一样的冗余字符，消灭缓存
+				var getUrl = "http://test.zhangkuo.net/advmessage/video/getVideo.action?advid=9&userinfo=" + curKey + "&www=" + Math.floor(Math.random()*1000);
+				//var getUrl = "http://test.zhangkuo.net/advmessage/video/getVideo.action?callback=callbackJsonp&advid=9&userinfo=" + curKey;
+				
+				
+				//getJsonp(getUrl);//jsonp
+				send(getUrl, "");//ajax
+			}, 3000);
+		}
+		
+		
+		//jsonp
+		function callbackJsonp(obj){
+			alert("jsonp:" + JSON.stringfy(obj));
+			/*if(1 == obj.success){
+				window.intervalStop = true;
+				alert("提交成功！");
+				document.getElementsByTagName("head")[0].removeChild(window.tmpScript);
+			}
+			else if(-2 == obj.success){
+				alert("请继续等待");
+			}
+			else{
+				window.intervalStop = true;
+				alert("提交失败！");
+				document.getElementsByTagName("head")[0].removeChild(window.tmpScript);
+			}*/
+		}
+		
+		var getJsonp = function(url){
+			if(!!window.tmpScript){
+				window.tmpScript = null;
+			}
+			
+			window.tmpScript = document.createElement("script");
+			window.tmpScript.type = "text/javascript";
+			window.tmpScript.language = "javascript";
+			window.tmpScript.src = url;
+			
+			window.tmpScript.onload = window.tmpScript.onreadystatechange = function () {
+				window.tmpScript.parentNode.removeChild(window.tmpScript);
+			}
+			document.getElementsByTagName("head")[0].appendChild(window.tmpScript);
+		}
+		
+		/*
+		document.getElementById("myfile").onchange = function(){
+			//var URL = window.URL && window.URL.createObjectURL ? window.URL :
+            //    window.webkitURL && window.webkitURL.createObjectURL ? window.webkitURL :
+            //    null;
+			//var _url = URL.createObjectURL(this.files[0]);
+			//alert(_url);
+			
+			//var v = document.getElementById("myVideo");
+			//v.src = "videos/IMG_0030.mov";
+			//v.src = _url;
+			
+		};
+		var getGuid = function(){
+			var day = new Date();
+			var Year = 0;
+			var Month = 0;
+			var Day = 0;
+			var CurrentDate = "";
+			Year= day.getFullYear();//支持IE和火狐浏览器.
+			Month= day.getMonth() + 1;
+			Day = day.getDate();
+			CurrentDate += Year;
+			
+			if (Month >= 10 ){
+				CurrentDate += Month;
+			}
+			else{
+				CurrentDate += "0" + Month;
+			}
+			if (Day >= 10 ){
+				CurrentDate += Day ;
+			}
+			else{
+				CurrentDate += "0" + Day ;
+			}
+		}*/
+		
+		
+		//ajax post访问代码
+		var xmlhttp = null;
+		function send(url, arg){
+			CreateXMLHttpRequest();
+			xmlhttp.onreadystatechange = callhandle;
+			//xmlhttp.open("GET","Default.aspx?goback=yes&arg=" + arg,true);
+			xmlhttp.open("POST",url,true);
+			//xmlhttp.setRequestHeader("Content-Length",arg.lenght);
+			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");  //用POST的时候一定要有这句
+			xmlhttp.send(arg);
+		}
+		function CreateXMLHttpRequest(){
+			if (window.ActiveXObject){
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			else if (window.XMLHttpRequest){
+				xmlhttp = new XMLHttpRequest();
+			}
+		}
+		function callhandle(){
+			if (xmlhttp.readyState == 4){
+				if(xmlhttp.status == 200){
+					//alert("ajax:" + xmlhttp.responseText);
+					var obj = eval("(" + xmlhttp.responseText + ")");
+					callback(obj);
+				}
+			}
+		}
+		function callback(obj){
+			if(1 == obj.success){
+				window.intervalStop = true;
+				//alert("提交成功！");
+				curPlayUrl = obj.url;
+			}
+			else{
+				
+			}
+			/*
+			else if(-2 == obj.success || 0 == obj.success){
+				//alert("请继续等待");
+			}
+			else{
+				window.intervalStop = true;
+				//alert("提交失败！");
+			}*/
+		}
+		
+		
+		
+		
+		//实现全屏
+		function resetPage() {
+			var deviceWidth = document.documentElement.clientWidth,
+			scale = deviceWidth / 640;
+			document.body.style.zoom = scale;
+			
+		}
+
+		window.onresize = function() {
+			resetPage();
+		}
+	
+		try{
+			resetPage();
+		}
+		catch(ex){}
+	</script>
+</body>
+</html>

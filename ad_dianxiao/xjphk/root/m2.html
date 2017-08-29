@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title></title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/guid.js"></script>
+<script src="js/trackEvent.js"></script>
+<script src="js/control.js"></script>
+<style>
+html,body{background-color:#005396;}
+</style>
+<script>
+var is_index,_i;
+$(document).ready(function(e) {
+	
+});
+function open1(){
+	$('#m3_3,#cover').show();
+	is_index = new iScroll("m3_3_1",{vScrollbar : true,
+		hScrollbar : false});
+	is_index.refresh();
+}
+function open2(){
+	if($.cookie("id_20032")){
+		location = "m3.html";
+	}else{
+		$('#m3_3,#cover').hide();
+		$('#m3_4,#cover').show();
+	}
+}
+function check(){
+	var check = $("#check");
+	if(check.hasClass("checked")){
+		check.removeClass("checked");
+	}else{
+		check.addClass("checked");
+	}
+}
+function m3_4_2(){
+	var name = $.trim($("#realname").val());
+	if (!name) {
+		alert("请输入您的姓名！");
+		return
+	}
+	var tel = $.trim($("#mobile").val()), reg = /^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$$/;
+	if (!tel || !reg.test(tel)) {
+		alert("请输入正确的手机号码！");
+		return
+	}
+	
+	var email = $.trim($("#email").val());
+	if(!matchEmail(email)){
+		alert("请输入正确的邮箱！");
+		return
+	};
+	var data = {
+		realname: name,
+		mobile: tel,
+		email : email,
+		expand1:$("#check").hasClass("checked") ? "yes":"no"
+	}
+	
+	var url = "http://newcms.mobile1.com.cn/advmessage/adv/addResultJsonP.action?advid=20032";
+	$.ajax({
+		url: url,
+		cache: false,
+		dataType : 'jsonp',
+		jsonpCallback: "eventcallback2",
+		data: data,
+		success: function(json) {			
+			if (json[0].success == 1) {
+				//alert('预约试驾成功！');
+				$.cookie("id_20032",json[0].id);
+				$.cookie("mobile_20032",tel);
+				location = "m3.html";
+			}
+			else{
+				location = "m3.html";
+				//alert('手机号重复或者提交失败');
+			}
+		}
+	});
+}
+</script>
+</head>
+
+<body onload="resetPage()">
+<div class="fxbg">
+	<div class="nav">
+		<img class="img" src="images/m3.png" alt=""/>
+		<a href="index.html" id="m0" class="fly"></a>
+		<a href="m1.html" id="m1" class="fly"></a>
+		<a href="m2.html" id="m2" class="fly"></a>
+	</div>
+
+	<div>
+		<img class="img" src="images/huo.jpg" alt=""/>
+		
+		<a href="javascript:open1();" onclick="track(channel,10035);" id="m3_1" class="fly"></a>
+		<a href="javascript:open2();" onclick="track(channel,10036);" id="m3_2" class="fly"></a>
+		
+		<div id="cover"></div>
+		<div id="m3_3" class="fly">
+			<div id="m3_3_1"><img class="img" src="images/text.png" alt=""/></div>
+			<img id="m3_3_2" src="images/btn_ljcy.png" onclick="open2();"/>
+			<img id="m3_3_3" src="images/close.png" onclick="$('#m3_3,#cover').hide();" />
+		</div>
+		
+		<div id="m3_4" class="fly">
+			<img class="img" src="images/info.png" alt=""/>
+			<div id="m3_4_1" class="fly"  onclick="$('#m3_4,#cover').hide();"></div>
+			<input type="text" id="realname" />
+			<input type="tel" id="mobile" />
+			<input type="email" id="email" />
+			<div id="check" class="fly checked" onclick="check()"></div>
+			<div id="m3_4_2" class="fly" onclick="m3_4_2();track(channel,10038);"></div>
+		</div>
+		
+		<div class="bottom"><img class="img" src="images/banner.png" alt=""/></div>
+	</div>
+	
+</div>
+<!-- IBM UNICA NETINSIGHT TRACKING CODE v7.4.0 -->
+<!-- DO NOT EDIT THE BELOW THIS LINE-->
+<script type="text/javascript" src="http://www.australia.com/js/Cookie.js"></script>
+<script type="text/javascript" src="http://www.australia.com/js/vars.js"></script>
+<script type="text/javascript" src="http://www.australia.com/js/onclick.js"></script>
+<noscript><img src="http://pt200230.unica.com/ntpagetag.gif?js=0&site=australia" height="1" width="1" border="0" hspace="0" vspace="0" alt=""></noscript>
+<!-- TRACKING CODE END-->
+</body>
+</html>

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title></title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/guid.js"></script>
+<script src="js/trackEvent.js"></script>
+<script src="js/control.js"></script>
+<style>
+    #ul_hp li{border:0px solid red;width:100%;height:113px;-webkit-transform:skew(0deg,-15deg);box-sizing: border-box;}
+</style>
+<script>
+var _is_hp;
+$(document).ready(function(e) {
+
+	var ua = navigator.userAgent.toLowerCase();
+	
+	var isIOS = (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1);
+	
+    _is_hp = new iScroll("is_hp");
+    _is_hp.refresh();
+    $("#is_hp img").bind("load",function(){
+        _is_hp.refresh();
+    });
+    $("#ul_hp li").bind("click",function(e){
+        location="lp.html?i=" + $(this).index() + "";
+    });
+	//track(channel,5449);
+});
+
+</script>
+</head>
+
+<body onload="resetPage()">
+<div class="fxbg">
+<img class="img" src="images/bg.jpg" alt=""/>
+<img class="img" src="images/p1.png" style="position:absolute;top:0;z-index:20;"/>
+<img class="img" src="images/p2.png" style="position:absolute;bottom:0;z-index:20;" />
+<div id="is_hp" style="height:65%;position:absolute;bottom:0;z-index:10;">
+    <div>
+    <img class="img" src="images/lightpoint.jpg"/>
+    <ul id="ul_hp" style="position:absolute;top:146px;width:100%;">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    </div>
+</div>
+<div style="position: absolute;z-index:21;">
+    
+	
+	<a href="index.html" id="m1" class="fly"></a>
+    <a href="m2.html" id="m2" class="fly"></a>
+    <a href="m3.html" id="m3" class="fly"></a>
+    <a href="m4.html" id="m4" class="fly"></a>
+</div>
+</div>
+</body>
+</html>

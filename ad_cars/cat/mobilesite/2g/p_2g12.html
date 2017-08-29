@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<title>卡特帮帮忙 - Cat（卡特）官网</title>
+    <link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/p_2g12.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/trackEvent.js"></script>
+</head>
+<body onload="resetPage()">
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-52VC42"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script src="../js/log.js"></script>
+    <div class="frame">
+        <div class="header" style="position: relative;">
+            <a href="p_2g01.html" style="position:absolute;top:0;left:0;display:inline-block;width:300px;height:80px;"></a>
+            <div class="logo">
+                <div class="headermenu" style="width:330px;">
+                    <a href="tel:4001115187" onclick="dataLayer.push({'event':'event','category':'全网','action':'销售热线','label':'上导航'});">查询热线</a>
+                    <div class="unlogin-status" style="display:inline-block;width:180px;">
+                        <a href="p_2g05.html">登录</a>
+                        <a href="p_2g06.html">注册</a>
+                    </div>
+                    <div class="login-status" style="display:inline-block;width:180px;">
+                        <div id="login-useName" style="display:inline-block;padding-left:30px;"></div>
+                        <div onclick="javascript:logout();" style="display:inline-block;">注销</div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                卡特帮帮忙
+                <a href="javascript:history.back()">&lt;返回</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content_one">
+                <a href="p_2g22.html?url=../p_video.html" onclick="track(channel,10355);">视频·漫画 ></a>
+                <a onclick="track(channel,10356);setTimeout(function(){goZhuce('p_2g14.html');},300)" style="letter-spacing: -2px;">我 要 提 问 ></a>
+                <div style="position: relative;left: 26px;width: 590px;">
+                    <img src="images/12.png" />
+                    <div style="position:absolute;top:0;left:0;width:50%;height:100%;display:block;" onclick="track(channel,10357,'p_2g20.html');"></div>
+                    <div style="position:absolute;top:0;left:50%;width:50%;height:100%;display:block;" onclick="track(channel,10358,'p_2g21.html');"></div>
+                </div>
+                <a href="p_2g13.html" style="letter-spacing: -2px;">专 家 介 绍 ></a>
+            </div>
+            <div class="content_two">
+                <p class="content_two_p">精彩问答</p>
+                <div class="content_two1" style="height:410px;">
+                    <p>【问题1】Cat轮式挖掘机和其他品牌相比的核心优势是什么？</p>
+                    <span class="demo">
+                        答：您好。Cat轮挖的第一个核心优势就是先进的设计。卡特彼勒积累了30年的关于轮挖设计、应用、制造方面的经验，其全球设计中心位于德国，因为德国是世界上最大的轮挖市场。
+                        <br>
+                        另一个优势就是Cat轮挖的出色配置。Cat轮挖来到中国经过了很长时间的市场调研，充分听取了客户的建议。从驾驶室来说，我们是同类别里面最宽敞明亮的，确保了操作手的舒适性，同时提高了效率。安全性方面也标配了摄象头，这一点在市场上也是唯一一款有这样配置的。
+                    </span><br />
+
+                </div>
+                <div class="content_two1" style="height:390px;">
+                    <p>【问题2】如果我是一位熟练的履带挖掘机的操作手，那么，对于我来说，直接就上去驾驶轮挖会不会有什么问题或者挑战，整个轮式挖掘机的操作和驾驶方面需要注意事项是什么？ </p>
+                    <span class="demo">答：您好。如果您以前从来没有驾驶过轮挖，那么还是要谨慎一些，毕竟原理是不一样的。首先，操作手要对汽车驾驶有一定的认识，毕竟轮挖要在路面上跑，要为安全着想。此外，驾驶员还必须持有驾驶执照，这样才可以在公路上行动。拥有这些条件后，再结合履带挖掘机的操作经验，相信您会很快的熟悉Cat轮式挖掘机的操作了。
+                </div>
+            </div>
+            <div class="content_three">
+                <a onclick="goZhuce('p_2g19.html')" class="more"></a>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer_one">
+                <a href="p_2g01.html">首页</a>
+                <a href="p_2g02.html">产品</a>
+                <a href="p_2g12.html" class="a">帮帮忙</a>
+                <a href="p_2g24.html">俱乐部</a>
+            </div>
+            <div class="footer_two">
+                <a href="###" class="twog"></a>
+                <a href="index.html"></a>
+            </div>
+            <div class="footer_three">© 2012 卡特彼勒保留所有权利</div>
+        </div>
+    </div>
+</body>
+<script>
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    if (sUserAgent.indexOf("ucbrowser") == -1)
+        includeLinkStyle("css/p_2g12_1.css");
+	function resetPage() {
+		var deviceWidth = document.documentElement.clientWidth,
+		scale = deviceWidth/640;
+		document.body.style.zoom = scale;
+	}
+	window.onresize = function(){
+		resetPage();
+	}
+	
+	function loadAnswers(){
+		//getQa();
+	}
+	loadAnswers();
+    track(channel,10354);
+</script>
+</html>

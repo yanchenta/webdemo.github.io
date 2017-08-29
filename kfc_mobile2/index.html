@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    	<title>肯德基手机网</title>
+		<link rel="apple-touch-icon-precomposed" href="common/icon.jpg" />
+        <link rel="stylesheet" type="text/css" href="common/reset.css"/>
+        <link rel="stylesheet" type="text/css" href="common/index.css"/>
+		<script src="channel.js"></script>
+        <script src="common/jquery-1.4.4.min.js"></script>
+		<script src="common/jquery.cookie.js"></script>
+        <script src="common/trackEvent.js"></script>
+        <script src="common/sdc_MobWeb.js"></script>
+        <script src="common/iscroll.js"></script>
+		<script src="common/citys.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+
+ <!--        <style>
+        	#ul,#ul2{
+        		position: relative;
+        	}
+			#a1{
+				position: absolute;
+				-webkit-animation:ro1 10s linear 0s infinite alternate;
+			}
+			#a2{
+				/*position: absolute;*/
+				-webkit-animation:ro2 10s linear 0s infinite alternate;
+			}
+			#li1{
+				position: absolute;
+				margin-left: 42px; 
+				-webkit-animation:ro3 10s linear 0s infinite alternate;
+			}
+			#li2{
+				/*position: absolute;*/
+				-webkit-animation:ro4 10s linear 0s infinite alternate;
+			}
+			@-webkit-keyframes ro1{
+			    0%  {opacity: 1;display: block;}
+			    10% {opacity: 1;display: block;}
+			    20% {opacity: 1;display: block;}
+			    30% {opacity: 1;display: block;}
+			    40% {opacity: 1;display: block;}
+			    50% {opacity: 1;display: block;}
+			    60% {opacity: 0;display: none;}
+			    70% {opacity: 0;display: none;}
+				80% {opacity: 0;display: none;}
+			    90% {opacity: 0;display: none;}
+			    100%{opacity: 0;display: none;}
+			}
+			@-webkit-keyframes ro2{
+			    0%  {opacity: 0;display: none;}
+			    10% {opacity: 0;display: none;}
+			    20% {opacity: 0;display: none;}
+			    30% {opacity: 0;display: none;}
+			    40% {opacity: 0;display: none;}
+			    50% {opacity: 0;display: none;}
+			    60% {opacity: 1;display: block;}
+			    70% {opacity: 1;display: block;}
+				80% {opacity: 1;display: block;}
+			    90% {opacity: 1;display: block;}
+			    100%{opacity: 1;display: block;}
+			}
+			@-webkit-keyframes ro4{
+			   0%  {opacity: 1;display: block;}
+			    10% {opacity: 1;display: block;}
+			    20% {opacity: 1;display: block;}
+			    30% {opacity: 1;display: block;}
+			    40% {opacity: 1;display: block;}
+			    50% {opacity: 1;display: block;}
+			    60% {opacity: 0;display: none;}
+			    70% {opacity: 0;display: none;}
+				80% {opacity: 0;display: none;}
+			    90% {opacity: 0;display: none;}
+			    100%{opacity: 0;display: none;}
+			}
+			@-webkit-keyframes ro3{
+			   0%  {opacity: 0;display: none;}
+			    10% {opacity: 0;display: none;}
+			    20% {opacity: 0;display: none;}
+			    30% {opacity: 0;display: none;}
+			    40% {opacity: 0;display: none;}
+			    50% {opacity: 0;display: none;}
+			    60% {opacity: 1;display: block;}
+			    70% {opacity: 1;display: block;}
+				80% {opacity: 1;display: block;}
+			    90% {opacity: 1;display: block;}
+			    100%{opacity: 1;display: block;}
+			}
+        </style> -->
+        <style>
+        	#ul{
+        		height:144px;
+				inline-height:144px;
+        		position: relative;
+        	}
+        	#a1,#a2{
+        		position: absolute;
+        		top: 0;
+        	}
+        </style>
+    </head>
+    
+    <body>
+    
+    	<div class="container">
+        	
+            <figure id="header">
+            	<img id="logo" src="common/logo.png" alt="" />
+				<div id="location" onclick="location='list.html'">正在定位</div>
+            </figure>
+            
+			<figure>
+            	 <img id="c1_1" src="common/c1_1.png" alt="" />
+				<img id="c1_1-3" src="common/c1_1_3.png" alt="" class="fly" />
+				<img id="c1_1-4" src="common/c1_1_4.png" alt="" class="fly" />
+				<a id="c1_1_1" href="javascript:yumTrack('立即订餐','立即订餐','http://m.4008823823.com.cn/kfcmwos/index.htm?utm_campaign=ownmedia&utm_source=kfcwapsite&utm_content=toplefticon&utm_medium=hpmainnav');" class="fly"></a>
+				<a id="c1_1_2" href="javascript:yumTrack('附近KFC','点击附近KFC','store');" class="fly"></a>
+				<a id="c1_1_3" href="javascript:yumTrack('关注微博','点击关注微博','http://m.weibo.cn/u/1687422352?');" class="fly"></a>
+				<a id="c1_1_4" href="javascript:yumTrack('优惠劵','点击优惠劵','http://youhui.kfc.com.cn/mobile/');" class="fly"></a>
+				<a id="c1_1_5" href="javascript:weixin();" class="fly"></a>
+            </figure>
+			
+			<figure id="banner_small">
+            	<ul id="ul">
+					<li id="a2" class="li-image">
+						<a  href="javascript:yumTrack('焦点图','点击焦点图','http://youhui.kfc.com.cn/mobile/');"><img id="img_x2" src="common/b6.jpg"/></a>
+					</li>
+					<li id="a1" class="li-image">
+						<a  href="javascript:yumTrack('焦点图','点击焦点图','http://m.kfc.com.cn/ttbj/poster');"><img id="img_x1" src="common/b8.jpg"/></a>
+					</li>
+                </ul>
+				<div class="dians">
+<!--
+					
+					<div class="dian selected" item-select="0"></div>
+					<div class="dian" item-select="1"></div>
+-->
+				</div>
+            </figure>
+			<figure id="banner_adtext">
+				<ul id="ul2">
+					<li id="li2" class="li-text">
+						<a class="adtext" href="http://youhui.kfc.com.cn/mobile/">全新早餐优惠券，更多选择，超赞超值！</a>
+					</li>
+					<li id="li1" class="li-text">
+						<a class="adtext" href="http://m.kfc.com.cn/ttbj/poster">明星产品天天半价，火热来袭！</a>
+					</li>
+                </ul>
+            </figure>
+			<figure>
+            	<img id="c1_2" src="common/c1_2.jpg" alt="" />
+				<a id="c1_2_1" class="fly" style="height:50px;"></a>
+				<a id="c1_2_2" class="fly" style="height:50px;"></a>
+				<a id="c1_2_3" class="fly" style="height:50px;"></a>
+            </figure>
+            
+            
+			<figure>
+            	<img id="c1_4" src="common/c1_4.png" onclick="location='http://www.kfc.com.cn/kfccda/index.aspx?from=mobile'" alt="" />
+            </figure>
+            
+			
+			<figure>
+            	<img id="c1_3" src="common/c1_3.png" alt="" />
+				<a id="c1_3_1" href="breakfast/index.html" class="fly"></a>
+				<a id="c1_3_2" href="lunch/index.html" class="fly"></a>
+				<a id="c1_3_3" href="teatime/index.html" class="fly"></a>
+				<a id="c1_3_4" href="dinner/index.html" class="fly"></a>
+				<a id="c1_3_5" href="24h/index.html" class="fly"></a>
+            </figure>
+			
+			<div id="c1_box" class="fly">
+				<img src="common/s_box.png"/>
+				<label id="weixinhao" class="fly">微信号：<input type="text" value="肯德基" readonly /></label>
+				<label id="weixintext" class="fly">请查找公众号“肯德基”, 关注肯德基官方微信。</label>
+			</div>
+        </div>
+	
+    </body>
+        <script>
+		var _i1,_i2,_ci1=1,_ci2=1;
+		$(document).ready(function(e) {
+			track(channel, 4332);
+			/*
+			var liLength = $('#banner_small li'),firstLi='',lastLi='';
+			for(var i=0;i<liLength.length;i++){
+				if(i==0){
+					firstLi = liLength.eq(i).clone();
+				}else if(i==liLength.length-1){
+					lastLi = liLength.eq(i).clone();
+				}
+			}
+			$('#banner_small ul').prepend(lastLi);
+			$('#banner_small ul').append(firstLi);
+			
+			var liLength1 = $('#banner_adtext li'),firstLi='',lastLi='';
+			for(var i=0;i<liLength1.length;i++){
+				if(i==0){
+					firstLi = liLength1.eq(i).clone();
+				}else if(i==liLength1.length-1){
+					lastLi = liLength1.eq(i).clone();
+				}
+			}
+			$('#banner_adtext ul').prepend(lastLi);
+			$('#banner_adtext ul').append(firstLi);
+			
+			
+				
+			_i1 = new iScroll('banner_small',{hScrollbar:false,snap : true,
+			onScrollEnd: function () {
+				
+				var i = this.currPageX;
+				if(i == 0){
+					i=1;
+				}else if(i == 3){
+					i=0;
+				}else{
+					i-=1;
+				}
+				$(".dians .dian").removeClass("selected");
+				$(".dian[item-select="+i+"]").addClass("selected");
+				if(this.currPageX ==0){
+					_i1.scrollToPage(2,0,0);
+				}
+				else if(this.currPageX ==3){
+					_i1.scrollToPage(1,0,0);
+				}
+			}});
+			
+			
+			_i2 = new iScroll('banner_adtext',{vScrollbar:false,snap : true,
+			onScrollEnd: function () {
+				
+				if(this.currPageY ==0){
+					_i2.scrollToPage(0,2,0);
+				}
+				else if(this.currPageY ==3){
+					_i2.scrollToPage(0,1,0);
+				}
+			}});
+			//_i2.refresh();
+			_i1.scrollToPage(1,0,0);
+			_i2.scrollToPage(0,1,0);
+			setInterval(function(){
+				return;
+				_ci1++;
+				_ci2++;
+				
+				_i2.scrollToPage(0,_ci2,400);
+				
+				_i1.scrollToPage(_ci1,0,800);
+				
+				if(_ci1 == 3){
+					_ci1 = 1;
+				}
+				if(_ci2 == 3){
+					_ci2 = 1;
+				}
+			},3000);
+			*/
+			if(!$.cookie("cityname")){
+				new BMap.LocalCity().get(function(city){
+					setCity(city.name);
+					$("#location").text(getCityName());
+				});
+			}else{
+				$("#location").text(getCityName());
+			}
+			
+			if(isIos()){
+				//ios下载
+				document.querySelector('#c1_2_1').onclick = function(){
+					yumTrack('官方app下载','点击官方app下载');
+					track(channel,4334,'https://itunes.apple.com/cn/app/ken-de-ji/id587238847?mt=8');
+				};
+				document.querySelector('#c1_2_2').onclick = function(){
+					yumTrack('订餐app下载','点击订餐app下载');
+					track(channel,4462,' https://itunes.apple.com/cn/app/ken-ji-zhai-ji-song-guan-fang/id655012687?ls=1&mt=8');
+				};
+				document.querySelector('#c1_2_3').onclick = function(){
+					window.location.href = "http://order.kfc.com.cn/download/iphone.htm";
+				};
+			}else{
+				document.querySelector('#c1_2_1').onclick = function(){
+					yumTrack('官方app下载','点击官方app下载');
+					track(channel,4333,'http://www.kfc.com.cn/kfccda/KFC-KFCKFCA12-V1.0.7.apk');
+				};
+				document.querySelector('#c1_2_2').onclick = function(){
+					yumTrack('订餐app下载','点击订餐app下载');
+					//track(channel,4463,'http://download.app.4008823823.com.cn/kfcmos.apk');
+					track(channel,4463,"http://m.4008823823.com.cn/kfcmwos/appdownload/androidapk.htm");
+				};
+				document.querySelector('#c1_2_3').onclick = function(){
+					window.location.href = "http://order.kfc.com.cn/download/android.htm";
+				};
+			}
+			
+		});
+		function isIos() {
+			var u = navigator.userAgent.toLowerCase();
+		
+			if (u.indexOf('iphone') > -1 || u.indexOf('ipod') > -1 ) {
+				return true;
+			}
+			return false;
+		}
+	function weixin(){
+
+		if($('#c1_box').css("display") != 'none'){
+			$('#c1_box').hide();
+		}else{
+			$('#c1_box').show();
+			yumTrack('关注微信','点击关注微信');
+		}
+	}
+	/*轮播*/
+	/*//轮播图
+	AnimationObj.cursorImgs = [document.getElementById("cursorImgLink3"), document.getElementById("cursorImgLink1"), document.getElementById("cursorImgLink2")];
+	//轮播文字
+	AnimationObj.cursorTxts = [document.getElementById("cursorTextLink3"), document.getElementById("cursorTextLink1"), document.getElementById("cursorTextLink2")];
+	AnimationObj.cursorCurIdx = 2;*/
+	var AnimationObj = {};
+	AnimationObj.cursorImgs = [document.getElementById("img_x1"), document.getElementById("img_x2")];
+	//轮播文字
+	AnimationObj.cursorTxts = [document.getElementById("li1"), document.getElementById("li2")];
+	AnimationObj.cursorCurIdx = 1;
+	AnimationObj.cursorImgsIntervalFunc = function(){
+
+		//alert(1);
+		//切换动画
+		$(".li-image").eq(AnimationObj.cursorCurIdx).fadeIn(0).siblings(".li-image").fadeOut(250);
+		
+		//按索引轮播文字
+		$(".li-text").eq(AnimationObj.cursorCurIdx).fadeIn(0).siblings(".li-text").fadeOut(0);
+		
+		var nextIdx = (AnimationObj.cursorCurIdx + 1) % AnimationObj.cursorImgs.length;
+		AnimationObj.cursorCurIdx = nextIdx;
+	}
+	window.setInterval(AnimationObj.cursorImgsIntervalFunc, 6000);
+	
+	AnimationObj.cursorImgsIntervalFunc();
+	
+	
+	function resetImgHeight(){
+		var width = document.getElementById("a1").offsetWidth > 0 ? document.getElementById("a1").offsetWidth : document.getElementById("a2").offsetWidth;
+		document.getElementById("ul").style.height = width * (288/617) + "px";
+	}
+	window.onresize = function(){
+		resetImgHeight();
+	}
+	resetImgHeight();
+    </script>
+</html>
+<!-- kfc1.2 by hezhanglin -->

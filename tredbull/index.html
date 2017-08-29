@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RedBullWorldCup</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            // andriod 2.3
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+                // andriod 2.3以上
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+            // 其他系统
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+        //微信去掉下方刷新栏
+        if (RegExp("MicroMessenger").test(navigator.userAgent)) {
+            document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+                WeixinJSBridge.call('hideToolbar');
+            });
+        }
+
+
+    </script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+
+
+        var path = "http://ama.adwo.com/tracknew/advTract/tractEventJsonP.action?";
+        var trackScript;
+        var trackScript1;
+        function track(cId, eventId, url) {
+//            alert(cId);
+            trackScript = null;
+            trackScript = document.createElement("script");
+            var src = path + "cid=" + cId + "&eventid=" + eventId;
+            trackScript.type = "text/javascript";
+            trackScript.src = src;
+            document.getElementsByTagName("head")[0].appendChild(trackScript);
+//            alert(cId);
+            if (url != undefined && url != null && url != "") {
+                setTimeout(function () {
+                    location.href = url + "?cid=" + cId;
+                }, 500);
+
+            }
+        }
+        function eventcallback(result) {
+            document.getElementsByTagName("head")[0].removeChild(trackScript);
+        }
+    </script>
+</head>
+<body>
+<section class="body2">
+    <section class="BG" style=" background:url(img/b_index.jpg) no-repeat;">
+        <img id="limei" src="" alt="" class="Dn Do"/>
+        <section class="login">
+            <!--登陆前-->
+            <article class="T" id="loginbefore"></article>
+            <!--登陆后-->
+            <article class="img Dn" id="loged"><img src="" width="70" height="70"></article>
+            <!--退出-->
+            <article class="userOut Dn" id="userOut"><img src="img/userOut.png" width="70" height="70"
+                                                          onClick="userOut()"></article>
+        </section>
+        <article class="home">
+
+
+            <header class="head"></header>
+
+            <article class="video">
+                <section class="rvName v_t"></section>
+                <section class="lvName v_t"></section>
+                <!--<section class="arrow_b"></section>-->
+                <!--<section class="arrow_r"></section>-->
+                <section class="v">
+                    <video id="myVideo" controls preload="auto" width="210" height="137" poster="img/1.jpg">
+                        <source src="img/RedBull.mp4" type='video/mp4'>
+                    </video>
+                </section>
+                <section class="playV" onclick="playVideo()"></section>
+            </article>
+
+            <footer class="foot">
+                <canvas id="canvasBtn1" width="315" height="70"></canvas>
+            </footer>
+
+            <nav class="tableHost">
+                <!--<a href="">-->
+                <div id="btn1" class="tableHost_btn"></div>
+                <!--</a>-->
+                <a id="myborder" onClick="maps()">
+                    <div id="btn2" class="tableHost_btn"></div>
+                </a>
+                <a onClick="introduceActives()">
+                    <!--<a href="introduceActive.html">-->
+                    <div id="btn3" class="tableHost_btn"></div>
+                </a>
+                <a onClick="ranks()">
+                    <!--<a href="rank.html">-->
+                    <div id="btn4" class="tableHost_btn"></div>
+                </a>
+            </nav>
+
+        </article>
+
+
+        <!--遮罩-->
+        <section class="zhao Dn"></section>
+
+        <!--登陆弹出层-->
+
+        <article class="Login_index Dn Do">
+            <header class="head"></header>
+            <article class="content">
+                <a href="javascript:;" onClick="sinalogin()">
+                    <section class="sina"></section>
+                </a>
+                <!--<a href="">
+                    <section class="w163"></section>
+                </a>-->
+
+            </article>
+            <a href="javascript:;" onClick="qqlogin()">
+                <section class="qq"></section>
+            </a>
+            <!--  <footer class="foot"></footer>-->
+        </article>
+
+        <!--开启挑战弹层-->
+
+        <article class="share step_1 Dn Do">
+            <header class="head"></header>
+            <footer class="foot"></footer>
+        </article>
+
+
+    </section>
+
+</section>
+
+</body>
+</html>
+
+<script src="js/jquery-2.1.0.min.js"></script>
+<!--地图的配置-->
+<!--<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />-->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=679e8396eb71ff4d1771a9846b3e31b7"></script>
+<!--地图的配置结束-->
+<script src="js/cookie/jquery.cookie.js"></script>
+<script>
+    $.cookie("nowPage", 1);
+</script>
+<script src="js/client.js"></script>
+<!--<link href="http://vjs.zencdn.net/4.6/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/4.6/video.js"></script>
+<style type="text/css">
+    .vjs-default-skin {
+        color: #662222;
+    }
+
+    .vjs-default-skin .vjs-control-bar {
+        font-size: 60%
+    }
+</style>-->
+<script src="js/jquery.base64.js"></script>
+<script>
+
+</script>
+<script type="text/javascript">
+$.cookie('jq', '');
+var uid = null;
+var name = null;
+var head = null;
+var cId = null;
+
+$(function () {
+    var reqObj = GetRequest();
+//        alert(reqObj.limeididid);
+
+//        
+    //alert(reqObj);
+    //var soure;
+    // alert(reqObj.cid);
+
+    if (reqObj.cid != '' && reqObj.cid != undefined && reqObj.cid != null) {
+//            alert(1);
+        if (reqObj.cid == '163' || reqObj.cid == '73') {
+            $.cookie('cId', '163');
+            $.cookie('cIdid', 73);
+            cId = 73;
+        }
+        if (reqObj.cid == 'sohu' || reqObj.cid == '180') {
+            $.cookie('cId', 'sohu');
+            $.cookie('cIdid', 180);
+            cId = 180;
+
+        }
+        if (reqObj.cid == 'hupu' || reqObj.cid == '181') {
+            $.cookie('cId', 'hupu');
+            $.cookie('cIdid', 181);
+            cId = 181;
+        }
+        if (reqObj.cid == 'iqiyi' || reqObj.cid == '34') {
+            $.cookie('cId', 'iqiyi');
+            $.cookie('cIdid', 34);
+            cId = 34;
+        }
+        if (reqObj.cid == 'letv' || reqObj.cid == '31') {
+            $.cookie('cId', 'letv');
+            $.cookie('cIdid', 31);
+            cId = 31;
+        }
+        if (reqObj.cid == 'limei' || reqObj.cid == '182') {
+//                alert(2);
+            $.cookie('cId', 'limei');
+            $.cookie('cIdid', 182);
+            cId = 182;
+            $.cookie('limeiInfo', '{"limeididid":"' + reqObj.limeididid + '","udid":"' + reqObj.udid + '","appid":"' + reqObj.appid + '","udidType":"' + reqObj.udidType + '"}');
+//                alert( $.cookie('limeiInfo'));  
+            limei("access");
+        }
+        //alert(cId);
+    } else {
+//        alert(0);
+        cId = 1;
+        $.cookie('cId', 'adwo');
+        $.cookie('cIdid', 1);
+        // alert(cId+"else");
+    }
+
+    if (reqObj.uid != '' && reqObj.uid != undefined && reqObj.uid != null) {
+        uid = reqObj.uid;
+        name = decodeURI(reqObj.name);
+        head = reqObj.head;
+
+        //getallcountry();
+        netEasyLogin(uid, name, head, 'qq', cId);
+        if ($.cookie('userInfo') != '' && $.cookie('userInfo') != undefined) {
+            $.cookie('userInfo', null);
+        }
+
+        $.cookie('userInfo', '{"uid":"' + uid + '","name":"' + name + '","head":"' + head + '"}');
+
+        //$('#myborder').attr('href',$('#myborder').attr('href')+'?uid='+uid+'&name='+encodeURI(name)+'&head='+encodeURI(head));
+//            $('#myborder').click(function () {
+//                window.location.href = $(this).attr('href');
+//            });
+
+    }
+    if (reqObj.fw == 1) {
+        $.cookie('fw', 2);
+    }
+    /*if (reqObj.tid != '' && reqObj.fwid != '' && reqObj.teamid != '' && reqObj.tid != undefined && reqObj.fwid != undefined && reqObj.teamid != undefined) {
+
+     //alert(reqObj.tid);
+     var info = decodeURI(reqObj.info);
+     info = $.base64.atob(info, true);
+     $.cookie('playInfo', '{"tid":"' + reqObj.tid + '","fwid":"' + reqObj.fwid + '","teamid":"' + reqObj.teamid + '","info":"' + info + '"}');
+
+     var infoar = info.split('~');
+     $.cookie('infoname', infoar[1]);
+     window.location.href = 'share.html';
+     //var info = decodeURI(reqObj.info);
+     //info = $.base64.atob(info, true);
+     //getball(reqObj.tid,reqObj.fwid,reqObj.teamid,info);
+     }*/
+
+//    document.addEventListener('click', function (e) {
+//        var event = e || window.event;
+//        var obj = event.target || event.srcElement;
+//        if (obj.onclick) {
+//            var oclick = $(obj).attr("id") || $(obj).attr("class");
+//            limei("click", oclick);
+//        }
+//    })
+});
+function limei(action, oclick, form, submit) {
+    var path = '';
+
+    var temp = action;
+    var limeiInfo = eval('(' + $.cookie('limeiInfo') + ')');
+    var limeiUrl = "http://m.lmapp.com/dmplog.php?";
+    var limeididid = limeiInfo.limeididid;
+    var udid = limeiInfo.udid;
+    var appid = limeiInfo.appid;
+    var udidType = limeiInfo.udidType;
+    var rs;
+
+    if (action == "form" && form != '' && form != undefined && form != null) {
+        rs = Math.random() * 100000;
+        path = limeiUrl + "action=" + temp + "&limeididid=" + limeididid + "&udidType=" + udidType + "&udid=" + udid + "&appid=" + appid + "&form=" + form + "&r=" + rs;
+    }
+    else if (action == "submit" && submint != '' && submint != undefined && submit != null ) {
+        rs = Math.random() * 100000;
+        path = limeiUrl + "action=" + temp + "&limeididid=" + limeididid + "&udidType=" + udidType + "&udid=" + udid + "&appid=" + appid + "&submit=" + submit + "&r=" + rs;
+    }
+    else if ((action == "access" || action == "loaded")) {
+        rs = Math.random() * 100000;
+        path = limeiUrl + "action=" + temp + "&limeididid=" + limeididid + "&udidType=" + udidType + "&udid=" + udid + "&appid=" + appid + "&r=" + rs;
+    }
+    else if (action == "click" && oclick != '' && oclick != undefined && oclick != null) {
+        rs = Math.random() * 100000;
+        path = limeiUrl + "action=" + temp + "&limeididid=" + limeididid + "&udidType=" + udidType + "&udid=" + udid + "&appid=" + appid + "&click=" + oclick + "&r=" + rs;
+    }
+//        document.getElementById("limei").src=path
+    trackScript1 = document.createElement("script");
+    trackScript1.type = "text/javascript";
+    trackScript1.src = path;
+    document.getElementsByTagName("head")[0].appendChild(trackScript1);
+//    alert(path);
+}
+function loginbefore() {
+    if (cId == '182' || cId == 'limei') {
+        var oclick = $(".login").attr("class");
+        
+        limei("click", oclick);
+    }
+    track(cId, 10074);
+    $(".zhao").removeClass("Dn");
+    $(".home,.login").animate({opacity: 0}, 200, function () {
+        $(this).addClass("Dn");
+        $(".Login_index").removeClass("Dn").animate({opacity: 1})
+    })
+}
+function GetRequest() {
+    var url = location.search; //获取url中"?"符后的字串
+    //alert(url);
+    url = decodeURI(url);
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+        var str = url.substr(1);
+        strs = str.split("&");
+        for (var i = 0; i < strs.length; i++) {
+            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+        }
+    }
+    return theRequest;
+}
+function maps() {
+    //alert('sd');
+    //alert(uid);
+    if (uid != '' && uid != null && uid != undefined) {
+//          alert(cId);
+        track(cId, 10075, "map.html");
+        // location.href='map.html';
+        //window.location.href='share.html';
+        //return;
+    } else {
+        loginbefore();
+        return false;
+    }
+}
+function introduceActives() {
+    //alert('sd');
+    //alert(uid);
+//        if (uid != '' && uid != null && uid != undefined) {
+//            alert(uid);return false;
+    track(cId, 10076, "introduceActive.html");
+//            window.location.href = 'introduceActive.html';
+    //window.location.href='share.html';
+//        } else {
+//            loginbefore();
+//        }
+}
+function ranks() {
+    //alert('sd');
+    //alert(uid);
+//        if (uid != '' && uid != null && uid != undefined) {
+    //alert(uid);
+    // alert(cId);
+    track(cId, 10077, "rank.html");
+//            window.location.href = 'rank.html';
+    //window.location.href='share.html';
+//        } else {
+//            loginbefore();
+//        }
+}
+function userOut() {
+    //alert('jjj');
+    $.removeCookie('userInfo');
+    $.removeCookie('jq');
+    window.location.href = "index.html";
+}
+function playVideo() {
+
+    track(cId, 10072);
+    document.getElementById('myVideo').play();
+}
+</script>
+<script src="js/home.js"></script>
+<script src="js/user.js"></script>
+<script type="text/javascript">
+
+    /*var lng = 116.403891,39.915198;
+     var lat = 39.915198;
+     var map = new BMap.Map("allmap");
+     //map.centerAndZoom(new BMap.Point(116.404843, 39.914714), 12);
+     var point = new BMap.Point(116.403891, 39.915198);
+     map.centerAndZoom(point, 20);
+     var marker = new BMap.Marker(point);
+     map.addOverlay(marker);
+     map.panBy(315, 165);
+     var gc = new BMap.Geocoder();
+     ///setTimeout(function(){
+     // map.panTo(new BMap.Point(116.403891, 39.915198));   //两秒后移动到广州
+     // map.setZoom(20);
+     // }, 1500);
+     //var p = marker.getPosition();
+     //alert(e.point.lng + ", " + e.point.lat);
+     //alert(p.lng + ", " + p.lat);
+     $.cookie("lng", lng);
+     $.cookie("lat", lat);
+     marker.addEventListener("dragend", function (e) {
+     //alert("你拖动了地图");
+     var p = marker.getPosition();
+     //alert(e.point.lng + ", " + e.point.lat);
+     //alert(p.lng + ", " + p.lat);
+     lng = p.lng;
+     lat = p.lat;
+     $.cookie("lng", lng);
+     $.cookie("lat", lat);
+     //var point = new BMap.Point(lng,lat);
+     var pt = e.point;
+     gc.getLocation(pt, function (rs) {
+     var addComp = rs.addressComponents;
+     //  alert(addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+     $("#current_location").text('');
+     $("#current_location").text(addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+     });
+
+     });
+
+     marker.enableDragging();
+     map.enableScrollWheelZoom(true);
+     //map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+     map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));  //右上角，仅包含平移和缩放按钮
+     */
+
+</script>

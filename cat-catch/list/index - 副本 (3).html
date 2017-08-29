@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title></title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:960px;
+			margin:0px 0px;
+			padding:0px 0px;
+			overflow-x:hidden;
+			
+			background-image:url('images/cn-list-bg.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:640px 960px;
+		}
+		.banner{
+			width:640px;
+			height:165px;
+		}
+		.main-body{
+			
+		}
+		.main-region{
+			margin-top:150px;
+			width:640px;
+			max-width:640px;
+			height:500px;
+			position:relative;
+			overflow:hidden;
+		}
+		ul {
+			width:640px;
+			height:500px;
+			list-style-type:none;
+			overflow:hidden;
+		}
+		li{
+			display:inline-block;
+			position:absolute;
+			top:-80px;
+			left:152px;
+			background-color:white;
+		}
+		
+		
+		.front-zoom-region{
+			position:absolute;
+			left:50%;
+			margin-left:-166px;
+			top:150px;
+			
+			display:block;
+			width:332px;
+			height:500px;
+		}
+		.front-title{
+			font-size:34px;
+			font-weight:700px;
+			line-height:50px;
+			text-align:center;
+			margin-top:170px;
+			width:332px;
+			height:50px;
+			
+			position:absolute;
+			top:50px;
+			left:150px;
+			display:block;
+		}
+		.footer{
+			width:100%;
+			height:200px;
+			position:relative;
+		}
+				
+		.btn-down-cn{
+			width:278px;
+			height:85px;
+		
+			position:absolute;
+			left:50%;
+			top:30px;
+			margin-left:-288px;
+		}
+		.btn-down-en{
+			width:278px;
+			height:85px;
+			
+			position:absolute;
+			right:50%;
+			top:30px;
+			margin-right:-298px;
+		}
+		.img-1 .img-2 .img-3 .img-4 .img-5{
+			background-color:white;
+			opacity:1;
+		}
+	</style>
+</head>
+<body draggable="false">
+	<div class="banner">
+		<div class="front-title"></div>
+	</div>
+	<div class="main-body">
+		<div class="main-region">
+				<!--使用绝对定位，才可以-->
+				<ul class="list-images">
+					<li class="img-1">
+						<img class="back-list-1" style ="width:232px;height:auto;" src="images/cn-list-yiyuekan-back.png" alt=""/>
+					</li>
+					<li class="img-2">
+						<img class="back-list-2" style ="width:232px;height:auto;" src="images/cn-list-siyuekan-back.png" alt=""/>
+					</li>
+					<li class="img-3">
+						<img class="back-list-3" style ="width:232px;height:auto;" src="images/cn-list-liuyuekan-back.png" alt=""/>
+					</li>
+					<li class="img-4">
+						<img class="back-list-4" style ="width:232px;height:auto;" src="images/cn-list-2013BICES-back.png" alt=""/>
+					</li>
+					<li class="img-5">
+						<img class="back-list-5" style ="width:232px;height:auto;" src="images/cn-list-2013huojiang-back.png" alt=""/>
+					</li>
+					<!--
+					<li class="img-1">
+						<div class="back-list-1">
+						</div>
+					</li>
+					<li class="img-2">
+						<div class="back-list-2">
+						</div>
+					</li>
+					<li class="img-3">
+						<div class="back-list-3">
+						</div>
+					</li>
+					<li class="img-4">
+						<div class="back-list-4">
+						</div>
+					</li>
+					<li class="img-5">
+						<div class="back-list-5">
+						</div>
+					</li>-->
+				</ul>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="btn-down-cn"></div>
+		<div class="btn-down-en"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	//实现全屏
+	function resetPage() {
+		var deviceWidth = document.documentElement.clientWidth;
+		var scale = deviceWidth / 640;
+		document.body.style.zoom = scale;
+	};
+	
+	window.onresize = function() {
+		resetPage();
+	};
+	
+	//顶部文字 行高50, 字体大小34
+	var curImgIdx = 0;
+	var details = [{
+			term:2,
+			title:"2013年四月刊",
+			cn_src:"images/卡特彼勒_CATCH月刊_04月刊_CN_JPG版本.jpg",
+			en_src:"images/卡特彼勒_CATCH月刊_04月刊_EN_JPG版本.jpg"
+		},{
+			term:3,
+			title:"2013年六月刊",
+			cn_src:"images/卡特彼勒_CATCH月刊_06月刊_CN_JPG版本.jpg",
+			en_src:"images/卡特彼勒_CATCH月刊_06月刊_EN_JPG版本.jpg"
+		},{
+			term:4,
+			title:"2013BICES展出特刊",
+			cn_src:"images/卡特彼勒_CATCH BICES展特刊_CN_JPG版本.jpg",
+			en_src:"images/卡特彼勒_CATCH BICES展特刊_EN_JPG版本.jpg"
+		},{
+			term:5,
+			title:"2013获奖专利",
+			cn_src:"images/卡特彼勒_Catch_卡特彼勒获奖专刊_中文版_JPG版本.jpg",
+			en_src:"images/卡特彼勒_Catch_卡特彼勒获奖专刊_英文版_JPG版本.jpg"
+		},{
+			term:1,
+			title:"2013年一月刊",
+			cn_src:"images/卡特彼勒_CATCH月刊_01月刊_CN_p01-01.jpg",
+			en_src:"images/卡特彼勒_CATCH月刊_01月刊_EN_p01-01.jpg"
+		}];
+	
+	var btn_down_cn = document.getElementsByClassName("btn-down-cn")[0];
+	btn_down_cn.onclick = function(){
+		//alert("中文下载");
+		var param = details[curImgIdx].cn_src;
+		param = encodeURIComponent(param);
+		window.location.href = "probation.html?value=" + param;
+	}
+	
+	
+	var btn_down_en = document.getElementsByClassName("btn-down-en")[0];
+	btn_down_en.onclick = function(){
+		//alert("en-download");
+		var param = details[curImgIdx].en_src;
+		param = encodeURIComponent(param);
+		window.location.href = "probation.html?value=" + param;
+	}
+	
+	window.setTitle = function(){
+		document.getElementsByClassName("front-title")[0].innerHTML = details[curImgIdx].title;
+		//alert(document.getElementsByClassName("front-title")[0].innerHTML);
+	}
+	//document.getElementsByClassName("front-title")[0].innerHTML = "aaaa";
+	curImgIdx = 4;
+	window.setTitle();
+</script>
+<script type="text/javascript" src="js/rotate_3d.js"></script>
+</html>

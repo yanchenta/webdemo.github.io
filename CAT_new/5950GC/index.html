@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>卡特950 GC</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<style type="text/css">
+		html body{
+			width:320px;
+			height:466px;
+			
+			position:absolute;
+			
+			
+			margin:0px 0px;
+			padding:0px 0px;
+			
+			
+			
+			overflow-x:hidden;
+		}
+		
+		.footer{
+		}
+		
+		.title-1{
+			position:absolute;
+			top:11px;
+			left:161px;
+			
+			width:153px;
+			height:206px;
+			
+			background-image:url('images/title-bg1.png');
+			background-size:153px 206px;
+			background-position:right top;
+			background-repeat:no-repeat;
+			
+			z-index:2;
+		}
+		.title-2{
+			position:absolute;
+			top:11px;
+			left:210px;
+			
+			width:104px;
+			height:108px;
+			
+			background-image:url('images/title-bg2.png');
+			background-size:104px 108px;
+			background-position:right top;
+			background-repeat:no-repeat;
+			
+			z-index:2;
+		}
+		.footer{
+			position:absolute;
+			top:0px;
+		}
+		.banner{
+			position:absolute;
+			top:0px;
+		}
+		.main-body-outer{
+			position:absolute;
+			top:0px;
+			
+			width:320px;
+			height:466px;
+			
+			overflow:hidden;
+		}
+		.main-body{
+			position:absolute;
+			top:0px;
+			
+			width:666px;
+			height:466px;
+			
+			background-image:url('images/index-bg.jpg');
+			background-size:666px 466px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			overflow-x:hidden;
+			
+		}
+		.inner-cover{
+			position:absolute;
+			left:0px;
+			top:0px;
+			
+			width:666px;
+			height:466px;
+			
+			background-color:rgba(0, 0, 0, 0.8);
+			z-index:3;
+			
+			display:none;
+		}
+		
+		.fdj-closed{
+			position:absolute;
+			top:290px;
+			left:100px;
+			
+			width:25px;
+			height:25px;
+			
+			background-image:url('images/fdj-closed.png');
+			background-size:25px 25px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:1;
+		}
+		.fdj-opened{
+			position:absolute;
+			top:290px;
+			left:100px;
+			
+			width:188px;
+			height:80px;
+			
+			background-image:url('images/fdj-opened.png');
+			background-size:188px 80px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:4;
+		}
+		.jss-closed{
+			position:absolute;
+			top:235px;
+			left:135px;
+			
+			width:25px;
+			height:25px;
+			
+			background-image:url('images/jss-closed.png');
+			background-size:25px 25px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:1;
+		}
+		.jss-opened{
+			position:absolute;
+			top:235px;
+			left:135px;
+			
+			width:191px;
+			height:83px;
+			
+			background-image:url('images/jss-opened.png');
+			background-size:191px 83px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:4;
+		}
+		.jzsj-closed{
+			position:absolute;
+			top:330px;
+			left:133px;
+			
+			width:25px;
+			height:25px;
+			
+			background-image:url('images/jzsj-closed.png');
+			background-size:25px 25px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:1;
+		}
+		.jzsj-opened{
+			position:absolute;
+			top:330px;
+			left:133px;
+			
+			width:193px;
+			height:78px;
+			
+			background-image:url('images/jzsj-opened.png');
+			background-size:193px 78px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:4;
+		}
+		.tsb-closed{
+			position:absolute;
+			top:110px;
+			left:105px;
+			
+			width:36px;
+			height:37px;
+			
+			background-image:url('images/tsb-closed.png');
+			background-size:36px 37px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:1;
+		}
+		.tsb-opened{
+			position:absolute;
+			top:110px;
+			left:105px;
+			
+			width:245px;
+			height:87px;
+			
+			background-image:url('images/tsb-opened.png');
+			background-size:245px 87px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:4;
+		}
+		.wh-closed{
+			position:absolute;
+			top:320px;
+			left:211px;
+			
+			width:30px;
+			height:31px;
+			
+			background-image:url('images/wh-closed.png');
+			background-size:25px 25px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:1;
+		}
+		.wh-opened{
+			position:absolute;
+			top:319px;
+			left:58px;
+			
+			width:181px;
+			height:89px;
+			
+			background-image:url('images/wx-opened.png');
+			background-size:181px 89px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:4;
+		}
+		.yyxt-closed{
+			position:absolute;
+			top:250px;
+			left:223px;
+			
+			width:29px;
+			height:30px;
+			
+			background-image:url('images/yyxt-closed.png');
+			background-size:29px 30px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:1;
+		}
+		.yyxt-opened{
+			position:absolute;
+			top:250px;
+			left:40px;
+			
+			width:213px;
+			height:88px;
+			
+			background-image:url('images/yyxt-opened.png');
+			background-size:213px 88px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:4;
+		}
+		.btn-return{
+			position:absolute;
+			left:20px;
+			top:20px;
+			width:107px;
+			height:20px;
+			
+			background-image:url('images/return.png');
+			background-size:107px 20px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			cursor:pointer;
+			
+			z-index:4;
+		}
+	</style>
+	"<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-8729683-21', 'auto');
+  ga('send', 'pageview');
+	</script>"									
+
+</head>
+<body>
+	<div class="banner">
+		<div class="btn-return"></div>
+		<div id="title" class="title-1">
+			<div class="xunjia"></div>
+            <div class="downbutt"></div>
+		</div>
+	</div>
+	<div class="main-body-outer">
+		<div class="main-body">
+			<div id="fdj" class="fdj-closed"></div>
+			<div id="jss" class="jss-closed"></div>
+			<div id="jzsj" class="jzsj-closed"></div>
+			<div id="tsb" class="tsb-closed"></div>
+			<div id="wh" class="wh-closed"></div>
+			<div id="yyxt" class="yyxt-closed"></div>
+			<div class="inner-cover"></div>
+		</div>
+	</div>
+	<div class="cover">
+	</div>
+	<div class="footer">
+		<div class="pop popinfo waiting" style="display:none;">
+        	<div class="markpop"></div>
+			<h3>数据提交中...</h3>
+        </div>
+		<div class="pop popinfo info" style="display:none;z-index:10000;">
+            		<div class="markpop"></div>
+                	<div class="popcon">
+                        <a href="javascript:closePop();"></a>
+                        <p class="t1" style="font-size:14px;">尊敬的用户:</p>
+						<p class="t1">为了使您更详尽的了解高端实用型950 GC转式装载机，请您先进行注册。</p>
+                        <form>
+                        	<p>
+                            	<label><i>*</i>您的姓名：</label>
+                                <input type="text" id="name" />
+                            </p>
+                            <p>
+                            	<label><i>*</i>联系电话：</label>
+                                <input type="tel" id="mobile" />
+                            </p>
+                            <p>
+                            	<label><i>*</i>使用地区：</label>
+                                <select class="prov" id="province">
+                                    <option value="">省</option>
+                                </select>
+                                <select class="city" id="citys">
+                                    <option value="">市</option>
+                                </select>
+                            </p>
+                            <p><a class="butt" href="javascript:ga('send','event','注册浮层','提交','注册浮层');
+sendInfo_new();"><b></b>提交</a></p>
+                            <p class="lastp">如果您已注册请点击<a class="login" href="javascript:ga('send','event','注册浮层','立即登录','注册浮层');
+showLoginPop();">立即登录</a></p>
+                        </form>
+                    </div>
+                </div>
+            
+            <div class="pop popinfo succ" style="display:none;">
+            	<div class="markpop"></div>
+                <div class="popcon">
+                    <a href="javascript:closePop();"></a>
+                    <h3 style="line-height:20px; height:44px;">您已成功提交询价申请，我们将尽快与您联系！ </h3>
+                    
+                    <p>
+                        <a class="butt" href="javascript:ga('send','event','我要询价浮层','返回首页','我要询价浮层');
+resertToMainPage();"><b></b>返回首页</a>
+                        <a class="butt butt1" href="javascript:ga('send','event','我要询价浮层','继续浏览','我要询价浮层');
+closePop();"><b></b>继续浏览</a>
+                    </p>
+                   
+                </div>
+            </div>
+            
+            
+            <div class="pop popinfo down" style="display:none;">
+            	<div class="markpop"></div>
+                <div class="popcon">
+                    <a href="javascript:closePop();"></a>
+                    <p>该产品手册大小为<b>3.78M</b>,<br />需要一定的下载时间，请耐心等待</p>
+                    <p class="lastp">
+                        <a class="butt" onclick="ga('send','event','下载产品手册浮层','确认','下载产品手册浮层');
+" href="950 GC Specalog - Chinese (large version).pdf"><b></b>确 认</a>
+                        <a class="butt butt3" onclick="ga('send','event','下载产品手册浮层','取消','下载产品手册浮层');
+" href="javascript:closePop();"><b></b>取 消</a>
+                    </p>
+                   
+                </div>
+            </div>
+            
+            <div class="pop popinfo loginPop" style="display:none;">
+            	<div class="markpop"></div>
+                <div class="popcon">
+                    <a href="javascript:closePop();"></a>
+                    <h3>提示：请输入已注册的手机号 </h3>
+                    <section>
+                    	<label><i>*</i>手机号码：</label>
+                        <input type="tel" id="mobile2" />
+                        <p style="font-size:9px;">请填写您当时注册的手机号</p>
+                    </section>
+                    <p class="lastp">
+                        <a class="butt" href="javascript:userLogin();"><b></b>登 录</a>
+                        
+                    </p> 
+                   
+                </div>
+            </div>
+	</div>
+</body>
+
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript" src="js/list.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript">
+	document.getElementById("fdj").onclick = function(){
+		//alert("this.id:" + this.id);
+		window.loginTrigger = this.id;
+		if(!isLogin()){//判断，显示注册或登陆窗口
+			$('.info').show();
+			document.getElementById("title").className = "title-2";//右上角缩回去
+			return;
+		}
+		
+		loginTriggerInvoke(this);
+	};
+	document.getElementById("jss").onclick = function(){
+		window.loginTrigger = this.id;
+		if(!isLogin()){//判断，显示注册或登陆窗口
+			$('.info').show();
+			document.getElementById("title").className = "title-2";//右上角缩回去
+			return;
+		}
+		loginTriggerInvoke(this);
+	};
+	document.getElementById("jzsj").onclick = function(){
+		window.loginTrigger = this.id;
+		if(!isLogin()){//判断，显示注册或登陆窗口
+			$('.info').show();
+			document.getElementById("title").className = "title-2";//右上角缩回去
+			return;
+		}
+		loginTriggerInvoke(this);
+	};
+	document.getElementById("tsb").onclick = function(){
+		window.loginTrigger = this.id;
+		if(!isLogin()){//判断，显示注册或登陆窗口
+			$('.info').show();
+			document.getElementById("title").className = "title-2";//右上角缩回去
+			return;
+		}
+		loginTriggerInvoke(this);
+	};
+	document.getElementById("wh").onclick = function(){
+		window.loginTrigger = this.id;
+		if(!isLogin()){//判断，显示注册或登陆窗口
+			$('.info').show();
+			document.getElementById("title").className = "title-2";//右上角缩回去
+			return;
+		}
+		loginTriggerInvoke(this);
+	};
+	document.getElementById("yyxt").onclick = function(){
+		window.loginTrigger = this.id;
+		if(!isLogin()){//判断，显示注册或登陆窗口
+			$('.info').show();
+			document.getElementById("title").className = "title-2";//右上角缩回去
+			return;
+		}
+		loginTriggerInvoke(this);
+	};
+	
+	document.getElementsByClassName("downbutt")[0].onclick = function(){
+		ga('send','event','首页','下载产品手册','首页');
+		
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_download);
+		
+		window.loginTrigger = "down";
+		
+		openNotice();//位置不可移动
+		
+		if(!isLogin()){//判断，显示注册或登陆窗口
+			$('.info').show();
+			return;
+		}
+		else{
+			$('.down').show();
+		}
+		
+	};
+	
+	document.body.addEventListener("touchmove",function(event){
+		event.preventDefault();
+	});
+	
+	document.getElementsByClassName("btn-return")[0].onclick = function(){
+		ga('send','event','首页','返回cat手机官网','首页');
+		
+		resertToMainPage();
+	}
+	
+	document.getElementsByClassName("xunjia")[0].onclick = function(){
+		ga('send','event','首页','我要询价','首页');
+		
+		
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_xunjia);
+		
+		window.loginTrigger = "xunjia";
+		
+		openNotice();//位置不可移动
+		
+		if(!isLogin()){//判断，显示注册或登陆窗口
+			
+			$('.info').show();
+			return;
+		}
+		else{
+			$('.succ').show();
+		}
+		//enquiry();
+	};
+</script>
+</html>

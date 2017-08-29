@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>郎牌特曲，暑假我们一起闯！</title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:1361px;
+			margin:0px 0px;
+			padding:0px 0px;
+			
+			background-image:url('images/introduction-bg.jpg');
+			background-position:0px 0px;
+			background-size:640px 1361px;
+			background-repeat:no-repeat;
+		}
+		
+		.div-btn-return{
+			position:absolute;
+			top:18px;
+			right:20px;
+			
+			height:35px;
+			width:98px;
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="div-btn-return"></div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript">
+	document.getElementsByClassName("div-btn-return")[0].onclick = function(){
+		var _url = "index.html";
+		window.location.href = _url;
+	};
+	window.onload = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_introduction_pv);
+	};
+	
+</script>
+</html>

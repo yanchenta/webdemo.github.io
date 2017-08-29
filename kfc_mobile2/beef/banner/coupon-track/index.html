@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>KFC-Coupon</title>
+    <style>
+        #Stage{position:relative;width:320px;height:50px;text-align:center; margin: 0 auto;}
+        #leftArea {position: absolute; top: 0; left: 0; width: 236px; height: 50px; display: none;}
+        #rightArea {position: absolute; top: 10px; right: 2px; width: 74px; height: 34px; display: none;}
+        #img2 {position: absolute;top: 0;left: 0;display: none;}
+    </style>
+<script>
+	window.onload = setTimeout(showImg2,2000);
+
+	function showImg2() {
+		document.getElementById('img2').style.display = "block";
+		document.getElementById('leftArea').style.display = "block";
+		document.getElementById('rightArea').style.display = "block";
+	}
+
+	function adwoAdClickCount(handler) {
+		window.location = "adwo://adwoAdClickCount&handler_" + handler;
+	}
+	
+	function onTouched() {
+		post('http://e.mbm.cn.miaozhen.com/r.gif?k=1526&p=5An&ae=123&ns=[M_ADIP]&ni=[M_IESID]&na=[M_MAC]&rt=2&o=http://wap.kfc.com.cn/beef/banner/coupon/expand/index.html?mz_ca=1526&mz_sp=5An');
+		var urI = window.location;
+	    var urL = String(urI);
+	    var urI_new = urL.replace("index.html","expand/index.html");
+		
+		setTimeout(function() {
+			window.location = urI_new;
+		},500);
+	}
+
+	function adwoOpenURL() {
+		post('http://e.mbm.cn.miaozhen.com/r.gif?k=1526&p=5Am&ae=123&ns=[M_ADIP]&ni=[M_IESID]&na=[M_MAC]&rt=2&o=http://wap.kfc.com.cn/adwo/beef/index.html?mz_ca=1526&mz_sp=5Am');
+		type=0;
+		orientations=0;
+		onOrientationChanged=0;
+		url = "http://wap.kfc.com.cn/adwo/beef/index.html";
+
+		setTimeout(function() {
+			window.location = "adwo://adwoOpenURL&type_" + type + "&orientations_" + orientations + "&onOrientationChanged_" + onOrientationChanged + "&url_" + url;
+		},500);
+	}
+
+	function post(url){
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.open('GET', url, true);
+			xmlhttp.send();
+		}
+	}
+</script>
+</head>
+<body style="margin:0;padding:0;">
+	<img style="position:absolute; left: -10000px;" width="0" height="0" src="http://g.mbm.cn.miaozhen.com/x.gif?k=1526&p=5Am&ns=[M_ADIP]&ni=[M_IESID]&na=[M_MAC]&rt=2&o="/>
+	<div id="Stage">
+        <img src="banner1.jpg" width="320" height="50" />
+        <img src="banner2.jpg" width="320" height="50" id="img2" />
+        <a id="leftArea" href="javascript:adwoAdClickCount('adwoOpenURL')"></a>
+        <a id="rightArea" href="javascript:adwoAdClickCount('onTouched')"></a>
+	</div>
+</body>
+</html>

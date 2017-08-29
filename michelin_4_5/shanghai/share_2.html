@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>米其林携您体验保时捷极致之旅</title>
+	<link rel="stylesheet" type="text/css" href="css/share_2_640_960.css"/>
+	<link rel="stylesheet" type="text/css" href="css/share_2_720_1280.css" media="only screen and (min-width:720px)"/>
+
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="div-btn-share"></div>
+	</div>
+	<div class="footer"></div>
+</body>
+
+<script type="text/javascript" src="js/common.js">
+
+</script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript">
+
+	var typeIdx = window.location.href.indexOf("?type=");
+	
+	if(typeIdx < 0 && (!window.localStorage["miqilin_sharetype"] || "" == window.localStorage["miqilin_sharetype"]) )  {
+		//既不是type传参，也不是回调uid传参
+		window.location.href = "index.html";
+	}
+	else{
+		//alert("window.localStorage[\"miqilin_sharetype\"]:" + window.localStorage["miqilin_sharetype"]);
+		
+		if(!!window.localStorage["miqilin_sharetype"] && "" != window.localStorage["miqilin_sharetype"]){ //回调uid传参
+			var uidIdx = window.location.href.indexOf("?uid=");
+			
+			if(uidIdx >= 0){
+				var uid = window.location.href.substring(uidIdx + 5);//获取回调的uid
+				//alert("uid=" + uid);
+				
+				window.localStorage["miqilin_sharetype"] = "";//清空
+				window.location.href = "share_3.html?uid=" + uid;//完成分享-跳转*/
+			}
+		}
+	}
+	
+	
+	document.getElementsByClassName("div-btn-share")[0].onclick = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_share2_click);//cms-track
+		
+		setTimeout(function(){
+			//提交分享
+			
+			//初始type传参
+			var type = window.location.href.substring(typeIdx + 6);
+			//alert(type);
+			//var content = "\"心向往之 行必能至 米其林极致驾驶体验\"赢得米其林保时捷卡雷拉VIP观赛门票幸运抽奖活动开始啦，快来点击查看：http://t.cn/zWJEZ";
+			//var content = "\"心向往之 行必能至 米其林极致驾驶体验\"赢得米其林保时捷卡雷拉VIP观赛门票幸运抽奖活动开始啦，快来点击查看：http://t.cn/8sQ9PJ1";
+			var content = encodeURIComponent("“心向往之 行必能至 - 米其林极致之旅”邀您赢取亚洲保时捷卡雷拉杯上海站VIP观赛入场券！快来点击查看http://wap.michelin.com.cn/dreamdriving");
+			switch(type){
+				case "sinaweibo":
+						window.localStorage["miqilin_sharetype"] = type;
+						var url = "http://newcms.mobile1.com.cn/callback/sinacallback?content=" + content + "&ad=mcl&k=mcl_root_sina";
+						window.location.href = url;
+						break;
+				
+				case "tencentweibo":
+						window.localStorage["miqilin_sharetype"] = type;
+						var url = "http://newcms.mobile1.com.cn/callback/qqcallback?content=" + content + "&ad=mcl&k=mcl_root_qq";
+						window.location.href = url;
+						break;
+						
+				case "qqzone":
+						window.localStorage["miqilin_sharetype"] = type;
+						var url = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + window.location.href + "&title=" + content + "&pics=&summary="+ content;
+						window.location.href = url;
+						break;
+						
+				case "renren":
+						window.localStorage["miqilin_sharetype"] = type;
+						var url = "http://newcms.mobile1.com.cn/callback/renrencallback?content=" + content + "&ad=mcl&k=mcl_root_renren";
+						window.location.href = url;
+						
+						break;
+				
+				default:
+						break;
+			}
+		}, 500);
+	};
+	
+	window.onload = function(){
+		if(!!document.getElementsByTagName("img")[0]){//hide baidu logo
+			
+			document.getElementsByTagName("img")[0].width = "1";
+			document.getElementsByTagName("img")[0].height = "1";
+			
+			document.getElementsByTagName("img")[0].onload = function(){
+				this.width = "1";
+				this.height = "1";
+			}
+			
+			setTimeout(function(){
+				document.getElementsByTagName("img")[0].onload();
+			},500);
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,141 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>【装载机/铲车】卡特装载机型号、价格、图片查询 - Cat（卡特）官网</title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="css/p_index.css">
+<script src="channel.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/jquery.xml2json.js"></script>
+<script src="js/json2xml.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/guid.js"></script>
+<script src="js/trackEvent.js"></script>
+<script src="js/dealer.js"></script>
+<script src="js/control.js"></script>
+<script src="js/api.js"></script>
+<style>
+html,body{background-color:#fff;}
+</style>
+<script>
+$(document).ready(function(e) {
+        var url = 'http://catwaji.mobileone.com.cn/950gc/';
+        var user = getUser();
+        if(user){
+            url += "?mobile=" + user.mobile;
+        }
+        location = url;
+        //history.back();
+});
+</script>
+</head>
+<body onload="resetPage()">
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NKSB8R"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script src="js/log2.js"></script>
+    <div class="title">
+        <a class="fly" data-url="tel:4001115187" id="hotel"><img src="images/hotel.png" /></a>
+        <img id="title_login" src="images/title_login.png" class="fly menuLoginForm" />
+        <div class="fly" id="loginD1"><label id="username">,</label><a data-tap="logout()">注销</a></div>
+        <div class="header_two" style="background: url(images/p_nav1.png) no-repeat;">
+			<a href="pro1.html"></a>
+			<a href="pro2.html"></a>
+			<a href="pro3.html"></a>
+			<a href="pro4.html"></a>
+			<a href="pro5.html"></a>
+		</div>
+    </div>
+    <div class="content">
+        <img src="images/pro1.jpg" data-url="pro1_2.html" />
+        <div style="height:120px"></div>
+        <div class="search2">
+            <div class="btoIndex fly" data-url="index.html?v"></div>
+            <div class="btoProd fly" data-url="pro1.html"></div>
+            <div class="btoDaili fly" data-url="p_help.html"></div>
+            <div class="btojlb fly" data-url="p_jlb.html"></div>
+            <div class="g2 fly" data-url="p_largescale3.html"></div>
+        </div>
+    </div>
+    <div class="menu" id="menu">
+        <ul>
+            <li data-url="index.html"><img src="images/menu_1.png"/></li>
+            <li class="menuWeixin"><img src="images/menu_2.png"/></li>
+            <li class="menu_one" data-id="3"><img src="images/menu_3.png"/></li>
+            <li class="menu_two" data-id="3"><img src="images/menu_3s.png"/></li>
+            <li class="menu_item" data-id="3" data-url="pro1.html">小型机</li>
+            <li class="menu_item" data-id="3" data-url="pro2.html">中型机</li>
+            <li class="menu_item" data-id="3" data-url="pro3.html">大型机</li>
+            <li class="menu_item" data-id="3" data-url="pro4.html">轮挖</li>
+            <li class="menu_item" data-id="3" data-url="pro5.html">装载机</li>
+            <li class="menu_one" data-id="4"><img src="images/menu_4.png"/></li>
+            <li class="menu_two" data-id="4"><img src="images/menu_4s.png"/></li>
+            <li class="menu_item" data-id="4" data-url="p_help.html">频道首页</li>
+            <li class="menu_item" data-id="4" data-url="p_problem2.html">我要提问</li>
+            <li class="menu_item" data-id="4" data-url="p_problem.html">精彩问答</li>
+            <li class="menu_item" data-id="4" data-url="p_video.html">视频·漫画</li>
+            <li class="menu_item" data-id="4" data-url="p_intorduce.html">专家介绍</li>
+            <li class="menu_one" data-id="5"><img src="images/menu_5.png"/></li>
+            <li class="menu_two" data-id="5"><img src="images/menu_5s.png"/></li>
+            <li class="menu_item" data-id="5" data-url="p_about.html">关于俱乐部</li>
+            <li data-url="map.html"><img src="images/menu_6.png"/></li>
+            <li class="menuLoginForm"><img src="images/menu_7.png"/></li>
+            <li class="menuLogoutForm" style="display:none;" data-tap="logout()"><img src="images/menu_8.png"/></li>
+            <li class="menu_height"></li>
+        </ul>
+    </div>
+    <!--<div class="menu_left"></div>-->
+    <div class="copyright">©2012 卡特彼勒保留所有权利</div>
+    <div class="cover"></div>
+    <div class="popupAlert loginForm">
+        <div class="close"></div>
+        <input id="loginMobile" type="tel" class="textbox fly"  />
+        <div class="btnLogin fly" data-tap="login()"></div>
+        <div class="btnReg fly"></div>
+    </div>
+	<!--下载 操作手册-->
+	<div class="div-down" style="display:none;">
+        <div class="markpop"></div>
+        <div class="popcon">
+                    <a href="javascript:closeDown();"></a>
+                    <p>该产品手册大小为<b id="b_fileSize">4.1M</b>,<br />需要一定的下载时间，请耐心等待</p>
+                    <p class="lastp">
+                        <a class="down-sure"><b></b>确 认</a>
+                        <a class="down-sure down-cancel" id="a_downcancel"><b></b>取 消</a>
+                    </p>             
+                </div>
+    </div>
+    <div class="popupAlert regForm">
+        <div class="close"></div>
+        <input id="regName" type="text" class="textbox fly"  />
+        <input id="regMobile" type="tel" class="textbox fly"  />
+        <div class="btnLogin fly"></div>
+        <div class="btnReg fly" data-tap="reg()"></div>
+    </div>
+    <div class="popupAlert weixinForm">
+        <div class="close"></div>
+    </div>
+    <div class="popupAlert xunjiaForm">
+        <div class="close"></div>
+        <input id="xunjiaName" type="text" class="textbox fly"  />
+        <input id="xunjiaMobile" type="tel" class="textbox fly"  />
+        
+        <a class="xunjiaTel fly" href="tel:4001115187"></a>
+        <div class="btnXunjia fly" data-tap="xunjia()"></div>
+        <div class="btnDenglu fly" data-tap="denglu()"></div>
+    </div>
+    <div class="popupAlert xunjiaokForm">
+        <div class="close"></div>
+        <div class="btnJixu fly"></div>
+        <div class="btnWaJi fly"></div>
+        <div class="btnBangmang fly"></div>
+    </div>
+</body>
+</html>

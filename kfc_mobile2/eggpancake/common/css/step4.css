@@ -1,0 +1,83 @@
+.cake-container{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: 320px;
+    height: 260px;
+    overflow: hidden;
+    margin-right: 0;
+}
+.cake{
+    position: absolute;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width:320px;
+    height: 260px;
+    overflow: hidden;
+    right: 0;
+}
+.cake .cake-bottom-cake{
+    width: 256px;
+    height: 251px;
+    margin: 0 auto;
+}
+.cake .cake-bottom-fillings{
+    position: relative;
+    top: -256px;
+    margin-left: 12px;
+    z-index: 3;
+}
+.cake .rolling{
+    position: absolute;
+    width: 98px;
+    height:251px ;
+    /*background: url(../images/cake-back.png) no-repeat;*/
+    /*background-size: 256px 251px;*/
+    /*background-position: -256px 0px;*/
+    top:0;
+    z-index: 5;
+    overflow: hidden;
+    left: 34px;
+}
+.cake .rolling img{
+    position: absolute;
+    width: 256px;
+    height: 251px;
+    left: -256px;
+}
+.tip-container{
+    position:absolute ;
+    width: 320px;
+    height: 150px;
+    z-index: 6;
+    top: 120px;
+}
+.tip-container .tip-text{
+    width: 194px;
+    margin: 0 auto;
+}
+.tip-container .tip-jiant{
+    position: absolute;
+    top: 30px;
+    left: 0px;
+}
+.tip-container .tip-hand{
+    position: absolute;
+    top: 57px;
+    left: 17px;
+
+}
+.step-4{
+    position: relative;
+}
+.step-4 .rolling-control{
+    position: absolute;
+    width:100px;
+    height: 256px;
+    display: block;
+    top:0px;
+    left:0px;
+    z-index: 7;
+}

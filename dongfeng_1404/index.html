@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>东风标致 光芒耀市</title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:873px;
+			margin:0px 0px;
+			
+			background-image:url('images/bg.png');
+			background-position:center top;
+			background-repeat:no-repeat;
+			background-size:640px 873px;
+		}
+		
+		.div-form{
+			position:absolute;
+			left:170px;
+			top:430px;
+			right:0px;
+			
+			width:auto;
+			height:200px;
+			
+			text-align:right;
+		}
+		
+		input[type=text]{
+			font-size:25px;
+		}
+		.input-name{
+			position:absolute;
+			right:33px;
+			top:5px;
+			
+			height:35px;
+			width:300px;
+		}
+		.input-phone{
+			position:absolute;
+			right:33px;
+			top:57px;
+			
+			height:35px;
+			width:300px;
+		}
+		.input-cartype{
+			position:absolute;
+			right:33px;
+			top:109px;
+			
+			height:35px;
+			width:300px;
+		}
+		.btn-submit{
+			position:absolute;
+			right:110px;
+			top:155px;
+			
+			height:50px;
+			width:150px;
+			
+			cursor:pointer;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="div-form">
+			<input type="text" class="input-name"/>
+			<input type="text" class="input-phone"/>
+			<input type="text" class="input-cartype"/>
+			<div type="button" class="btn-submit"></div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/ajaxes.js"></script>
+<script type="text/javascript">
+	function resetPage(){
+		var pageWidth = document.documentElement.clientWidth,scale = pageWidth / 640;
+		document.body.style.zoom = scale;
+	}
+	
+	window.onresize = function(){
+		resetPage();
+	}
+	
+	window.onload = function(){
+		resetPage();
+	}
+	
+	document.getElementsByClassName("btn-submit")[0].onclick = function(){
+		//姓名验证
+		var input_name = document.getElementsByClassName("input-name")[0].value;
+		if("" === input_name){
+			alert("姓名不能为空");
+			return;
+		}
+		
+		//手机号码验证
+		var input_phone = document.getElementsByClassName("input-phone")[0].value;
+		if(null == input_phone.match(/^\d{11}$/)){
+			alert("请确认您的手机号码，应为为11位数字");
+			return;
+		}
+		
+		//意向车型验证
+		var input_carType = document.getElementsByClassName("input-cartype")[0].value;
+		if("" === input_carType){
+			alert("意向车型不能为空");
+			return;
+		}
+		
+		var _url = "http://ama.adwo.com/advmessage/adv/addResultJsonP.action";
+		var advid = "30011";
+		var paramStr = "?advid=" +  advid;
+		paramStr += "&realname=" + input_name;
+		paramStr += "&mobile=" + input_phone;
+		paramStr += "&expand1=" + input_carType;
+		_url += paramStr;
+		
+		ajax(_url,function(response){
+			
+			if(1 === response[0].success){
+				alert("提交成功");
+			}
+			else{
+				alert(response[0].success);
+			}
+		});
+	}
+</script>
+</html>

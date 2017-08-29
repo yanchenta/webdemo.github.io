@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title></title>
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	<script type="text/javascript">
+       	var myScroll;
+		var myScroll2;
+		function loaded() {
+			/*myScroll = new iScroll('back-list', {
+				snap: true,
+				momentum: false,
+				hScrollbar: false,
+				onScrollEnd: function () {
+					document.querySelector('#indicator > li.on').className = '';
+					document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'on';
+				}
+			});*/
+			myScroll2 = new iScroll('back-list');
+		}
+		document.addEventListener('DOMContentLoaded', loaded, false);
+	</script>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:960px;
+			margin:0px 0px;
+			padding:0px 0px;
+			overflow-x:hidden;
+			
+			background-image:url('images/cn-list-bg.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:640px 960px;
+		}
+		.banner{
+			width:640px;
+			height:165px;
+		}
+		.main-body{
+			
+		}
+		.main-region{
+			margin-top:150px;
+			width:640px;
+			max-width:640px;
+			height:500px;
+			position:relative;
+		}
+		.bottom-buttons{
+			width:640px;
+			height:135px;
+			left:0px;
+			position:relative;
+			background-color:red;
+		}
+		
+		.btn-down-cn{
+			width:278px;
+			height:85px;
+		
+			position:absolute;
+			left:50%;
+			top:530px;
+			margin-left:-288px;
+		}
+		.btn-down-en{
+			width:278px;
+			height:85px;
+			
+			position:absolute;
+			right:50%;
+			top:530px;
+			margin-right:-298px;
+		}
+		
+		ul {
+			margin:0;
+			padding:0;
+			width:1995px;
+			list-style-type:none;
+		}
+		li {
+			float:left;
+		}
+		.back-list{
+			position:absolute;
+			top:100px;
+			display:inline-block;
+			width:610px;
+			height:361px;
+			overflow:hidden; 
+			position:relative; 
+			z-index:0;
+			background-color:red;
+		}
+		.back-list-inner{
+			width:640px;
+			height:361px;
+			background-color:white;
+			
+			position:absolute;
+		}
+		
+		.back-list-1{
+			display:inline-block;
+			width:232px;
+			height:361px;
+			margin-left:166px;
+			margin-right:100px;
+			
+			background-image:url('images/cn-list-yiyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 361px;
+			opacity:0.3;
+		}
+		.back-list-2{
+			display:inline-block;
+			width:232px;
+			height:361px;
+			margin-right:100px;
+			
+			background-image:url('images/cn-list-siyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 361px;
+			opacity:0.3;
+		}
+		.back-list-3{
+			display:inline-block;
+			width:232px;
+			height:361px;
+			margin-right:100px;
+			
+			background-image:url('images/cn-list-liuyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 361px;
+			opacity:0.3;
+		}
+		.back-list-4{
+			display:inline-block;
+			width:232px;
+			height:361px;
+			margin-right:100px;
+			
+			background-image:url('images/cn-list-2013BICES-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 500px;
+			opacity:0.3;
+		}
+		.back-list-5{
+			display:inline-block;
+			width:232px;
+			height:361px;
+			margin-right:166px;
+			
+			background-image:url('images/cn-list-2013huojiang-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 361px;
+			opacity:0.3;
+		}
+		
+		.front-zoom-region-list-1{
+			display:inline-block;
+			margin-left:166px;
+			margin-right:100px;
+			width:332px;
+			height:500px;
+			
+			background-image:url('images/cn-list-yiyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:332px 500px;
+			background-color:white;
+		}
+		.front-zoom-region-list-2{
+			display:inline-block;
+			margin-right:100px;
+			width:332px;
+			height:500px;
+			opacity:1;
+			
+			background-image:url('images/cn-list-siyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:332px 500px;
+			background-color:white;
+		}
+		.front-zoom-region-list-3{
+			display:inline-block;
+			margin-right:100px;
+			width:332px;
+			height:500px;
+			opacity:1;
+			
+			background-image:url('images/cn-list-liuyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:332px 500px;
+			background-color:white;
+		}
+		.front-zoom-region-list-4{
+			display:inline-block;
+			margin-right:100px;
+			width:332px;
+			height:500px;
+			opacity:1;
+			
+			background-image:url('images/cn-list-2013BICES-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:332px 500px;
+			background-color:white;
+		}
+		.front-zoom-region-list-5{
+			display:inline-block;
+			margin-right:100px;
+			width:332px;
+			height:500px;
+			opacity:1;
+			
+			background-image:url('images/cn-list-2013huojiang-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:332px 500px;
+			background-color:white;
+		}
+		
+		.front-zoom-region{
+			position:absolute;
+			left:50%;
+			margin-left:-166px;
+			top:150px;
+			
+			display:block;
+			width:332px;
+			height:500px;
+		}
+		.front-title{
+			font-size:34px;
+			font-weight:700px;
+			line-height:50px;
+			text-align:center;
+			margin-top:-150px;
+			width:332px;
+			height:50px;
+			
+			position:absolute;
+			top:50px;
+			left:150px;
+		}
+
+	</style>
+</head>
+<body draggable="false">
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="main-region">
+			<div id="back-list"">
+				<!--使用绝对定位，才可以-->
+				<ul class="clearfix">
+					<li>
+						<div id="div-img-1" class="front-zoom-region-list-1">
+						</div>
+					</li>
+					<li>
+						<div id="div-img-2" class="back-list-2">
+						</div>
+					</li>
+					<li>
+						<div id="div-img-3" class="back-list-3">
+						</div>
+					</li>
+					<li>
+						<div id="div-img-4" class="back-list-4">
+						</div>
+					</li>
+					<li>
+						<div id="div-img-5" class="back-list-5">
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="front-title"></div>
+			<!--<div id="front-zoom-region" class="front-zoom-region-list-1"><div>-->
+			<div class="btn-down-cn"></div>
+			<div class="btn-down-en"></div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript">
+	//实现全屏
+	function resetPage() {
+		var deviceWidth = document.documentElement.clientWidth;
+		var scale = deviceWidth / 640;
+		document.body.style.zoom = scale;
+	};
+	
+	window.onresize = function() {
+		resetPage();
+	};
+
+	window.onload = function() {
+		resetPage();
+	};
+	
+	//顶部文字 行高50, 字体大小34
+	var curImgIdx = 0;
+	var details = [{
+			term:1,
+			title:"2013年一月刊",
+			cn_src:"images/卡特彼勒_CATCH月刊_01月刊_CN_p01-01.jpg",
+			en_src:"images/卡特彼勒_CATCH月刊_01月刊_EN_p01-01.jpg"
+		},{
+			term:2,
+			title:"2013年四月刊",
+			cn_src:"images/卡特彼勒_CATCH月刊_04月刊_CN_JPG版本.jpg",
+			en_src:"images/卡特彼勒_CATCH月刊_04月刊_EN_JPG版本.jpg"
+		},{
+			term:3,
+			title:"2013年六月刊",
+			cn_src:"images/卡特彼勒_CATCH月刊_06月刊_CN_JPG版本.jpg",
+			en_src:"images/卡特彼勒_CATCH月刊_06月刊_EN_JPG版本.jpg"
+		},{
+			term:4,
+			title:"2013BICES展出特刊",
+			cn_src:"images/卡特彼勒_CATCH BICES展特刊_CN_JPG版本.jpg",
+			en_src:"images/卡特彼勒_CATCH BICES展特刊_EN_JPG版本.jpg"
+		},{
+			term:5,
+			title:"2013获奖专利",
+			cn_src:"images/卡特彼勒_Catch_卡特彼勒获奖专刊_中文版_JPG版本.jpg",
+			en_src:"images/卡特彼勒_Catch_卡特彼勒获奖专刊_英文版_JPG版本.jpg"
+		}
+	]
+	
+	
+	/*
+	var list_back = document.getElementsByClassName("back-list")[0];
+	list_back.startX = 0;
+	list_back.addEventListener("touchstart", function(e){
+		if(!!e.touches && 1 === e.touches.length){
+			
+		}
+	});
+	list_back.addEventListener("touchmove", function(e){
+		//e.preventDefault();
+		curImgIdx = Math.floor(list_back.scrollLeft/perImgWidth2);
+		if(curImgIdx >= 0 && curImgIdx < backImgs.length){
+			//preShow(curImgIdx);
+			//=> 判断"突出动画"(右->中突/左->中突)与"收回动画"(中->右收/中->左收)
+		}
+		
+		
+	});
+	list_back.addEventListener("touchend", function(e){
+		//alert(!!e.touches + "," + e.touches.length);
+		if(!!e.touches && 1 === e.touches.length){
+			//循环矫正
+			//{
+			for(var i = 0; i < queueImgs.length; i++){
+				//左边界操作
+				if(queueImgs[i].offsetLeft - queueContainer.scrollLeft <= 50 
+					&& queueImgs[i].offsetLeft - queueContainer.scrollLeft >= -50){
+					
+					//左边界操作，找到left-elem的last-elem校订
+					if(queueImgs[i].last.offsetLeft > queueImgs[i].offsetLeft){
+						//校订last-elem元素，并开始调整整体元素
+						queueImgs[i].last.style.left = (queueImgs[i].offsetLeft - 332 - 50) + "px";
+						
+						//开始调整整体元素
+						for(var j = 0; j < queueImgs.length; j++){
+							queueImgs[j].style.left = (queueImgs[j].offsetLeft + 332 + 50) + "px";
+						}
+						queueContainer.scrollLeft = (queueContainer.scrollLeft + 332 + 50);
+					}
+					//alert("左边界操作scrollLeft:" + queueContainer.scrollLeft);
+					break;
+				}
+				
+				//右边界操作
+				if(queueImgs[i].offsetLeft - queueContainer.scrollLeft > 398
+					&& queueImgs[i].offsetLeft - queueContainer.scrollLeft > 408){
+					
+					//右边界操作，找到right-elem的next-elem校订
+					if(queueImgs[i].next.offsetLeft < queueImgs[i].offsetLeft){
+						//校订next-elem元素，并开始调整整体元素
+						queueImgs[i].next.style.left = (queueImgs[i].offsetLeft + 332 + 50) + "px";
+						// 开始调整整体元素
+						for(var j = 0; j < queueImgs.length; j++){
+							queueImgs[j].style.left = (queueImgs[j].offsetLeft - 332 - 50) + "px";
+						}
+						queueContainer.scrollLeft = (queueContainer.offsetLeft - 332 - 50);
+					}
+					//alert("右边界操作=>scrollLeft:" + queueContainer.scrollLeft);
+					break;
+				}
+				//alert(queueContainer.scrollLeft);
+			}
+			
+			
+			//循环轮播图 => 矫正动画
+			var centerLeft = 154;
+			var centerIdx = 0;
+			var minAbsDistance = 1000;
+			var minDistance = 0;
+			for(var i = 0; i < queueImgs.length; i++){
+				if(Math.abs(queueImgs[i].offsetLeft - queueContainer.scrollLeft - centerLeft) < minAbsDistance){
+					minAbsDistance = Math.abs(queueImgs[i].offsetLeft - queueContainer.scrollLeft - centerLeft);
+					minDistance = queueImgs[i].offsetLeft - queueContainer.scrollLeft - centerLeft;
+					centerIdx = i;
+				}
+			}
+			document.getElementsByClassName("front-title")[0].innerHTML = details[centerIdx].title;
+			
+			curImgIdx = centerIdx;
+			if("back-list-5" === queueImgs[centerIdx].className){
+				front_region.className = "front-zoom-region-list-5";
+				front_region.style.backgroundImage = "url('images/cn-list-2013huojiang-back.png')";
+			}
+			else if("back-list-4" === queueImgs[centerIdx].className){
+				front_region.className = "front-zoom-region-list-4";
+				front_region.style.backgroundImage = "url('images/cn-list-2013BICES-back.png')";
+			}
+			else if("back-list-3" === queueImgs[centerIdx].className){
+				front_region.className = "front-zoom-region-list-3";
+				front_region.style.backgroundImage = "url('images/cn-list-liuyuekan-back.png')";
+			}
+			else if("back-list-2" === queueImgs[centerIdx].className){
+				front_region.className = "front-zoom-region-list-2";
+				front_region.style.backgroundImage = "url('images/cn-list-siyuekan-back.png')";
+			}
+			else if("back-list-1" === queueImgs[centerIdx].className){
+				front_region.className = "front-zoom-region-list-1";
+				front_region.style.backgroundImage = "url('images/cn-list-yiyuekan-back.png')";
+			}
+			
+			
+			//alert(minAbsDistance);
+			for(var i = 0; i < queueImgs.length; i++){
+				//queueImgs[i].style.left = (queueImgs[i].offsetLeft - queueContainer.scrollLeft - minDistance) + "px";
+				//queueContainer.scrollLeft = queueContainer.scrollLeft - minDistance;
+				queueImgs[i].style.opacity = 0.3;
+			}
+			queueImgs[centerIdx].style.opacity = 1;
+			alert(1);
+			//changeTo(elem, delta_width, delta_height, delta_top, delta_left, delta_opacity)
+			changeTo(details[centerIdx], 100, 234, queueImgs[i].offsetLeft - queueContainer.scrollLeft - centerLeft, 30,0.7);
+			//changeTo(details[centerIdx], -100, -234, -(queueImgs[i].offsetLeft - queueContainer.scrollLeft - centerLeft), -30,-0.7);
+			
+		}
+	});
+	
+	var front_region = document.getElementById("front-zoom-region");
+	
+
+	var queueImgs = null;
+	var queueContainer = document.getElementsByClassName("back-list")[0];
+	(function(){
+		//创建循环队列
+		var elem1 = document.getElementsByClassName("back-list-1")[0];
+		var elem2 = document.getElementsByClassName("back-list-2")[0];
+		var elem3 = document.getElementsByClassName("back-list-3")[0];
+		var elem4 = document.getElementsByClassName("back-list-4")[0];
+		var elem5 = document.getElementsByClassName("back-list-5")[0];
+		queueImgs = [elem1, elem2, elem3, elem4, elem5];
+		elem1.next = elem2;
+		elem1.last = elem5;
+		elem2.next = elem3;
+		elem2.last = elem1;
+		elem3.next = elem4;
+		elem3.last = elem2;
+		elem4.next = elem5;
+		elem4.last = elem3;
+		elem5.next = elem1;
+		elem5.last = elem4;
+	})();
+	
+	var maxIntervalTimer = 5;
+	var during = 100;//这边应该有个推出标志量或锁...
+	function changeTo(elem, delta_width, delta_height, delta_top, delta_left, delta_opacity){
+		var intervalTimer = maxIntervalTimer;
+		var tmpTimer = window.setInterval(function(){
+			while(intervalTimer > 0){
+				elem.style.width += delta_width/intervalTimer;
+				elem.style.height += delta_height/intervalTimer;
+				elem.style.top += delta_top/intervalTimer;
+				elem.style.left += delta_left/intervalTimer;
+				elem.style.opacity += delta_opacity/intervalTimer;
+				intervalTimer--;
+			}
+		}, during);
+	}*/
+	var queueImgs = null;
+	var queueContainer = document.getElementsByClassName("back-list")[0];
+	(function(){
+		//创建循环队列
+		var elem1 = document.getElementById("div-img-1");
+		var elem2 = document.getElementById("div-img-2");
+		var elem3 = document.getElementById("div-img-3");
+		var elem4 = document.getElementById("div-img-4");
+		var elem5 = document.getElementById("div-img-5");
+		queueImgs = [elem1, elem2, elem3, elem4, elem5];
+		elem1.next = elem2;
+		elem1.last = elem5;
+		elem2.next = elem3;
+		elem2.last = elem1;
+		elem3.next = elem4;
+		elem3.last = elem2;
+		elem4.next = elem5;
+		elem4.last = elem3;
+		elem5.next = elem1;
+		elem5.last = elem4;
+	})();
+	var btn_down_cn = document.getElementsByClassName("btn-down-cn")[0];
+	btn_down_cn.onclick = function(){
+		//alert("中文下载");
+		var param = details[curImgIdx].cn_src;
+		param = encodeURIComponent(param);
+		window.location.href = "probation.html?value=" + param;
+	}
+	
+	
+	var btn_down_en = document.getElementsByClassName("btn-down-en")[0];
+	btn_down_en.onclick = function(){
+		//alert("en-download");
+		var param = details[curImgIdx].en_src;
+		param = encodeURIComponent(param);
+		window.location.href = "probation.html?value=" + param;
+	}
+</script>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>帮助页面</title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:1060px;
+			
+			padding:0px 0px;
+			margin:0px 0px;
+		}
+		.body1{
+			width:640px;
+			height:1060px;
+			
+			padding:0px 0px;
+			margin:0px 0px;
+			
+			background-image:url('images/cn-help-bg2.png');
+			background-repeat:no-repeat;
+			background-position:top;
+			background-size:640px 547px;
+		}
+		.body2{
+			width:640px;
+			height:1060px;
+			
+			padding:0px 0px;
+			margin:0px 0px;
+			
+			background-image:url('images/cn-help-bg2-2.png');
+			background-repeat:no-repeat;
+			background-position:top;
+			background-size:640px 446px;
+		}
+		.main-body{
+			width:640px;
+			height:650px;
+			position:relative;
+			overflow-x:scroll;
+			overflow-y:hidden;
+			z-index:1;
+		}
+		.banner{
+			height:363px;
+			width:640px;
+			z-index:3;
+		}
+		.step1{
+			background-image:url('images/cn-help-step1-slide-text.png');
+			background-repeat:no-repeat;
+			background-position:center 50px;
+			background-size:529px 601px;
+			
+			display:inline-block;
+			width:640px;
+			height:650px;
+			position:absolute;
+			left:0px;
+			top:0px;
+			z-index:1;
+		}
+		.step2{
+			background-image:url('images/cn-help-step2-slide-text.png');
+			background-repeat:no-repeat;
+			background-position:center 90px;
+			background-size:556px 533px;
+			
+			display:inline-block;
+			width:640px;
+			height:650px;
+			position:absolute;
+			left:640px;
+			top:0px;
+			z-index:1;
+		}
+		.bottom-buttons-step1{
+			width:640px;
+			height:60px;
+			background-image:url('images/cn-help-step1-bottom-btns.png');
+			background-position:center 0px;
+			background-size:58px 22px;
+			background-repeat:no-repeat;
+		}
+		.btn-bottom-step1{
+			height:30px;
+			width:30px;
+			
+			display:inline-block;
+			margin-left:285px;
+			cursor:pointer;
+		}
+		.btn-bottom-step2{
+			height:30px;
+			width:30px;
+			
+			display:inline-block;
+			margin-left:3px;
+			cursor:pointer;
+		}
+		.bottom-buttons-step2{
+			width:640px;
+			height:60px;
+			background-image:url('images/cn-help-step2-bottom-btns.png');
+			background-position:center 0px;
+			background-size:58px 22px;
+			background-repeat:no-repeat;
+		}
+		
+		
+		.top-buttons-step1{
+			position:absolute;
+			top:265px;
+			left:0px;
+			
+			width:640px;
+			height:100px;
+			background-image:url('images/cn-help-step1-top-btns.png');
+			background-position:center;
+			background-size:211px 50px;
+			background-repeat:no-repeat;
+		}
+		.top-buttons-step2{
+			position:absolute;
+			top:265px;
+			right:0px;
+			
+			width:640px;
+			height:100px;
+			background-image:url('images/cn-help-step2-top-btns.png');
+			background-position:center;
+			background-size:211px 50px;
+			background-repeat:no-repeat;
+		}
+		.btn-top-step2{
+			background-color:transprent;
+			height:50px;
+			width:50px;
+			
+			position:absolute;
+			left:380px;
+			top:25px;
+			cursor:pointer;
+		}
+		.btn-top-step1{
+			background-color:transprent;
+			height:50px;
+			width:50px;
+			
+			position:absolute;
+			left:215px;
+			top:25px;
+			cursor:pointer;
+		}
+		.lang-tab{
+			background-image:url('images/lang-tab-bg.png');
+			background-size:595px 59px;
+			background-position:top;
+			background-repeat:no-repeat;
+			
+			position:absolute;
+			top:175px;
+			
+			width:595px;
+			height:59px;
+			margin-left:22px;
+			cursor:pointer;
+			font-weight:700;
+			margin-bottom:10px;
+		}
+		.cn-lang-select-tab{
+			background-image:url('images/cn-lang-tab-bg-selected.png');
+			background-size:303px 59px;
+			background-position:0px 0px;
+			background-repeat:no-repeat;
+			
+			width:313px;
+			height:59px;
+			
+			display:inline-block;
+			text-align:center;
+			font-size:40px;
+			padding-top:10px;
+		}
+		.en-lang-unselect-tab{
+			width:270px;
+			height:59px;
+			background-color:transparent;
+			
+			display:inline-block;
+			text-align:center;
+			font-size:40px;
+			padding-top:10px;
+		}
+	</style>
+</head>
+<body class="body1">
+	<div class="banner">
+		<div class="lang-tab">
+			<div id="btn-cn-lang" class="cn-lang-select-tab">
+				<span>中文</span>
+			</div>
+			<div id="btn-en-lang" class="en-lang-unselect-tab">
+				<span>EN</span>
+			</div>
+		</div>
+		<div id="top-buttons" class="top-buttons-step1">
+			<div class="btn-top-step1"></div>
+			<div class="btn-top-step2"></div>
+		</div>
+	</div>
+	<div class="main-body" draggable="false">
+		<div class="step1" ></div>
+		<div class="step2" ></div>
+		<!--<div class="btn-step11"></div>-->
+		<!--<div class="btn-step22"></div>-->
+	</div>
+	<div class="footer">
+		<div id="bottom-buttons" class="bottom-buttons-step1">
+			<div class="btn-bottom-step1"></div>
+			<div class="btn-bottom-step2"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript" src="js/help.js"></script>
+</html>

@@ -1,0 +1,23 @@
+﻿
+body {
+    -webkit-text-size-adjust: none;
+	
+}
+/***app下载页面***/
+html,body{ background:#f7f7f7;}
+#c-download .hnav a{height:100%;}
+.app-con{width:296px;padding:10px 0 15px 10px;margin:10px auto 0;border:1px solid #fec69a; border-radius:10px; background:#fffdf8;color:#000;}
+.app-con:last-child{ background:#fff8f8;margin-bottom:30px;}
+.d-con{margin-bottom:15px;}
+.d-con dt,.d-con dd{float:left;}
+.d-con dt{margin-right:8px;}
+.d-con dd h3{font-size:16px;line-height:38px;font-weight:bold;color:#bc1328;}
+.app-con2 .d-con dd h3{line-height:32px;}
+.d-con dd p{line-height:22px;font-size:11px;}
+.app-con2 .d-con dd p{line-height:18px;}
+.d-con dt img{width:88px;}
+.down-butt{display:inline-block;width:119px;height:35px; text-indent:-9999px;}
+.butt1,.butt3{ background:url(app_android.jpg) no-repeat; background-size:contain;margin-right:30px;}
+.butt2,.butt4{ background:url(app_iphone.jpg) no-repeat; background-size:contain;}
+
+.app-con > p{padding-right:33px; text-align:right;color:#e04026;}

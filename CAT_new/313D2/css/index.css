@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* CSS Document */
+@import "reset.css";
+html,body{ background:#000;} 
+body > a{display:none;}
+
+
+.container{width:320px;height:auto;overflow:hidden; position:relative;-webkit-text-size-adjust:none;}
+img{ display:block;width:100%;}
+
+#bg{width:666px;height:466px;-webkit-transform:translate(-140px,0); position:relative;}
+#bg img{width:666px;height:466px;}
+.point{width:31px;height:31px;background:url(../images/point.png) no-repeat; background-size:contain; position:absolute;z-index:5;-webkit-animation:flash 1s ease infinite;}
+#bg .p1{top:42px;left:167px;}
+#bg .p2{top:159px;left:405px;}
+#bg .p3{top:234px;left:319px;}
+#bg .p4{top:262px;left:276px;}
+#bg .p5{top:262px;left:436px;}
+@-webkit-keyframes flash{
+	50%{opacity:0.7;}
+}
+
+.mark{width:100%;height:100%; position:absolute;top:0;left:0;z-index:1; background:rgba(0,0,0,0.5);}
+
+.popcon{color:#fff;width:165px;min-height:50px;padding:5px 5px 5px 20px; position:absolute;z-index:2; background:rgba(0,0,0,0.9);}
+.popcon > div{ position:absolute;width:10px;height:100%; background:url(../images/re2.jpg) repeat-y;top:0;left:0;z-index:1;}
+.popcon > a{width:18px;height:18px; background:url(../images/close.jpg) no-repeat; background-size:contain; position:absolute;top:-9px;right:-9px;z-index:1;}
+.popcon h3{font-size:10px;}
+.popcon p{font-size:8px;}
+.popcon span{display:inline-block;width:3px;height:7px; background:#fed300;margin-right:4px;}
+
+.text1 .popcon{width:145px;top:54px;left:175px;}
+.text2 .popcon{width:125px;top:168px;left:415px;}
+.text3 .popcon{top:249px;left:329px;}
+.text4 .popcon{width:118px;top:272px;left:287px;}
+.text5 .popcon{width:125px;top:270px;left:441px;}
+.text1 .popcon p,.text2 .popcon p,.text3 .popcon p,.text4 .popcon p,.text5 .popcon p{
+	font-size:10px;
+}
+.popinfo .popcon{width:233px;height:80px; padding:10px;top:50%;left:50%;margin:-50px 0 0 -126px;z-index:6;}
+.popinfo .popcon p{font-size:10px;}
+.info .popcon{height:204px;margin:-102px 0 0 -126px;}
+.info .t1{font-size:11px;}
+.info .popcon form{margin-top:10px;}
+.info .popcon form i{color:#ffcd11;margin-right:6px;}
+.info .popcon form p{line-height:30px;}
+.info .popcon form input{color:#fff;width:156px;height:18px; background:#80807f;border:none;border-radius:2px;}
+.info .popcon form select{color:#fff;width:70px;padding-right:20px;height:18px; background:url(../images/select_bg.jpg) no-repeat; background-size:70px 18px;border:none;-webkit-appearance:none;border-radius:none;}
+
+#citys{margin-left:13px;}
+
+.butt{display:inline-block;font-size:11px;color:#ffcd11;font-weight:bold;width:85px;height:22px;line-height:22px; text-align:center; background:#464646;}
+.butt b{display:inline-block;width:13px;height:12px; background:url(../images/arrows.png) no-repeat; background-size:contain;margin-right:6px; vertical-align:middle;}
+
+.info .butt{width:150px;margin-left:30px;font-size:12px;margin-top:6px;}
+.lastp{text-align:center;}
+.lastp a{color:#ffcd11; text-decoration:underline;}
+
+.succ h3{font-size:11px;line-height:50px;}
+.succ .butt{width:92px;}
+.succ p{ text-align:center;}
+.succ .butt1{margin-left:10px;}
+
+.enquiry h3{line-height:22px;}
+.enquiry p{line-height:36px;}
+.enquiry p .butt{width:100px;}
+
+.down p{line-height:20px;}
+.down p b{color:#ffcd11;}
+.down .lastp{margin-top:10px;}
+.down .lastp a{ text-decoration:none;}
+.down  .butt3{margin-left:6px;}
+
+.loginPop .popcon{height:110px;margin:-80px 0 0 -126px;}
+.loginPop h3{font-size:12px;line-height:34px;}
+.loginPop label{font-size:11px;}
+.loginPop section{height:40px; position:relative;}
+.loginPop section input{width:160px;height:18px; background:#7a7a7a;border:none;}
+.loginPop section p{ position:absolute;bottom:0;left:68px;}
+.loginPop .lastp{margin-top:6px;}
+.loginPop .lastp a{width:158px; text-decoration:none;}
+.loginPop label i{color:#ffcd11;}
+
+.markpop{width:100%;height:100%; background:rgba(0,0,0,0.5); position:absolute;top:0;left:0;z-index:1;}
+
+#bar{width:12px;height:466px; background:url(../images/re.png) repeat-y; background-size:12px 100%; position:absolute;top:0;right:0;z-index:999;}
+
+
+.logo{width:46px; position:absolute;top:30px;right:20px;z-index:0;}
+.aside3{width:150px;position:absolute;top:69px;left:10px;z-index:0;}
+.aside1{width:130px;position:absolute;top:193px;left:10px;z-index:0;}
+.aside2{width:117px; position:absolute;top:255px;left:10px;z-index:0;}
+
+.nav{ position:absolute;top:305px;left:10px;z-index:0; text-align:right;}
+.nav a{display:block;}
+.nav .xunjia{width:75px;margin-bottom:2px;}
+.nav .downbutt{width:93px;}
+
+#m{ position:absolute;width:69px;bottom:26px;left:50%;margin-left:-38px;}
+#text{width:100%;height:22px;line-height:22px;text-align:center;font-size:10px;color:#aeaeae; background:rgba(0,0,0,0.5); position:absolute;bottom:0;left:0;}
+
+.waiting .markpop{z-index:98; background:rgba(0,0,0,0.8);}
+.waiting h3{font-size:12px;color:#fff; position:fixed;top:40%;width:100px;left:50%;margin-left:-50px;z-index:99;}
+
+.text3 .popcon p{font-size:10px;}
+
+.navlist ul{width:310px;height:26px;line-height:26px; position:absolute;top:0;left:0;z-index:1; background:-webkit-gradient(linear,0 0,0 100%,from(#494949),to(#040404));}
+.navlist ul li{float:left;width:102px;height:100%;font-size:11px;font-weight:bold;}
+.navlist ul li a{display:inline-block;width:100%;height:100%;color:#fff; text-align:center;}
+.navlist ul li a.on{height:28px;border-bottom-right-radius:3px;border-bottom-left-radius:3px; background:-webkit-gradient(linear,0 0,0 100%,from(#f7cd01),to(#947b01));color:#000;}

@@ -1,0 +1,254 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>好兄弟，一起赢！推荐Cat赢好礼！</title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/trackEvent.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/guid.js"></script>
+<script src="js/control.js"></script>
+<style>
+html,body{background-color:rgb(0,0,0);}
+</style>
+<script>
+function submit_form(){
+	var myname = $('#myname').val()
+	var mobile = trim($('#mymobile').val());
+	var frname = $('#frname').val()
+	var frmobile = trim($('#frmobile').val());
+	var myidentity = $('[name=myidentity]:checked').val();
+	if(myidentity == ""){
+		myidentity = $('#myidentity').val();
+	}
+	var myverification = $('#myverification').val();
+	var frnature = $('[name=frnature]:checked').val();
+	var frjob = $('#frjob').val();
+	
+	var rnd = $.cookie("rnd");
+	if(!rnd){
+		rnd = Guid.NewGuid().ToString();
+		$.cookie("rnd",rnd);
+	}
+	if(!matchUserName(myname)){
+		showMsg("请输入您的姓名");
+		return;
+	}
+	if(!matchMobile(mobile)){
+		showMsg("请输入有效的手机号码");
+		return;
+	}else{
+		$.cookie("mobile",mobile);
+		
+	}
+	if(trim(myverification) == ""){
+		showMsg("请输入验证码");
+		return;
+	}
+	if(trim(myverification) != _r){
+		showMsg("输入的验证码有误");
+		return;
+	}
+	if(!matchUserName(frname)){
+		showMsg("请输入好友姓名");
+		return;
+	}
+	if(!matchMobile(frmobile)){
+		showMsg("请输入有效的好友手机号码");
+		return;
+	}
+	if(mobile == frmobile){
+		showMsg("推荐人和被推荐人的手机号码不能相同");
+		return;
+	}
+	
+	$.cookie("myname",myname);
+//	$.cookie("myidentity1",$('#myidentity1').attr("checked"));
+//	$.cookie("myidentity2",$('#myidentity2').attr("checked"));
+//	$.cookie("myidentity3",$('#myidentity3').attr("checked"));
+//	$.cookie("myidentity",$('#myidentity').val());
+	$.cookie("myverification",myverification);
+	
+	//
+	var userInfo = {
+		myname : myname,
+		mymobile : mobile,
+		frname : frname,
+		frmobile : frmobile,
+		myidentity : myidentity,
+		myverification : "",
+		frnature : frnature,
+		frjob : frjob,
+		mobile : mobile,
+		rnd : rnd,
+		token : MD5(mobile + 'cat' + rnd),
+		source : 'wap',
+		utm_source : $.cookie("utm_source"),
+		utm_medium : $.cookie("utm_medium"),
+		utm_content: $.cookie("utm_content"),
+		utm_campaign : $.cookie("utm_campaign"),
+		hmci : $.cookie("hmci")
+	};
+	$.ajax({
+		url : 'http://www.catwaji.com/tuijian/api/reguserinfo.aspx',
+		type:"POST",
+		cache : false,
+		dataType : 'json',
+		data : userInfo,
+		success : function(result) {
+			if(result.done.toLocaleLowerCase() == "ok"){
+				$.cookie("id",result.id);
+				$.cookie("isPlay","1");
+				$.cookie("token",userInfo.token);
+				location = "m2-2.html";
+				
+			}else{
+				showMsg(result.done);
+			}
+		},error:function(xhr){
+			
+		}
+	});
+}
+
+function numRand() {
+	var x = 9999; 
+	var y = 1000; 
+	var rand = parseInt(Math.random() * (x - y + 1) + y);
+	return rand;
+}
+var _t;
+var _r;
+function getVer(){
+	var mobile = trim($('#mymobile').val());
+	var rnd = $.cookie("rnd");
+	if(!rnd){
+		rnd = Guid.NewGuid().ToString();
+		$.cookie("rnd",rnd);
+	}
+	if(!matchMobile(mobile)){
+		showMsg("请输入有效的手机号码");
+		return;
+	}else{
+		$.cookie("mobile",mobile);
+	}
+	//
+	var userInfo = {
+		mobile : mobile,
+		rnd : rnd,
+		token : MD5(mobile + 'cat' + rnd),
+		source : 'wap'
+	};
+	
+	
+	$('#m2-1_1').hide();
+	$('#m2-1_3').show();
+	$('#m2-1_3 #text').text('正在发送短信...');
+	$('#m2-1_3 #time').text('');
+	var api_url = 'http://catsite.ogilvy.com.cn/tuijian/api/getcode.aspx?';
+	$.ajax({
+		url : api_url,
+		type:"POST",
+		cache : false,
+		dataType : 'json',
+		data : userInfo,
+		success : function(result) {
+			if(result.done.toLocaleLowerCase() == "ok"){
+				$('#m2-1_3 #time').text('60');
+				$('#m2-1_3 #text').text('秒后可再次获取');
+				_t = setInterval(function(){
+					var time = parseInt($('#m2-1_3 #time').text());
+					if(time <= 1){
+						$('#m2-1_3').hide();
+						$('#m2-1_1').show();
+						clearInterval(_t);
+					}
+					$('#m2-1_3 #time').text(time-1);
+				},1000);
+			}else{
+				$('#m2-1_3').hide();
+				$('#m2-1_1').show();
+				showMsg(result.done);
+			}
+		},error:function(xhr){
+			
+		}
+	});
+}
+$(document).ready(function(){
+	track(channel,5882);
+	_r = numRand();
+	$("#m2-1_4").html(_r);
+	$("#myname").val($.cookie("myname"));
+	$("#mymobile").val($.cookie("mobile"));
+//	$('#myidentity1').attr("checked",$.cookie("myidentity1"));
+//	$('#myidentity2').attr("checked",$.cookie("myidentity2"));
+//	$('#myidentity3').attr("checked",$.cookie("myidentity3"));
+//	$('#myidentity').val($.cookie("myidentity"));
+	$("#myverification").val($.cookie("myverification"));
+});
+</script>
+</head>
+
+<body id="m2-1_page">
+<div class="fxbg">
+<img class="img" src="images/2-1.jpg" alt="" />
+<div class="btn1">
+	<!--<img id="m2-1_1" src="images/get.png" class="fly" onclick="getVer();track(channel,5871);"/>-->
+	<div id="m2-1_4" class="fly">5112</div>
+	<div id="m2-1_3" class="fly"><label id="time">54</label><label id="text">秒后可再次获取</label></div>
+	<a id="m2-1_2" href="javascript:submit_form();track(channel,5872);" class="fly"></a>
+	<div><input type="text" id="myname" class="fly"/></div>
+	<div><input type="tel" id="mymobile" class="fly"/></div>
+	<input type="radio" name="myidentity" id="myidentity1" class="fly" checked="checked" value="Cat机主"/>
+	<input type="radio" name="myidentity" id="myidentity2" class="fly" value="Cat机手"/>
+	<input type="radio" name="myidentity" id="myidentity3" class="fly" value=""/>
+	<div><input type="text" id="myidentity" class="fly"/></div>
+	<div><input type="text" id="myverification" class="fly"/></div>
+	<div><input type="text" id="frname" class="fly"/></div>
+	<div><input type="tel" id="frmobile" class="fly"/></div>
+	<input type="radio" name="frnature" id="frnature1" class="fly" checked="checked" value="公司购买"/>
+	<input type="radio" name="frnature" id="frnature2" class="fly" value="个人购买"/>
+	<div><select type="text" id="frjob" class="fly"><option value=""></option>
+		<option>建筑</option>
+		<option>水利</option>
+		<option>采石</option>
+		<option>修路</option>
+		<option>矿山</option>
+		<option>农田</option>
+		<option>市政</option>
+		<option>其他</option>
+		</select></div>
+</div>
+<div class="btn2">
+	<img src="images/m2.png" />
+    <a href="index.html" id="m1" class="fly"></a>
+    <a id="m2" class="fly"></a>
+    <a href="m3.html" id="m3" class="fly"></a>
+    <a href="http://catwaji.mobileone.com.cn/?hmsr=tuijian&hmmd=textlink&hmpl=cat&hmkw=1&hmsr=laohuji&hmmd=textlink&hmpl=cat&hmkw=7&hmci=" onclick="track(channel,5879);" target="_blank" id="m4" class="fly"></a>
+</div>
+<div id="popup3" class="btn3" style="display:none;z-index:10;">
+	<div class="alert">
+    <div class="yun" style="position:relative;">
+		<img id="alert-4" src="images/popup.png" style=" margin: auto; width: 86%;"/>
+		<div class="msg"></div>
+		<a id="alert-close" href="javascript:hideMsg();"></a>
+    </div>
+    <!--<a id="alertOK" style="width:60%;letter-spacing:0rem;" class="button" href="m2.html">查看更多主意</a>-->
+    </div>
+</div>
+
+</div>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F7806fb04910c5a23ba1a514fbea0a5bb' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

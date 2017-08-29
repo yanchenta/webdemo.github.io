@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    	<title>奔驰</title>
+        <link rel="stylesheet" type="text/css" href="../css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <script src="../js/jquery-1.4.4.min.js"></script>
+        <script src="../js/color-thief.js"></script>
+        <script src="../js/megapix-image.js"></script>
+        <script src="../js/common.js"></script>
+        <script src="../js/shake.js"></script>
+        <script src="../js/swipte.js"></script>
+        <script src="../js/upload2.js"></script>
+        <script>
+        	//240 290
+			
+			
+        </script>
+			
+    </head>
+    
+    <body style="overflow-x:hidden;">
+		<img class="main-img" style="position:absolute;top:-10000px;left:-10000px;"/>
+		<img class="pat-img" style="position:absolute;top:-10000px;left:-10000px;"/>
+		<div style="width:1px;height:1px;overflow: hidden;"><!--added to invoke click load image file when-->
+			<input class="hide-input-file" type="file" value="" accept="image/*"/>
+		</div>
+    	<div class="container">
+        	<div id="logo"><img src="../images/logo.png" alt="" /></div>
+            <figure><img src="../images/bg.jpg" alt="" /></figure>
+            
+            <div class="banner">
+                <div id='mySwipe'>
+                    <ul class="clearfix">
+                        <li><img src="../images/banner1.jpg" alt="" /></li>
+                        <li><img src="../images/banner2.jpg" alt="" /></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="nav">
+            	<div class="navcon vc1">
+                	<p class="nbutt"><a id="upbutt" href="javascript:;"><img id="img_upbutt" src="../images/butt1.png" alt="" width="244" /></a></p>
+                    <a class="nleft" href="rules.html"><img src="../images/r.png" alt="" width="62" /></a>
+                </div>
+                
+                <div class="navcon vc2" style="display:none;">
+                	<figure><img src="../images/shake_img.jpg" /></figure>
+                    <a class="nleft" href="javascript:prevCreateImg();"></a>
+                    <a class="nright" href="javascript:showShareMod();"></a>
+                </div>
+                
+                <div class="navcon vc3" style="display:none;">
+                	<form>
+                    	<p><input type="text" id="name" placeholder="可选择填写您的姓名" /></p>
+                        <p><input type="tel" id="mobile" placeholder="可选择填写您的手机号" /></p>
+                        <a href="javascript:sendInfo();">完成</a>
+                    </form>
+                </div>
+                
+            </div>
+        	<div id="upimg" style="display:none;"></div>
+            
+        	<div class="img" style="display:none;"></div>
+            <div class="imgColor" style="width:100px;height:100px; display:none;"></div>
+            
+            <canvas id="mergeImg" width="480" height="580" style="width:72%"> 您的浏览器不支持canvas！</canvas>
+            
+            <div id="tip" style="display:none;"><img src="../images/tip.png" alt="" /></div>
+            
+            <div id="backImg"></div>
+            
+        </div>
+    	
+        <div class="img-transfrom-Layer" style="display:none;">
+			<span class="span-scroll-info"></span>
+			<canvas class="canvas-tranform" width="156px" height="212px"></canvas>
+			<div class="btn-turnleft"></div>
+			<div class="btn-turnright"></div>
+			<div class="btn-save-transfrom"></div>
+			<div class="img-transfrom-coverbg"></div>
+		</div>
+        
+        <div id="load" style="display:none;">
+            <h3>卖力寻找专属smart中...</h3>
+        </div>
+		
+		<div id="load2" style="display:none;">
+            <h3>努力上传中...</h3>
+        </div>
+        
+   	</body>
+	<script type="text/javascript" src="../js/upload_ext.js"></script>
+</html>

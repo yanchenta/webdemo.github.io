@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/index.css">
+	<title>优博首页</title>
+</head>
+<body>
+	<div id="main" class="main">
+		<div class="head">
+			<h1><a href="javascript:;"></a></h1>
+			<div class="nav">
+				<a id="toindex" class="show" href="javascript:;">首页</a>
+				<a id="todetail" href="javascript:;">活动详情</a>
+				<a id="toalllist" href="javascript:;">精彩汇聚</a>
+				<a id="tomylist" href="javascript:;">我的精彩瞬间</a>
+				<a id="totmall" href="javascript:;">天猫旗舰店</a>
+			</div>
+			<div class="div_right">
+				<div style="display:inline-block;padding:0px 0px;margin:0px 0px;">
+					<span><a class="load" href="javascript:login();">用户登录</a></span>
+				</div>
+				<div style="display:inline-block;padding:0px 0px;margin:0px 0px;display:none;">
+					<span>hi,</span>
+					<span id="span_nickname">XXXXXX</span>
+					<span><a class="load" href="javascript:logout();">退出</a></span>
+				</div>
+			</div>
+		</div>
+		<div class="content cf">
+			<div class="left">
+				<a class="me" href="javascript:;"></a>
+				<a class="join" href="javascript:;"></a>
+				<p>味道是妈妈和宝宝天然的沟通语言。每个妈妈都有自己的表达。参加圣元优博“妈妈的味道”微视频大赛，记录宝宝，献礼妈妈。赢取圣元优博“味道大奖”。</p>
+			</div>
+			<div class="right">
+				<h3 class="cf"><a class="active" href="javascript:;">孕妈篇</a>
+				<a href="javascript:;">美妈篇</a>
+				<a href="javascript:;">萌妈篇</a>
+				<a href="javascript:;">母亲篇</a></h3>
+				<div class="video">
+					<!--<div>
+						<h4>用户名</h4>
+						<video controls width="194" height="145" poster="images/video.jpg">
+							<source src=""></source>
+						您的浏览器不支持video标签
+						</video>
+						<span><em>12</em><i>12</i></span>
+					</div>
+					<div>
+						<h4>用户名</h4>
+						<video controls width="194" height="145" poster="images/video.jpg">
+							<source src=""></source>
+						您的浏览器不支持video标签
+						</video>
+						<span><em>12</em><i>12</i></span>
+					</div>
+					<div>
+						<h4>用户名</h4>
+						<video controls width="194" height="145" poster="images/video.jpg">
+							<source src=""></source>
+						您的浏览器不支持video标签
+						</video>
+						<span><em>12</em><i>12</i></span>
+					</div>
+					<div>
+						<h4>用户名</h4>
+						<video controls width="194" height="145" poster="images/video.jpg">
+							<source src=""></source>
+						您的浏览器不支持video标签
+						</video>
+						<span><em>12</em><i>12</i></span>
+					</div>-->
+				</div>
+				<a class="more" href="javascript:;"></a>
+			</div>
+		</div>
+		<div class="footer">
+			<span>Copyright © 2013 Synutra.com inc. All right reserved. 京ICP备10008417号-1</span>
+			<div>分享到<a class="tcent" href=""></a><a class="sina" href=""></a></div>
+		</div>
+	</div>
+	<div class="two_code" id="two_code">
+		<div>
+			<img src="images/two_code.png" alt="">
+			<a class="close" id="close" href="javascript:;">&nbsp;</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/controller.js"></script>
+	<script type="text/javascript">
+		var videoContainer = document.getElementsByClassName("video")[0];
+		var demoVideoData = [{
+			nickName:"昵称1",
+			posterUrl:"images/video.jpg",
+			videoUrl:"",
+			zansNum:"10",
+			commentsNum:"11"
+		},{
+			nickName:"昵称2",
+			posterUrl:"images/video.jpg",
+			videoUrl:"",
+			zansNum:"20",
+			commentsNum:"21"
+		},{
+			nickName:"昵称3",
+			posterUrl:"images/video.jpg",
+			videoUrl:"",
+			zansNum:"30",
+			commentsNum:"31"
+		},{
+			nickName:"昵称4",
+			posterUrl:"images/video.jpg",
+			videoUrl:"",
+			zansNum:"40",
+			commentsNum:"41"}];
+		createVideoList_index(videoContainer, demoVideoData);
+		
+	</script>
+	<script type="text/javascript" src="js/common.js"></script>
+</body>
+</html>

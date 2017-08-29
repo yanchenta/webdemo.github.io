@@ -1,0 +1,139 @@
+@charset "utf-8";
+/* CSS Document */
+body,html{ background:#000;}
+.container{width:320px;margin:0 auto;-webkit-text-size-adjust:none; position:relative;}
+figure img{ display:block;width:100%;}
+
+.pmod{width:100%; position:relative;}
+
+.back,.logo,.i_butt{position:absolute; position:absolute;z-index:5;}
+
+.back{width:24px;height:24px; background:url(../images/goindex.png) no-repeat; background-size:contain; top:10px;left:9px;}
+.logo{width:50px;height:33px; background:url(../images/logo.png) no-repeat; background-size:contain;top:5px;right:8px;}
+.back,.logo{text-indent:-9999px;}
+.i_butt{width:146px;height:58px;bottom:44px;z-index:2;}
+.container .b1{left:12px;}
+.container .b2{right:20px;}
+
+
+#plist{width:320px;height:524px;overflow:hidden; position:relative;}
+#plist .plistcon{width:1741px;height:100%; position:absolute;top:0;left:0;z-index:1;}
+#plist .panimate{-webkit-animation:imgmove 12s linear;-webkit-animation-fill-mode:both;}
+#plist .plistcon .pbg{width:1421px;}
+#plist .plistcon .pimg{width:106px; position:absolute;z-index:1;}
+#plist .plistcon .p1{left:42px;top:251px;}
+#plist .plistcon .p2{left:222px;top:227px;}
+#plist .plistcon .p3{left:501px;top:227px;}
+#plist .plistcon .p4{left:699px;top:155px;}
+#plist .plistcon .p5{left:987px;top:247px;}
+#plist .plistcon .p6{left:1148px;top:104px;}
+
+#plist .plistcon .card{width:320px; position:absolute;right:0;top:0;z-index:1;}
+
+@-webkit-keyframes imgmove{
+	100%{left:-1421px;}
+}
+
+.shaver{width:50px; position:absolute;top:146px;left:60px;z-index:2;-webkit-transform:rotate(140deg);}
+.sanimate{-webkit-animation:shaverMove 11.5s linear;-webkit-animation-fill-mode:both;}
+
+@-webkit-keyframes shaverMove{
+	20%{top:300px;}
+	40%{top:168px;}
+	60%{top:300px;}
+	80%{top:168px;opacity:1;}
+	99%{opacity:0;}
+	100%{top:300px;opacity:0;}
+}
+
+.cardcon{width:280px;height:208px; position:absolute;top:142px;left:21px;z-index:1;}
+.page img{ display:block;}
+.page{position:absolute;top:0;overflow:hidden;}
+.page img{width:140px; display:block;}
+.page{position:absolute;top:0;overflow:hidden;-webkit-transform-style: preserve-3d;}
+#page1{width:140px;left:140px;height:208px;z-index:1;}
+.scard{-webkit-animation:hidemark 1s linear 1;-webkit-animation-fill-mode:both;}
+#page2{width:0px;left:280px;height:208px;z-index:2;}
+.hmark{-webkit-animation:showCard 1s linear 1;-webkit-animation-fill-mode:both;}
+#page3{width:140px;left:140px;height:208px;z-index:0;}
+
+@-webkit-keyframes showCard{
+	from {width: 0px;left:280px}
+	to {width: 140px;left:2px}
+}
+@-webkit-keyframes hidemark{
+	from {width: 140px;left:140px}
+	to {width: 0px;left:140px}
+}
+.cimg1,.cimg2,#ctext{ position:absolute;z-index:3; display:none;}
+.cimg1{width:100px;top:8px;left:20px;}
+.cimg2{width:126px;top:134px;right:-22px;}
+#ctext{width:45px;height:18px;line-height:18px;text-align:center;font-size:10px;color:#be0000; background:#fffeff;top:164px;left:5px;z-index:2;}
+
+.cbutt{width:256px;height:32px; position:absolute;top:429px;left:36px;z-index:3;}
+.cbutt a{ display:inline-block;color:#fff;border-radius:12px; background:#e62424;}
+.cbutt .cagin,.cbutt .cpro{width:60px;height:23px;line-height:23px; text-align:center;margin-top:12px;}
+.cbutt .cdraw{width:98px;height:31px;line-height:31px; text-align:center;font-size:16px;font-weight:bold;margin:0 14px;}
+.heart #page1{width:144px;left:140px;height:233px;z-index:1;}
+.heart #page1 img{width:144px;}
+.heart #page2{width:0px;left:280px;height:232px;z-index:2;}
+.heart #page2 img{width:154px;}
+.heart #page3{width:140px;left:140px;height:234px;z-index:0;}
+.heart #page3 img{width:140px;}
+.plistcon .heart .cimg1{top:50px;left:30px;}
+.plistcon .heart #ctext{top:208px;left:15px; background:#b10000;color:#fff;}
+
+.scard2{-webkit-animation:hidemark2 1s linear 1;-webkit-animation-fill-mode:both;}
+.hmark2{-webkit-animation:showCard2 1s linear 1;-webkit-animation-fill-mode:both;}
+@-webkit-keyframes showCard2{
+	from {width: 0px;left:280px}
+	to {width: 154px;left:15px;top:20px;}
+}
+@-webkit-keyframes hidemark2{
+	from {width: 144px;left:140px}
+	to {width: 0px;left:140px}
+}
+
+.pop .popcon{width:320px;height:464px;padding-top:60px; background:url(../images/win_bg.jpg) no-repeat; background-size:contain; position:absolute;top:0;left:0;z-index:4;}
+.pop form p{line-height:30px;}
+.pop p input{width:144px;height:24px; background:#fff;border-radius:3px;border:none;}
+.pop .sbutt{display:inline-block;height:26px;line-height:26px;padding:0 30px; background:#ff0000;border-radius:10px;color:#fff;}
+.pop .popcon .ptit{width:232px;height:100px;padding:14px 0 0 40px; background:url(../images/win_title.png) no-repeat; background-size:contain;margin-left:21px;}
+.pop .popcon .ptit p{line-height:28px;color:#fff;}
+.pop .popcon .ptit p:first-child span{margin-left:4px;}
+.pop .popcon .ptit p:nth-child(2){font-size:18px;font-weight:bold;}
+.pop .popcon .ptit p:nth-child(2) span{margin-left:10px;}
+.pop .popcon .more,.pop .popcon .share,.pop .popcon .shop_butt{width:89px;height:30px; position:absolute;text-indent:-9999px;}
+.pop .popcon .more{top:383px;left:199px;z-index:2;}
+.pop .popcon .share{bottom:18px;left:56px;}
+.pop .popcon .shop_butt{bottom:18px;right:53px;}
+
+
+.pop1 form,.pop2 form{ position:absolute;top:198px;left:130px;z-index:1;}
+.pop1 form p:last-child,.pop2 form p:last-child{ text-align:center;}
+
+.pop2 .tname{margin:15px 0 15px;}
+
+.pop3 .sbutt{ position:absolute;top:231px;height:30px;line-height:30px;left:152px;z-index:1;}
+
+.sharepop .sharecon{width:256px;height:138px;padding:16px 22px 0; background:rgba(196,31,31,0.9);color:#fff; position:absolute;top:266px;left:9px;z-index:10;}
+.sharepop 
+.sharepop .sharecon h3{font-size:13px;font-weight:normal;}
+.sharepop .sharecon p{font-size:10px;}
+.sharepop .sharecon p input{width:175px;height:26px;border-radius:12px; box-shadow:inset 3px 3px 5px rgba(0,0,0,0.8)}
+.sharepop .sharecon .line{width:100%;height:1px; background:#fff;margin:8px 0;}
+.sharepop .sharecon a,.morepop .morepopcon a{ position:absolute;z-index:1;}
+.sharepop .sharecon .close,.morepop .morepopcon .close{width:24px;height:24px;line-height:24px; text-align:center;font-size:14px;color:#fff;top:6px;right:6px;}
+.sharepop .sharecon .share_butt,.sharepop .sharecon .inputext{width:68px;height:24px;line-height:24px; text-align:center;background:#fff;color:#b90000;border-radius:14px;}
+.sharepop .sharecon .share_butt{top:40px;left:210px;}
+.sharepop .sharecon .inputext{top:120px;left:210px;}
+
+.morepop .morepopcon{width:240px;padding:24px 12px 20px;  background:rgba(196,31,31,0.9);color:#fff; position:absolute;top:298px;left:24px;z-index:10;}
+.morepop .morepopcon .close{top:2px;right:2px;}
+
+.pop4 .mark,.pop5 .mark{width:100%;height:627px; background:rgba(0,0,0,0.9); position:absolute;top:0;left:0;z-index:9;}
+.pop4 .succon{width:258px; position:absolute;top:120px;left:50%;margin-left:-129px;z-index:10;}
+.pop4 .close{width:38px;height:38px; background:url(../images/close.png) no-repeat; background-size:contain; position:absolute;top:-48px;right:0;z-index:11; text-indent:-9999px;}
+.pop4 .tmall{width:200px;height:30px; position:absolute;bottom:34px;left:24px;z-index:1; text-indent:-9999px;}
+
+.pop5 h3{width:140px;color:#fff; position:absolute;top:220px;left:110px;z-index:10;}

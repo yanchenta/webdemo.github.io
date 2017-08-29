@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<meta charset="utf-8"/>
+	<title>中国电信 coolpad 5951</title>
+	<!--默认执行此样式--><!--media="only screen and (min-width:640px)" -->
+	<link rel="stylesheet" href="css/index-640-875.css" type="text/css"/>
+	<link rel="stylesheet" href="css/index-1920-1080.css" type="text/css" media="only screen and (min-width:1920px)"/>
+</head>
+<body>
+	<div></div>
+	<div class="main-body-pre-pre">
+	</div>
+	<div class="main-body-pre">
+	</div>
+	<div class="main-body">
+		<div id="elem1" class="elem1-drag-before" draggable="true"></div>
+		<div id="elem2" class="elem2-drag-before" draggable="true"></div>
+		<div id="elem3" class="elem3-drag-before" draggable="true"></div>
+		<div id="elem4" class="elem4-drag-before" draggable="true"></div>
+		<div class="target-mobile"></div>
+		<div id="div-light-text" class="not-light-text"></div>
+	</div>
+	<div class="footer"></div>
+</body>
+<!--<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>-->
+<script type="text/javascript">
+	//实现全屏
+	function resetPage() {
+		var deviceWidth = document.documentElement.clientWidth;
+		var scale = 1;
+		if(deviceWidth >= 1920)  //对应 "index-1920-1080.css" => 横版
+		{
+			scale = deviceWidth / 1920;
+		}
+		else// if(deviceWidth > 640) //对应 "index-640-875.css" ... 样式
+		{
+			scale = deviceWidth / 640;
+		}
+		document.body.style.zoom = scale;
+	}
+
+	window.onresize = function() {
+		resetPage();
+	}
+
+	window.onload = function() {
+		resetPage();
+		
+		xRate = 1.8;
+		yRate = 2.1;
+		
+		e1 = document.getElementById("elem1");
+		e2 = document.getElementById("elem2");
+		e3 = document.getElementById("elem3");
+		e4 = document.getElementById("elem4");
+		targetRegion = document.getElementsByClassName("target-mobile")[0];
+		tarBoundaryLeft = targetRegion.offsetLeft;
+		tarBoundaryRight = targetRegion.offsetLeft + targetRegion.offsetWidth;
+		tarBoundaryTop = targetRegion.offsetTop;
+		tarBoundaryBottom = targetRegion.offsetTop + targetRegion.offsetHeight;
+		
+		EventBinding();
+	}
+	
+	//拖动相关
+	var xRate = 1.8;
+	var yRate = 2.1;
+	
+	var e1 = null;
+	var e2 = null;
+	var e3 = null;
+	var e4 = null;
+	var targetRegion = null;
+	var tarBoundaryLeft = 0;
+	var tarBoundaryRight = 0;
+	var tarBoundaryTop = 0;
+	var tarBoundaryBottom = 0;
+	var e1_in = false;
+	var e2_in = false;
+	var e3_in = false;
+	var e4_in = false;
+	
+	//重力感应相关
+	var last_update = new Date().getTime();
+	var last_x = 0;
+	var last_y = 0;
+	var last_z = 0;
+	var SHAKE_THRESHOLD = 1000;
+	var isShakedCorrectly = false;
+	
+	var interval = setInterval(function(){
+		var light_text = document.getElementById("div-light-text");
+		if("not-light-text" === light_text.className){
+			//...
+			light_text.className = "light-text";
+		}
+		else{
+			//...
+			light_text.className = "not-light-text";
+		}
+	}, 500);
+	
+	function EventBinding(){
+		//摇一摇时间绑定
+		window.addEventListener('devicemotion', function deviceMotionHandler(eventData) {
+			var acceleration = eventData.accelerationIncludingGravity;
+			var curTime = new Date().getTime();
+ 
+			if ((curTime - last_update)> 100) {
+				
+				var diffTime = curTime - last_update;
+				last_update = curTime;
+ 
+				var x = acceleration.x;
+				var y = acceleration.y;
+				var z = acceleration.z;
+				
+				var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+				
+				if (speed > SHAKE_THRESHOLD) {
+					//alert("[" + window.e1_in + "," + window.e2_in + "," + window.e3_in + "," + window.e4_in + "]");
+					if(window.e1_in && window.e2_in && window.e3_in && window.e4_in){
+						//alert("shaked!" + speed);
+						if(!isShakedCorrectly){
+							isShakedCorrectly = true;
+							//页面changed to last page
+							//document.getElementsByClassName("main-body")[0].style.backgroundImage = "url('images/shaked-bg.png')";
+							//e1.style.display = "none";
+							//e2.style.display = "none";
+							//e3.style.display = "none";
+							//e4.style.display = "none";
+							document.getElementsByClassName("main-body-pre")[0].style.display = "none";
+						}
+					}
+				}
+				last_x = x;
+				last_y = y;
+				last_z = z;
+			}
+		}, false)
+	
+		//高清摄像-拖动事件绑定
+		e1.addEventListener("touchstart", function(e){
+			e.preventDefault();
+			//更换class:*-in-draging
+			//e1.removeAttribute("className", "elem1-drag-before");
+			//e1.setAttribute("className", "elem1-in-draging");
+			if("elem1-drag-before" == e1.className){
+				e1.className = "elem1-in-draging";
+			}
+			e1.resize();
+		});
+		e1.addEventListener("touchmove",function(e){
+			e.preventDefault();
+			if(1 == e.touches.length){
+				e1.style.left = (e.touches[0].pageX * xRate - e1.offsetWidth / 2) + "px";
+				e1.style.top = (e.touches[0].pageY * yRate - e1.offsetHeight / 2) + "px";
+			}
+		});
+		e1.addEventListener("touchend", function(e){
+			e.preventDefault();
+			//判断是否进入区域，进入则更换class:*-draged，未进入则换回class:*-drag-before
+			
+			if(e1.offsetTop > tarBoundaryTop 
+				&& e1.offsetTop < tarBoundaryBottom
+				&& e1.offsetLeft > tarBoundaryLeft 
+				&& e1.offsetLeft < tarBoundaryRight)
+			{
+				e1_in = true;
+				
+				if(window.e1_in && window.e2_in && window.e3_in && window.e4_in){
+					//show pre to shake view
+					//document.getElementsByClassName("main-body")[0].style.backgroundImage = "url('images/shake-pre-bg.png')";
+					document.getElementsByClassName("main-body")[0].style.display = "none";
+				}
+				
+				e1.className = "elem1-draged";
+				e1.style.left = null;
+				e1.style.right = "110px";
+				e1.style.top = "395px";
+				e1.resize();
+				//e1.setAttribute("draggable" ,"false");
+			}
+			else{
+				e1_in = false;
+				
+				e1.className = "elem1-drag-before";
+				e1.style.left = "40px";
+				e1.style.right = null;
+				e1.style.top = "295px";
+				e1.resize();
+			}
+		});
+		
+		//双卡双待-拖动事件绑定
+		e2.addEventListener("touchstart", function(e){
+			e.preventDefault();
+			//更换class:*-in-draging
+			if("elem2-drag-before" == e2.className){
+				e2.className = "elem2-in-draging";
+			}
+			e2.resize();
+		});
+		e2.addEventListener("touchmove", function(e){
+			e.preventDefault();
+			if(1 == e.targetTouches.length){
+				e2.style.left = (e.targetTouches[0].pageX * xRate - e2.offsetWidth / 2) + "px";
+				e2.style.top = (e.targetTouches[0].pageY * yRate - e2.offsetHeight / 2) + "px";
+			}
+		});
+		e2.addEventListener("touchend", function(e){
+			e.preventDefault();
+			//判断是否进入区域，进入则更换class:*-draged，未进入则换回class:*-drag-before
+			if(e2.offsetTop > tarBoundaryTop 
+				&& e2.offsetTop < tarBoundaryBottom 
+				&& e2.offsetLeft > tarBoundaryLeft 
+				&& e2.offsetLeft < tarBoundaryRight)
+			{
+				e2_in = true;
+				
+				if(window.e1_in && window.e2_in && window.e3_in && window.e4_in){
+					//show pre to shake view
+					//document.getElementsByClassName("main-body")[0].style.backgroundImage = "url('images/shake-pre-bg.png')";
+					document.getElementsByClassName("main-body")[0].style.display = "none";
+				}
+				
+				e2.className = "elem2-draged";
+				e2.style.left = null;
+				e2.style.right = "75px";
+				e2.style.top = "500px";
+				e2.resize();
+			}
+			else{
+				e2_in = false;
+				
+				e2.className = "elem2-drag-before";
+				e2.style.left = "120px";
+				e2.style.right = null;
+				e2.style.top = "405px";
+				e2.resize();
+			}
+		});
+		
+		//超长待机-拖动事件绑定
+		e3.addEventListener("touchstart", function(e){
+			e.preventDefault();
+			//更换class:*-in-draging
+			if("elem3-drag-before" == e3.className){
+				e3.className = "elem3-in-draging";
+			}
+			e3.resize();
+		});
+		e3.addEventListener("touchmove", function(e){
+			event.preventDefault();
+			if(1 == e.targetTouches.length){
+				e3.style.left = (e.targetTouches[0].pageX * xRate - e3.offsetWidth / 2) + "px";
+				e3.style.top = (e.targetTouches[0].pageY * yRate - e3.offsetWidth / 2) + "px";
+			}
+		});
+		e3.addEventListener("touchend", function(e){
+			e.preventDefault();
+			//判断是否进入区域，进入则更换class:*-draged，未进入则换回class:*-drag-before
+			if(e3.offsetTop > tarBoundaryTop 
+				&& e3.offsetTop < tarBoundaryBottom
+				&& e3.offsetLeft > tarBoundaryLeft 
+				&& e3.offsetLeft < tarBoundaryRight)
+			{
+				e3_in = true;
+				if(window.e1_in && window.e2_in && window.e3_in && window.e4_in){
+					//show pre to shake view
+					//document.getElementsByClassName("main-body")[0].style.backgroundImage = "url('images/shake-pre-bg.png')";
+					document.getElementsByClassName("main-body")[0].style.display = "none";
+				}
+				
+				e3.className = "elem3-draged";
+				e3.style.left = null;
+				e3.style.right = "140px";
+				e3.style.top = "505px";
+				e3.resize();
+			}
+			else{
+				e3_in = false;
+				
+				e3.className = "elem3-drag-before";
+				e3.style.left = "70px";
+				e3.style.left = null;
+				e3.style.top = "505px";
+				e3.resize();
+			}
+		});
+		
+		//超大屏幕-拖动事件绑定
+		e4.addEventListener("touchstart", function(e){
+			e.preventDefault();
+			//更换class:*-in-draging
+			if("elem4-drag-before" == e4.className){
+				e4.className = "elem4-in-draging";
+			}
+			e4.resize();
+		});
+		e4.addEventListener("touchmove", function(e){
+			e.preventDefault();
+			if(1 == e.targetTouches.length){
+				e4.style.left = (e.targetTouches[0].pageX * xRate - e4.offsetWidth / 2) + "px";
+				e4.style.top = (e.targetTouches[0].pageY * yRate - e4.offsetHeight / 2) + "px";
+			}
+		});
+		e4.addEventListener("touchend", function(e){
+			e.preventDefault();
+			//判断是否进入区域，进入则更换class:*-draged，未进入则换回class:*-drag-before
+			if(e4.offsetTop > tarBoundaryTop 
+				&& e4.offsetTop < tarBoundaryBottom 
+				&& e4.offsetLeft > tarBoundaryLeft 
+				&& e4.offsetLeft < tarBoundaryRight)
+			{
+				e4_in = true;
+				if(window.e1_in && window.e2_in && window.e3_in && window.e4_in){
+					//show pre to shake view
+					//document.getElementsByClassName("main-body")[0].style.backgroundImage = "url('images/shake-pre-bg.png')";
+					document.getElementsByClassName("main-body")[0].style.display = "none";
+				}
+				
+				e4.className = "elem4-draged";
+				e4.style.left = null;
+				e4.style.right = "100px";
+				e4.style.top = "595px";
+				e4.resize();
+			}
+			else{
+				e4_in = false;
+				
+				e4.className = "elem4-drag-before";
+				e4.style.left = "40px";
+				e4.style.right = null;
+				e4.style.top = "615px";
+				e4.resize();
+			}
+			
+		});
+	}
+</script>
+</html>

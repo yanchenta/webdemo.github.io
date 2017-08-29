@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<title>立邦刷新服务—服务人员详细信息</title>
+	<!--<link href="css/index.css"  type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" media="only screen and (device-aspect-ratio: 40/71)" href="css/iphone5/index.css"/>-->
+	<link rel="stylesheet" type="text/css" href="css/iphone5/index.css"/>
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<!--<script src="js/iscroll.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/trackEvent.js"></script>-->
+	<script src="js/index.js"></script>
+	
+	<style type="text/css">
+		.left
+		{
+			vertical-align:top;
+			padding-top:10px;
+			padding-left:8px;
+			padding-right:4px;
+			width:122px;
+		}
+		
+		.right
+		{
+			vertical-align:top;
+			padding-top:10px;
+			padding-right:8px;
+		}
+		
+		.tr_text_1
+		{
+			line-height:25px;
+			height:25px;
+			background-color:#DDDDDD;
+		}
+		.tr_text_2
+		{
+			line-height:25px;
+			height:25px;
+			background-color:#FFFFFF;
+		}
+		.r_left_td
+		{
+			width:65px;
+			border-right:1px solid #999999;
+			color:#575757;
+			padding-left:10px;
+			font-family:黑体;
+			font-weight:700;
+		}
+		.r_right_td
+		{
+			width:95px;
+			border-left:1px solid #999999;
+			color:#9A9A9A;
+			padding-left:15px;
+			margin-left:3px;
+			font-family:宋体;
+			font-weight:700;
+		}
+		.img_portrait
+		{
+			 width:100%;
+		}
+		.text_stars
+		{
+			background-color:#af0083;
+			text-align:center;
+			font-size:18px;
+			color:white;
+			
+			margin-top:10px;
+		}
+		.imgs_stars
+		{
+			background-color:#b5b5b5;
+		}
+	</style>
+	
+</head>
+<body>
+<div class="content5">	
+	<div class="home5">
+		 <div class="backBut5_1"><img src="images/5app-an-1.png" alt=""></div>
+		 <div class="backBut2"><label>直接点击即<br />可拨通热线</label><img src="images/5app-an-2.png" alt="直接点击即<br />可拨通热线"></div>
+		<h3>服务人员</h3>        
+	</div>
+	
+	<div class="cont5">	
+		<table>
+			<tr>
+				<td class="left">
+					<div><img id="img_portrait" src="" class="img_portrait" alt="服务人员头像"/></div>
+					
+					<div class="text_stars">
+						<span>客户满意度</span>
+					</div>
+					<div id="imgs_stars" class="imgs_stars">
+						
+					</div>
+				</td>
+				<td class="right">
+					<table>
+						<tr class="tr_text_1">
+							<td class="r_left_td">姓名</td>
+							<td id="td_name" class="r_right_td"></td>
+						</tr>
+						<tr class="tr_text_2">
+							<td class="r_left_td">性别</td>
+							<td id="td_sex" class="r_right_td"></td>
+						</tr>
+						<tr class="tr_text_1">
+							<td class="r_left_td">所在省份</td>
+							<td id="td_province" class="r_right_td"></td>
+						</tr>
+						<tr class="tr_text_2">
+							<td class="r_left_td">所在城市</td>
+							<td id="td_city" class="r_right_td"></td>
+						</tr>
+						<tr class="tr_text_1">
+							<td class="r_left_td">认证编号</td>
+							<td id="td_ensuredCode" class="r_right_td"></td>
+						</tr>
+						<tr class="tr_text_2">
+							<td class="r_left_td">从业时间</td>
+							<td id="td_stTime" class="r_right_td"></td>
+						</tr>
+						<tr class="tr_text_1">
+							<td class="r_left_td">服务户数</td>
+							<td id="td_serviceNum" class="r_right_td"></td>
+						</tr>
+						<tr class="tr_text_2">
+							<td class="r_left_td">皇冠</td>
+							<td id="td_honorLevel" class="r_right_td"></td>
+						</tr>
+						<tr class="tr_text_1">
+							<td class="r_left_td">曾获荣誉</td>
+							<td id="td_reward" class="r_right_td"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
+	<!--电话拨叫弹框-->
+		<div class="tank">
+			<img src="images/1app-tk.png" alt="" />	
+			<a class="hujiao"></a>
+			<a class="quxiao"></a>
+		</div>
+
+		
+<script src="js/m_5_1.js"></script>
+
+</body>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript" src="js/mookie1_base.js"></script>
+</html>

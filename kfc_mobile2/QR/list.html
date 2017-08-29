@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    	<title>KFC</title>
+        <link rel="stylesheet" type="text/css" href="common/reset.css">
+        <link rel="stylesheet" type="text/css" href="common/index.css">
+        <script src="common/jquery-1.4.4.min.js"></script>
+		<script src="common/jquery.cookie.js"></script>
+        <script src="common/trackEvent.js"></script>
+        <script src="common/citys.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+        <script>
+		$(document).ready(function(e) {
+			//track(1, 5898);
+			
+			$("#selectCity").text(getCityName());
+			
+			new BMap.LocalCity().get(function(city){
+				$("#localCity").text(city.name);
+			});
+			
+			var html = "";
+			for(var i=0;i<citys.length;i++){
+				
+				for(var a in citys[i]){
+					html += "<div class='title'>" + a + "</div>";
+					for(var b in citys[i][a]){
+							html += "<div class='item' data-id='"+citys[i][a][b].id+"'>" + citys[i][a][b].name+ "</div>";
+					}
+				}
+			}
+			
+			$("#list").html(html);
+			
+			
+			$(".item").bind("click",function(){
+				var $this = $(this);
+				var id = $this.attr("data-id");
+				var name = $this.text();
+				
+				if(name != "正在定位"){
+					if(name != $("#localCity").text()){
+						$.cookie("roam","1");
+					}else{
+						$.cookie("roam","0");
+					}
+					setCity(name);
+					location = document.referrer;
+				}
+				
+			});
+		});
+        </script>
+    </head>
+    
+    <body>
+    
+    	<div class="container">
+        	
+            <figure id="header">
+				<div id="titler">选择区域</div>
+				<img id="back" onclick="location = document.referrer;" src="common/s_back.png"/>
+
+            </figure>
+            
+			<figure>
+				<div class="title">当前选中区域</div>
+				<div class="item" id="selectCity">上海市</div>
+				<div class="title">定位区域</div>
+				<div class="item" id="localCity">正在定位</div>
+				<div id="list"></div>
+            </figure>
+        </div>
+	
+    </body>
+
+</html>

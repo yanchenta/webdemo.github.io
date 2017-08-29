@@ -1,0 +1,101 @@
+﻿
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+        <title>首都航空</title>
+        <link href="css/index.css"  type="text/css" rel="stylesheet" />
+
+        <script>
+			
+			
+			function showAnimation(){
+				var list = document.querySelector('.list').getElementsByTagName('li');
+				
+				for(var i=0;i<list.length;i++){
+					
+					turnImg(list[i],i*70);
+				}
+				
+				
+			}
+			
+			function turnImg(obj,second){
+				setTimeout(function(){
+					if(obj.className == ''){
+						obj.className = 'active';
+					}else{
+						obj.className = '';
+					}
+					
+				},second);
+			}
+			
+			function goToPage(){
+				window.location = 'http://www.capitalairlines.com.cn/index.jsp;jsessionid=1117836CB404D2FFADE89D5081022EFB.s1';
+			}
+			
+        </script> 
+    </head>
+    
+    <body style="zoom:0.9">
+    	
+         <div class="container" onClick="goToPage();">
+        	
+            <ul class="list clearfix">
+            	<li>
+                	<div class="pic1"><img src="images/m1.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m1_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m2.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m2_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m3.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m3_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m4.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m4_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m5.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m5_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m6.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m6_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m7.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m7_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m8.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m8_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m9.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m9_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m10.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m10_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m11.png" alt="" /></div>
+                    <div class="pic2"><img src="images/m11_on.png" alt="" /></div>
+                </li>
+                <li>
+                	<div class="pic1"><img src="images/m12.png" alt="" /></div>
+                    <div class="pic2"><img onload="showAnimation()" src="images/m12_on.png" alt="" /></div>
+                </li>
+                
+            </ul>
+           
+        </div>
+        
+    </body>
+</html>

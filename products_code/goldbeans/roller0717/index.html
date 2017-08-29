@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title></title>
+	<style type="text/css">
+		html body{
+			width:320px;
+			height:504px;
+			margin:0px 0px;
+			padding:0px 0px;
+			
+			background-image:url('images/index-bg4.jpg');
+			background-size:320px 504px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			overflow-x:hidden;
+			
+			background-color:black;
+		}
+		.pointer{
+			position:absolute;
+			left:114px;
+			top:128px;
+			
+			width:93px;
+			height:106px;
+			
+			background-image:url('images/pointer.png');
+			background-size:93px 106px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:2;
+		}
+		.wheel{
+			transform:rotate(-30deg);
+			-moz-transform:rotate(-30deg);
+			-webkit-transform:rotate(-30deg);
+			
+			position:absolute;
+			left:41px;
+			top:58px;
+			
+			width:238px;
+			height:238px;
+			
+			background-image:url('images/wheel.png');
+			background-size:238px 238px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			z-index:1;
+		}
+		
+		.layer-notice{
+			position:absolute;
+			top:0px;
+			left:0px;
+			
+			inline-height:504px;
+			display:none;
+		}
+		.cover{
+			position:absolute;
+			top:0px;
+			left:0px;
+			
+			margin:0px 0px;
+			padding:0px 0px;
+			
+			width:320px;
+			height:504px;
+			
+			background-color:rgba(0,0,0,0.7);
+			
+			z-index:5;
+		}
+		.notice{
+			position:absolute;
+			top:180px;
+			left:22px;
+			
+			background-image:url("images/notice.png");
+			background-size:276px 113px;
+			
+			width:276px;
+			height:113px;
+			
+			z-index:6;
+		}
+		#notice_msg{
+			text-align:center;
+			width:276px;
+			height:100px;
+			inline-height:100px;
+			
+			margin-top:22px;
+			display:block;
+			
+			font-family:黑体;
+			font-size:18px;
+		}
+		#btn_sure{
+			position:absolute;
+			top:64px;
+			left:15px;
+			
+			width:245px;
+			height:30px;
+			
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="wheel"></div>
+		<div class="pointer"></div>
+	</div>
+	<div class="footer"></div>
+	<div class="layer-notice">
+		<div class="cover">
+		</div>
+		<div class="notice">
+			<div id="notice_msg"></div>
+			<div id="btn_sure"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+	//var aa = {"message":"操作成功","status":100,"data":{"point":50,"status":true}};
+	//alert("页面URL 1:" + window.location.href);
+	function getkeyValue(url, key){
+		var stIdx = url.indexOf(key);
+		if(stIdx < 0) return "";
+		stIdx += key.length + 1;
+		
+		var len = url.substr(stIdx).indexOf("&");
+		if(len < 0) {
+			len = url.substr(stIdx).length;
+		}
+		
+		return url.substr(stIdx, len);
+	}
+	
+	function toAjax(suc_func){
+		var keywords = "";
+		//var keywords = ("10288_10298_348183_100_1");
+		//var keywords = ("10382_10355_348221_101_1");
+		var encparam = "";
+		//var encparam = ("Xp7GR5Rt8cMbgLN2DjBnDjzkCjQtC2rrHc12ajA4BrBkgrQrgqA5Bq0rCLgt8bnbQP1nje4kRI8w8KNAVev2RO4l8bnbSPCh%0AQOdJQf7dQOJbDc0J8fCdVfRGQtNEUtHd8cMbBj0n8bnbQP1nPTRdVfCGUtubDb8oac3ba27AV61YV5oAW28w8c3ba27kQOBb%0ADb8rBEMtgqMuHcMpBcG3BjMvBb8J8fNKSOgbDb7eR6WcC53oBsAdQtBTRj0rB5RADjNdBtgpQc8oRc1bBq3oBeHKQOLr8bnb%0ASOHeQI8w8cN4CKLtgqVTaL3vBq0kCEN2CbrvBLQqajW5HK73DL3oBc74D28J8eHdWedcRLdK8cMbBqguBjzq8fr%3D");
+		//var encparam = ("Xp7GR5Rt8cMbgLN2DjBnDjzkCjQtC2rrHc12ajA4BrBkgrQrgqA5Bq0rCLgt8bnbQP1nje4kRI8w8KNAVev2RO4l8bnbSPChQOdJQf7dQOJbDc0J8fCdVfRGQtNEUtHd8cMbBj0o8bnbQP1nPTRdVfCGUtubDb8oac3ba27AV61YV5oAW28w8c3ba27kQOBbDb8rBEMtgqMuHcMpBcG3BjMvBb8J8fNKSOgbDb7eR6WcC53oBsAdQtBTRj0rB5RADjNdBtgpQc8oRc1bBq3oBeHKQOLr8bnbSOHeQI8w8cN4CKLtgqVTaL3vBq0kCEN2CbrvBLQqajW5HK73DL3oBc74D28J8eHdWedcRLdK8cMbBqguBc8o8fr=");
+		//var taskid = "116";
+		var taskid = "164";
+		
+		var newKeywords = getkeyValue(window.location.href, "keywords");
+		if(null != newKeywords && "" != newKeywords){
+			keywords = newKeywords;
+		}
+		
+		var newEncparam = getkeyValue(window.location.href, "encparam");
+		if(null != newEncparam && "" != newEncparam){
+			encparam = newEncparam;
+		}
+		
+		var newTaskid = getkeyValue(window.location.href, "taskid");
+		if("" != newTaskid && "" != newTaskid){
+			taskid = newTaskid;
+		}
+		
+		//alert(encparam);
+		
+		//var prefix = "http://211.99.11.51:18888/jindoudou-api/luckydraw/lucky/";
+		var prefix = "http://jdd.mobile1.com.cn/luckydraw/lucky/";
+		
+		// + "&debug=-1"
+		var rnd = Math.random()*10000;
+		var _url = prefix + "?rnd=" + rnd + "&keywords=" + keywords + "&encparam=" + encparam + "&taskid=" + taskid;
+		
+		
+		//alert(_url);
+		
+		var obj = {
+			    url: _url,
+			    dataType: 'jsonp',
+			    jsonp:'callback',          //jsonp请求方法
+			    data: {},
+			    cache:false,
+			    type:'GET',
+			    success: suc_func
+		};
+		
+		$.ajax(obj);
+		
+	}
+	
+	document.getElementsByClassName("pointer")[0].onclick = function(){
+		rollObj.startRoll(document.getElementsByClassName("wheel")[0]);
+		//testAngle(0);
+	};
+	
+	function testAngle(angle){
+		var rollElem = document.getElementsByClassName("wheel")[0];
+		rollElem.style.webkitTransform = "rotate(" + angle + "deg)";
+	}
+	
+	//获取目标的当前度数
+	var rollObj = {};
+	rollObj.getToTarangle = function(point){
+		/*var objHash = {
+			mark0:0,
+			mark600:45,
+			mark300:90,
+			mark80:135,
+			mark50:180,
+			mark30:225,
+			mark20:270,
+			mark5:315
+		}*/
+		
+		var objHash = {
+			mark0:150,
+			mark5:90,
+			mark30:180,
+			mark80:60,
+			mark300:30,
+			mark600:300
+		};
+		
+		var rlt = 0;
+		for(var attr in objHash){
+			if(("mark" + point) == attr){
+				rlt = objHash[attr];
+				break;
+			}
+		}
+		
+		if(0 == rlt){
+			rlt = objHash["mark" + 0];
+		}
+		rlt += 10;
+		
+		return rlt;
+	}
+	
+	rollObj.startRoll = function(rollElem){
+		if(rollObj.inRoll) return;
+		
+		rollObj.inRoll = true;//转动标志
+		
+		rollObj.setPlusRollParameters(rollElem);//设置 加速参数
+		
+	    rollObj.mainRoll(rollElem);
+		
+		
+		
+		rollObj.checkCallback();//检查是否越过时间10s，并执行减速
+		
+		//rollObj.successCallback();
+		//toAjax(rollObj.successCallback);//ajax请求获取数据
+		toAjax(rollObj.successCallback);//ajax请求获取数据
+	}
+	
+	//......................................................参数定义区域 ... start
+	rollObj.curAngle = -30;//当前角度
+	rollObj.intervalTime = 20;//间隔时间 => 不变量
+	
+	rollObj.gplus = 800;//加速的加速度 => 不变量
+	rollObj.gminus = 0;//减速的加速度
+	
+	rollObj.intervalAngle = 0;//标识当前速度相关的参数
+	rollObj.maxIntervalAngle = 20;//速度相关的参数的最大值 => 不变量
+	
+	rollObj.forstop = false;//是否开始减速
+	rollObj.block = false;//多线程阻塞标志
+	rollObj.intervalHandle = null;//转动的Interval句柄
+	rollObj.timeInRoll = 0;//转动的时间累计
+	
+	rollObj.inRoll = false;
+	
+	rollObj.defaultTarget = true;//使用默认tagetAngle => 设置后 使用curTarget
+	rollObj.curTarget = 0; //供修改使用 ... 
+	//......................................................参数定义区域 ... end
+	
+	rollObj.setPlusRollParameters = function(rollElem){
+		//rollObj.curAngle = 0;//当前角度
+		rollObj.curAngle = rollObj.curAngle - Math.floor((rollObj.curAngle)/360)*360;//初始化当前角度，防止数据溢出
+		rollObj.intervalTime = 20;//间隔时间 => 不变量
+		
+		rollObj.gplus = 800;//加速的加速度 => 不变量
+		rollObj.gminus = 0;//减速的加速度
+		
+		rollObj.intervalAngle = 0;//标识当前速度相关的参数
+		rollObj.maxIntervalAngle = 20;//速度相关的参数的最大值 => 不变量
+		
+		rollObj.forstop = false;//是否开始减速
+		rollObj.block = false;//多线程阻塞标志
+		rollObj.intervalHandle = null;//转动的Interval句柄
+		rollObj.timeInRoll = 0;//转动的时间累计
+		
+		rollObj.defaultTarget = true;
+		
+		//rollElem.style.webkitTransform = "rotate(0deg)";
+	}
+	
+	//主要负责转动的方法
+	rollObj.mainRoll = function(rollElem){
+		rollObj.intervalHandle = setInterval(function(){
+			if(rollObj.block) return;//防止多线程
+			
+			rollElem.style.webkitTransform = "rotate(" + rollObj.curAngle + "deg)";
+			
+			if(rollObj.forstop && rollObj.intervalAngle > 0){//减速
+				//intervalAngle - (减少的 V 在 (intervalTime / 1000) 中走过的路程)
+				rollObj.intervalAngle = rollObj.intervalAngle - rollObj.gminus * (rollObj.intervalTime / 1000) * (rollObj.intervalTime / 1000); 
+				rollObj.curAngle += rollObj.intervalAngle;
+			}
+			else if(!rollObj.forstop && rollObj.intervalAngle < rollObj.maxIntervalAngle){//加速
+				rollObj.intervalAngle = rollObj.intervalAngle + rollObj.gplus * (rollObj.intervalTime / 1000) * (rollObj.intervalTime / 1000);
+				rollObj.curAngle += rollObj.intervalAngle;
+			}
+			else if(!rollObj.forstop && rollObj.intervalAngle >= rollObj.maxIntervalAngle){//匀速
+				rollObj.curAngle += rollObj.intervalAngle;
+			}
+			else{
+				clearInterval(rollObj.intervalHandle);
+				
+				rollObj.inRoll = false;
+				
+				rollObj.defaultTarget = true;//置为新状态: 使用默认targetAngle;
+				rollObj.curTarget = 0;
+				
+				if(!!rollObj.curMessage){
+					//返回有提示信息
+					ShowMsg(rollObj.curMessage);
+					//alert(rollObj.curMessage);
+				}
+			}
+			
+			//旋转累计时间
+			rollObj.timeInRoll += rollObj.intervalTime;
+		}, rollObj.intervalTime);
+	}
+	
+	rollObj.checkCallback = function(){
+		setTimeout(function(){
+			if(rollObj.timeInRoll < 3000){
+				rollObj.checkCallback();
+			}
+			else if(rollObj.timeInRoll > 5000){//10s后开始设置减速
+				//alert("亲，网络不给力，请刷新页面！");
+				rollObj.setMinusRollParameters();//设置未中中奖状态;
+			}
+			else if(!rollObj.defaultTarget){
+				//使用设置的rollObj.curTarget
+				//alert("setMinusRollParameters(" + rollObj.curTarget + ")");
+				rollObj.setMinusRollParameters(rollObj.curTarget, rollObj.curMessage);
+			}
+			else{//rollObj.defaultTarget
+				//alert("setMinusRollParameters()");
+				rollObj.setMinusRollParameters();
+			}
+		}, 500);
+	}
+	
+	//持续检测 判断是否转动了5s，转动了五秒才设置 启用减速转动
+	rollObj.successCallback = function(response){
+		//alert("keywords:" + getkeyValue(window.location.href, "keywords") + "; response:" + JSON.stringify(response));
+		//{"message":"操作成功","status":100,"data":{"point":20,"status":true}}
+		//alert(response.message);
+		
+		if(!!response){
+			if(100 == response.status){
+				rollObj.defaultTarget = false;
+				
+				//保存分数和提示信息
+				rollObj.curTarget = response.data.point;
+				if(!!response.data.message){
+					rollObj.curMessage = response.message;
+				}
+				else{
+					rollObj.curMessage = null;
+				}
+			}
+			else{
+				rollObj.defaultTarget = false;
+				
+				//设置分数和提示信息
+				//alert("errorMsg:" + response.message);
+				rollObj.curTarget = 0;
+				rollObj.curMessage = response.message;
+			}
+		}
+	}
+	
+	//设置减速转动参数
+	rollObj.setMinusRollParameters = function(mark){
+		rollObj.block = true;//防止多线程
+		
+		rollObj.forstop = true;//开始减速
+		
+		var toTarangle = rollObj.getToTarangle(0);
+		if(!!mark){
+			//alert("mark:" + mark + ", toTarangle:" + toTarangle);
+			toTarangle = rollObj.getToTarangle(mark);
+		}
+		
+		//alert("mark:" + mark + "; toTarangle:" + toTarangle);
+		
+		var targetAngle = Math.floor((rollObj.curAngle + 360*3)/360)*360 + toTarangle;
+		
+		var s = (targetAngle - rollObj.curAngle);
+		var v = (rollObj.intervalAngle / (rollObj.intervalTime/1000));
+		var t = s / v * 2;
+		
+		rollObj.gminus = v / t;
+		//alert("rollObj.intervalTime:" + rollObj.intervalTime + ", rollObj.intervalAngle:" + rollObj.intervalAngle);
+		rollObj.block = false;//防止多线程
+	}
+	
+	function ShowMsg(msg){
+		document.getElementById("notice_msg").innerHTML = msg;
+		document.getElementsByClassName("layer-notice")[0].style.display = "block";
+	}
+	
+	document.getElementById("btn_sure").onclick = function(){
+		document.getElementsByClassName("layer-notice")[0].style.display = "none";
+	}
+</script>
+</html>

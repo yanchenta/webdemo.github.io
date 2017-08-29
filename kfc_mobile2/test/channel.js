@@ -1,0 +1,1 @@
+var channel = '1',chann = 'adwo';

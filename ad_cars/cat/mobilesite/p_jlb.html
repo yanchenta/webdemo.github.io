@@ -1,0 +1,124 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="keywords" content="卡特彼勒,卡特,挖掘机,CAT,卡特挖掘机,卡特彼勒挖掘机">
+    <meta name="description" content="卡特彼勒挖掘机官方网站。CAT（卡特）挖掘机是世界上最大的挖掘机生产厂家之一。作为挖掘机行业领袖，始终致力于全球的基础设施建设，请登录网站了解更多卡特挖掘机相关信息">
+    <title>Cat®挖掘机型号及价格查询中心 - Cat（卡特）官网</title>
+    <link href="css/index.css?6795" type="text/css" rel="stylesheet" />
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/jquery.xml2json.js"></script>
+    <script src="js/json2xml.js"></script>
+    <script src="js/iscroll.js"></script>
+    <script src="js/guid.js"></script>
+    <script src="js/trackEvent.js"></script>
+    <script src="js/control.js"></script>
+    <script src="js/dealer.js"></script>
+    <script src="js/api.js"></script>
+    <link href="css/p_2g24.css?6796" rel="stylesheet" />
+</head>
+<body onload="resetPage()">
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NKSB8R"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script src="js/log2.js"></script>
+    <div class="frame">
+        <div class="title">
+            <div data-url="index.html?v" class="logo"></div>
+            <a class="fly" data-url="tel:4001115187" id="hotel"><img src="images/hotel.png" /></a>
+            <img id="title_login" src="images/title_login.png" class="fly menuLoginForm" />
+            <div class="fly" id="loginD1"><label id="username">,</label><a data-tap="logout()">注销</a></div>
+        </div>
+        <div class="content">
+            <div class="nav2">
+                <a href="javascript:history.back()" style="width:30%;height:100%;left:0%;top:0" class="fly"></a>
+            </div>
+            <div class="content_one">
+                <a href="###" id="left">关于俱乐部</a>
+                <a href="###" class="add" id="right">关注微信</a>
+            </div>
+            <div class="content_two" id="one"></div>
+            <div class="content_three" id="two">
+                <img src="images/24.png" />
+            </div>
+            <div class="searchResults"></div>
+            <div class="search4">
+                <div class="btoIndex fly" data-url="index.html?v"></div>
+                <div class="btoProd fly" data-url="pro1.html"></div>
+                <div class="btoDaili fly" data-url="p_help.html"></div>
+                <div class="btojlb fly" data-url="p_jlb.html"></div>
+                <div class="g2 fly" data-url="p_largescale3.html"></div>
+            </div>
+        </div>
+        <div class="copyright">©2012 卡特彼勒保留所有权利</div>
+        <div class="cover"></div>
+        <div class="cover1"></div>
+        <div class="popupAlert loginForm">
+            <div class="close"></div>
+            <input id="loginMobile" type="tel" class="textbox fly" />
+            <div class="btnLogin fly" data-tap="login()"></div>
+            <div class="btnReg fly"></div>
+        </div>
+        <div class="popupAlert regForm">
+            <div class="close"></div>
+            <input id="regName" type="text" class="textbox fly" />
+            <input id="regMobile" type="tel" class="textbox fly" />
+            <div class="btnLogin fly"></div>
+            <div class="btnReg fly" data-tap="reg()"></div>
+        </div>
+        <div class="popupAlert weixinForm">
+            <div class="close"></div>
+        </div>
+        <div class="popupAlert xunjiaForm">
+            <div class="close"></div>
+            <input id="xunjiaName" type="text" class="textbox fly" />
+            <input id="xunjiaMobile" type="tel" class="textbox fly" />
+            <a class="xunjiaTel fly" href="tel:4001115187"></a>
+            <div class="btnXunjia fly" data-tap="xunjia()"></div>
+            <div class="btnDenglu fly" data-tap="denglu()"></div>
+        </div>
+        <div class="popupAlert xunjiaokForm">
+            <div class="close"></div>
+            <div class="btnJixu fly"></div>
+            <div class="btnWaJi fly"></div>
+            <div class="btnBangmang fly"></div>
+        </div>  
+    </div>
+        <script type="text/javascript">
+            function resetPage() {
+                var deviceWidth = document.documentElement.clientWidth,
+                scale = deviceWidth / 640;
+                document.body.style.zoom = scale;
+            }
+            window.onresize = function () {
+                resetPage();
+            }
+            var left = document.getElementById('left');
+            var right = document.getElementById('right');
+            var one = document.getElementById('one');
+            var two = document.getElementById('two');
+            left.onclick = function () {
+                one.style.display = "none";
+                two.style.display = "block";
+                left.className = "";
+                right.className = "add";
+            }
+            right.onclick = function () {
+                one.style.display = "block";
+                two.style.display = "none";
+                left.className = "add";
+                right.className = "";
+            }
+            var user = getUser();
+            if (user) {
+                $("#username").text(user.name);
+                $("#title_login,.menuLoginForm").hide();
+                $("#loginD1,.menuLogoutForm").show();
+            }
+        </script>
+</body>
+</html>

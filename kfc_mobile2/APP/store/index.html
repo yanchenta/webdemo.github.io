@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<title></title>
+<style>
+	body{
+		font-family:微软雅黑,Microsoft Yahei,Tahoma,Arial,sans-serif;
+		padding:0px;
+		margin:0px;
+		outline:none;
+	}
+	img {  
+		height: auto;
+		max-width: 100%;
+		width: auto;
+		display:block;
+	}
+	.fxbg{
+		position:relative;
+		height:100%;
+		min-width:320px;max-width:640px;margin:0 auto; 
+	}
+	#btn1{position:absolute;width: 100%;height:100%;top:0;left:0;text-align:center;padding-top:0%;z-index: 2;}
+	#btn2{position:fixed;width: 100%;bottom:0;left:0;text-align:center;padding-top:0%;z-index: 3;}
+	#home{width:10%;height:6%;left:4%;top:2%;}
+#link3{width:20%;height:8%;left:76%;top:81%;}
+#link2{width:20%;height:8%;left:76%;top:52%;}
+#link1{width:20%;height:8%;left:76%;top:25%;}
+	.fly{display:inline-block;position:absolute; box-sizing:border-box;--border:1px solid red;}
+</style>
+<script src="../trackEvent.js"></script>
+<script type='text/javascript'>
+//<![CDATA[
+//Miaozhen Base Code Start
+  _mzh=window._mzh || []; _mzt=window._mzt || []; _mz_dp=window._mz_dp || [];
+  _mzh.push(
+    ['mevt._x_utm'], ['mevt._x_lid'], ['mimp._x_lid'], ['mclk._x_lid'],
+    ['mevt._urlpre', 'http://msg.mbm.cn.miaozhen.com/e.gif'],
+    ['mimp._urlpre', 'http://g.mbm.cn.miaozhen.com/x.gif'],
+    ['mclk._urlpre', 'http://e.mbm.cn.miaozhen.com/r.gif']
+  );
+  (function(){
+    var mz=document.createElement('script');
+    mz.type='text/javascript';mz.async=true;mz.src='http://js.miaozhen.com/t.js';
+    var t=document.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(mz,t);
+  })();
+  function _mz_mevt(ae,n) {_mzh.push(['mevt._set_ae', ae], ['mevt._set_n', n], ['mevt._send']);}
+  function _mz_mimp(k,p) {_mzh.push(['mimp._set_k', k], ['mimp._set_p', p],['mimp._send']);}
+  function _mz_mclk(k,p) {_mzh.push(['mclk._set_k', k], ['mclk._set_p', p],['mclk._send']);}
+  function _mz_simple(cmd) {_mzh.push(['_simple',cmd]);}
+  function _mz_simple_param(n,k,v) {_mz_dp[n]=_mz_dp[n]||{};_mz_dp[n][k]=v;}
+  function _mz_timer_start(n,u) {_mzt.push(n);if(u)_mzh.push([n+'._urlpre',u]);_mz_simple(n+'._timer_start');}
+  function _mz_timer_start_x(n,u) {for(i=0;i<=_mzt.length;i++)_mz_timer_stop(_mzt[i]); _mzt=[];_mzt.push(n);_mz_timer_start(n,u);}
+  function _mz_timer_stop(n) {_mz_simple(n+'._timer_stop');}
+  _mz_simple_param(0,'timer_start',[10,30*60,0,'v','st:$1,si:$2,']);
+//Miaozhen Base Code End
+//]]>
+</script>			
+
+<script>
+//var channel = 204;
+var channel = 208;
+function pageload(){
+	var ua = navigator.userAgent.toLowerCase();
+	
+	if((/iphone|ipad/gi).test(navigator.appVersion)){
+		//ios下载
+		document.querySelector('#link1').onclick = function(){
+			//location = 'https://itunes.apple.com/cn/app/ken-de-ji/id587238847?mt=8'
+			_mz_mevt('173', '1811');
+			
+			track(channel,4334,'https://itunes.apple.com/cn/app/ken-de-ji/id587238847?mt=8');
+		};
+		document.querySelector('#link2').onclick = function(){
+			//location = 'https://itunes.apple.com/cn/app/ken-ji-zhai-ji-song-guan-fang/id655012687?ls=1&mt=8'
+			_mz_mevt('173', '1813');
+			
+			track(channel,4462,'https://itunes.apple.com/cn/app/ken-ji-zhai-ji-song-guan-fang/id655012687?ls=1&mt=8');
+		};
+		document.querySelector('#link3').onclick = function(){//预付快取 ios
+			//location = 'https://itunes.apple.com/cn/app/ken-ji-zhai-ji-song-guan-fang/id655012687?ls=1&mt=8'
+			window.location.href = "http://order.kfc.com.cn/download/iphone.htm";
+			//track(channel,4464,'https://itunes.apple.com/cn/app/ken-ji-zhai-ji-song-guan-fang/id655012687?ls=1&mt=8');
+		};
+	}else{
+		document.querySelector('#link1').onclick = function(){
+			//location = 'http://www.kfc.com.cn/kfccda/KFC-KFCKFCA12-V1.0.7.apk'
+			_mz_mevt('173', '1812');
+			
+			track(channel,4333,'http://www.kfc.com.cn/kfccda/KFC-KFCKFCA12-V1.0.7.apk');
+		};
+		document.querySelector('#link2').onclick = function(){
+			//location = 'http://mos.4008823823.com.cn/download/kfcmos.apk'
+			_mz_mevt('173', '1814');
+			
+			track(channel,4463,'http://mos.4008823823.com.cn/download/kfcmos.apk');
+		};
+		document.querySelector('#link3').onclick = function(){//预付快取 android
+			if(ua.indexOf("micromessenger") >= 0){ //weixin
+				//location = 'http://mos.4008823823.com.cn/download/kfcmos.apk'
+				//window.location.href = "http://download.app.4008823823.com.cn/kfcmos.apk";
+				window.location.href = "http://dd.myapp.com/16891/D5182847DB44CE2B7B04391203A10428.apk?fsname=com%2Eyum%2Emos%2Ekfc%2Epreorder%5F1%2E8%5F3.apk";
+				//track(channel,4465,'http://download.app.4008823823.com.cn/kfcmos.apk');
+			}
+			else{//not weixin;
+				window.location.href = "http://order.kfc.com.cn/download/android.htm";
+			}
+		};
+	}
+	
+	_mz_mevt('173', '1810');
+}
+
+</script>
+</head>
+
+<body onload="pageload()">
+<div class="fxbg">
+	<img src="../images/app-bg.jpg"/>
+	<div id="btn1">
+		<a href="javascript:location='../../index.html'" id="home" class="fly"></a>
+		<a href="javascript:;" id="link1" class="fly"></a>
+		<a href="javascript:;" id="link2" class="fly"></a>
+		<a href="javascript:;" id="link3" class="fly"></a>
+	</div>
+	<div id="btn2">
+		<img src="../../common/qr_2.png"/>
+	</div>
+</div>
+</body>
+</html>

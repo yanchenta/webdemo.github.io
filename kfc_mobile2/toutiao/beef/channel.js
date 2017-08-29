@@ -1,0 +1,1 @@
+var channel = '112',chann = 'toutiao';

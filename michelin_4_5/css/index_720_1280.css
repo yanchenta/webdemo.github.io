@@ -1,0 +1,61 @@
+		html body{
+			width:720px;
+			max-width:720px;
+			height:1280px;
+			max-height:1280px;
+			margin:0px 0px;
+			
+			background-image:url('../images/index-bg2.jpg');
+			background-repeat:no-repeat;
+			background-position:left top;
+			background-size:720px 1280px;
+		}
+		.div-left-button{
+			position:absolute;
+			top:915px;
+			left:35px;
+			
+			width:320px;
+			height:320px;
+			cursor:pointer;
+		}
+		.div-left-button-inner{
+			background-image:url('../images/left-btn-focused.png');
+			background-repeat:no-repeat;
+			background-position:center;
+			background-size:320px 320px;
+			
+			width:320px;
+			height:320px;
+			
+			display:none;
+		}
+		.div-right-button{
+			position:absolute;
+			top:912px;
+			left:355px;
+			
+			width:326px;
+			height:326px;
+			cursor:pointer;
+		}
+		.div-right-button-inner{
+			background-image:url('../images/right-btn-focused.png');
+			background-repeat:no-repeat;
+			background-position:left top;
+			background-size:326px 326px;
+			
+			width:326px;
+			height:326px;
+			
+			display:none;
+		}
+		.div-bottom-button{
+			position:absolute;
+			top:1210px;
+			left:265px;
+			
+			width:185px;
+			height:70px;
+			cursor:pointer;
+		}

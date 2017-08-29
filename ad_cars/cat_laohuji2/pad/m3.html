@@ -1,0 +1,195 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>好兄弟，一起赢！推荐Cat赢好礼！</title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/control.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/models.js"></script>
+<style>
+html,body{background-color:rgb(0,0,0);}
+</style>
+<script>
+var myScroll;
+$(document).ready(function(){
+	//track(channel,5877);
+	myScroll = new iScroll('m3_6', {
+		//vScrollbar : false,
+		hScrollbar : true
+	});
+	chaxun(1);
+});
+function chaxun(_f){
+	var mobile = '13617282678';
+	var rnd = 1;
+	if(_f ==2 && !matchMobile($("#m3_3").val())){
+		showMsg("请输入有效的手机号码");
+		return;
+	}
+	
+	//
+	var queryMobile = $("#m3_3").val();
+	var userMobile = $.cookie("mobile");
+	var succGetWinlist1Func = function(result){
+		if(result.done.toLocaleLowerCase() == "ok"){
+			var html = "";
+			for(var lucker in result.data){
+				if(lucker%2==0){
+					html += "<tr>";
+				}
+				html += "<td>" + result.data[lucker].mobile + "</td><td>" + _a(result.data[lucker].award) + "</td>";
+				
+				if(lucker%2!=0){
+					html += "</tr>";
+				}
+			}
+			if(html == ""){
+			    html = "<tr><td>敬请期待</td></tr>";
+			    if (_f == 2) {
+			        showMsg("此号码不在中奖名单中，<br/>感谢参加此次活动");
+			        return;
+			    }
+			}
+			$("#m3_6 table").html(html);
+			myScroll.refresh();
+		}
+	}
+	isAwardMobile1(queryMobile, userMobile, succGetWinlist1Func);
+	/*
+	var userInfo = {
+		key : $("#m3_3").val(),
+		page : 1,
+		mobile : mobile,
+		rnd : rnd,
+		token : MD5(mobile + 'cat' + rnd)
+	};
+	$.ajax({
+		url : 'http://www.catwaji.com/tuijian/api/getwinners.aspx',
+		type:"POST",
+		cache : false,
+		dataType : 'json',
+		data : userInfo,
+		success : function(result) {
+			if(result.done.toLocaleLowerCase() == "ok"){
+				var html = "";
+				for(var lucker in result.data){
+					
+					if(lucker%2==0){
+							html += "<tr>";
+					}
+					html += "<td>" + result.data[lucker].mobile + "</td><td>" +
+						_a(result.data[lucker].award) + "</td>";
+					
+					if(lucker%2!=0){
+							html += "</tr>";
+					}
+				}
+				if(html == ""){
+				    html = "<tr><td>敬请期待</td></tr>";
+				    if (_f == 2) {
+				        showMsg("此号码不在中奖名单中，<br/>感谢参加此次活动");
+				        return;
+				    }
+				}
+				$("#m3_6 table").html(html);
+				myScroll.refresh();
+			}
+		},error:function(xhr){
+			
+		}
+	});*/
+}
+function _a(_b){
+	switch(_b){
+		case '10':return '抽中10元充值卡一张';
+		case '20':return '抽中30元充值卡一张';
+		case '50':return '抽中50元充值卡一张';
+	}
+	return '';
+}
+function _b(){
+	$("#m3_7,#m3_8").hide();
+	$("#m3_2,#m3_6").show();
+}
+function _c(){
+	$("#m3_2,#m3_6").hide();
+	$("#m3_7,#m3_8").show();
+}
+</script>
+<script>
+  dataLayer = [];
+</script>
+</head>
+
+<body>
+<div class="fxbg">
+<img class="img" src="images/3.jpg" alt="" />
+<div class="btn1">
+	<a id="m3_1" class="fly" onclick="chaxun(2);track(channel,5878);"></a>
+	<div><input type="tel" class="fly" id="m3_3"  placeholder="输入电话号码查询" /></div>
+	<a id="m3_4"  class="fly" onclick="_b();track(channel,5880);"></a>
+	<a id="m3_5"  class="fly" onclick="_c();track(channel,5881);"></a>
+	<div id="m3_2" class="fly">
+		<div><img src="images/3-1.png"/></div>
+	</div>
+	<div id="m3_6" class="fly">
+		<table>
+			
+		</table>
+	</div>
+	<div id="m3_7" class="fly">
+		<div><img src="images/3-2.png"/></div>
+	</div>
+	<div id="m3_8" class="fly">
+		<table>
+			<tr><td>敬请期待</td></tr>
+		</table>
+	</div>
+</div>
+<div class="btn2">
+	<img src="images/m3.png" />
+    <a id="m1" class="fly"></a>
+    <a id="m2" class="fly"></a>
+    <a id="m3" class="fly"></a>
+    <a target="_blank" id="m4" class="fly"></a>
+</div>
+<div id="popup3" class="btn3" style="display:none;z-index:10;">
+	<div class="alert">
+    <div class="yun" style="position:relative;">
+		<img id="alert-4" src="images/popup.png" style=" margin: auto; width: 55%;"/>
+		<div class="msg"></div>
+		<a id="alert-close" href="javascript:hideMsg();"></a>
+    </div>
+    <!--<a id="alertOK" style="width:60%;letter-spacing:0rem;" class="button" href="m2.html">查看更多主意</a>-->
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript">
+	//var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	//document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd355f63a7b0ea95a77d7d5cf165527ff' type='text/javascript'%3E%3C/script%3E"));
+	setModuleLinkTrack();
+</script>
+<!-- Google Tag Manager -->
+<noscript><iframe src=""//www.googletagmanager.com/ns.html?id=GTM-WTGCHV""
+height=""0"" width=""0"" style=""display:none;visibility:hidden""></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WTGCHV');</script>
+<!-- End Google Tag Manager -->
+<div class="coverxxx" style="height:1024px;"></div>
+</body>
+</html>

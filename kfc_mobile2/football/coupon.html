@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+		<title>优惠劵</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="js/common.js"></script>
+        <script>
+        	function showIntro(t,str){
+				if(t.parentNode.parentNode.className =='on'){
+					t.parentNode.parentNode.className = '';
+					if(!str){
+						t.innerHTML = '查看大图<span></span>';
+					}
+				}else{
+					t.parentNode.parentNode.className = 'on';
+					if(!str){
+						t.innerHTML = '收起<span></span>';
+					}
+				}
+			}
+			function showIntro2(p,str){
+				var t = null;
+				if(p.id == "figure_1") {
+					t = document.getElementById("a_1");
+				}
+				else if(p.id == "figure_2"){
+					t = document.getElementById("a_2");
+				}
+				else{
+					return;
+				}
+				if(t.parentNode.parentNode.className =='on'){
+					t.parentNode.parentNode.className = '';
+					if(!str){
+						t.innerHTML = '查看大图<span></span>';
+					}
+				}else{
+					t.parentNode.parentNode.className = 'on';
+					if(!str){
+						t.innerHTML = '收起<span></span>';
+					}
+				}
+			}
+        </script>
+	</head>	
+	<body>	
+    	
+		<div class="container">
+        	
+            <ul id="list">
+            
+            	<li>
+                    <div class="intro clearfix">
+                        <figure id="figure_1" onClick="showIntro2(this);"><img src="images/pro1.png" alt="" /></figure>
+                        <div class="text">
+                            <h3>桑巴嫩牛足球堡</h3>
+                            <p>(含培根)+苹果气泡果汁饮料/百事可乐(中)</p>
+                            <h3>¥24.00</h3>
+                            <p>有效期至2014年6月30日</p>
+                        </div>
+                    </div>
+                    
+                    <div class="show_intro"><img src="images/pro1_big.png" alt="" /></div>
+                    
+                    <div class="bott">
+                        <span>出示即可使用</span>
+                        <a id="a_1" href="javascript:;" onClick="showIntro(this);">查看大图<span></span></a>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="intro clearfix">
+                        <figure id="figure_2" onClick="showIntro2(this);"><img src="images/pro2.png" alt="" /></figure>
+                        <div class="text">
+                             <h3>桑巴烤鸡足球堡</h3>
+                            <p>(含培根)+双拼奶茶(冰)/百事可乐(中)</p>
+                            <h3>¥22.00</h3>
+                            <p>有效期至2014年6月30日</p>
+                        </div>
+                    </div>
+                    
+                    <div class="show_intro"><img src="images/pro2_big.png" alt="" /></div>
+                    
+                    <div class="bott">
+                        <span>出示即可使用</span>
+                        <a id="a_2" href="javascript:;" onClick="showIntro(this);">查看大图<span></span></a>
+                    </div>
+                </li>
+                
+               
+                
+            </ul>
+        	
+        </div>
+        
+	</body>
+</html>

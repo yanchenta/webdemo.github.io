@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    	<title>闪迪</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<script type="text/javascript">
+			if(screen.width/screen.height >= 0.6){
+				window.location.href = "pro2.html";
+			}
+			else{
+				//继续在这页面=>iphone5页面
+			}
+		</script>
+        <script src="js/jquery-1.4.4.min.js"></script>
+        <script src="js/trackEvent.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/swipte.js"></script>
+        
+		<script>
+			track(20,10093);
+        	window.onload = function(){
+				var elem = document.getElementById('mySwipe');
+					mySwipe = Swipe(elem, {
+					   speed : 400,
+					   continuous: false, 
+					   callback: function(index, element) {
+
+					   }
+				});
+			}
+        </script>  
+        <script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F828c51f02153297339a6998711a10650' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+    </head>
+    
+    <body>
+    
+    	<div class="container c2">
+ 
+            <figure><img src="images/bg.jpg" alt="" /></figure>
+            
+            <a class="logo" href="index.html">首页</a>
+            <a class="back" href="index.html"><img src="images/back.png" alt="" /></a>
+        	<div id='mySwipe'>
+                <ul class="clearfix">
+                    <li><img src="images/l1.jpg" alt="" /></li>
+                    <li><img src="images/l2.jpg" alt="" /></li>
+                </ul>
+            </div>
+            
+            <a class="gojd" href="javascript:track(20,10098,'http://search.jd.com/Search?keyword=%E6%AC%A2%E6%AC%A3%E7%95%85%E4%BA%AB&enc=utf-8');">去京东购买</a>
+            
+        </div>
+	
+    </body>
+
+</html>

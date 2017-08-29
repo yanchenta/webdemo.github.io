@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>奥迪</title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script>//var channel = '20'</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/trackEvent.js"></script>
+
+<style>
+body{
+	font-family:微软雅黑,Microsoft Yahei,Tahoma,Arial,sans-serif;
+	padding:0px;
+	margin:0px;
+	outline:none;
+	/*background-color:#3b3b3b;
+	background:url(images/content_bg.jpg) repeat;*/
+}
+img {  
+	height: auto;
+    max-width: 100%;
+    width: auto;
+	display:block;
+}
+.fxbg{
+	position:relative;
+	height:100%;
+	min-width:320px;max-width:568px;margin:0 auto; 
+		
+}
+</style>
+<script>
+(function(){
+	//track(1,4937);
+})();
+$(document).ready(function(e) {
+    document.body.addEventListener('touchmove',function(event){
+		event.preventDefault();
+	},false);
+
+});
+function openMask(p){
+	$(".btn3 img,.btn3 label").hide();
+	$(".btn3,."+p).show();	
+	
+}
+</script>
+</head>
+
+<body>
+<div class="fxbg">
+<img class="img" src="images/3-1.jpg" alt="" />
+<div class="btn1" style="z-index:2;">
+</div>
+<div class="btn2" style="z-index:3;">
+	<img class="img" id="nav-3" src="images/nav-bj3.png" alt="" />
+    <a href="index.html" id="m1" class="fly"></a>
+    <a href="m_2.html" id="m2" class="fly"></a>
+</div>
+</div>
+</body>
+</html>

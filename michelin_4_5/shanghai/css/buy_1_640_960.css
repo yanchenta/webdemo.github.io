@@ -1,0 +1,90 @@
+		html body{
+			width:640px;
+			max-width:640px;
+			height:1225px;
+			max-height:1225px;
+			margin:0px 0px;
+			
+			background-image:url('../images/buy1-bg.jpg');
+			background-repeat:no-repeat;
+			background-position:left top;
+			background-size:640px 1225px;
+		}
+		.div-form{
+			position:absolute;
+			top:680px;
+			left:50px;
+			
+			width:520px;
+			height:450px;
+		}
+		.input-text-shopcode{
+			position:absolute;
+			top:0px;
+			left:180px;
+			
+			width:290px;
+			height:45px;
+						
+			font-size:25px;
+		}
+		.input-text-name{
+			position:absolute;
+			top:78px;
+			left:180px;
+			
+			width:290px;
+			height:45px;
+			
+			font-size:25px;
+		}
+		.input-text-phone{
+			position:absolute;
+			top:152px;
+			left:180px;
+			
+			width:290px;
+			height:45px;
+			
+			font-size:25px;
+		}
+		.input-text-sellcode1{
+			position:absolute;
+			top:230px;
+			left:180px;
+			
+			width:290px;
+			height:45px;
+			
+			font-size:25px;
+		}
+		.input-text-sellcode2{
+			position:absolute;
+			top:305px;
+			left:180px;
+			
+			width:290px;
+			height:45px;
+			
+			font-size:25px;
+		}
+		.div-btn-submit{
+			position:absolute;
+			top:380px;
+			right:25px;
+			
+			width:160px;
+			height:57px;
+			
+			cursor:pointer;
+		}
+		.div-to-introduction{
+			position:absolute;
+			top:1160px;
+			left:239px;
+			
+			width:160px;
+			height:60px;
+			
+			cursor:pointer;
+		}

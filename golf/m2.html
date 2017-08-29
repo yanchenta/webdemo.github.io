@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<meta charset="utf-8"/>
+	<title>高尔夫</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<style type="text/css">
+		.mainBody{
+			padding-top:20px;
+			padding-left:100px;
+			padding-right:100px;
+			background-color:#fff;
+			opacity:0.5;
+			width:70%;
+		}
+		.title{
+			font-size:35px;
+			font-weight:900;
+			text-align:center;
+			margin-bottom:40px;
+		}
+		.subtitle{
+			font-size:28px;
+			font-weight:900;
+		}
+		p{
+			width:440px;
+			line-height:23px;
+			margin-top:10px;
+			font-size:21px;
+			font-family:"黑体";
+			font-weight:700;
+		}
+		li{
+			width:110%;
+			margin-left:-5%;
+			margin-top:10px;
+			font-weight:700;
+		}
+		.content3 p{
+			text-indent:6em;
+			
+			font-family:"黑体";
+			font-size:21px;
+			font-weight:700;
+			
+			margin-top:0px;
+			margin-bottom:0px;
+		}
+		.content3-span{
+			font-family:"黑体";
+			font-size:21px;
+			font-weight:700;
+		}
+		.footer{
+			background-image:url('images/m2-bottom.png');
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="mainBody">
+		<div class="title">
+			<span class="title">测测你好友的靠谱指数</span>
+		</div>
+		<div class="subtitle1">
+			<span class="subtitle">活动简介</span>
+		</div>
+		<div class="content1">
+			<p>活动期间，通过全新高尔夫线上“好友试驾”活动，参与好友靠谱指数测试及网上预约试驾，到店参与试乘试驾，即可参与抽奖！</p>
+			<p>活动时间：2014年03月20日-2014年05月05日</br>活动地点：仅限上海，浙江，江苏，安徽一汽-大众特许经销商</p>
+		</div>
+		<div class="subtitle2">
+			<span class="subtitle">活动规则</span></br>
+			<p>1.在线完成好友靠谱测试，邀请好友参与测试。(可邀请多个好友)</p>
+			<p>2.好友测试完毕，即可与好友同时到店参与线下试驾活动，参与抽奖。</p>
+			<p>3.高尔夫车主推荐试驾：仅限在一汽-大众特许经销店购买一汽-大众高尔夫的车主，试驾需二人同时到场，老车主出示购车证明。</p>
+		</div>
+		
+		<div class="content3">
+			<span class="subtitle">活动奖品:</span>
+			<span class="content3-span">普吉岛双人游&nbsp;&nbsp;&nbsp;&nbsp;旅行箱<span>
+			<p>车载空气净化器</p>
+			<p>机票代金券</p>
+		</div>
+		<div>
+			<li>获奖名单将公布在活动主页，并由一汽-大众“好友试驾”活动会务组统一通知获奖者；</li>
+			<li>奖品由会务组统一发放，不收取任何现金或其他形式的费用，请注意识别冒充信息。</li>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="bottom-btn"><a href="index.html"></a></div>
+		<!--<div class="bottom-btn"><a id="see-acti-intro-menu" href="m2.html"></a></div>-->
+		<div id="see-acti-intro-menu" class="bottom-btn"></div>
+		<!--<div class="bottom-btn"><a id="friend-num-menu" href="m3-1.html"></a></div>-->
+		<div id="friend-num-menu" class="bottom-btn"></div>
+		<div class="bottom-btn"><a href="m4.html"></a></div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+
+<script type="text/javascript">
+	//监控
+	var window_load = window.onload;
+	window.onload =  function(){
+		if(!!window_load) window_load();
+		track2(channelCodes.channel_id, channelCodes.track_codes.see_acti_intro_pv);
+	}
+	$("#see-acti-intro-menu").click(function(){
+		track2(channelCodes.channel_id, channelCodes.track_codes.see_acti_intro_click);
+		window.location.href = "m2.html";
+	});
+	$("#friend-num-menu").click(function(){
+		track2(channelCodes.channel_id, channelCodes.track_codes.friend_num_click);
+		window.location.href = "m3-1.html";
+	});
+</script>
+</html>

@@ -1,0 +1,238 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<title>卡特英雄俱乐部 - 卡特帮帮忙 - Cat（卡特）官网</title>
+    <link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/p_2g24.css">
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/control.js"></script>
+    <script type="text/javascript" src="js/delear2.js"></script>
+    <script type="text/javascript" src="js/api.js"></script>
+	<style type="text/css">
+	.searchArea{
+		position:fixed;
+		bottom:30px;
+		left:0px;
+		width:640px;
+		height:auto;
+		z-index:20;
+	}
+	.searchControls{
+		background-image:url('images/map-searchtype-bg.png');
+		background-position:left bottom;
+		background-repeat:no-repeat;
+		background-size:640px 175px;	
+		height:175px;
+		width:640px;	
+		font-size:30px;
+		color:white;
+		font-weight:700;
+		padding-top:40px;
+		padding-left:60px;
+	}
+	.searchControls input[type=radio]{
+		width:20px;
+		height:20px;
+		margin-top:20px;
+	}
+	.searchControls div{
+		margin-top:20px;
+		height:60px;
+	}
+	.searchControls select{
+		width:150px;
+		height:80px;		
+		font-size:30px;
+		font-weight:700;
+	}
+	.searchControls span{
+		margin-left:10px;
+		margin-right:10px;
+	}		
+	.searchResults{
+		width:640px;
+		height:auto;
+		background-color:white;		
+		max-height:404px;
+		overflow-y:hidden;
+		overflow-x:hidden;	
+		display:block;
+	}
+	.searchResultItem{
+		width:640px;
+		height:202px;	
+		background-image:url('images/result-item-bg.jpg');
+		background-size:640px 202px;
+		background-position:left top;
+		background-repeat:no-repeat;	
+		position:relative;
+	}
+	.searchResultItem-index{
+		color:#ffcd10;		
+		position:absolute;
+		left:39px;
+		top:19px;		
+		font-size:25px;
+	}
+	.searchResultItem-text1{
+		color:#595959;	
+		position:absolute;
+		left:100px;
+		top:10px;	
+		font-size:20px;	
+		width:500px;
+		height:30px;	
+		white-space:nowrap;
+	}
+	.searchResultItem-text2{
+		color:#595959;		
+		position:absolute;
+		left:100px;
+		top:50px;	
+		font-size:20px;	
+		width:60px;
+		height:30px;
+	}
+	.searchResultItem-text3{
+		color:#9c9c9c;		
+		position:absolute;
+		left:160px;
+		top:50px;	
+		font-size:20px;	
+		width:440px;
+		height:30px;	
+		white-space:nowrap;
+	}
+	.searchResultItem-text4{
+		color:#9c9c9c;		
+		position:absolute;
+		left:100px;
+		top:90px;	
+		font-size:20px;	
+		width:500px;
+		height:30px;	
+		white-space:nowrap;white-space:nowrap;
+        overflow:hidden;text-overflow:ellipsis;
+	}
+	.div-btn-contactme{
+		position:absolute;
+		left:145px;
+		top:130px;		
+		width:230px;
+		height:55px;	
+		cursor:pointer;
+	}
+	.div-btn-sendmsg{
+		position:absolute;
+		left:380px;
+		top:130px;		
+		width:230px;
+		height:55px;	
+		cursor:pointer;
+	}
+	</style>
+</head>
+<body onload="resetPage()">
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-52VC42"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script src="../js/log.js"></script>
+    <div class="frame">
+        <div class="header" style="position: relative;">
+            <a href="p_2g01.html" style="position:absolute;top:0;left:0;display:inline-block;width:300px;height:80px;"></a>
+            <div class="logo">
+                <div class="headermenu" style="width:330px;">
+                    <a href="tel:4001115187" onclick="dataLayer.push({'event':'event','category':'全网','action':'销售热线','label':'上导航'});">查询热线</a>
+                    <div class="unlogin-status" style="display:inline-block;width:180px;">
+                        <a href="p_2g05.html">登录</a>
+                        <a href="p_2g06.html">注册</a>
+                    </div>
+                    <div class="login-status" style="display:inline-block;width:180px;">
+                        <div id="login-useName" style="display:inline-block;padding-left:30px;"></div>
+                        <div onclick="javascript:logout();" style="display:inline-block;">注销</div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                俱乐部
+                <a href="javascript:history.back()">&lt;返回</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content_one">
+                <a href="###" id="left">关于俱乐部</a>
+                <a href="###" class="add" id="right">关注微信</a>
+            </div>
+            <div class="content_two" id="one"></div>
+            <div class="content_three" id="two">
+                <img src="images/24.png" width="100%" />
+            </div>
+            <div class="searchResults"></div>
+        </div>
+        <div class="footer">
+            <div class="footer_one">
+                <a href="p_2g01.html">首页</a>
+                <a href="p_2g02.html">产品</a>
+                <a href="p_2g12.html">帮帮忙</a>
+                <a href="p_2g24.html" class="a">俱乐部</a>
+            </div>
+            <div class="footer_two">
+                <a href="###" class="twog"></a>
+                <a href="index.html"></a>
+            </div>
+            <div class="footer_three">© 2012 卡特彼勒保留所有权利</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" >
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    if (sUserAgent.indexOf("ucbrowser") == -1)
+        includeLinkStyle("css/p_2g24_1.css");
+
+	function resetPage() {
+		var deviceWidth = document.documentElement.clientWidth,
+		scale = deviceWidth/640;
+		document.body.style.zoom = scale;
+	}
+	window.onresize = function(){
+		resetPage();
+	}
+	var left = document.getElementById('left');
+	var right = document.getElementById('right');
+	var one = document.getElementById('one');
+	var two = document.getElementById('two');
+	left.onclick = function(){
+		one.style.display = "none";
+		two.style.display = "block";
+		left.className = "";
+		right.className = "add";
+	}
+	right.onclick = function(){
+		one.style.display = "block";
+		two.style.display = "none";
+		left.className = "add";
+		right.className = "";
+	}
+	function request(paras)
+    { 
+        var url = location.href; 
+        var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+        var paraObj = {} 
+        for (i=0; j=paraString[i]; i++){ 
+            paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+        } 
+        var returnValue = paraObj[paras.toLowerCase()]; 
+        if(typeof(returnValue)=="undefined"){ 
+            return ""; 
+        }else{ 
+            return returnValue; 
+        } 
+    }
+	if(request('weixin') == '1'){
+        right.click();
+    }
+</script>
+</html>

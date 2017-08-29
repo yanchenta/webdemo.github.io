@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="hezhanglin">
+<title>洞见未来科技</title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/guid.js"></script>
+<script src="js/trackEvent.js"></script>
+<script src="js/control.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+<style>
+html,body{background-color:#fff;}
+</style>
+<script>
+var map,g,dr;
+var lng = 116.321181,lat = 39.99051;
+var point;
+$(document).ready(function(e) {
+
+	track(channel,5961);
+	
+	point = new BMap.Point(lng,lat);
+	map = new BMap.Map('baidu_map');
+	map.centerAndZoom(point,16);
+	var marker = new BMap.Marker(point,{icon:new BMap.Icon("images/dealer.png", new BMap.Size(40,40), {anchor:new BMap.Size(20,20)})});
+	marker.disableMassClear();
+	map.addOverlay(marker);
+	
+	
+	
+	
+	g = new BMap.Geolocation();
+	daohang();
+});
+function getCurrentPositionCallback(gr) {
+	if(gr){
+		map.clearOverlays();
+		
+		var myPoint = gr.point;
+		dr = new BMap.DrivingRoute(map,{map:map,selectFirstResult:true,autoViewport:true,onSearchComplete:function(drr){
+			if(drr.getNumPlans() > 0){
+				map.addOverlay(new BMap.Marker(point,{icon:new BMap.Icon("images/juli.png", new BMap.Size(80,80), {anchor:new BMap.Size(-10,20)})}));
+				
+				var rp = drr.getPlan(0);
+				var distance = rp.getDistance(true);
+				var label = new BMap.Label(distance,{position:point,offset:new BMap.Size(30,30)});
+				label.setStyle({color:'#0080c9',border:'none',fontSize:'10px',backgroundColor:'transparent'});
+				map.addOverlay(label);
+				var rcount = rp.getNumRoutes();
+				for(var i=0;i<rcount;i++){
+					var r = rp.getRoute(i);
+					var p = new BMap.Polyline(r.getPath());
+					map.addOverlay(p);
+				}
+			}
+		}});
+		dr.search(myPoint,point);
+		map.addOverlay(new BMap.Marker(myPoint,{icon:new BMap.Icon("images/me.png", new BMap.Size(25,40), {anchor:new BMap.Size(12,40)})}));
+		map.setViewport([point,myPoint]);
+	}
+	setTimeout(daohang,5000);
+}
+function daohang(){
+	
+	g.getCurrentPosition(getCurrentPositionCallback,{timeout:4000});
+	
+}
+</script>
+</head>
+
+<body>
+<div class="fxbg">
+	<img class="img shipei" id="bg1" src="images/640_873_1.png" alt=""/>
+	<img class="img shipei" id="bg2" src="images/640_1136_1.png" alt=""/>
+	<div class="btn1">
+		<div id="baidu_map" class="fly"></div>
+		<a href="javascript:track(channel,'5962','m1.html')" id="m1" class="fly"></a>
+		<a href="javascript:track(channel,'5963','http://m.dell.com/mt/china.dell.com/cn/p/xps-11-9p33/pd')" id="m2" class="fly"></a>
+	</div>
+</div>
+</body>
+</html>

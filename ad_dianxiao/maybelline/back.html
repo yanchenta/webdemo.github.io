@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+
+<title>美宝莲</title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script>
+	function showStep2(){
+		document.querySelector('.step1').style.display = 'none';
+		document.querySelector('.step2').style.display = 'block';
+	}
+	function showStep3(){
+		document.querySelector('.step2').style.display = 'none';
+		document.querySelector('.step3').style.display = 'block';
+	}
+</script>
+</head>
+
+<body>
+
+	<div class="container">
+    	<figure><img src="images/p2.jpg" alt="" /></figure>
+        
+       <div class="step step1">
+       		<a class="butt" href="javascript:showStep2();">领取试用装</a>
+       </div>
+       
+       <div class="step step2" style="display:none;">
+       		<p>确认领取粉底液试用装 ?</p>
+       		<a class="butt" href="javascript:showStep3();">确认</a>
+       </div>
+       
+       <div class="step step3" style="display:none;">
+       		<p><br/>恭喜，领取成功。</p>
+       </div>   
+    </div>
+	
+
+</body>
+</html>

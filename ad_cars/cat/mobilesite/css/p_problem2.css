@@ -1,0 +1,150 @@
+/*样式重置*/
+*{
+	padding: 0;
+	margin: 0;
+}
+a{
+	text-decoration: none;
+}
+/*frame样式*/
+.frame{
+	width: 640px;
+	position: relative;
+}
+/*header样式*/
+.header{
+	position: fixed;
+	top: 0;
+	width: 640px;
+	height: 96px;
+	background: url(../images/logo.png) no-repeat;
+}
+/*content样式*/
+.content{padding-bottom: 30px;
+}
+.content_pro{
+	width: 640px;
+	height: 112px;
+	background: url(../images/p_problem2.png);
+	position: relative;
+}
+.content_pro a{
+	position: absolute;
+	top: 28px;
+	left: 20px;
+}
+h1{
+	text-align: center;
+	margin: 20px 0;
+	font-size: 28px;
+	font-weight: bold;
+	color: #333333;
+}
+.content_one{
+	width: 584px;
+	padding: 0 28px;
+}
+.content_one p{
+	margin: 30px 0 6px 0;
+	font-size: 26px;
+	font-weight: bold;
+	color: #494949;
+}
+.content_one1{
+	width: 615px;
+	height: 75px;
+	margin: 10px auto;
+		
+	background-image:url('../images/p_problems_content_top2.jpg');
+	background-size:615px 75px;
+	background-position:center;
+	background-repeat:no-repeat;
+}
+.p-problem2-left,.p-problem2-right{
+	width: 50%;
+	height: 74px;
+	float: left;
+}
+.text{
+	width: 582px;
+	height: 80px;
+	font-size: 28px;
+	border: 1px #494949 solid;
+}
+textarea{
+	width: 582px;
+	height: 210px;
+	font-size: 28px;
+	border: 1px #494949 solid;
+	margin-bottom: 20px; 
+}
+/*.content_one_div{
+	width: 440px;
+	height: 92px;
+	padding-left: 142px; 
+	padding-top: 8px;
+	background: url(../images/p_fl.png);
+	overflow: hidden;
+	border: 1px red solid;
+}
+select{
+	width: 440px;
+	height: 82px;
+	padding:22px 100px;
+	line-height: 82px;
+	background: transparent;
+	font-size: 28px;
+	border: none;
+	background: orange;
+}*/
+.content_one_div{
+	width: 584px;
+	height: 98px;
+	background: url(../images/p_fl.png);
+	position: relative;
+}
+select#fenlei{
+	font-size: 28px;
+	width: 418px;
+	height: 38px;
+	line-height: 38px;
+	float: right;
+	position: absolute;
+	top: 30px;
+	left: 160px;
+	border: none;
+	background: transparent;
+}
+select#fenlei:focus{
+	outline: none;
+}
+.content_one a{
+	display: inline-block;
+	width: 574px;
+	height: 84px;
+	background: url(../images/p_submit.png);
+	line-height: 84px;
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	color: #494949;
+	margin-top: 20px; 
+}
+
+.content_two{
+	width: 640px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	color: #494949;
+}
+/*footer样式*/
+.footer{
+	padding: 0 10px 100px;
+}
+.footer a{
+	float: left;
+	width: 33%;
+}

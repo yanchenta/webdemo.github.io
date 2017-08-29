@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<meta charset="utf-8"/>
+	<title>宝马 X1</title>
+	<style type="text/css">
+		html body{
+			min-width:640px;
+			max-width:640px;
+			width:640px;
+			height:2934px;
+			background-image:url('images/bg1.jpg');
+			background-size:640px 2934px;
+			padding-top:0px;
+			padding-left:0px;
+			margin-top:0px;
+			margin-left:0px;
+		}
+		.banner{
+			width:100%;
+			height:360px;
+			position:relative;
+		}
+		.banner-button{
+			position:absolute;
+			cursor:pointer;
+			width:200px;
+			height:50px;
+			position:absolute;
+			left:400px;
+			top:300px;
+		}
+		.main-body{
+			position:relative;
+		}
+		.notice{
+			max-width:640px;
+			width:640px;
+			height:2934px;
+			background-image:url('images/bg2.jpg');
+			background-size:640px 2934px;
+			position:absolute;
+			left:0px;
+			top:0px;
+			display:none;
+		}
+		.text-xing{
+			position:absolute;
+			width:135px;
+			height:30px;
+			left:130px;
+			top:280px;
+		}
+		.text-ming{
+			position:absolute;
+			width:140px;
+			height:30px;
+			left:380px;
+			top:280px;
+		}
+		.radio-nan{
+			position:absolute;
+			width:25px;
+			height:25px;
+			left:198px;
+			top:333px;
+		}
+		.radio-nv{
+			position:absolute;
+			width:25px;
+			height:25px;
+			left:371px;
+			top:333px;
+		}
+		.select-provinces{
+			position:absolute;
+			width:372px;
+			height:40px;
+			left:190px;
+			top:370px;
+		}
+		.select-cities{
+			position:absolute;
+			width:372px;
+			height:40px;
+			left:190px;
+			top:420px;
+		}
+		.select-providers{
+			position:absolute;
+			width:482px;
+			height:40px;
+			left:80px;
+			top:500px;
+		}
+		.text-phone{
+			position:absolute;
+			width:440px;
+			height:30px;
+			left:80px;
+			top:590px;
+		}
+		
+		input{
+			font-size:2em;
+		}
+		select{
+			font-size:1.5em;
+		}
+		.btn-notice{
+			position:absolute;
+			width:240px;
+			height:40px;
+			left:295px;
+			top:730px;
+			cursor:pointer;
+		}
+		.select-plantobuy{
+			position:absolute;
+			width:150px;
+			height:40px;
+			left:410px;
+			top:635px;
+			cursor:pointer;
+		}
+		.checkbox-needConnect{
+			position:absolute;
+			width:35px;
+			height:35px;
+			left:490px;
+			top:685px;
+			cursor:pointer;
+		}
+		.checkbox-readnotice{
+			position:absolute;
+			width:35px;
+			height:35px;
+			left:540px;
+			top:730px;
+			cursor:pointer;
+		}
+		
+		.btn-submit-form{
+			position:absolute;
+			width:240px;
+			height:65px;
+			left:200px;
+			top:805px;
+			cursor:pointer;
+		}
+
+	</style>
+	
+</head>
+<body>
+	<div class="banner">
+		<div class="banner-button"></div>
+	</div>
+	<div class="main-body">
+		<input class="text-xing" type="text" value=""/>
+		<input class="text-ming" type="text" value=""/>
+		<input class="radio-nan" name="radio-sex" type="radio"/>
+		<input class="radio-nv" name="radio-sex" type="radio"/>
+		<select class="select-provinces" type="text">
+		</select>
+		<select class="select-cities" type="text">
+		</select>
+		<select class="select-providers" type="text">
+		</select>
+		<input class="text-phone" type="text" value=""/>
+		<select class="select-plantobuy" type="text">
+			<option value="">请选择</option>
+			<option value="3个月以内">3个月以内</option>
+			<option value="3-6个月">3-6个月</option>
+			<option value="6-12个月">6-12个月</option>
+			<option value="1年以上">1年以上</option>
+			<option value="暂无打算">暂无打算</option>
+		</select>
+		<input class="checkbox-needConnect" type="checkbox" checked="false"/>
+		<input class="checkbox-readnotice" type="checkbox" />
+		<div class="btn-notice"></div>
+		<div class="btn-submit-form"></div>
+	</div>
+	<div class="footer"></div>
+	<div class="notice"></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/ajaxes.js"></script>
+
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-48350683-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript" src="js/json.js"></script>
+<script type="text/javascript">
+	function loadProviders(providersSelect, city){
+		for(var i = providersSelect.options.length - 1; i >= 0; i--)
+		{
+			providersSelect.options.remove(i);
+		}
+		var _providers = null;
+		var isGetIt = false;
+		for(var i = 0; i < dicCodes.length; i++)
+		{
+			for(var j = 0; j < dicCodes[i].Cities.length; j++)
+			{
+				if(city == dicCodes[i].Cities[j].cName){
+					_providers = dicCodes[i].Cities[j].Dealers;
+					isGetIt = true;
+					break;
+				}
+			}
+			if(isGetIt) break;
+		}
+		
+		for(var i = 0; i < _providers.length; i++)
+		{
+			var elem_prov = document.createElement("option");
+			elem_prov.value = _providers[i].dName;
+			elem_prov.text = _providers[i].dName;
+			providersSelect.options.add(elem_prov);
+		}
+	}
+
+	function loadCities(citiesSelect, providersSelect, province){
+		
+		for(var i = citiesSelect.options.length - 1; i >= 0; i--)
+		{
+			citiesSelect.options.remove(i);
+		}
+		var cities = null;
+		for(var i = 0; i < dicCodes.length; i++)
+		{
+			if(dicCodes[i].pName == province)
+			{
+				cities = dicCodes[i].Cities;
+				break;
+			}
+		}
+		
+		for(var i = 0; i < cities.length; i++)
+		{
+			var elem_city = document.createElement("option");
+			elem_city.value = cities[i].cName;
+			elem_city.text = cities[i].cName;
+			citiesSelect.options.add(elem_city);
+		}
+		citiesSelect.onchange = function(){
+			loadProviders(providersSelect, this.value);
+		};
+	}
+	
+	//地址单选列表(级联)
+	function loadProvinces(provincesSelect, citiesSelect, providersSelect)
+	{
+		var _provinces = [];
+		
+		for(var i = 0; i < dicCodes.length; i++)
+		{
+			_provinces.push(dicCodes[i].pName);
+		}
+			for(var i = 0; i < _provinces.length; i++)
+			{
+				var elem_pro = document.createElement("option");
+				elem_pro.value = _provinces[i];
+				elem_pro.text = _provinces[i];
+				elem_pro.style.height = "30px";
+				provincesSelect.options.add(elem_pro);
+			}
+			provincesSelect.onchange = function(){
+				loadCities(citiesSelect, providersSelect, this.value);
+				window.setTimeout(function(){
+					citiesSelect.onchange();
+				}, 500);
+			}
+	}
+
+	function resetPage() {
+		var deviceWidth = document.documentElement.clientWidth;
+		//alert(deviceWidth);
+		var scale = deviceWidth / 640;
+		document.body.style.zoom = scale;
+	}
+	
+	window.onresize = function() {
+		resetPage();
+	}
+
+	window.onload = function() {
+		resetPage();
+		track2(channelCodes.channel_id, channelCodes.track_codes.page_pv);
+	}
+	
+function initBeforeOnload(){
+	var btn1 = document.getElementsByClassName("banner-button")[0];
+	btn1.onclick = function(){
+		//track2(channelCodes.channel_id, channelCodes.track_codes.link_guanwang);
+		//_gaq.push(["_trackEvent", "Link", "BMW"]);
+		
+		//window.location.href = "http://www.bmw.com.cn/cn/zh/newvehicles/x/x1/2012/showroom/price_promotions/spring_promotion/spring_promotion.html";
+		
+	};
+	
+	//打开声明和关闭声明
+	var btn_notice = document.getElementsByClassName("btn-notice")[0];
+	btn_notice.onclick = function(){
+		document.getElementsByClassName("notice")[0].style.display = "block";
+	};
+	var div_notice = document.getElementsByClassName("notice")[0];
+	div_notice.onclick = function(){
+		this.style.display = "none";
+	};
+	
+	//省市区加载数据
+	
+	//提交事件
+	var div_notice = document.getElementsByClassName("btn-submit-form")[0];
+	div_notice.onclick = function(){
+		//alert("提交表单");
+		var _xing = document.getElementsByClassName("text-xing")[0].value;
+		var _ming = document.getElementsByClassName("text-ming")[0].value;
+		var _ismale = document.getElementsByClassName("radio-nan")[0].checked;
+		var _isfemale = document.getElementsByClassName("radio-nv")[0].checked;
+		var _province = document.getElementsByClassName("select-provinces")[0].value;
+		var _city = document.getElementsByClassName("select-cities")[0].value;
+		var _provider = document.getElementsByClassName("select-providers")[0].value;
+		var _phoneNum = document.getElementsByClassName("text-phone")[0].value;
+		var when_buy = document.getElementsByClassName("select-plantobuy")[0].value;
+		
+		var needConnect = document.getElementsByClassName("checkbox-needConnect")[0].checked;;
+		var readNotice = document.getElementsByClassName("checkbox-readnotice")[0].checked;;
+		
+		if("" == _xing){
+			alert("请您填写姓氏");
+			return;
+		}
+		if("" == _ming){
+			alert("请您填写名字");
+			return;
+		}
+		if(!_ismale && !_isfemale){
+			alert("请您选择性别");
+			return;
+		}
+		
+		if(null == _province || "" == _province){
+			alert("请您选择经销商所在省份");
+			return;
+		}
+		if(null == _city || "" == _city){
+			alert("请您选择经销商所在城市");
+			return;
+		}
+		if(null == _provider || "" == _provider){
+			alert("请您选择经销商");
+			return;
+		}
+		
+		if(null == _phoneNum.match(/^\d{11}$/)){
+			alert("请确认您的手机号码，应为为11位数字");
+			return;
+		}
+				
+		if(null == when_buy || "" == when_buy){
+			alert("请您选择购买意向");
+			return;
+		}
+		
+		if(!readNotice){
+			alert("请确认您已阅读\"个人信息保护法律声明\"");
+			return;
+		}
+		
+		
+		//var url = "http://test.zhangkuo.net/advmessage/adv/addResultJsonP.action?advid=10057";
+		var url = "http://track.mobile1.com.cn/advmessage/adv/addResultJsonP.action?advid=10057";
+		var paramStr = "";
+		if("" != _xing && "" != _ming){
+			paramStr += "&realname=" + _xing + _ming;
+		}
+		
+		if(_ismale){
+			paramStr += "&sex=1";
+		}
+		else if(_isfemale){
+			paramStr += "&sex=2";
+		}
+		
+		if("" != _province){
+			paramStr += "&provincename=" + _province;
+		}
+		if("" != _city){
+			paramStr += "&cityname=" + _city;
+		}
+		if("" != _provider){
+			paramStr += "&expand4=" + _provider;
+		}
+		if(needConnect){//1=>需要联系
+			paramStr += "&expand1=1";
+		}
+		else{//2=>不需要联系
+			paramStr += "&expand1=2";
+		}
+
+		paramStr += "&expand2=" + when_buy;
+		paramStr += "&mobile=" + _phoneNum;
+		
+		url += paramStr;
+		
+		//ajax=>url
+		ajax(url, function(response){
+			if(!!response && !!response.length && response.length > 0){
+				if(1 === response[0].success){
+					alert("提交成功！");
+					document.getElementsByClassName("text-xing")[0].value = null;
+					document.getElementsByClassName("text-ming")[0].value = null;
+					document.getElementsByClassName("radio-nan")[0].checked = false;
+					document.getElementsByClassName("radio-nv")[0].checked = false;
+					document.getElementsByClassName("select-provinces")[0].value = null;
+					document.getElementsByClassName("select-cities")[0].value = null;
+					document.getElementsByClassName("select-providers")[0].value = null;
+					document.getElementsByClassName("text-phone")[0].value = "";;
+				}
+				else{
+					alert(response[0].info);
+				}
+				_gaq.push(['_trackPageview', '/RegisDone']);
+			}
+			
+		});
+		
+		track2(channelCodes.channel_id, channelCodes.track_codes.submit_form);
+		
+	};
+	
+	var provincesSelector = document.getElementsByClassName("select-provinces")[0];
+	var citiesSelector = document.getElementsByClassName("select-cities")[0];
+	var providersSelector = document.getElementsByClassName("select-providers")[0];
+	loadProvinces(provincesSelector, citiesSelector, providersSelector);
+	provincesSelector.onchange();
+	
+};
+	initBeforeOnload();
+</script>
+</html>

@@ -1,0 +1,22 @@
+@import "reset.css";
+
+html,body{ background:#f9e4d2;}
+
+.container{min-width:320px;max-width:1024px; margin:0 auto; position:relative;}
+img{width:100%;display:block;}
+
+.map{width:100%; position:relative;}
+#tit{width:20%; position:absolute;top:-15%;left:3%;z-index:1;}
+#text{width:51.5%; position:absolute;top:25%;left:30%;z-index:0;}
+#text1{width:51.5%; position:absolute;top:25%;left:30%;z-index:0;}
+
+.f{margin-top:6px;}
+.f p{line-height:34px;font-size:12px;}
+.butt{color:#fff;display:inline-block;width:172px;height:30px;line-height:30px;text-align:center;border-radius:10px; background:-webkit-gradient(linear,0 0,0 100%,from(#ebac76),to(#d68c4d));}
+.f label{display:inline-block;width:133px;line-height:34x; text-align:right;}
+.f input{width:172px;height:30px; border:1px solid #ccc;border-radius:10px;}
+
+.step{ text-align:center;padding-bottom:30px;}
+
+.step1{margin-top:20px;}
+.step2 p{line-height:40px;margin-top:10px;}

@@ -1,0 +1,62 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>好兄弟，一起赢！推荐Cat赢好礼！</title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/trackEvent.js"></script>
+
+<style>
+html,body{background-color:rgb(0,0,0);}
+</style>
+<script>
+$(document).ready(function(){
+	track(channel,5868);
+	$.cookie("c","1");
+	if($.cookie("c") != "1"){
+		alert("您的设备已禁用Cookie，将无法参加抽奖活动！");
+	}
+	if(request("utm_source")){
+		$.cookie("utm_source",request("utm_source"));
+		$.cookie("utm_medium",request("utm_medium"));
+		$.cookie("utm_content",request("utm_content"));
+		$.cookie("utm_campaign",request("utm_campaign"));
+	}else{
+		$.cookie("utm_source",request("hmsr"));
+		$.cookie("utm_medium",request("hmmd"));
+		$.cookie("utm_content",request("hmpl"));
+		$.cookie("utm_campaign",request("hmkw"));
+		$.cookie("hmci",request("hmci"));
+	}
+});
+</script>
+</head>
+
+<body>
+<div class="fxbg">
+<img class="img" src="images/1.jpg" alt="" />
+<div class="btn1">
+	<a id="link2" href="javascript:track(channel,5869,'m1-1.html');" class="fly"></a>
+	<a id="link1" href="javascript:track(channel,5870,'m2-1.html');" class="fly"></a>
+</div>
+<div class="btn2">
+	<img src="images/m1.png" />
+    <a  id="m1" class="fly"></a>
+    <a href="m2-1.html" id="m2" class="fly"></a>
+    <a href="m3.html" id="m3" class="fly"></a>
+    <a href="http://catwaji.mobileone.com.cn/?hmsr=tuijian&hmmd=textlink&hmpl=cat&hmkw=1&hmsr=laohuji&hmmd=textlink&hmpl=cat&hmkw=7&hmci=" onclick="track(channel,5879);" target="_blank" id="m4" class="fly"></a>
+</div>
+</div>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F7806fb04910c5a23ba1a514fbea0a5bb' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

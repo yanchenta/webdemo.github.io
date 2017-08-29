@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="keywords" content=""/>
+	<meta name="description" content=""/>
+	<title>KFC</title>
+<style>
+	body{
+		font-family:微软雅黑,Microsoft Yahei,Tahoma,Arial,sans-serif;
+		padding:0px;
+		margin:0px;
+		outline:none;
+	}
+	img {  
+		height: auto;
+		max-width: 100%;
+		width: auto;
+		display:block;
+	}
+	.fxbg{
+		position:relative;
+		height:100%;
+		min-width:320px;max-width:640px;margin:0 auto; 
+	}
+	#btn1{
+		position:absolute;width: 100%;
+		height:100%;
+		top:0;
+		left:0;
+		text-align:center;
+		padding-top:0%;
+		z-index: 2;
+	}
+	#btn2{
+		position:fixed;
+		width: 100%;
+		bottom:0;
+		text-align:center;
+		padding-top:0%;
+		z-index: 3;
+	}
+	#home{
+		width:10%;
+		height:11%;
+		left:4%;
+		top:2%;
+	}
+	#link1{
+		width:90%;
+		height:15%;
+		left:5%;
+		top:67%;
+	}
+	.fly{
+		display:inline-block;
+		position:absolute;
+		box-sizing:border-box;
+		--border:1px solid red;
+	}
+</style>
+</head>
+
+<body>
+<div class="fxbg">
+	<img src="../images/qr_3.jpg"/>
+	<div id="btn1">
+		<a href="javascript:location='../index.html'" id="home" class="fly"></a>
+		<a href="javascript:;" id="link1" class="fly"></a>
+	</div>
+	<div id="btn2">
+		<img src="../images/qr_2.png"/>
+	</div>
+</div>
+</body>
+
+<script type="text/javascript">
+		
+	//获取最后一个匹配字符所在的位置
+	function getLastStringIndex(str, _chr){
+		var subIdx = 0;
+		var lastCharIdx = str.indexOf(_chr);
+		
+		//alert(lastCharIdx);
+		while(subIdx > -1 && (lastCharIdx + 1) < str.length){
+			//alert(str.substring(lastCharIdx + 1));
+			subIdx = str.substring(lastCharIdx + 1).indexOf(_chr);
+			lastCharIdx = subIdx + lastCharIdx + 1;
+		}
+		return lastCharIdx;
+	}
+	
+	function isValidateModleName(mName){
+		var isValidate = false;
+		switch(mName){
+			case "banner"://视频暂停标版：banner
+				isValidate = true;
+				break;
+				
+			case "dtv"://数字电视开机画面：dtv
+				isValidate = true;
+				break;
+
+			case "dtv2"://数字电视内页：dtv2
+				isValidate = true;
+				break;
+
+			case "ooh"://户外：ooh
+				isValidate = true;
+				break;
+			
+			case "wifi"://户外灯箱+WIFI热点:wifi
+				isValidate = true;
+				break;
+			
+			case "store"://餐厅海报、易拉宝、桌贴:store
+				isValidate = true;
+				break;
+			
+			case "toutiao"://今日头条:toutiao
+				isValidate = true;
+				break;
+			
+			case "163"://网易新闻:163
+				isValidate = true;
+				break;
+			
+			default:
+				isValidate = false;
+				break;
+		}
+		return isValidate;
+	}
+	
+	//........................获取url中的模块名称.........................start...
+	var lastUrl = null;
+	/*if(!!window.document.referrer){
+		lastUrl = window.document.referrer;
+	}
+	else if(!!window.document.opener){
+		lastUrl = window.document.opener;
+	}
+	else */{
+		lastUrl = window.location.href;
+	}
+	
+	var endCharIdx = getLastStringIndex(lastUrl, '/');
+	var stCharIdx = getLastStringIndex(lastUrl.substring(0, endCharIdx), '/') + 1;
+	
+	var moduleName = lastUrl.substring(stCharIdx, endCharIdx);
+	
+	//如果是从未知的渠道跳转，则从当前所在的URL重新判断
+	if(!isValidateModleName(moduleName)){
+		lastUrl = window.location.href;
+		
+		endCharIdx = getLastStringIndex(lastUrl, '/');
+		stCharIdx = getLastStringIndex(lastUrl.substring(0, endCharIdx), '/') + 1;
+		moduleName = lastUrl.substring(stCharIdx, endCharIdx);
+	}
+	
+	
+	//........................获取url中的模块名称.........................end.....
+	
+	//........................使用ua判断页面所在场景......................start...
+	var ua = navigator.userAgent.toLowerCase();
+	
+	var isWeixin = ua.indexOf("micromessenger") >= 0;
+	var isAndroid = ua.indexOf("android") >= 0;
+	var isIos = (/iphone|ipad/gi).test(navigator.appVersion);
+	
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+//Miaozhen Base Code Start
+  _mzh=window._mzh || []; _mzt=window._mzt || []; _mz_dp=window._mz_dp || [];
+  _mzh.push(
+    ['mevt._x_utm'], ['mevt._x_lid'], ['mimp._x_lid'], ['mclk._x_lid'],
+    ['mevt._urlpre', 'http://msg.mbm.cn.miaozhen.com/e.gif'],
+    ['mimp._urlpre', 'http://g.mbm.cn.miaozhen.com/x.gif'],
+    ['mclk._urlpre', 'http://e.mbm.cn.miaozhen.com/r.gif']
+  );
+  (function(){
+    var mz=document.createElement('script');
+    mz.type='text/javascript';mz.async=true;mz.src='http://js.miaozhen.com/t.js';
+    var t=document.getElementsByTagName('script')[0];
+    t.parentNode.insertBefore(mz,t);
+  })();
+  function _mz_mevt(ae,n) {_mzh.push(['mevt._set_ae', ae], ['mevt._set_n', n], ['mevt._send']);}
+  function _mz_mimp(k,p) {_mzh.push(['mimp._set_k', k], ['mimp._set_p', p],['mimp._send']);}
+  function _mz_mclk(k,p) {_mzh.push(['mclk._set_k', k], ['mclk._set_p', p],['mclk._send']);}
+  function _mz_simple(cmd) {_mzh.push(['_simple',cmd]);}
+  function _mz_simple_param(n,k,v) {_mz_dp[n]=_mz_dp[n]||{};_mz_dp[n][k]=v;}
+  function _mz_timer_start(n,u) {_mzt.push(n);if(u)_mzh.push([n+'._urlpre',u]);_mz_simple(n+'._timer_start');}
+  function _mz_timer_start_x(n,u) {for(i=0;i<=_mzt.length;i++)_mz_timer_stop(_mzt[i]); _mzt=[];_mzt.push(n);_mz_timer_start(n,u);}
+  function _mz_timer_stop(n) {_mz_simple(n+'._timer_stop');}
+  _mz_simple_param(0,'timer_start',[10,30*60,0,'v','st:$1,si:$2,']);
+//Miaozhen Base Code End
+//]]>
+</script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript">
+	//pv track.................................................................................
+	window.onload = function(){
+		switch(moduleName){
+			case "163"://网易新闻:163
+				track2(channelCodes.channel._163, channelCodes.track_codes._163_pv);
+				break;
+			
+			case "banner"://视频暂停标版：banner
+				track2(channelCodes.channel._banner, channelCodes.track_codes._banner_pv);
+				break;
+			
+			case "dtv"://数字电视开机画面：dtv
+				track2(channelCodes.channel._dtv, channelCodes.track_codes._dtv_pv);
+				break;
+			
+			case "dtv2"://数字电视内页：dtv2
+				track2(channelCodes.channel._dtv2, channelCodes.track_codes._dtv2_pv);
+				break;
+			
+			case "ooh"://户外：ooh
+				track2(channelCodes.channel._ooh, channelCodes.track_codes._ooh_pv);
+				break;
+			
+			case "wifi"://户外灯箱+WIFI热点:wifi
+				track2(channelCodes.channel._wifi, channelCodes.track_codes._wifi_pv);
+				break;
+			
+			case "store"://餐厅海报、易拉宝、桌贴:store
+				track2(channelCodes.channel._store, channelCodes.track_codes._store_pv);
+				break;
+			
+			case "toutiao"://今日头条:toutiao
+				track2(channelCodes.channel._toutiao, channelCodes.track_codes._toutiao_pv);
+				break;
+			
+			default:
+				break;
+		}
+		_mz_mevt('162', '1625');//mz-pv
+	}
+	
+	//click track..................................................................................
+	document.getElementById("link1").onclick = function(){
+		//android_weixin url
+		var aw_url = "http://dd.myapp.com/16891/D5182847DB44CE2B7B04391203A10428.apk?fsname=com%2Eyum%2Emos%2Ekfc%2Epreorder%5F1%2E8%5F3.apk";
+		//ios url
+		var ios_url = "http://order.kfc.com.cn/download/iphone.htm";
+		switch(moduleName){
+			case "163"://网易新闻:163
+				if(isAndroid){
+					_mz_mevt('162', '1626');//mz-android
+					
+					if(isWeixin){
+						//track2(channelCodes.channel._163, channelCodes.track_codes._163_andriod_download, aw_url);
+						setTimeout(function(){
+							window.location.href = aw_url;
+						}, 500);
+					}
+					else{
+						var url = "http://order.kfc.com.cn/download/kfcpreorder-163.apk";
+						//track2(channelCodes.channel._163, channelCodes.track_codes._163_andriod_download, url);
+						setTimeout(function(){
+							window.location.href = url;
+						}, 500);
+					}
+				}
+				else if(isIos){
+					_mz_mevt('162', '1627');//mz-ios
+					
+					//track2(channelCodes.channel._163, channelCodes.track_codes._163_ios_download, ios_url);
+					setTimeout(function(){
+						window.location.href = ios_url;
+					}, 500);
+				}
+				break;
+				
+			case "banner"://视频暂停标版：banner
+				if(isAndroid){
+					_mz_mevt('162', '1626');//mz-android
+					
+					if(isWeixin){
+						//track2(channelCodes.channel._banner, channelCodes.track_codes._banner_android_download, aw_url);
+						setTimeout(function(){
+							window.location.href = aw_url;
+						}, 500);
+					}
+					else{
+						var url = "http://order.kfc.com.cn/download/kfcpreorder-banner.apk";
+						//track2(channelCodes.channel._banner, channelCodes.track_codes._banner_android_download, url);
+						setTimeout(function(){
+							window.location.href = url;
+						}, 500);
+					}
+				}
+				else if(isIos){
+					_mz_mevt('162', '1627');//mz-ios
+					
+					//track2(channelCodes.channel._banner, channelCodes.track_codes._banner_ios_download, ios_url);
+						setTimeout(function(){
+							window.location.href = ios_url;
+						}, 500);
+				}
+				break;
+
+			case "dtv"://数字电视开机画面：dtv
+				if(isAndroid){
+					_mz_mevt('162', '1626');//mz-android
+					
+					if(isWeixin){
+						//track2(channelCodes.channel._dtv, channelCodes.track_codes._dtv_android_download, aw_url);
+						setTimeout(function(){
+							window.location.href = aw_url;
+						}, 500);
+					}
+					else{
+						var url = "http://order.kfc.com.cn/download/kfcpreorder-dtv.apk";
+						//track2(channelCodes.channel._dtv, channelCodes.track_codes._dtv_android_download, url);
+						setTimeout(function(){
+							window.location.href = url;
+						}, 500);
+					}
+				}
+				else if(isIos){
+					_mz_mevt('162', '1627');//mz-ios
+					
+					//track2(channelCodes.channel._dtv, channelCodes.track_codes._dtv_ios_download, ios_url);
+					setTimeout(function(){
+							window.location.href = ios_url;
+						}, 500);
+				}
+				break;
+			
+			case "dtv2"://数字电视内页：dtv2
+				if(isAndroid){
+					_mz_mevt('162', '1626');//mz-android
+					
+					if(isWeixin){
+						//track2(channelCodes.channel._dtv2, channelCodes.track_codes._dtv2_andriod_download, aw_url);
+						setTimeout(function(){
+							window.location.href = aw_url;
+						}, 500);
+					}
+					else{
+						var url = "http://order.kfc.com.cn/download/kfcpreorder-dtv2.apk";
+						//track2(channelCodes.channel._dtv2, channelCodes.track_codes._dtv2_andriod_download, url);
+						setTimeout(function(){
+							window.location.href = url;
+						}, 500);
+					}
+				}
+				else if(isIos){
+					_mz_mevt('162', '1627');//mz-ios
+					
+					//track2(channelCodes.channel._dtv2, channelCodes.track_codes._dtv2_ios_download, ios_url);
+						setTimeout(function(){
+							window.location.href = ios_url;
+						}, 500);
+				}
+				break;
+		
+			case "ooh"://户外：ooh
+				if(isAndroid){
+					_mz_mevt('162', '1626');//mz-android
+					
+					if(isWeixin){
+						//track2(channelCodes.channel._ooh, channelCodes.track_codes._ooh_andriod_download, aw_url);
+						setTimeout(function(){
+							window.location.href = aw_url;
+						}, 500);
+					}
+					else{
+						var url = "http://order.kfc.com.cn/download/kfcpreorder-ooh.apk";
+						//track2(channelCodes.channel._ooh, channelCodes.track_codes._ooh_andriod_download, url);
+						setTimeout(function(){
+							window.location.href = url;
+						}, 500);
+					}
+				}
+				else if(isIos){
+					_mz_mevt('162', '1627');//mz-ios
+					
+					//track2(channelCodes.channel._ooh, channelCodes.track_codes._ooh_ios_download, ios_url);
+					setTimeout(function(){
+							window.location.href = ios_url;
+						}, 500);
+				}
+				break;
+		
+			case "wifi"://户外灯箱+WIFI热点:wifi
+				if(isAndroid){
+					_mz_mevt('162', '1626');//mz-android
+					
+					if(isWeixin){
+						//track2(channelCodes.channel._wifi, channelCodes.track_codes._wifi_andriod_download, aw_url);
+						setTimeout(function(){
+							window.location.href = aw_url;
+						}, 500);
+					}
+					else{
+						var url = "http://order.kfc.com.cn/download/kfcpreorder-wifi.apk";
+						//track2(channelCodes.channel._wifi, channelCodes.track_codes._wifi_andriod_download, url);
+						setTimeout(function(){
+							window.location.href = url;
+						}, 500);
+					}
+				}
+				else if(isIos){
+					_mz_mevt('162', '1627');//mz-ios
+					
+					//track2(channelCodes.channel._wifi, channelCodes.track_codes._wifi_ios_download, ios_url);
+						setTimeout(function(){
+							window.location.href = ios_url;
+						}, 500);
+				}
+				break;
+			
+			case "store"://餐厅海报、易拉宝、桌贴:store
+				if(isAndroid){
+					_mz_mevt('162', '1626');//mz-android
+					
+					if(isWeixin){
+						//track2(channelCodes.channel._store, channelCodes.track_codes._store_andriod_download, aw_url);
+						setTimeout(function(){
+							window.location.href = aw_url;
+						}, 500);
+					}
+					else{
+						var url = "http://order.kfc.com.cn/download/kfcpreorder-store.apk";
+						//track2(channelCodes.channel._store, channelCodes.track_codes._store_andriod_download, url);
+						setTimeout(function(){
+							window.location.href = url;
+						}, 500);
+					}
+				}
+				else if(isIos){
+					_mz_mevt('162', '1627');//mz-ios
+					
+					//track2(channelCodes.channel._store, channelCodes.track_codes._store_ios_download, ios_url);
+						setTimeout(function(){
+							window.location.href = ios_url;
+						}, 500);
+				}
+				break;
+		
+			case "toutiao"://今日头条:toutiao
+				if(isAndroid){
+					_mz_mevt('162', '1626');//mz-android
+					
+					if(isWeixin){
+						//track2(channelCodes.channel._toutiao, channelCodes.track_codes._toutiao_andriod_download, aw_url);
+						setTimeout(function(){
+							window.location.href = aw_url;
+						}, 500);
+					}
+					else{
+						var url = "http://order.kfc.com.cn/download/kfcpreorder-toutiao.apk";
+						//track2(channelCodes.channel._toutiao, channelCodes.track_codes._toutiao_andriod_download, url);
+						setTimeout(function(){
+							window.location.href = url;
+						}, 500);
+					}
+				}
+				else if(isIos){
+					_mz_mevt('162', '1627');//mz-ios
+					
+					//track2(channelCodes.channel._toutiao, channelCodes.track_codes._toutiao_ios_download, ios_url);
+						setTimeout(function(){
+							window.location.href = ios_url;
+						}, 500);
+				}
+				break;
+			
+			default:
+				break;
+		}
+	}
+</script>
+
+
+<script type='text/javascript' src="js/track_yum.js"><!--yum trck codes--></script>
+
+</html>

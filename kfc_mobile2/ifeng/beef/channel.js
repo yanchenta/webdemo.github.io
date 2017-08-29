@@ -1,0 +1,1 @@
+var channel = '21', chann = 'ifeng';

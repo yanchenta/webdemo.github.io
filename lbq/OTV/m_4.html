@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>立邦刷新服务—在线报名</title>
+<!--<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" media="only screen and (device-aspect-ratio: 40/71)" href="css/iphone5/index.css"/>-->
+<link rel="stylesheet" type="text/css" href="css/iphone5/index.css"/>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/common.js"></script>
+<script src="js/trackEvent.js"></script>
+<script src="js/m_4.js"></script>
+<script src="js/ajaxes.js"></script>
+<style type="text/css">
+	.channel-from-outer{
+		background-image:url('images/4app-top-castfrom.png');
+		background-size:300px 89px;
+		background-position:top;
+		background-repeat:no-repeat;
+		
+		width:300px;
+		height:90px;
+		overflow-x:hidden;
+		position:relative;
+		margin-bottom:10px;
+		position:relative;
+	}
+	
+	.channel-from-inner{
+		position:absolute;
+		bottom:10px;
+		left:3px;
+		margin-bottom:0px;
+		position:absolute;
+		right:0px;
+	}
+	
+	input[type=checkbox]{
+		margin:0px 0px;
+		padding:0px 0px;
+		height:10px;
+		width:10px;
+		margin-left:1px;
+	}
+	.span-div{
+		vertical-align:top;
+		display:inline-block;
+		position:relative;
+	}
+	.span-div span{
+		margin:0px 0px;
+		padding:0px 0px;
+		font-size:10px;
+		font-family:HYj2gj;
+		top:4px;
+		position:absolute;
+	}
+	
+</style>
+</head>
+
+<body>
+<div class="content4">	
+	<!--<div class="bj"><img src="images/1app-bj.jpg"/></div>-->
+	<div class="home4">
+		 <div class="backBut"><img src="images/4app-an-1.png" alt="首页"><label>首页</label></div>
+		 <div class="backBut2"><img src="images/4app-an-2.png" alt=""></div>
+        <h3>在线报名</h3>
+	</div>
+	
+	<div class="all_cont">
+		<div class="channel-from-outer">
+			<div class="channel-from-inner">
+			<div style="color:red;vertical-align:top;display:inline-block;">*</div>
+			<div style="display:inline-block;">
+				<div class="row1">
+					<input class="checkbox-channel" type="checkbox" value="报纸"/>
+					<div class="span-div" style="width:23px;"><span>报纸&nbsp;</span></div>
+					<input class="checkbox-channel" type="checkbox" value="电视"/>
+					<div class="span-div" style="width:23px;"><span>电视&nbsp;</span></div>
+					<input class="checkbox-channel" type="checkbox" value="手册投递"/>
+					<div class="span-div" style="width:43px;"><span>手册投递&nbsp;</span></div>
+					<input class="checkbox-channel" type="checkbox" value="广播"/>
+					<div class="span-div" style="width:23px;"><span>广播&nbsp;</span></div>
+					<input class="checkbox-channel" type="checkbox" value="小区电梯海报"/>
+					<div class="span-div" style="width:65px;"><span>小区电梯海报&nbsp;</span></div>
+				</div>
+				<div class="row2">
+					<input class="checkbox-channel" type="checkbox" value="小区灯箱"/>
+					<div class="span-div" style="width:43px;"><span>小区灯箱&nbsp;</span></div>
+					<input class="checkbox-channel" type="checkbox" value="杂志"/>
+					<div class="span-div" style="width:23px;"><span>杂志&nbsp;</span></div>
+					<input class="checkbox-channel" type="checkbox" value="网络论坛"/>
+					<div class="span-div" style="width:43px;"><span>网络论坛&nbsp;</span></div>
+					<input class="checkbox-channel" type="checkbox" value="他人推荐"/>
+					<div class="span-div" style="width:43px;"><span>他人推荐&nbsp;</span></div>
+					<input class="checkbox-channel" type="checkbox" value="其他"/>
+					<div class="span-div" style="width:23px;"><span>其他</span></div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!--客户的基本信息-->
+		<div class="message">
+			<div class="tit">客户基本信息</div>
+			<div class="message_cont">
+				<div class="uname">
+					<div class="mess"><label>姓名</label><input class="txtname" type="text" name="" /></div>
+					<div class="sex">
+						<a class="boy" tagColor="blue">先生</a><a class="girl" tagColor="pink">女士</a>
+					</div>
+				</div>
+				
+				<div class="phone"><label>手机</label><input class="phonetxt" type="text" name="" /></div>
+				<div class="call"><label>固话</label><input class="calltxt" type="text" name="" /></div>
+				<div class="address"><label>详细地址</label><input class="addresstxt" name=""  onfocus="blur();"/></div>
+			</div>
+		</div>
+		
+		<!--地址选择-->
+		<div class="scroll-area">
+			<div class="sure">
+				<img src="images/4app-box-an.png" alt=""/>
+			</div>
+			<div class="m4-addressSelectedArea">
+				<div class="m4-provinces"></div>
+				<div class="m4-cities"></div>
+				<div class="m4-districts"></div>
+			</div>
+		</div>
+		
+		
+		<!--房屋的基本信息-->
+		<div class="house">
+			<div class="tit">房屋基本信息</div>
+			<div class="house_cont">
+				<div class="house-jg"><label>房屋结构</label><input class="house-jg-txt" type="text" name="" onfocus="blur();"/></div>
+				<div class="house-area"><label>建筑面积</label><input class="house-area-txt" type="text" name=""  onfocus="blur();"/></div>
+				<div class="house-age"><label>房龄</label><input class="house-age-txt" name=""  onfocus="blur();"/></div>
+				<div class="house-nx"><label>装修年限</label><input class="house-nx-txt" name=""  onfocus="blur();"/></div>
+			</div>
+		</div>
+		<div class="house-tk">
+			<div class="sure2"><img src="images/4app-box-an.png" /></div>
+			<div class="ting">
+				<a>1室0厅</a><a>1室1厅</a><a>2室0厅</a><a>2室1厅</a><a>2室2厅</a><a>3室1厅</a><a>3室2厅</a>
+				<a>4室及以上</a><a>别墅</a><a>复式</a><a>酒店</a><a>办公室</a><a>店面</a>
+			</div>
+			
+		</div>
+		<div class="house-area-tk">
+			<div class="sure2-2"><img src="images/4app-box-an.png" /></div>
+			<div class="ting2">
+				<a>0-30平方米</a><a>31-60平方米</a><a>61-90平方米</a><a>91-120平方米</a>
+				<a>121-150平方米</a><a>150平方米以上</a>
+			</div>
+			
+		</div>
+		<div class="house-age-tk">
+			<div class="sure2-3"><img src="images/4app-box-an.png" /></div>
+			<div class="ting3">
+				<a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a>
+				<a>11</a><a>12</a><a>13</a><a>14</a><a>15</a><a>16</a><a>17</a><a>18</a><a>19</a><a>20</a>
+				<a>21</a><a>22</a><a>23</a><a>24</a><a>25</a><a>26</a><a>27</a><a>28</a><a>29</a><a>30</a>
+			</div>
+			
+		</div>
+		<div class="house-nx-tk">
+			<div class="sure2-4"><img src="images/4app-box-an.png" /></div>
+			<div class="ting4">
+				<a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a>
+				<a>11</a><a>12</a><a>13</a><a>14</a><a>15</a><a>16</a><a>17</a><a>18</a><a>19</a><a>20</a>
+				<a>21</a><a>22</a><a>23</a><a>24</a><a>25</a><a>26</a><a>27</a><a>28</a><a>29</a><a>30</a>
+			</div>
+			
+		</div>
+		
+		<div class="scroll-area2"></div>
+		
+		
+		
+		<!--墙面问题-->
+		<div class="wall">
+			<div class="tit">墙面问题</div>
+			<div class="wall_cont">
+				<table class="tab" width="300" border="1" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td style="width:149px;">
+						<a class="pro0">裂变</a>
+					</td>
+					<td>
+						<a class="pro1">霉变</a>
+					</td>
+				  </tr>
+				  <tr>
+					<td style="width:149px;">
+						<a class="pro2">脱皮</a>
+					</td>
+					<td>
+						<a class="pro3">空鼓</a>
+					</td>
+				  </tr>
+				  <tr>
+					<td style="width:149px;">
+						<a class="pro4">改色</a>
+					</td>
+					<td>
+						<a class="pro5">陈旧</a>
+					</td>
+				  </tr>
+				  <tr> 
+					<td style="width:149px;">
+						<a class="pro6">污渍</a>
+					</td>
+					<td>
+						<a class="pro7">除味</a>
+					</td>
+				  </tr>
+				  <tr>
+					<td style="width:149px;">
+						<a class="pro8">新房装修</a>
+					</td>
+					<td>&nbsp;</td>
+				  </tr>
+				</table>
+			</div>
+		</div>
+		
+		
+	<!--内容结束-->
+	
+	</div>
+	
+	<!--nav-->
+	<nav id="wrapper" class="nav">
+		<ul>
+			<a href="#"><img src="images/button-4.png" /></a>
+			<a class="nav1" href="index-1.html"></a>
+			<a class="nav2" href="m_2.html"></a>
+			<a class="nav3" href="m_3.html"></a>
+			<a class="nav5" href="m_5.html"></a>
+			<a class="nav6" href="m_6.html"></a>
+		</ul>
+	</nav>
+
+	<!--弹框-->
+
+<!--content4 结束-->	
+</div>
+
+	<div class="subm-success">
+		<img src="images/4app-tck-green.png" alt="" />	
+		<div class="m4-notice-txt1">谢谢你的提交</div>
+		<div class="m4-close-snotice"></div>
+	</div>
+	<div class="subm-failure">
+		<img src="images/4app-tck-red.png" alt="" />	
+		<div class="m4-notice-txt2">
+			<!--客户名字不能为空</br>手机和固话必须填写其中一个-->
+		</div>
+		<div class="m4-close-fnotice"></div>
+	</div>
+
+
+</body>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript" src="js/mookie1_base.js"></script>
+</html>

@@ -1,0 +1,23 @@
+		html body{
+			width:640px;
+			max-width:640px;
+			height:960px;
+			max-height:960px;
+			margin:0px 0px;
+			
+			background-image:url('../images/share2-bg.jpg');
+			background-repeat:no-repeat;
+			background-position:left top;
+			background-size:640px 960px;
+		}
+		
+		.div-btn-share{
+			position:absolute;
+			top:880px;
+			left:215px;
+			
+			width:208px;
+			height:55px;
+			
+			cursor:pointer;
+		}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<meta charset="utf-8"/>
+	<title>高尔夫</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<style type="text/css">
+		.center-text{
+			background-image:url('images/m1-text.png');
+			background-position:center;
+			background-repeat:no-repeat;
+			width:477px;
+			height:166px;
+			
+			top:60px;
+			left:82px;
+			position:absolute;
+		}
+		.prize-area{
+			background-image:url('images/m1_prize.png');
+			background-position:center;
+			background-repeat:no-repeat;
+			width:352px;
+			height:120px;
+			
+			left:0px;
+			bottom:20px;
+			position:absolute;
+			cursor:pointer;
+		}
+
+		
+		.prize-area a{
+			width:100%;
+			height:120px;
+			display:inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="mainBody">
+		<div class="center-text"></div>
+		<div class="prize-area"></div>
+	</div>
+	<div class="footer">
+		<div class="bottom-btn"><a href="index.html"></a></div>
+		<div id="see-acti-intro-menu" class="bottom-btn"></div>
+		<div id="friend-num-menu" class="bottom-btn"></div>
+		<div class="bottom-btn"><a href="m4.html"></a></div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+
+<script type="text/javascript">
+	//监控
+	var winload = window.onload;
+	window.onload = function(){	
+		if(!!winload) winload();
+		track2(channelCodes.channel_id, channelCodes.track_codes.page_pv);
+	}
+	
+	$(".prize-area").click(function(){
+		track2(channelCodes.channel_id, channelCodes.track_codes.see_acti_detail);
+		window.location.href = "m2.html";
+	});
+	$("#see-acti-intro-menu").click(function(){
+		track2(channelCodes.channel_id, channelCodes.track_codes.see_acti_intro_click);
+		window.location.href = "m2.html";
+	});
+	$("#friend-num-menu").click(function(){
+		track2(channelCodes.channel_id, channelCodes.track_codes.friend_num_click);
+		window.location.href = "m3-1.html";
+	});
+</script>
+</html>

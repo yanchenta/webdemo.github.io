@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title></title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+	<!--<script src="js/jquery-1.4.4.min.js"></script>-->
+	<style type="text/css">
+		html body{
+			width:320px;
+			height:627px;
+			margin:0px 0px;
+			padding:0px 0px;
+			
+		}
+		.sub-mainbody0{
+			position:absolute;
+			left:0px;
+			top:0px;
+			
+			width:320px;
+			height:627px;
+			
+			margin:0px 0px;
+			padding:0px 0px;
+			
+			background-image:url('images/index-bg.jpg');
+			background-size:320px 627px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			display:block;
+		}
+		.img-containers{
+			position:absolute;
+			top:120px;
+			left:19px;
+			
+			width:292px;
+			height:450px;
+		}
+		.img-container0{
+			position:absolute;
+			cursor:pointer;
+			
+		}
+		#container01{
+			left:0px;
+			top:10px;
+			
+			width:137px;
+			height:137px;
+		}
+		#container02{
+			left:146px;
+			top:10px;
+			
+			width:137px;
+			height:137px;
+		}
+		#container03{
+			left:0px;
+			top:157px;
+			
+			width:137px;
+			height:137px;
+		}
+		#container04{
+			left:146px;
+			top:157px;
+			
+			width:137px;
+			height:137px;
+		}	
+		#container05{
+			left:0px;
+			top:304px;
+			
+			width:137px;
+			height:137px;
+		}
+		#container06{
+			left:146px;
+			top:304px;
+			
+			width:137px;
+			height:137px;
+		}
+		
+		.file-img{
+			position:absolute;
+			top:0px;
+			left:0px;
+			
+			max-width:137px;
+			max-height:137px;
+			x-index:1;
+		}
+		
+		.file-input{
+			position:absolute;
+			top:0px;
+			left:0px;
+			
+			width:137px;
+			height:137px;
+			opacity:0;
+			cursor:pointer;
+			
+			x-index:2;
+		}
+		
+		.btn-to-index{
+			position:absolute;
+			left:6px;
+			top:6px;
+			
+			width:30px;
+			height:30px;
+			
+			cursor:pointer;
+		}
+		.div-btn-reset{
+			position:absolute;
+			top:582px;
+			left:30px;
+			
+			width:115px;
+			height:30px;
+			
+			cursor:pointer;
+			
+		}
+		.div-btn-start{
+			position:absolute;
+			top:582px;
+			left:177px;
+			
+			width:115px;
+			height:30px;
+			
+			cursor:pointer;
+		}
+		
+		.sub-mainbody1{
+			position:absolute;
+			left:0px;
+			top:0px;
+			
+			width:1084px;
+			height:400px;
+			
+			background-image:url("images/fsteps-bg.jpg");
+			background-size:1084px 400px;
+			background-position:left top;
+			background-repeat:no-repeat;
+			
+			display:none;
+		}
+		
+		.float-img1{
+			position:absolute;
+			left:20px;
+			top:170px;
+			
+			width:105px;
+			height:105px;
+		}
+		/*#img11{
+			max-width:105px;
+			max-height:105px;
+		}*/
+		.float-img2{
+			position:absolute;
+			left:175px;
+			top:105px;
+			
+			width:125px;
+			height:125px;
+		}
+		/*#img12{
+			max-width:125px;
+			max-height:125px;
+		}*/
+		.float-img3{
+			position:absolute;
+			left:375px;
+			top:170px;
+			
+			width:95px;
+			height:95px;
+		}
+		/*#img13{
+			max-width:95px;
+			max-height:95px;
+		}*/
+		.float-img4{
+			position:absolute;
+			left:525px;
+			top:75px;
+			
+			width:95px;
+			height:95px;
+		}
+		/*#img14{
+			max-width:95px;
+			max-height:95px;
+			
+		}*/
+		.float-img5{
+			position:absolute;
+			left:735px;
+			top:150px;
+			
+			width:125px;
+			height:125px;
+		}
+		/*#img15{
+			max-width:125px;
+			max-height:125px;
+		}*/
+		.float-img6{
+			position:absolute;
+			left:850px;
+			top:40px;
+			
+			width:95px;
+			height:95px;
+		}
+		/*#img16{
+			max-width:95px;
+			max-height:95px;
+		}*/
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="sub-mainbody0">
+			<div class="btn-to-index"></div>
+			<div class="img-containers">
+				<div id="container01" class="img-container0">
+					<img id="img1" src="" alt="" class="file-img"/>
+					<input type="file" id="file-input1" class="file-input"/>
+				</div>
+				<div id="container02" class="img-container0">
+					<img id="img2" src="" alt="" class="file-img"/>
+					<input type="file" id="file-input2" class="file-input"/>
+				</div>
+				<div id="container03" class="img-container0">
+					<img id="img3" src="" alt="" class="file-img"/>
+					<input type="file" id="file-input3" class="file-input"/>
+				</div>
+				<div id="container04" class="img-container0">
+					<img id="img4" src="" alt="" class="file-img"/>
+					<input type="file" id="file-input4" class="file-input"/>
+				</div>
+				<div id="container05" class="img-container0">
+					<img id="img5" src="" alt="" class="file-img"/>
+					<input type="file" id="file-input5" class="file-input"/>
+				</div>
+				<div id="container06" class="img-container0">
+					<img id="img6" src="" alt="" class="file-img"/>
+					<input type="file" id="file-input6" class="file-input"/>
+				</div>
+			</div>
+			<div class="div-btn-reset"></div>
+			<div class="div-btn-start"></div>
+		</div>
+		<div class="pmod" style="display:none;">
+            	<div id="plist">
+                    <div class="plistcon">
+                        <figure><img src="images/img.jpg" alt="" /></figure>
+                        
+                        <div class="pimg p1"><figure><img id="img11" src="" alt="" /></figure></div>
+                        <div class="pimg p2"><figure><img id="img12"  src="" alt="" /></figure></div>
+                        <div class="pimg p3"><figure><img id="img13" src="" alt="" /></figure></div>
+                        <div class="pimg p4"><figure><img id="img14" src="" alt="" /></figure></div>
+                        <div class="pimg p5"><figure><img id="img15" src="" alt="" /></figure></div>
+                        <div class="pimg p6"><figure><img id="img16" src="" alt="" /></figure></div>
+                        
+                    </div>
+                    
+                    <div class="shaver"><figure><img src="images/shaver.png" alt="" /></figure></div>
+                    
+                </div>
+            </div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+	function getObjectUrl(fileInput){
+		var file = fileInput.files[0];
+		if(!file) throw Error("No selection");
+		
+		var URL = window.URL && window.URL.createObjectURL ? window.URL :
+            window.webkitURL && window.webkitURL.createObjectURL ? window.webkitURL : null;
+		if (!URL) { throw Error("No createObjectURL function found to create blob url"); }
+		
+		return URL.createObjectURL(file);
+	}
+	
+	function setCenter(){
+		this.style.position = "absolute";
+		//alert(this.parentNode.outerHTML);
+		this.style.top = (this.parentNode.offsetHeight - this.height) / 2 + "px";
+		this.style.left = (this.parentNode.offsetWidth - this.width) / 2 + "px";
+	}
+	//img1
+	document.getElementById("img1").onload = setCenter;
+	
+	document.getElementById("file-input1").onchange = function(){
+		document.getElementById("img1").src = getObjectUrl(this);
+		this.value = "";
+		this.files = "";
+	};
+	
+	//img2
+	document.getElementById("img2").onload = setCenter;
+	
+	document.getElementById("file-input2").onchange = function(){
+		document.getElementById("img2").src = getObjectUrl(this);
+		this.value = "";
+		this.files = "";
+	};
+	
+	//img3
+	document.getElementById("img3").onload = setCenter;
+	
+	document.getElementById("file-input3").onchange = function(){
+		document.getElementById("img3").src = getObjectUrl(this);
+		this.value = "";
+		this.files = "";
+	};
+	
+	//img4
+	document.getElementById("img4").onload = setCenter;
+	;
+	document.getElementById("file-input4").onchange = function(){
+		document.getElementById("img4").src = getObjectUrl(this);
+		this.value = "";
+		this.files = "";
+	};
+	
+	//img5
+	document.getElementById("img5").onload = setCenter;
+	;
+	document.getElementById("file-input5").onchange = function(){
+		document.getElementById("img5").src = getObjectUrl(this);
+		this.value = "";
+		this.files = "";
+	};
+	
+	//img6
+	document.getElementById("img6").onload = setCenter;
+	
+	document.getElementById("file-input6").onchange = function(){
+		document.getElementById("img6").src = getObjectUrl(this);
+		this.value = "";
+		this.files = "";
+	};
+	
+	
+	//back to mainpage
+	document.getElementsByClassName("btn-to-index")[0].onclick = function(){
+		window.location.href = "index.html";
+	};
+	
+	document.getElementsByClassName("div-btn-reset")[0].onclick = 
+	function(){
+		document.getElementById("img1").src = emptyImgSrc;
+		document.getElementById("img2").src = emptyImgSrc;
+		document.getElementById("img3").src = emptyImgSrc;
+		document.getElementById("img4").src = emptyImgSrc;
+		document.getElementById("img5").src = emptyImgSrc;
+		document.getElementById("img6").src = emptyImgSrc;
+		
+		document.getElementById("img11").src = emptyImgSrc;
+		document.getElementById("img12").src = emptyImgSrc;
+		document.getElementById("img13").src = emptyImgSrc;
+		document.getElementById("img14").src = emptyImgSrc;
+		document.getElementById("img15").src = emptyImgSrc;
+		document.getElementById("img16").src = emptyImgSrc;
+	};
+	var emptyImgSrc = "images/transparent.png";
+	document.getElementsByClassName("div-btn-start")[0].onclick = 
+	function(){
+		//alert("未完成的功能衔接！");
+		//window.location.href = "fsteps.html";
+		if(emptyImgSrc == document.getElementById("img5").src){
+			//alert('1');
+			return;
+		}
+		
+		window.scrollTo(0,0);
+		document.getElementsByClassName("sub-mainbody0")[0].style.display = "none";
+		document.getElementsByClassName("pmod")[0].style.display = "block";
+		
+		document.getElementById("img11").src = document.getElementById("img1").src;
+		document.getElementById("img12").src = document.getElementById("img2").src;
+		document.getElementById("img13").src = document.getElementById("img3").src;
+		document.getElementById("img14").src = document.getElementById("img4").src;
+		document.getElementById("img15").src = document.getElementById("img5").src;
+		document.getElementById("img16").src = document.getElementById("img6").src;
+		
+		document.querySelector('.plistcon').className = 'plistcon panimate';
+		document.querySelector('.shaver').className = 'shaver sanimate';
+	};
+	
+	document.getElementsByClassName("pmod")[0].onclick = 
+	function(){
+		
+		
+		document.querySelector('.plistcon').className = 'plistcon';
+		document.querySelector('.shaver').className = 'shaver';
+		
+		setTimeout(function(){
+			document.querySelector('.plistcon').className = 'plistcon panimate';
+			document.querySelector('.shaver').className = 'shaver sanimate';
+		},100);
+	};
+	
+	function initData(){
+		//界面初始化
+		document.getElementById("img1").src = emptyImgSrc;
+		document.getElementById("img2").src = emptyImgSrc;
+		document.getElementById("img3").src = emptyImgSrc;
+		document.getElementById("img4").src = emptyImgSrc;
+		document.getElementById("img5").src = emptyImgSrc;
+		document.getElementById("img6").src = emptyImgSrc;
+		
+		document.getElementById("img11").src = emptyImgSrc;
+		document.getElementById("img12").src = emptyImgSrc;
+		document.getElementById("img13").src = emptyImgSrc;
+		document.getElementById("img14").src = emptyImgSrc;
+		document.getElementById("img15").src = emptyImgSrc;
+		document.getElementById("img16").src = emptyImgSrc;
+	}
+	initData();
+</script>
+</html>

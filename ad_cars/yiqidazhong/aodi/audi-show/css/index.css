@@ -1,0 +1,90 @@
+@import "reset.css";
+
+
+html,body{ background:#d5d7d7;
+	padding:0px;
+	margin:0px;
+	outline:none;
+	
+	
+}
+img {  
+	width:100%;
+
+}
+.btn1{
+	position:absolute;
+	width: 100%;
+	height:100%;
+	top:0;
+	left:0;
+	text-align:center;
+	padding-top:0%;
+	z-index: 2;
+}
+.btn2{
+	position:absolute;
+	max-width:568px;
+	width: 100%;
+	height:auto;
+	bottom:1%;
+	/*left:0;*/
+	text-align:center;
+	padding-top:0%;
+	z-index: 3;
+}
+
+#c1{width:84%;left:8%;top:58%;}
+#c4{width:68%;left:14%;top:58%;}
+
+select,input{background-color:rgb(235,235,235);border:0px solid rgb(194,194,194)!important;z-index:444;font-size:9px;}
+#province{width:19%;height:3%;left:33%;top:56%;}
+#name{width:24%;height:4%;left:27%;top:51%;}
+#sex{width:24%;height:4%;left:53%;top:51%;}
+#dealername{width:50%;height:4%;left:27%;top:70%;}
+#cartype{width:50%;height:4%;left:27%;top:76%;}
+#mobile{width:50%;height:4%;left:27%;top:57%;}
+#email{width:50%;height:4%;left:27%;top:63%;}
+#buytime{width:26%;height:4%;left:27%;top:82%;}
+#isaccept1{left:65.8%;top:67.8%;}
+#isaccept2{left:76%;top:67.8%;}
+
+.fly{border:0px solid red;	display:inline-block;position:absolute;}
+
+#submit{width:23%;height:6%;left:55%;top:81%;}
+
+#m_1{width:100%;height:100%;left:0%;top:0%;}
+
+#m1{width:30%;height:100%;left:10%;bottom:1%;}
+#m2{width:28%;height:100%;left:35%;bottom:1%;}
+#m3{width:30%;height:100%;left:60%;bottom:1%;}
+
+#p1{width:18%;height:10%;left:22%;top:41%;}
+#p2{width:20%;height:7%;left:33%;top:27%;}
+#p3{width:18%;height:10%;left:38%;top:54.5%;}
+#p4{width:18%;height:7%;left:44%;top:35%;}
+
+#link1{width:33%;height:4%;left:63%;top:84.5%;}
+#link2{width:40%;height:9%;left:7%;top:77.5%;}
+#link3{width:40%;height:9%;left:52%;top:77.5%;}
+
+.fxbg{
+	position:relative;
+	height:100%;
+	min-width:320px;max-width:568px;margin:0 auto; 
+	-webkit-animation:shake 1s ease both;
+	
+}
+
+
+
+#nav-1,#nav-2,#nav-3{ width:80%; margin:0 auto;display:block;}
+
+
+
+
+
+
+
+
+

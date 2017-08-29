@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>米其林携您体验保时捷极致之旅</title>
+	<link rel="stylesheet" type="text/css" href="css/index_640_960.css"/>
+	<link rel="stylesheet" type="text/css" href="css/index_720_1280.css" media="only screen and (min-width:720px)"/>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="div-left-button">
+			<div class="div-left-button-inner"></div>
+		</div>
+		<div class="div-right-button">
+			<div class="div-right-button-inner"></div>
+		</div>
+		<div class="div-bottom-button"></div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript">
+	
+	document.getElementsByClassName("div-left-button")[0].onclick = function(){
+		document.getElementsByClassName("div-left-button-inner")[0].style.display = "block";
+		setTimeout(function(){
+			document.getElementsByClassName("div-left-button-inner")[0].style.display = "none";
+			//window.location.href = "buy_1.html";
+			var _url = "buy_1.html";
+			track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_buy1, _url);
+		}, 500);
+	}
+	document.getElementsByClassName("div-right-button")[0].onclick = function(){
+		document.getElementsByClassName("div-right-button-inner")[0].style.display = "block";
+		setTimeout(function(){
+			document.getElementsByClassName("div-right-button-inner")[0].style.display = "none";
+			//window.location.href = "share_1.html";
+			var _url = "share_1.html";
+			track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_share1, _url);
+		}, 500);
+	}
+	document.getElementsByClassName("div-bottom-button")[0].onclick = function(){
+		//window.location.href = "introduction.html";
+		var _url = "introduction.html";
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_click_introduction, _url);
+	}
+	
+	window.onload = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_index_pv);
+
+		if(!!document.getElementsByTagName("img")[0]){//hide baidu logo
+			
+			document.getElementsByTagName("img")[0].width = "1";
+			document.getElementsByTagName("img")[0].height = "1";
+			
+			document.getElementsByTagName("img")[0].onload = function(){
+				this.width = "1";
+				this.height = "1";
+			}
+			
+			setTimeout(function(){
+				document.getElementsByTagName("img")[0].onload();
+			},500);
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title>KFC 监控跳转</title>
+	<style type="text/css">
+		html body{
+			
+		}
+		.span-notice1{
+			
+		}
+		.div-big-button{
+			margin-top:20px;
+			
+			background-color:blue;
+			font-size:50px;
+			
+			height:100px;
+			width:300px;
+			
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div><span class="span-notice1"></span></div>
+		<div>
+			<div class="div-to-banner div-big-button">banner</div>
+
+			<div class="div-to-dtv div-big-button">dtv</div>
+
+			<div class="div-to-dtv2 div-big-button">dtv2</div>
+
+			<div class="div-to-ooh div-big-button">ooh</div>
+
+			<div class="div-to-wifi div-big-button">wifi</div>
+
+			<div class="div-to-store div-big-button">store</div>
+
+			<div class="div-to-toutiao div-big-button">toutiao</div>
+
+			<div class="div-to-163 div-big-button">163</div>
+			
+		</div>
+	</div>
+	<div class="footer">
+		<div class="div_to_link  div-big-button"></div>
+	</div>
+</body>
+<script type="text/javascript">
+
+	document.getElementsByClassName("div-to-banner")[0].onclick = function(){
+		window.location.href = "banner/index.html";
+	}
+	
+	document.getElementsByClassName("div-to-dtv")[0].onclick = function(){
+		window.location.href = "dtv/index.html";
+	}
+
+	document.getElementsByClassName("div-to-dtv2")[0].onclick = function(){
+		window.location.href = "dtv2/index.html";
+	}
+
+	document.getElementsByClassName("div-to-ooh")[0].onclick = function(){
+		window.location.href = "ooh/index.html";
+	}
+
+	document.getElementsByClassName("div-to-wifi")[0].onclick = function(){
+		window.location.href = "wifi/index.html";
+	}
+
+	document.getElementsByClassName("div-to-store")[0].onclick = function(){
+		window.location.href = "store/index.html";
+	}
+
+	document.getElementsByClassName("div-to-toutiao")[0].onclick = function(){
+		window.location.href = "toutiao/index.html";
+	}
+
+	document.getElementsByClassName("div-to-163")[0].onclick = function(){
+		window.location.href = "163/index.html";
+	}
+	document.getElementsByClassName("div_to_link")[0].onclick = function(){
+		window.location.href = "index3.html";
+	}
+</script>
+</html>

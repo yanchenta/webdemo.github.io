@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title></title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:960px;
+			margin:0px 0px;
+			padding:0px 0px;
+			overflow-x:hidden;
+			
+			background-image:url('images/en-list-bg2.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:640px 960px;
+		}
+		.banner{
+			width:640px;
+			height:165px;
+			text-align:center;
+		}
+		.front-title{
+			font-family:Arial;
+			font-size:35px;
+			font-weight:700px;
+			line-height:40px;
+			margin-top:270px;
+			
+			min-width:400px;
+			width:400px;
+			max-width:400px;
+			
+			position:absolute;
+			left:50%;
+			margin-left:-200px;
+			display:block;
+		}
+		
+		.main-body{
+			
+		}
+		.main-region{
+			margin-top:190px;
+			width:640px;
+			max-width:640px;
+			height:440px;
+			position:relative;
+			overflow:hidden;
+		}
+		ul {
+			width:640px;
+			height:500px;
+			list-style-type:none;
+			overflow:hidden;
+		}
+		li{
+			display:inline-block;
+			position:absolute;
+			top:-80px;
+			left:152px;
+			background-color:white;
+		}
+		
+		.back-list-1{
+			width:232px;
+			height:361px;
+			
+			background-image:url('images/en-list-yiyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 361px;
+			background-color:white;
+		}
+		.back-list-2{
+			width:232px;
+			height:361px;
+			
+			background-image:url('images/en-list-siyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 361px;
+			background-color:white;
+		}
+		.back-list-3{
+			width:232px;
+			height:361px;
+			
+			background-image:url('images/en-list-liuyuekan-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 361px;
+			background-color:white;
+		}
+		.back-list-4{
+			width:232px;
+			height:361px;
+			
+			background-image:url('images/en-list-2013BICES-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 500px;
+			background-color:white;
+		}
+		.back-list-5{
+			width:232px;
+			height:361px;
+			
+			background-image:url('images/en-list-2013huojiang-back.png');
+			background-repeat:no-repeat;
+			background-position:center top;
+			background-size:232px 361px;
+			background-color:white;
+		}
+		
+		
+		.front-zoom-region{
+			position:absolute;
+			left:50%;
+			margin-left:-166px;
+			top:150px;
+			
+			display:block;
+			width:332px;
+			height:500px;
+		}
+
+		.footer{
+			width:100%;
+			height:100px;
+			position:relative;
+		}
+				
+		.btn-down-cn{
+			width:278px;
+			height:85px;
+		
+			position:absolute;
+			left:50%;
+			top:30px;
+			margin-left:-288px;
+			
+			background-image:url('images/list-cn-download.png');
+			background-size:276px 81px;
+			background-position:center;
+			background-repeat:no-repeat;
+			cursor:pointer;
+		}
+		.btn-down-en{
+			width:278px;
+			height:85px;
+			
+			position:absolute;
+			right:50%;
+			top:30px;
+			margin-right:-298px;
+			
+			background-image:url('images/list-en-download.png');
+			background-size:276px 81px;
+			background-position:center;
+			background-repeat:no-repeat;
+			cursor:pointer;
+		}
+		
+		.lang-tab{
+			background-image:url('images/lang-tab-bg.png');
+			background-size:595px 59px;
+			background-position:top;
+			background-repeat:no-repeat;
+			
+			position:absolute;
+			top:175px;
+			
+			width:595px;
+			height:59px;
+			margin-left:22px;
+			cursor:pointer;
+			font-weight:700;
+			margin-bottom:10px;
+		}
+		.cn-lang-unselect-tab{
+			width:270px;
+			height:59px;
+			background-color:transparent;
+			
+			display:inline-block;
+			text-align:center;
+			font-size:40px;
+			padding-top:10px;
+		}
+		.en-lang-select-tab{
+			background-image:url('images/en-lang-tab-bg-selected.png');
+			background-size:303px 59px;
+			background-position:10px 0px;
+			background-repeat:no-repeat;
+			
+			width:313px;
+			height:59px;
+			
+			display:inline-block;
+			text-align:center;
+			font-size:40px;
+			padding-top:10px;
+		}
+	</style>
+</head>
+<body draggable="false">
+	<div class="banner">
+		<span class="front-title"></span>
+	</div>
+	<div class="main-body">
+		<div class="lang-tab">
+			<div id="btn-cn-lang" class="cn-lang-unselect-tab">
+				<span>中文</span>
+			</div>
+			<div id="btn-en-lang" class="en-lang-select-tab">
+				<span>EN</span>
+			</div>
+		</div>
+		<div class="main-region">
+				<!--使用绝对定位，才可以-->
+				<ul class="list-images">
+					<li class="img-1">
+						<div class="back-list-1">
+						</div>
+					</li>
+					<li class="img-2">
+						<div class="back-list-2">
+						</div>
+					</li>
+					<li class="img-3">
+						<div class="back-list-3">
+						</div>
+					</li>
+					<li class="img-4">
+						<div class="back-list-4">
+						</div>
+					</li>
+					<li class="img-5">
+						<div class="back-list-5">
+						</div>
+					</li>
+				</ul>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="btn-down-cn"></div>
+		<div class="btn-down-en"></div>
+	</div>
+</body>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript" src="js/list.js"></script>
+<script type="text/javascript" src="js/rotate_3d.js"></script>
+</html>

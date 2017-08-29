@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    	<title>闪迪</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<script type="text/javascript">
+			if(screen.width/screen.height >= 0.6){
+				window.location.href = "index2.html";
+			}
+			else{
+				//继续在这页面=>iphone5页面
+			}
+		</script>
+        <script src="js/jquery-1.4.4.min.js"></script>
+        <script src="js/trackEvent.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/iscroll.js"></script>
+        <script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F828c51f02153297339a6998711a10650' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script>
+			//PV
+			track(20,10091);
+			var timer,timer2,shareNum=0,gameEnd = true;
+        	window.onload = function(){
+				
+				var navul = document.querySelectorAll('.navul li');
+				var startY,moveY;
+				for(var i=0;i<navul.length;i++){
+					
+					navul[i].ontouchstart = function(e){
+						e.preventDefault();
+						moveY = 0;
+						if($(this).hasClass('on')){
+							startY = e.touches[0].pageY;
+						}
+						
+					}
+					navul[i].ontouchmove = function(e){
+						e.preventDefault();
+						if($(this).hasClass('on')){
+							
+							moveY = e.touches[0].pageY-startY;
+							if(!gameEnd){
+								if(moveY<-80){
+									$('.navul li div').removeClass('move');
+										var t = $(this);
+										setTimeout(function(){t.find('div').addClass('move');},5);
+										
+									}
+								}
+								
+							
+								
+						}
+						
+					}
+					
+					navul[i].ontouchend = function(e){
+						e.preventDefault();
+						if(moveY<-80){
+							shareNum++;
+						}
+						$('#shareNum').html(shareNum);
+						
+					}
+					
+				}
+				
+			}
+			
+			
+			
+			function run(){
+				 var s = document.getElementById("s");
+				 if(parseInt(s.innerHTML,10) <= 0){
+					gameEnd = true;
+				  clearInterval(timer);
+				  clearInterval(timer2);
+				  $('.page').hide();
+				  $('#shareNum2').html($('#shareNum').text());
+				  $('.page4').show();
+				  return false;
+				 }
+				 
+				 if(parseInt(s.innerHTML,10)<11){
+					s.innerHTML = '0'+(parseInt(s.innerHTML,10) * 1 - 1);	
+				}else{
+					s.innerHTML = s.innerHTML * 1 - 1;	
+				}
+			}
+		
+			function setTimes(){
+				gameCount = 0;
+				document.getElementById("s").innerHTML =30;
+				timer2 =setInterval("run();", 1000);
+			}
+			
+			function showPage2(){
+				//马上点击参与
+				track(20,10094);
+				$('.page').hide();
+				$('.page2').show();
+			
+			}
+			
+			function showPage3(){
+	
+
+				$('#shareNum,#shareNum2').html(0);
+				$('.page').hide()
+				$('.textpop,.page3').show();
+				
+			}
+			
+			function closeTextPop(){
+				$('.textpop').hide();
+				$('.hand,.mark').show();
+				setTimeout(function(){
+					$('#countdown').show();
+					$('.hand').hide();
+					var tempNum = 3;
+					var timer = setInterval(function(){
+						
+						
+						if(tempNum==1){
+							clearInterval(timer);
+							$('.mark,#countdown').hide();
+							$('.c3').removeClass('cn');
+							$('.c2,.c1').addClass('cn');
+							beginGame();
+						}else{
+							tempNum--;
+							$('#countdown figure').addClass('cn');
+							$('.c'+tempNum).removeClass('cn');
+						}
+						
+						
+					},1000);
+					
+				},1800);
+			}
+			
+			function beginGame(){
+				
+				shareNum = 0;
+				setTimes();
+				gameEnd = false;
+				
+				var navul = document.querySelectorAll('.navul li');
+				timer = setInterval(function(){
+					
+					var randomNum = Math.floor(Math.random()*4);
+					for(var i=0;i<navul.length;i++){
+						navul[i].className = '';
+					}
+					navul[randomNum].className = 'on';
+				},700);
+			}
+			
+			function sendInfo(){
+				var name = $.trim($('.name').val());
+				if(!name){
+					alert('请输入您的姓名或者昵称');
+					return;
+				}
+				var weixin = $.trim($('.weixin').val());
+				if(!weixin){
+					alert('请输入您的微信号或手机号码');
+					return;
+				}
+				var score = $('#shareNum').text();
+				
+				//完成挑战-提交按钮
+				track(20,10095);
+				
+				var url = "http://ama.adwo.com/advmessage/advpoints/addRankJsonP.action?advid=30050";
+				$.ajax({
+					url: url,
+					cache: false,
+					dataType : 'jsonp',
+					jsonpCallback: "eventcallback4",
+					data:{
+						realname : name,
+						expand1 : weixin,
+						expand5 : score,
+					},
+					success: function(json) {
+						if (json[0].success == 1) {
+							
+							document.getElementsByTagName('form')[0].reset();
+							$('#ranking').html(json[0].rank);
+							showPage5(json[0].list);
+						}
+						else{
+							alert('提交失败');
+						}
+					}
+				});
+				
+			}
+			
+			function showPage5(data){
+				//var data = [{"num":"1","name":"fengjian1233","score":"40"},{"num":"2","name":"fengjian111","score":"10"}];
+				var tempList='';
+				for(var i=0;i<data.length;i++){
+					tempList +='<li><span>'+(i+1)+'."'+data[i].realname+'"</span><span>'+data[i].expand5+'</span></li>';
+				}
+				$('#rlist ul').html(tempList);
+				
+				var myScroll = new iScroll('rlist');
+				$('.page').hide();
+				$('.page5').show();
+				myScroll.refresh();
+				//排名
+				track(20,10096);
+			}
+			
+			document.onreadystatechange=function(){
+			if(document.readyState=="complete"){
+					$('.itop').addClass('animate1');
+					$('.ibottom').addClass('animate2');
+				}
+			}
+
+        </script>       
+    </head>
+    
+    <body>
+    
+    	<div class="container">
+ 
+            <figure><img src="images/bg.jpg" alt="" /></figure>
+            
+            <a class="logo" href="index.html">首页</a>
+            
+        	<div class="page page1">
+            	<figure><img src="images/index.jpg" alt="" /></figure>
+                <a class="p1butt pb1" href="javascript:showPage3();track(20,10092);">马上点击参与</a>
+                <a class="p1butt pb2" href="pro.html">产品简介</a>
+                <a class="p1butt pb3" href="javascript:showPage2();">了解更多</a>
+                
+                <img id="hand" src="images/shou-gif.gif" alt="" />
+            </div>
+        	
+            <div class="page page2" style="display:none;">
+            	<figure><img src="images/m.gif" alt="" /></figure>
+                
+                <a class="gopage2" href="javascript:showPage3();track(20,10099);">开始游戏</a>
+                
+            </div>
+            
+            <div class="page page3" style="display:none;">
+            	
+                <figure><img src="images/game_bg.jpg" alt="" /></figure>
+                
+                <figure class="hand" style="display:none;"><img src="images/tishi.png" alt="" /></figure>
+                <div class="mark" style="display:none;"></div>
+                <div id="countdown" style="display:none;">
+                	<figure class="c3"><img src="images/c3.png" alt="" /></figure>
+                    <figure class="c2 cn"><img src="images/c2.png" alt="" /></figure>
+                    <figure class="c1 cn"><img src="images/c1.png" alt="" /></figure>
+                </div>
+                <div class="textpop">
+                	<div>
+                    	<a href="javascript:closeTextPop();">X</a>
+                        <p>PK方式：</p>
+                        <p>看到下方的4个文件吗？其中有一个文件会随机变成蓝色，用手指向上滑动即可分享。分享越多越有机会赢取大奖哦！</p>
+                        <p>关闭对话框后，30秒计时正式开始！</p>
+                    </div>
+                </div>
+                
+                <div class="score clearfix">
+                	<div class="scon">
+                    	<p>分享文件数量</p>
+                        <p id="shareNum">0</p>
+                    </div>
+                    <div class="time">
+                    	<p>剩余时间</p>
+                        <p>00:<span id="s">30</span></p>
+                    </div>
+                </div>
+                
+            
+                <ul class="navul clearfix"> 
+                    <li class="on">
+                    	<div class="bg"></div>
+                        <div class="ic icon1"></div>
+                        <p>视频</p>
+                    </li>
+                    <li>
+                    	<div class="bg"></div>
+                        <div class="ic icon2"></div>
+                        <p>音乐</p>
+                    </li>
+                    <li>
+                    	<div class="bg"></div>
+                        <div class="ic icon3"></div>
+                        <p>图片</p>
+                    </li>
+                    <li>
+                    	<div class="bg"></div>
+                        <div class="ic icon4"></div>
+                        <p>文件</p>
+                    </li>
+                </ul>
+                
+            </div>
+            
+        	<div class="page page4" style="display:none;">
+ 
+                
+                <div class="score clearfix">
+                	<div class="scon">
+                    	<p>分享文件数量</p>
+                        <p id="shareNum2">0</p>
+                    </div>
+                    <div class="time">
+                    	<p>完成<br />挑战</p>
+                    </div>
+                </div>
+                
+            	<div class="formcon">
+                	<p class="p1">填写个人信息，上传分数</p>
+					<p>上传分数 填写真实有效信息，方可参与抽奖活动。</p>
+                    <form>
+                    	<p>	
+                        	<label>微信昵称： </label><br />
+                        	<input type="text" class="name" />
+                        </p>
+                        
+                        <p>
+                        	<label>手机号：</label><br />
+                        	<input type="text" class="weixin" />
+                        </p>
+                        
+                        <p><a href="javascript:sendInfo()">提交</a></p>
+                        
+                    </form>
+                </div>
+                
+            </div>
+            
+            
+            <div class="page page5" style="display:none;">
+            	<div id="p5con">
+                	<h3 class="col">现在排名</h3>
+                    <p id="ranking">1</p>
+                    <h3>PK排名</h3>
+                    <div class="rcon">
+                    	<div id="rlist">
+                            <div>
+                                <ul>
+                                    <li><span>1."fengjianjun"</span><span>100</span></li>
+                                    <li><span>1."fengjianjun"</span><span>100</span></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <p class="col" style="margin-top:10px;"><img src="images/wenti.gif" alt="" width="300" /></p>
+                    <p class="weixin">闪迪官方微信号：<br /><strong>SanDiskChina</strong><span>（长按左侧微信号，可一键复制！）</span></p>
+                    
+                    <p class="buttlist">
+                    	
+                        <a href="javascript:showPage3();track(20,10097)">再玩一次</a>
+                    </p>
+                    
+                </div>
+                
+           		
+            </div>
+            
+        </div>
+	
+    </body>
+
+</html>

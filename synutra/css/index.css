@@ -1,0 +1,615 @@
+body,div,h1,p,a,img,h3,video,span,ul,li,dl,dt,dd,video,em,i,ol,h1,h2,h3,h4,h5,h6{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-size: 14px;
+}
+a{
+	text-decoration: none;
+}
+em,i{
+	font-style: normal;
+}
+ul,li,ol{
+	list-style: none;
+}
+.cf:after{
+	content: "";
+	clear: both;
+	overflow: hidden;
+}
+.main{
+	width: 1366px;
+	min-height: 768px;
+	margin: 0 auto;
+}
+.head{
+	height: 105px;
+	background: url(../images/header.gif) 0 0 no-repeat; 
+	position: relative;
+	z-index: 1;
+}
+.head h1{
+	position: absolute;
+	top: 13px;
+	left: 187px;
+	width: 144px;
+	height: 94px;
+}
+.head h1 a{
+	display: inline-block;
+	width: 144px;
+	height: 94px;
+}
+.head .nav{
+	position: absolute;
+	top: 25px;
+	left: 452px;
+	width: 510px;
+	height: 68px;
+	line-height: 68px;
+}
+.head .nav a{
+	margin-left: 34px;
+	color: #f7f6f4;
+	font-weight: 600;
+	float: left;
+	min-width: 50px;
+	height: 68px;
+}
+.head .nav a.show{
+	color: #ceb57e;
+	text-shadow: -3px -3px 3px #552776,-3px 3px 3px #552776,3px -3px 3px #552776,3px 3px 3px #552776;
+	background: url(../images/nav_a_bg.gif) 0 50px no-repeat;
+
+}
+.div_right{
+	position: absolute;
+	right: 168px;
+	top: 22px;
+	color: #f7f6f4;
+}
+.head .load{
+	margin-left: 11px;
+	font-size: 12px;
+	color: #f7f6f4;
+	text-decoration: underline;
+}
+.content{
+	position: relative;
+	height: 588px;
+}
+.content .left{
+	float: left;
+	margin:0 0 0 173px;
+	position: relative;
+	width: 419px;
+	height: 588px;
+	background: url(../images/left.jpg) 0 0 no-repeat;
+	z-index: -1;
+}
+.content .left .me{
+	width: 83px;
+	height: 101px;
+	position: absolute;
+	left: 32px;
+	top: 314px;
+}
+.content .left .join{
+	width: 112px;
+	height: 60px;
+	position: absolute;
+	left: 170px;
+	top: 384px;
+}
+.content .left p{
+	width: 228px;
+	height: 64px;
+	line-height: 15px;
+	font-size: 11px;
+	text-indent: 2em;
+	position: absolute;
+	left: 103px;
+	bottom: 64px;
+}
+.content .right{
+	float: left;
+	position: relative;
+	right: 0;
+	top: 0;
+	width: 625px;
+	height: 581px;
+	background: url(../images/right.jpg) 0 0 no-repeat;
+}
+.content .right h3{
+	position: absolute;
+	left: 44px;
+	top: 24px;
+	width: 446px;
+	height: 36px;
+}
+.content .right h3 a{
+	float: left;
+	width: 99px;
+	height: 35px;
+	background: url(../images/before.gif) 0 0 no-repeat;
+	margin-left: 9px;
+	text-align: center;
+	line-height: 35px;
+	color: #53c1c5;
+}
+.content .right h3 .active{
+	background: url(../images/after.gif) 0 0 no-repeat;
+	color: #fff;
+}
+.video{
+	position: absolute;
+	top: 117px;
+	left: 81px;
+}
+.video div{
+	position: relative;
+	float: left;
+	margin:0 65px 29px 0;
+}
+.video div h4{
+	position: absolute;
+	/* top: -20px; */
+	padding-left: 10px;
+	height: 32px;
+	line-height: 30px;
+	color: #fff;
+}
+.video div span{
+	display: block;
+	width: 100px;
+	height: 23px;
+	background: url(../images/math_bg.gif) 10px 5px no-repeat;
+	padding-left: 32px;
+	line-height: 23px;
+}
+.video div span em{
+	margin-right: 38px;
+}
+.right .more{
+	position: absolute;
+	width: 56px;
+	height: 51px;
+	bottom: 28px;
+	right: 48px;
+}
+.footer{
+	height: 28px;
+	background: url(../images/xycode.jpg) 219px 2px no-repeat;
+	padding-top: 46px;
+	font-size: 12px;
+}
+.footer div{
+	width: 78px;
+	margin-right: 162px;
+}
+.footer div,.footer span{
+	float: left;
+	font-size: 12px;
+}
+.footer span{
+	margin: 0 46px 0 642px;
+}
+.footer div a{
+	float: right;
+	width: 14px;
+	height: 14px;
+}
+.footer div .sina{
+	margin:0 5px 0 8px; 
+	background: url(../images/sina.gif) 0 2px no-repeat;
+}
+.footer div .tcent{
+	background: url(../images/tcent.gif) 0 0 no-repeat;
+}
+/* 二维码弹框 */
+.two_code{
+	z-index: 5;
+	background: #000;
+	opacity: 0.9;
+	filter:alpha(opacity=90);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1016px;
+	height: 582px;
+	padding: 186px 0 0 350px;
+	display: none;
+}
+.two_code div{
+	position: relative;
+	width:100%;
+	height:100%;
+}
+.close{
+	position: absolute;
+	top: 26px;
+	right: 385px;
+	width: 38px;
+	height: 38px;
+}
+/* 选择模板页面 */
+.J_select_con{
+	background: url(../images/J_select.png) 198px 0 no-repeat;
+	height: 628px;
+	margin-top: -16px;
+}
+.j_select_nav{
+	padding: 180px 0 0 227px;
+}
+.j_select_nav a{
+	float: left;
+	width: 186px;
+	height: 67px;
+	background: url(../images/J_select_a.gif) 0 0 no-repeat;
+	padding: 9px 0 0 32px;
+	overflow: hidden;
+}
+.j_select_nav a img{
+	border-radius: 5px;
+}
+.j_select_nav a em{
+	float: right;
+	margin: 25px 57px 0 0;
+	color: #a88853;
+}
+.j_select_nav a.J_a_active{
+	background: url(../images/J_select_a_active.gif) 0 0 no-repeat;
+} 
+.j_select_nav a.J_a_active em{
+	color: #fff;
+}
+.j_select_up{
+	margin:140px 0 0 234px;
+}
+.up_file{
+	width: 368px;
+	height: 34px;
+	border: 3px solid #79cccf;
+	border-radius: 6px;
+}
+.file_up{
+	display: block;
+	margin: 19px 0 0 4px;
+	text-align: center;
+	line-height: 41px;
+	width: 64px;
+	height: 41px;
+	background: url(../images/J_upload.gif) 0 0 no-repeat;
+	color: #79cccf;
+}
+.footer .select_word{
+	margin: 0 100px 0 481px;
+}
+/* 上传成功页面 */
+.J_update_con{
+	background: url(../images/J_update_con.png) 198px 0 no-repeat;
+	height: 610px;
+	margin-top: -16px;
+}
+.update_success{
+	padding: 302px 0 0 508px;
+}
+.update_success input{
+	width: 244px;
+	height: 25px;
+	border: 4px solid #fff;
+	border-radius: 7px;
+	padding: 8px;
+	background: #8b74ad;
+	margin-top: 22px;
+}
+.update_success a{
+	text-align: center;
+	display: inline-block;
+	color: #8b74ad;
+}
+.up_submit{
+	width: 63px;
+	height: 40px;
+	margin: 22px 0 0 5px;
+}
+.up_know{
+	width: 179px;
+	height: 42px;
+	margin-top: 30px;
+}
+.up_sina,.up_tecent{
+	width: 105px;
+	height: 36px;
+	line-height: 36px;
+	margin-top: 55px;
+}
+/* 活动详情页面 */
+.J_act_list_con{
+	background: url(../images/J_act_list_con.png) 224px 0 no-repeat;
+	height: 1544px;
+	color: #fff;
+	padding: 87px 0 0 285px;
+	font-size: 14px;
+	line-height: 18px;
+}
+.act_two{
+	margin: 58px 0 0 -7px;
+}
+.act_three{
+	margin: 85px 0 0 -7px;
+}
+.act_four{
+	margin: 260px 0 0 -2px;
+}
+.act_five{
+	margin: 225px 0 0 13px;
+}
+.act_six{
+	margin: 270px 0 0 -9px;
+}
+/* 登录页面 */
+.J_load_con{
+	background: url(../images/J_load_con.png) 198px 0 no-repeat;
+	height: 384px;
+	color: #fff;
+	padding: 224px 0 0 592px;
+	margin-top: -16px;
+}
+.J_load_con a{
+	display: block;
+	width: 157px;
+	height: 52px;
+}
+.load_a_first{
+	margin-bottom: 64px;
+}
+/* 我的精彩瞬间 */
+.J_my_wondful_con{
+	background: url(../images/J_my_wondful_con.png) 200px 0 no-repeat;
+	height: 554px;
+	color: #fff;
+	padding: 88px 0 0 249px;
+	margin-top: -22px;
+}
+.wondful_nav{
+	position: relative;
+}
+.elephant{
+	position: absolute;
+	z-index: 2;
+	right: 206px;
+	top: -106px;
+	width: 64px;
+	height: 55px;
+}
+.photo{
+	width: 95px;
+	height: 95px;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 1;
+	right: 209px;
+	top: -70px;
+}
+.wondeful_video{
+	margin: 66px 0 0 160px;
+}
+.wondeful_video div h4{
+	top: 0;
+}
+.wondeful_video div{
+	margin-right: 30px;
+	color: #606170;
+}
+.my_fast_join{
+	position: absolute;
+	bottom: 76px;
+}
+/* 我的精彩瞬间页面无视频 */
+.J_my_wondful_no{
+	background: url(../images/J_my_wondful_con.png) 200px 0 no-repeat;
+	height: 554px;
+	padding: 87px 0 0 249px;
+	margin-top: -17px;
+	color: #fff;
+}
+.wondeful_video_no div h4{
+	top: 0;
+}
+.wondeful_video_no{
+	overflow: hidden;
+	margin: 88px 0 0 167px;
+}
+.my_wonde_no_content{
+	color: #010101;
+	margin-top: 30px;
+}
+.wondeful_video_no div{
+	margin-right: 9px;
+	color: #606170;
+}
+.w_join{
+	line-height: 41px;
+}
+.w_good{
+	line-height: 34px;
+	font-weight: normal;
+}
+.my_wonde_no_content ul{
+	margin-top: 200px;
+}
+.my_wonde_no_content ul li{
+	line-height: 20px;
+}
+.fast_join{
+	margin: 38px 0 0 368px;
+	display: block;
+	width: 136px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	color: #79cccf;
+}
+/* 精彩汇聚 */
+.all_wondeful_con{
+	background: url(../images/J_all_wondeful.png) 134px 0 no-repeat;
+	height: 560px;
+	color: #fff;
+	padding: 48px 0 0 462px;
+	margin-top: 5px;
+}
+.all_wondeful_con .allwondeful{
+	margin: 0;
+}
+.allwondeful div{
+	margin: 0 26px 27px 0;
+}
+.allwondeful_con{
+	left: 258px;
+	width: 950px;
+	height: 400px;
+	overflow: hidden;
+	color: #606170;
+}
+.allwondeful_nav h3 a{
+	float: left;
+	width: 99px;
+	height: 35px;
+	background: url(../images/before.gif) 0 0 no-repeat;
+	margin-left: 9px;
+	text-align: center;
+	line-height: 35px;
+	color: #53c1c5;
+}
+.allwondeful_nav h3 .click{
+	background: url(../images/after.gif) 0 0 no-repeat;
+	color: #fff;
+}
+.all_wondeful_ol{
+	float: right;
+	margin: -10px 94px 0 0
+}
+.all_wondeful_ol li{
+	float: left;
+	width: 16px;
+	text-align: center;
+}
+/* 精彩汇聚视频详情 */
+.allwondeful_detail_con{
+	background: url(../images/allwondeful_detail.png) 198px 0 no-repeat;
+	height: 535px;
+	color: #fff;
+	padding: 92px 0 0 249px;
+	margin-top: -16px;
+	color: #606170;
+	font-size: 15px;
+	overflow: hidden;
+}
+.wondeful_details{
+	overflow: hidden;
+	width: 950px;
+}
+.wondeful_d_left{
+	float: left;
+}
+.wondeful_d_left h3{
+	margin-bottom: 38px;
+}
+.wondeful_d_left div{
+	width: 524px;
+	height: 394px;
+}
+.wondeful_d_left div span{
+	display: block;
+	height: 29px;
+	background: url(../images/wondeful_info.gif) 10px 5px no-repeat;
+	padding-left: 32px;
+	line-height: 29px;
+	overflow: hidden;
+}
+.wondeful_d_left div span em{
+	margin-right: 54px;
+	display: inline-block;
+}
+.wondeful_d_left div span a{
+	height: 22px;
+	width: 50px;
+	float: right;
+	margin-right: 38px;
+	line-height: 28px;
+	background: url(../images/wondeful_share.gif) 0 0 no-repeat;
+	color: #606170;
+	padding-left: 23px;
+}
+.comment_text{
+	width: 240px;
+	height: 30px;
+	position: absolute;
+	z-index: 3;
+	left: 10px;
+	top: 80px;
+	background: transparent;
+	border: none;
+	outline: none;
+	padding: 20px 0 0 10px;
+}
+.comment_all{
+	width: 426px;
+	height: 166px;
+	float: left;
+	margin: 0px 0px 0 0px;
+	/* margin: 127px 80px 0 286px; */
+	position: relative;
+}
+.wondeful_comment{
+	/* margin: 127px 0 0 74px; */
+	position: absolute;
+	z-index: 3;
+	right: 78px;
+	bottom: 0px;
+	width: 60px;
+	height: 40px;
+	color: #79cccf;
+	line-height: 40px;
+	text-align: center;
+}
+.beauty_word_div{
+	height: 270px;
+	overflow: hidden;
+	float: left;
+}
+.wondeful_details ul{
+	width: 383px;
+	height: 446px;
+}
+.wondeful_details ul li{
+	line-height: 36px;
+	padding-left: 14px;
+	border-bottom: 1px dashed #9b885a;
+}
+.wondeful_details ul li b{
+	font-weight: normal;
+}
+.wondeful_details ol{
+	float: right;
+	margin-right: 50px;
+}
+.wondeful_details ol li{
+	float: left;
+	width: 16px;
+	text-align: center;
+}
+.wondeful_details ol li a,.all_wondeful_ol li a{
+	color: #606170;
+}
+/* 我的精彩瞬间详细页 */
+.my_wondful_details{
+	background: url(../images/J_my_wondful_details.png) 198px 0 no-repeat;
+	height: 538px;
+}
+.wondeful_detail{
+	top: 70px;
+}

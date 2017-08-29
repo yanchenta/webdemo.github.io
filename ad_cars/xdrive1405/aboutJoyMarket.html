@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title></title>
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:2744px;
+			padding:0px 0px;
+			margin:0px 0px;
+			
+			background-image:url('images/introduction.jpg');
+			background-size:640px 2744px;
+			background-position:left top;
+			background-repeat:no-repeat;
+		}
+		.div-to-registration{
+			position:absolute;
+			top:366px;
+			left:31px;
+			
+			width:205px;
+			height:52px;
+			
+			cursor:pointer;
+		}
+		.div-to-index{
+			position:absolute;
+			top:438px;
+			left:9px;
+			
+			width:205px;
+			height:52px;
+			
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="div-to-registration"></div>
+		<div class="div-to-index"></div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript">
+	document.getElementsByClassName("div-to-registration")[0].onclick = function(){
+		window.location.href = "registration.html";
+	}
+	
+	document.getElementsByClassName("div-to-index")[0].onclick = function(){
+		window.location.href = "index.html";
+	}
+	
+	window.onload = function(){
+		track2(window.codeConsts.channelId, window.codeConsts.codes.page_joymarket_pv);
+	}
+</script>
+</html>

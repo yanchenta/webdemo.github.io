@@ -1,0 +1,88 @@
+@import "reset.css";
+
+html,body{background:#fff;font-family:微软雅黑,Microsoft Yahei,Tahoma,Arial,sans-serif;padding:0px;margin:0px;outline:none;font-size:14px;}
+
+img {height: auto;max-width: 100%;width: auto;display:block;}
+.fxbg{position:relative;height:100%;width:640px;margin:0 auto;}
+.fxbg > div{position:relative;}
+
+
+#v1{width: 100%;height: 100%;min-height: 443px; left: 0%;top: 0%;overflow:hidden;z-index: 1;}
+#v1 ul{width:300%;}
+#v1 ul li{width:640px;height:886px;float:left;}
+#v2{width: 40%;height: 23%;left: 52%;top: 25%;}
+
+#v3{width: 100%;height: 100%;left: 0%;top: 0%;overflow:hidden;}
+#v3 ul{width:600%;}
+#v3 ul li{width:640px;float:left;}
+
+#v3_l{top:400px;left:17px;width:25px;}
+#v3_r{top:400px;right:17px;width:25px;}
+.fly{display:inline-block;position:absolute; box-sizing:border-box;}
+
+#m0{width:15%;height:100%;left:0%;top:0;}
+#m1{width:40%;height:100%;left:17%;top:0;}
+#m2{width:40%;height:100%;left:58%;top:0%;}
+
+#m1_1{width:160px;height:7%;left:64%;bottom:15%;z-index: 2;}
+#m1_2{width:160px;height:16%;left:480px;bottom:38%;z-index: 2;}
+
+
+#m3_1{width:160px;height:7%;left:20%;bottom:18%;}
+#m3_2{width:160px;height:7%;left:56.5%;bottom:18%;}
+
+#m3_3{display:none;top:0;bottom:0;left:0;right:0;margin:auto;width:600px;height:734px;background-color:#f1f1f1;border-radius: 12px;z-index:5;}
+#m3_3_1{height:634px;overflow:hidden;margin-top: 12px;width: 573px;}
+#m3_3_2{margin: 20px 0 0 400px;}
+#m3_3_3{position:absolute;top:20px;right:14px;width: 27px;height: 26px;}
+
+#m3_4{display:none;top:0;bottom:0;left:0;right:0;margin:auto;width:600px;height:460px;background-color:#f1f1f1;border-radius: 12px;z-index:5;}
+#m3_4_1{position:absolute;top:14px;right:14px;width: 50px;height: 40px;}
+
+#realname{position:absolute;top: 109px;left: 200px;height: 46px;width: 330px;border: none;}
+#mobile{position:absolute;top: 188px;left: 200px;height: 46px;width: 330px;border: none;}
+#email{position:absolute;top: 267px;left: 200px;height: 46px;width: 330px;border: none;}
+
+#check{position:absolute;top:339px;left:48px;width: 470px;height: 40px;background-image:url(../images/check.png);background-size: contain;
+background-repeat: no-repeat;}
+#check.checked{background-image:url(../images/checked.png);}
+#m3_4_2{position:absolute;top:387px;right:30px;width: 165px;height: 52px;}
+
+.dians{position:absolute;right: 0;left:0;width: 60px;margin:auto;bottom: 80px;z-index: 2;}
+.dian{width:14px;height:14px;display:inline-block; background-image:url(../images/dian1.png);background-size: contain;}
+.dian.selected{width:16px;height:16px;background-image:url(../images/dian.png);}
+
+marquee{position:absolute;top:0;background-color:rgba(11,48,128,0.4);color:#fff;height:2em;line-height:2em;font-size:24px;}
+
+.bottom{position: fixed!important;bottom: 0;z-index:2;}
+#cover{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.6);z-index:3;display:none;}
+
+.nav{z-index:4;}
+
+#p3_1{width: 237px;height: 7%;left: 50%;bottom: 14%;}
+#p3_2{width: 56px;height: 6%;left: 80%;top: 12%;}
+
+#p4_1{top:20px;right:20px;width:25px;}
+#p4_2{top:340px;left:216px;width:207px;
+	-webkit-animation:yaoyiyao 2s ease-out 0 infinite}
+#p4_3{top:630px;left:270px;width:99px;}
+@-webkit-keyframes yaoyiyao{
+	10%{-webkit-transform:rotate(20deg);-webkit-transform-origin:bottom right;}
+	20%{-webkit-transform:rotate(-30deg);-webkit-transform-origin:bottom right;}
+	30%{-webkit-transform:rotate(20deg);-webkit-transform-origin:bottom right;}
+	40%{-webkit-transform:rotate(-30deg);-webkit-transform-origin:bottom right;}
+	50%{-webkit-transform:rotate(0deg);-webkit-transform-origin:bottom right;}
+	
+	
+}
+#p4_4{top:420px;left:19px;width:602px;display:none;}
+#p4_4_1{width: 50%;height: 33%;bottom: 0;left:0%;}
+#p4_4_2{width: 50%;height: 33%;bottom: 0;left:50%;}
+#p4_5{top:545px;left:19px;width:602px;display:none;}
+#sina{display:none;position:fixed;bottom: 0;}
+#sina_1{width: 50%;height: 33%;bottom: 24%;left:0%;}
+#sina_2{width: 50%;height: 33%;bottom: 24%;left:50%;}
+
+#weixin_1{width: 50%;height: 33%;bottom: 24%;left:0%;display:none;}
+#weixin_2{width: 80%;height: 33%;bottom: 24%;left:10%;}
+

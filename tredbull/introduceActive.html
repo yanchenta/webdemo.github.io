@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RedBullWorldCup</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        var phoneWidth =  parseInt(window.screen.width);
+        var phoneScale = phoneWidth/640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)){
+            var version = parseFloat(RegExp.$1);
+            // andriod 2.3
+            if(version>2.3){
+                document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+                // andriod 2.3以上
+            }else{
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+            // 其他系统
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+        //微信去掉下方刷新栏
+        if(RegExp("MicroMessenger").test(navigator.userAgent)){
+            document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+                WeixinJSBridge.call('hideToolbar');
+            });
+        }
+    </script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        var path = "http://ama.adwo.com/tracknew/advTract/tractEventJsonP.action?";
+        var trackScript;
+        function track(cId, eventId, url){
+            trackScript= null;
+            trackScript= document.createElement("script");
+            var src = path +"cid=" + cId + "&eventid=" + eventId;
+            trackScript.type = "text/javascript";
+            trackScript.src = src;
+            document.getElementsByTagName("head")[0].appendChild(trackScript);
+            if (url != undefined &&url != null &&url != "") {
+                setTimeout(function() {
+                    location.href = url+"?cid="+cId;
+                }, 500);
+
+            }
+        }
+        function eventcallback(result) {
+            document.getElementsByTagName("head")[0].removeChild(trackScript);
+        }
+       
+    </script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <!--<script src="js/introduceActive.js"></script>-->
+	<!--<script type="text/javascript" src="js/scrollbar.js"></script>-->
+	<script src="js/cookie/jquery.cookie.js"></script>
+    <script>
+        var trackScript1;
+        function limei(action, oclick, form, submit) {
+            var path = '';
+
+            var temp = action;
+            var limeiInfo = eval('(' + $.cookie('limeiInfo') + ')');
+            var limeiUrl = "http://m.lmapp.com/dmplog.php?";
+            var limeididid = limeiInfo.limeididid;
+            var udid = limeiInfo.udid;
+            var appid = limeiInfo.appid;
+            var udidType = limeiInfo.udidType;
+            var rs;
+
+            if (action == "form" && form != '' && form != undefined && form != null) {
+                rs = Math.random() * 100000;
+                path = limeiUrl + "action=" + temp + "&limeididid=" + limeididid + "&udidType=" + udidType + "&udid=" + udid + "&appid=" + appid + "&form=" + form + "&r=" + rs;
+            }
+            else if (action == "submit" && submint != '' && submint != undefined && submit != null ) {
+                rs = Math.random() * 100000;
+                path = limeiUrl + "action=" + temp + "&limeididid=" + limeididid + "&udidType=" + udidType + "&udid=" + udid + "&appid=" + appid + "&submit=" + submit + "&r=" + rs;
+            }
+            else if ((action == "access" || action == "loaded")) {
+                rs = Math.random() * 100000;
+                path = limeiUrl + "action=" + temp + "&limeididid=" + limeididid + "&udidType=" + udidType + "&udid=" + udid + "&appid=" + appid + "&r=" + rs;
+            }
+            else if (action == "click" && oclick != '' && oclick != undefined && oclick != null) {
+                rs = Math.random() * 100000;
+                path = limeiUrl + "action=" + temp + "&limeididid=" + limeididid + "&udidType=" + udidType + "&udid=" + udid + "&appid=" + appid + "&click=" + oclick + "&r=" + rs;
+            }
+//        document.getElementById("limei").src=path
+            trackScript1 = document.createElement("script");
+            trackScript1.type = "text/javascript";
+            trackScript1.src = path;
+            document.getElementsByTagName("head")[0].appendChild(trackScript1);
+//    alert(path);
+        }
+        $.cookie("nowPage",3);
+    </script>
+    <script src="js/client.js"></script>
+    <script type="text/javascript">
+	$(function(){
+		 var reqObj = GetRequest();
+		 if(reqObj.cid=='sohu')
+		{
+			 location.href = "./index.html?cid=sohu";
+		}
+		 
+		$(".t").scrollTop(0);
+		$(".t").scroll(function(){
+			$(".arrow").css({marginTop:487*$(".t").scrollTop()/($(".t_png").height()-618),right:33*$(".t").scrollTop()/($(".t_png").height()-618)+7});
+		});
+	});
+	function showInfo(){
+		$("#scollCon").css({display:"block"});
+		$("#scollCon1").css({display:"none"});
+	}
+	function closeInfo(){
+		$("#scollCon").css({display:"none"});
+		$("#scollCon1").css({display:"block"});
+	}
+	
+	function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        //alert(url);
+        url = decodeURI(url);
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    </script>
+    <script src="js/user.js"></script>
+</head>
+<body>
+<section class="body2" style="overflow-x:hidden">
+    <div class="nibuguan"></div>
+    <section class="BG">
+    		<section class="login">
+                <!--登陆前-->
+                <article class="T" id="loginbefore"></article>
+                <!--登陆后-->
+            <article class="img Dn" id="loged"><img src="" width="70" height="70"></article>
+				<!--退出-->
+              <article class="userOut Dn" id="userOut"><img src="img/userOut.png" width="70" height="70" onClick="userOut()"></article>
+            </section>
+        <article class="introduceActive">
+            <article class="content">
+                <section class="title"></section>
+                <!--<section class="y_b"></section>-->
+                <section class="t">
+                    <img src="img/introduceActive_t.png" width="557" border="0" usemap="#scollConMap" class="t_png" id="scollCon" style="display:none;">
+                    <map name="scollConMap">
+                      <area shape="rect" coords="207,3362,338,3412" href="javascript:;" onClick="closeInfo()">
+                    </map>
+                    
+                    <img src="img/introduceActive_S.png" width="557" border="0" usemap="#scollCon1Map" class="t_png" id="scollCon1">
+                    <map name="scollCon1Map">
+                      <area shape="rect" coords="336,535,488,566" href="javascript:;" onClick="showInfo()">
+                    </map>
+                </section>
+                <!--<section class="scollY">-->
+                <section class="arrow" id="scollObj"></section>
+                <!--<section class="up"></section>-->
+                <!--<section class="down"></section>--> 
+                <!--</section>-->
+            </article>
+
+            <nav class="tableHost">
+                <a onclick="index()">
+                <div id="btn1" class="tableHost_btn"></div>
+                </a>
+                <a onclick="maps()">
+                    <div id="btn2" class="tableHost_btn"></div>
+                </a>
+                <!--<a href="introduceActive.html">-->
+                <div id="btn3" class="tableHost_btn"></div>
+                <!--</a>-->
+                <a onclick="ranks()">
+                    <div id="btn4" class="tableHost_btn"></div>
+                </a>
+            </nav>
+        </article>
+    </section>
+</section>
+</body>
+<script>
+    var userInfo = eval('('+$.cookie('userInfo')+')');
+    var cId = $.cookie('cIdid');
+
+    function maps() {
+        //alert('sd');
+        //alert(uid);
+        if (uid != '' && uid != null && uid != undefined) {
+//            alert(cId);
+            track(cId,10075,"map.html");
+            // location.href='map.html';
+            //window.location.href='share.html';
+            //return;
+        }
+    }
+    function index() {
+        //alert('sd');
+        //alert(uid);
+//        if (uid != '' && uid != null && uid != undefined) {
+//            alert(cId);
+            track(cId,10071,"index.html");
+            // location.href='map.html';
+            //window.location.href='share.html';
+            //return;
+//        }
+    }
+    function ranks() {
+        //alert('sd');
+        //alert(uid);
+//        if ($.cookie('lng') != '' && $.cookie('lng') != undefined && uid != '' && uid != null && uid != undefined) {
+            //alert(uid);
+            track(cId,10077,"rank.html");
+//            window.location.href = 'rank.html';
+            //window.location.href='share.html';
+//        }
+    }
+   
+</script>
+</html>

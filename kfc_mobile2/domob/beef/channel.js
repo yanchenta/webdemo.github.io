@@ -1,0 +1,1 @@
+var channel = '2', chann = 'domob';

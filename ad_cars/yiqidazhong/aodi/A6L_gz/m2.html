@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html onload="alert('html')">
+<head onload="alert('head')">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title onload="alert('title')"></title>
+<link href="css/index.css"  type="text/css" rel="stylesheet" />
+<script src="channel.js"></script>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/guid.js"></script>
+<script src="js/trackEvent.js"></script>
+<script src="js/control.js"></script>
+<style>
+html,body{background-color:#000;}
+</style>
+<script>
+$(document).ready(function(e) {
+	var ua = navigator.userAgent.toLowerCase();
+	var isIOS = (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1);
+	
+	//track(channel,5449);
+});
+
+</script>
+</head>
+
+<body onload="resetPage();">
+<div class="fxbg">
+<img class="img" src="images/2.jpg" alt=""/>
+<div class="btn1">
+	<input type="text" id="realname" class="fly" />
+    <select class="fly" id="sex"><option value="1">男</option><option value="2">女</option></select>
+    <input type="text" id="mobile" class="fly" />
+    <input type="text" id="email" class="fly" />
+    <select class="fly" id="jxs">
+		<option value="">请选择经销商</option>
+        <option>广东中奥汽车销售服务有限公司</option>
+		<option>广东君奥汽车贸易有限公司</option>
+		<option>广州市锦龙汽车发展有限公司</option>
+		<option>广东粤奥汽车销售服务有限公司</option>
+</select>
+    <select class="fly" id="buytime"><option value="">选择预约时间</option><option>3个月内</option><option>半年内</option><option>一年内</option><option>暂无计划</option></select>
+    <div id="submit" class="fly" onclick="submitForm()"></div>
+    
+    
+	<a href="index.html" id="m1" class="fly"></a>
+    <a href="m2.html" id="m2" class="fly"></a>
+    <a href="m3.html" id="m3" class="fly"></a>
+    <a href="m4.html" id="m4" class="fly"></a>
+</div>
+</div>
+</body>
+</html>

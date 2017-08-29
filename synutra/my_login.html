@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/index.css">
+	<title>登录页</title>
+</head>
+<body>
+	<div id="main" class="main">
+		<div class="head">
+			<h1><a href="javascript:;"></a></h1>
+			<div class="nav">
+				<a id="toindex" class="show" href="javascript:;">首页</a>
+				<a id="todetail" href="javascript:;">活动详情</a>
+				<a id="toalllist" href="javascript:;">精彩汇聚</a>
+				<a id="tomylist" href="javascript:;">我的精彩瞬间</a>
+				<a id="totmall" href="javascript:;">天猫旗舰店</a>
+			</div>
+			<div class="div_right"><span></span><a class="load" href="javascript:;">用户登录</a></div>
+		</div>
+		<div class="content J_load_con cf">
+			<a id="login_sinaweibo" class="load_a_first" href="javascript:;">&nbsp;</a>
+			<a id="login_tecentqq" href="javascript:;">&nbsp;</a>
+		</div>
+		<div class="footer">
+			<span class="select_word">Copyright © 2013 Synutra.com inc. All right reserved. 京ICP备10008417号-1</span>
+			<div>分享到<a class="tcent" href=""></a><a class="sina" href=""></a></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript">
+		
+		var tarUrl = getParamValueFromUrl(window.location.href, "tarparam");
+		//参数判断
+		if(!!tarUrl){
+			alert("错误的回调URL参数");
+			window.location.href = "index.html";
+		}
+		if(isLogined()){
+			window.location.href = tarUrl;
+		}
+		
+		//登陆回调提交
+		document.getElementById("login_sinaweibo").onclick = function(){
+			alert("新浪微博登陆 => 未实现");
+			//tarUrl ... 
+		};
+		document.getElementById("login_tecentqq").onclick = function(){
+			alert("腾讯QQ登陆 => 未实现");
+			//tarUrl ...
+		};
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,1 @@
+var channel = '13', chann = 'adsage';

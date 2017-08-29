@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" />
+	<title>catch中文注册</title>
+	<!--<link rel="styleseet" type="text/css" href="css/index.css"/>-->
+	<style type="text/css">
+		html body{
+			width:640px;
+			height:1008px;
+			margin:0px 0px;
+			padding:0px 0px;
+		}
+		
+		.banner{
+			background-image:url("images/cn-banner.png");
+			background-position:center;
+			background-repeat:no-repeat;
+			height:163px;
+			width:640px;
+		}
+		.main-body{
+			position:relative;
+			width:640px;
+			height:845px;
+		}
+
+		.notice-help{
+			background-color:rgba(255,255,255,0.7);
+			
+			position:absolute;
+			top:0px;
+			left:0px;
+			display:none;
+			
+			width:640px;
+			height:845px;
+			z-index:2;
+		}
+		.notice-help-img{
+			position:absolute;
+			
+			top:50%;
+			margin-top:-157px;
+			left:50%;
+			margin-left:-291px;
+		}
+		.notice-success{
+			background-image:url("images/cn-notice-success.png");
+			background-size:582px 313px;
+			background-position:center;
+			background-repeat:no-repeat;
+			background-color:rgba(255,255,255,1);
+			
+			position:absolute;
+			top:0px;
+			left:0px;
+			display:none;
+			
+			width:640px;
+			height:845px;
+			z-index:3;
+		}
+		
+		.main-area{
+			position:absolute;
+			top:0px;
+			left:30px;
+			width:580px;
+			height:845px;
+			z-index:1;
+			text-align:center;
+			margin-top:20px;
+		}
+		.lang-tab{
+			background-image:url('images/lang-tab-bg.png');
+			background-size:595px 59px;
+			background-position:top;
+			background-repeat:no-repeat;
+			
+			width:595px;
+			height:59px;
+			margin-left:-8px;
+			cursor:pointer;
+			font-weight:700;
+			margin-bottom:10px;
+		}
+		.cn-lang-select-tab{
+			background-image:url('images/cn-lang-tab-bg-selected.png');
+			background-size:303px 59px;
+			background-position:-0px 0px;
+			background-repeat:no-repeat;
+			
+			width:313px;
+			height:59px;
+			
+			display:inline-block;
+			text-align:center;
+			font-size:40px;
+			padding-top:10px;
+		}
+		.en-lang-unselect-tab{
+			width:270px;
+			height:59px;
+			background-color:transparent;
+			
+			display:inline-block;
+			text-align:center;
+			font-size:40px;
+			padding-top:10px;
+		}
+		.text-left{
+			display:inline-block;
+			width:180px;
+			font-size:30px;
+			font-family:"HYb1gj";
+			text-align:right;
+			vertical-align:center;
+		}
+		.text-left-part{
+			display:inline-block;
+		}
+		.text-right{
+			display:inline-block;
+			position:relative;
+			width:390px;
+		}
+		.row{
+			margin-bottom:15px;
+			height:73px;
+			min-height:73px;
+			max-height:73px;
+		}
+		
+		input[type=text]{
+			width:310px;
+			font-size:35px;
+			height:40px;
+			padding-left:15px;
+		}
+		.char-ques{
+			position:absolute;
+			top:50%;
+			margin-top:-30px;
+			right:30px;
+			background-image:url('images/char-ques.png');
+			background-repeat:no-repeat;
+			background-position:center;
+			width:60px;
+			height:60px;
+			cursor:pointer;
+		}
+		.checkbox-select{
+			height:65px;
+			width:65px;
+			background-image:url('images/lang-checked.png');
+			background-repeat:no-repeat;
+			background-position:center;
+			cursor:pointer;
+			
+			display:inline-block;
+			margin-bottom:-15px;
+		}
+		.checkbox-unselect{
+			height:65px;
+			width:65px;
+			background-image:url('images/lang-unchecked.png');
+			background-repeat:no-repeat;
+			background-position:center;
+			cursor:pointer;
+			
+			display:inline-block;
+			margin-bottom:-15px;
+		}
+
+		.btn-submit-cn{
+			width:595px;
+			height:89px;
+			background-image:url('images/cn-submit.png');
+			background-repeat:no-repeat;
+			background-position:center;
+			cursor:pointer;
+			margin-left:-9px;
+			margin-top:30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="main-area">
+			<div class="lang-tab">
+				<div id="btn-cn-lang" class="cn-lang-select-tab">
+					<span>中文</span>
+				</div>
+				<div id="btn-en-lang" class="en-lang-unselect-tab">
+					<span>EN</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-left">
+					<div class="text-left-part" style="letter-spacing:20px;">
+						<div style="margin-right:-30px;">微信号</div>
+					</div>
+					<span>*:</span>
+				</div>
+				<div class="text-right">
+					<input class="text-wechatno" type="text" value=""/>
+					<div class="char-ques"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-left">
+					<div class="text-left-part" style="letter-spacing:70px;">
+						<div style="margin-right:-80px;">昵称</div>
+					</div>
+					<span>*:</span>
+				</div>
+				<div class="text-right">
+					<input class="text-nickname" type="text" value=""/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-left">
+					<div class="text-left-part" style="letter-spacing:70px;">
+						<div style="margin-right:-80px;">姓名</div>
+					</div>
+					<span>*:</span>
+				</div>
+				<div class="text-right">
+					<input class="text-realname" type="text" value=""/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-left">
+					<div class="text-left-part" style="letter-spacing:4px;">
+						<div style="margin-right:-13px;">公司邮箱</div>
+					</div>
+					<span>*:</span>
+				</div>
+				<div class="text-right">
+					<input class="text-email" type="text" value=""/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-left">
+					<div class="text-left-part" style="letter-spacing:4px;">
+						<div style="margin-right:-13px;">手机号码</div>
+					</div>
+					<span>&nbsp;:</span>
+				</div>
+				<div class="text-right">
+					<input class="text-mobile" type="text" value=""/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-left">
+					<div class="text-left-part" style="letter-spacing:4px;">
+						<div style="margin-right:-14px;">默认语言</div>
+					</div>
+					<span>&nbsp;:</span>
+				</div>
+				<div class="text-right" style="font-size:35px;">
+					<div style="display:inline-block;">
+						<span>中文</span>
+						<div id="checkbox-cn" class="checkbox-select">
+						</div>
+					</div>
+					<div style="display:inline-block;">
+						<span>英文</span>
+						<div id="checkbox-en" class="checkbox-unselect">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div style="text-align:left;padding-left:15px;padding-top:25px;height:60px;">
+					<span style="font-size:25px;">带*选项为必填项</span>
+				</div>
+			</div>
+			<div class="row" style="height:40px;">
+				<div class="btn-submit-cn"></div>
+			</div>
+		</div>
+		<div class="notice-help">
+			<img class="notice-help-img" alt="" src="images/cn-notice-help.png"/>
+			<div class="close-help-div"></div>
+		</div>
+		<div class="notice-success"></div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/trackEvent.js"></script>
+<script type="text/javascript" src="js/trackConsts.js"></script>
+<script type="text/javascript" src="js/reg.js"></script>
+</html>
