@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<title></title>
+	<style type="text/css">
+		html,body{
+			margin:0px 0px;
+			padding:0px 0px;
+		}
+		body{
+			background-image:url('BG.jpg');
+			background-color:black;
+			background-position:left top;
+			background-repeat:no-repeat;
+			background-size:1080px 1701px;
+			
+			width:1080px;
+			height:1701px;
+			overflow-yellow:hidden;
+		}
+		
+		.main-body1{
+			background-color:#ddd;
+			position:relative;
+			width:100%;
+			height:400px;
+		}
+		.main-body2{
+			width:100%;
+			height:100px;
+			text-align:center;
+		}
+		.main-body2 input{
+			width:60px;
+			height:25px;
+			margin:10px;
+		}
+		.v-seperator{
+			width:100%;
+			height:1px;
+			background-color:#000;
+			position:absolute;
+			top:284px;
+		}
+		.h-seperator{
+			width:1px;
+			height:100%;
+			background-color:#000;
+			position:absolute;
+			left:50%;
+			margin-left:0px;
+		}
+		.main-body-top{
+			position:absolute;
+			top:640px;
+			
+			width:100%;
+			height:300px;
+		}
+		.eggimg{
+			background-image:url('egg.png');
+			background-position:left top;
+			background-repeat:no-repeat;
+			background-size:242px 304px;
+			width:242px;
+			height:304px;
+			display:inline-block;
+			
+			opacity:1;
+		}
+		.eggimg2{
+			background-image:url('egg.png');
+			background-position:left top;
+			background-repeat:no-repeat;
+			background-size:242px 304px;
+			width:242px;
+			height:304px;
+			display:inline-block;
+			
+			opacity:1;
+			
+			position:absolute;
+			left:10px;
+			top:100px;
+		}
+		.eggimgX{
+			background-image:url('eggX.png');
+			background-position:-45px 5px;
+			background-repeat:no-repeat;
+			background-size:330px 333px;
+			width:242px;
+			height:343px;
+			display:inline-block;
+			
+			opacity:1;
+		}
+		#eggimg1{
+			position:absolute;
+			top:0px;
+			left:108px;
+		}
+		#eggimg2{
+			position:absolute;
+			top:0px;
+			left:408px;
+		}
+		#eggimg3{
+			position:absolute;
+			top:0px;
+			left:708px;
+		}
+		.shadow{
+			background-image:url('ying.png');
+			background-position:left top;
+			background-repeat:no-repeat;
+			background-size:240px 160px;
+			
+			width:240px;
+			height:160px;
+			display:inline-block;
+			
+			opacity:1;
+		}
+		#shadow1{
+			position:absolute;
+			top:228px;
+			left:100px;
+			z-index:1;
+		}
+		#shadow2{
+			position:absolute;
+			top:228px;
+			left:408px;
+			z-index:1;
+		}
+		#shadow3{
+			position:absolute;
+			top:228px;
+			left:715px;
+			z-index:1;
+		}
+		.hammer{
+			background-image:url('TT.png');
+			background-position:left top;
+			background-repeat:no-repeat;
+			background-size:260px 209px;
+			
+			width:260px;
+			height:209px;
+			display:inline-block;
+			
+			opacity:1;
+			z-index:2;
+		}
+		#hammer1{
+			position:absolute;
+			top:-50px;
+			left:180px;
+			
+			display:none;
+		}
+		#hammer2{
+			position:absolute;
+			top:-50px;
+			left:488px;
+			
+			display:none;
+		}
+		#hammer3{
+			position:absolute;
+			top:-50px;
+			left:785px;
+			
+			display:none;
+		}
+		.main-body-bottom{
+			border:2px solid;
+			border-color:#D4D100;
+			border-radius:4px;
+			
+			width:96%;
+			height:300px;
+			
+			position:absolute;
+			top:1200px;
+			left:2%;
+			color:white;
+			padding-top:60px;
+		}
+		.main-body-bottom table td{
+			height:50px;
+			font-size:2.5em;
+			font-family:黑体;
+		}
+		.main-body-bottom .caption{
+			width:25%;
+			text-align:right;
+		}
+		.main-body-bottom .content{
+			width:60%;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div class="eggimgX" style="position:absolute;left:-1000px;top:-500px;"></div>
+	</div>
+	<div class="main-body">
+		<div class="main-body-top">
+			<div id="shadow1" class="shadow"></div>
+			<div id="shadow2" class="shadow"></div>
+			<div id="shadow3" class="shadow"></div>
+			
+			<div id="eggimg1" class="eggimg" onclick="hitEgg(this.id)"></div>
+			<div id="eggimg2" class="eggimg" onclick="hitEgg(this.id)"></div>
+			<div id="eggimg3" class="eggimg" onclick="hitEgg(this.id)"></div>
+			
+			<div id="hammer1" class="hammer"></div>
+			<div id="hammer2" class="hammer"></div>
+			<div id="hammer3" class="hammer"></div>
+			
+			<div id="eggimg5" class="eggimg2" onclick="hitEgg(this.id)"></div>
+			<div id="eggimg6" class="eggimg2" onclick="hitEgg(this.id)"></div>
+			<div id="eggimg7" class="eggimg2" onclick="hitEgg(this.id)"></div>
+		</div>
+		<div class="main-body-bottom">
+			<table>
+				<tr><td class="caption">一等奖:</td><td class="content">111111111111111111111111</td></tr>
+				<tr><td class="caption">二等奖:</td><td class="content">222222222222222222222222</td></tr>
+				<tr><td class="caption">三等奖:</td><td class="content">333333333333333333333333</td></tr>
+				<tr><td class="caption">四等奖:</td><td class="content">444444444444444444444444</td></tr>
+				<tr><td class="caption">五等奖:</td><td class="content">555555555555555555555555</td></tr>
+			</table>
+		</div>
+	</div>
+	
+	<div class="footer"></div>
+</body>
+<script type="text/javascript">
+	(function(){
+		//缩放
+		var rate = document.documentElement.clientWidth/1080;
+		document.body.style.zoom = rate;
+		
+		//请求奖项内容
+		
+	})();
+	window.onresize = function(){
+		var rate = document.documentElement.clientWidth/1080;
+		document.body.style.zoom = rate;
+	}
+	
+	var eggParams = {};
+	aniSnds = 0.5;
+	minSecondsInterval = 50;
+	intevalCnt = aniSnds*1000/minSecondsInterval;
+	stDeg = 0;
+	curDeg = 0;
+	endDeg = 60;
+	varPerDeg = 0;
+	intervalHandlers = [];
+	curSectionIdx = 0;
+	curAllSection = null;
+	isTryEggStop = false;
+	isEggStop = false;
+	EggAnimationRotate2(["0,15", "15,0", "0,-15", "-15,0"]);
+	
+	function EggAnimationRotate2(arr){
+		curAllSection = arr;
+		curSectionIdx = 0;
+		
+		var st = parseFloat(arr[curSectionIdx].split(',')[0]);
+		var end = parseFloat(arr[curSectionIdx].split(',')[1]);
+		
+		EggAniSetTimeout(st, end);
+	}
+	function EggAniSetTimeout(){
+		if(isTryEggStop) {//正在尝试停止
+			if(!isEggStop){//正在尝试停止，但还未停止下来
+				resetEgg();
+				isEggStop = true;
+			}
+			return;
+		}
+		
+		if(curSectionIdx < curAllSection.length){//i++
+			var st = parseFloat(curAllSection[curSectionIdx].split(',')[0]);
+			var end = parseFloat(curAllSection[curSectionIdx].split(',')[1]);
+			//console.log("[" + st + "=>" + end + "]");
+			EggAnimationRotate(st, end);
+			curSectionIdx++;
+			
+			//console.log("stTimeout:" + aniSnds*1000);
+			setTimeout(function(){
+				EggAniSetTimeout();
+			}, aniSnds*1000 + 50);
+		}
+		else{
+			EggAnimationRotate2(curAllSection);
+			//console.log("intervalHandlers.length:" + intervalHandlers.length);
+		}
+	}
+	function resetEgg(){
+		toRotateEgg(0);
+	}
+	function EggAnimationRotate(stDeg, endDeg){
+		stDeg = stDeg;
+		curDeg = stDeg;
+		endDeg = endDeg;
+		varPerDeg = (endDeg - stDeg)/intevalCnt;
+		
+		var newIntervalHandler=setInterval(function(){
+			//console.log("curDeg:" + curDeg);
+			
+			toRotateEgg(curDeg);//redraw
+			if(endDeg - stDeg > 0){
+				if(curDeg >= endDeg){
+					if(intervalHandlers.length > 0){
+						var idx = intervalHandlers.shift();
+						clearInterval(idx);
+					}
+				}
+			}
+			else if(isTryEggStop){//正在尝试停止
+				if(!isEggStop){//正在尝试停止，但还未停止下来
+					var idx = intervalHandlers.shift();
+					clearInterval(idx);
+					
+					resetEgg();
+				}
+				isEggStop = true;
+			}
+			else{
+				if(curDeg <= endDeg){
+					if(intervalHandlers.length > 0){
+						var idx = intervalHandlers.shift();
+						clearInterval(idx);
+					}
+				}
+			}
+			curDeg += varPerDeg;//i++
+		}, minSecondsInterval);
+		
+		intervalHandlers.push(newIntervalHandler);
+	}
+	function toRotateEgg(deg){
+		var eggs = document.getElementsByClassName("eggimg");
+		for(var i = 0; i < eggs.length; i++){
+			eggs[i].style.transform = "";
+			eggs[i].style.transform = getTransformStr2(deg, 0, 84);
+			eggs[i].style.webkitTransform = getTransformStr2(deg, 0, 84);
+		}
+		
+		var egg2s = document.getElementsByClassName("eggimg2");
+		for(var i = 0; i < egg2s.length; i++){
+			egg2s[i].style.transform = "";
+			egg2s[i].style.webkitTransform = "";
+			egg2s[i].style.transform = "rotate(" + deg + "deg)";
+			egg2s[i].style.webkitTransform = "rotate(" + deg + "deg)";
+		}
+	}
+	/*
+	var h = {};
+	h.aniSnds = 0.3;
+	h.minSecondsInterval = 100;
+	h.intevalCnt = h.aniSnds*1000/h.minSecondsInterval;
+	h.stDeg = 0;
+	h.curDeg = 0;
+	h.endDeg = 60;
+	h.varPerDeg = 0;
+	h.intervalHandlers = [];
+	h.curSectionIdx = 0;
+	h.curAllSection = null;
+	h.isTryHammerStop = false;
+	h.isHammerStop = false;
+	
+	HanmmerAnimationRotate2(["0,40", "40,0", "0,-40"]);
+	function HanmmerAnimationRotate2(arr){
+		h.curAllSection = arr;
+		h.curSectionIdx = 0;
+		
+		var st = parseFloat(arr[h.curSectionIdx].split(',')[0]);
+		var end = parseFloat(arr[h.curSectionIdx].split(',')[1]);
+		
+		HanmmerAniSetTimeout(st, end);
+	}
+	function HanmmerAniSetTimeout(){
+		if(h.isTryHammerStop) {//正在尝试停止
+			if(!h.isHammerStop){//正在尝试停止，但还未停止下来
+				resetHammer();
+				h.isHammerStop = true;
+			}
+			return;
+		}
+		
+		if(h.curSectionIdx < h.curAllSection.length){//i++
+			var st = parseFloat(h.curAllSection[h.curSectionIdx].split(',')[0]);
+			var end = parseFloat(h.curAllSection[h.curSectionIdx].split(',')[1]);
+			//console.log("[" + st + "=>" + end + "]");
+			HanmmerAnimationRotate(st, end);
+			h.curSectionIdx++;
+			setTimeout(function(){
+				HanmmerAniSetTimeout();
+			}, h.aniSnds*1000);
+		}
+		else{
+			//HanmmerAnimationRotate2(h.curAllSection);
+			//console.log("intervalHandlers.length:" + intervalHandlers.length);
+		}
+	}
+	function HanmmerAnimationRotate(stDeg, endDeg){
+		h.stDeg = stDeg;
+		h.curDeg = stDeg;
+		h.endDeg = endDeg;
+		h.varPerDeg = (endDeg - stDeg)/h.intevalCnt;
+		
+		var newIntervalHandler=setInterval(function(){
+			toRotateH(h.curDeg);//redraw
+			if(h.endDeg - h.stDeg > 0){
+				if(h.curDeg >= h.endDeg){
+					if(h.intervalHandlers.length > 0){
+						var idx = h.intervalHandlers.shift();
+						clearInterval(idx);
+					}
+				}
+			}
+			else if(h.isTryHammerStop){//正在尝试停止
+				if(!h.isHammerStop){//正在尝试停止，但还未停止下来
+					var idx = h.intervalHandlers.shift();
+					clearInterval(idx);
+					
+					resetHammer();
+				}
+				h.isHammerStop = true;
+			}
+			else{
+				if(h.curDeg <= h.endDeg){
+					if(h.intervalHandlers.length > 0){
+						var idx = h.intervalHandlers.shift();
+						clearInterval(idx);
+					}
+				}
+			}
+			h.curDeg += h.varPerDeg;//i++
+		}, h.minSecondsInterval);
+		
+		h.intervalHandlers.push(newIntervalHandler);
+	}
+	function resetHammer(){
+		toRotateHammer(-40);
+	}*/
+	
+	function toRotateH(deg){
+		var hammers = document.getElementsByClassName("hammer");
+		for(var i = 0; i < hammers.length; i++){
+			hammers[i].style.transform = "";
+			hammers[i].style.transform = getTransformStr2(deg, 10, -70);
+		}
+	}
+	
+	//--------------------------------------------
+	function getTransformStr(deg, transX, transY){
+		var theta = deg*(Math.PI / 180);
+		var x11 = Math.cos(theta);
+		var x21 = Math.sin(theta);
+		var x12 = -1*Math.sin(theta);
+		var x22 = Math.cos(theta);
+		return "matrix(" + x11 + ", " + x21 + ", " + x12 + ", " + x22 + ", " + transX + ", " + transY + ")";
+	}
+	//正确的旋转方法
+	function getTransformStr2(deg, botX, botY){
+		var theta = deg*(Math.PI / 180);
+		var x11 = Math.cos(theta);
+		var x21 = Math.sin(theta);
+		var x12 = -1*Math.sin(theta);
+		var x22 = Math.cos(theta);
+		
+		var botDis = Math.sqrt(Math.pow(botX,2) + Math.pow(botY,2));
+		var changX = botDis*Math.sin(theta);
+		
+		var transX = botX + changX;
+		if(transX < 0.5 && transX > -0.5) transX = 0;
+		//console.log("111=>" + botDis*Math.cos(theta) + ";" + botX + ";" + (transX < 0.5 && transX > -0.5));
+		var changY = botDis*Math.cos(theta);
+		
+		var transY = botY - changY;
+		if(transY < 0.5 && transY > -0.5) transY = 0;
+		//console.log("222=>" + botDis*Math.sin(theta) + ";" + botY + ";" + (transY < 0.5 && transY > -0.5));
+		//console.log(botDis + ";(" + transX + ", " + transY + ")");
+		//transX=botX; transY=botY;
+		return "matrix(" + x11 + ", " + x21 + ", " + x12 + ", " + x22 + ", " + transX + ", " + transY + ")";
+	}
+	
+	function hitEgg(id){
+		var hammers = document.getElementsByClassName("hammer");
+		for(var i = 0; i < hammers.length; i++){
+			hammers[i].style.display = "none";
+		}
+		var eggs = document.getElementsByClassName("eggimgX");
+		for(var i = 0; i < eggs.length; i++){
+			eggs[i].className = "eggimg";
+		}
+		
+		toRotateH(-40);//锤子停止位置
+		toRotateEgg(0);
+		switch(id){
+			case "eggimg1":
+				document.getElementById("hammer1").style.display="block";
+				break;
+				
+			case "eggimg2":
+				document.getElementById("hammer2").style.display="block";
+				break;
+				
+			case "eggimg3":
+				document.getElementById("hammer3").style.display="block";
+				break;
+				
+			default:
+				break;
+		}
+		
+		setTimeout(function(){
+			document.getElementById(id).className = "eggimgX";
+			setTimeout(function(){
+				alert("", function(){
+					window.location.href = "https://www.baidu.com";
+				});
+			}, 200);
+		}, 200);
+		
+		//请求，提交 并新窗口
+		isTryEggStop = true;
+	}
+	window.alert = function(msg, func){
+		var mask = document.createElement("div");
+		mask.style.width="100%";
+		mask.style.height="100%";
+		mask.style.background="#000000";
+		mask.style.opacity="0.5";
+		mask.style.position="fixed";
+		mask.style.left = "0";
+		mask.style.top = "0";
+		mask.style.zIndex=2147483646;
+		var dialog = document.createElement("div");
+		dialog.style.boxSizing = "border-box";
+		dialog.style.width="328px";
+		dialog.style.height="";
+		dialog.style.background="#EEEEEE";
+		dialog.style.position="fixed";
+		dialog.style.top = "0";
+		dialog.style.zIndex=2147483647;
+		dialog.style.borderRadius = "5px";
+		dialog.style.left = "50%";
+		dialog.style.top = "50%";      
+		dialog.style.marginLeft = "-164px";
+		dialog.style.overflow  = "hidden";
+		
+		var content = document.createElement("div");
+		content.style.padding = "32px";
+		content.style.textAlign="left";
+		content.innerHTML = msg;
+		var footer = document.createElement("div");
+		footer.style.background="#ddd";
+		footer.style.textAlign = "center";
+		footer.style.padding = "8px";
+		
+		var button = document.createElement("button");
+		button.style.border="solid 0px white";
+		button.style.borderRadius = "3px";
+		button.style.background = "#006AAD";
+		button.style.color = "#FFFFFF";
+		button.style.width = "60%";
+		button.style.padding = "8px";
+		button.style.font="bold 11pt/1.5 verdana";
+		button.innerHTML = "\u786E\u5B9A";
+		button.onclick = function(){
+			document.body.removeChild(dialog);
+			document.body.removeChild(mask);
+			if (typeof (func) == "function") {
+				func();
+			}
+		}
+		
+		footer.appendChild(button);   
+		dialog.appendChild(content);
+		dialog.appendChild(footer);  
+		
+		document.body.appendChild(mask);
+		document.body.appendChild(dialog);
+		dialog.style.marginTop = "-" + Math.floor(dialog.offsetHeight/2) + "px";    
+	}
+</script>
+</html>

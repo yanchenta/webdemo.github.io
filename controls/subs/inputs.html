@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+	<meta charset="utf-8"/>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../control.css" />
+	<script src="../jquery-2.0.3.js"></script>
+	<script src="../control.js"></script>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="collapsible">
+			<ul class="listview inset">
+				<li class="seperator"></li>
+				<li>
+					<span class="caption">文本框</span>
+					<span class="content"><input type="text" placeholder="请填写"/></span>
+				</li>
+				<li>
+					<span class="caption">单选框</span>
+					<span class="content">
+						<div id="span_doAcceptCar">
+							<span class="radio">
+								<input type="hidden" name="acceptCar" value="doAcceptCar"/>
+								<label value="doAcceptCar" onclick=";toselect(this);">是</label>
+								<label value="donotAcceptCar" onclick=";toselect(this);">否</label>
+							</span>
+						</div>
+					</span>
+				</li>
+				
+				<li class="seperator"></li>
+				<li class="li-select" onclick="showSelectCover(this);" id="li_danxuan2" data-select="ajax1">
+					<span class="caption">单选框2</span>
+					<span class="content">
+						<span class="select-text" id="select_danxuan2_text">请选择</span>
+						<input class="select-value" id="select_danxuan2_value" type="hidden"/>&nbsp;&gt;
+					</span>
+				</li>
+				
+				<li class="seperator"></li>
+				<li class="li-select" onclick="showSelectCover(this);" id="li_danxuan3" data-select="ajax1" data-subselect="ajax2">
+					<span class="caption">单选[级联]</span>
+					<span class="content">
+						<span class="select-text" id="select_danxuan3_text">请选择</span>
+						<input class="select-value" id="select_danxuan3_value" type="hidden"/>&nbsp;&gt;
+					</span>
+				</li>
+				
+				<li class="seperator"></li>
+				<li class="li-select" onclick="showSelectTableListCover(this);">
+					<span class="caption">单选框4</span>
+					<span class="content">
+						<span class="select-text" id="select_danxuan4_text">请选择</span>
+						<input class="select-value" id="select_danxuan4_value" type="hidden"/>&nbsp;&gt;
+					</span>
+				</li>
+				
+				<li class="seperator"></li>
+				<li class="li-select" onclick="showSelectCheckListCover(this);">
+					<span class="caption">复选框</span>
+					<span class="content">
+						<span class="select-text" id="select_fuxuan4_text">请选择</span>
+						<input class="select-value" id="select_fuxuan4_value" type="hidden"/>&nbsp;&gt;
+					</span>
+				</li>
+			</ul>
+		</div>
+		<div class="panel">
+			<a class="button qhpass">按钮1</a>
+			<a class="button qhdeny">按钮2</a>
+			<a class="button">按钮3</a>
+		</div>
+	</div>
+	<div class="footer"></div>
+	<div class="float-cover hidden">
+		<div class="cover"></div>
+		<div class="float-content-outer">
+			<div class="float-content">
+			</div>
+		</div>
+	<div>
+	<style>
+		.checkbox{
+			height:1rem;
+			line-height:1rem;
+			width:1rem;
+			border:solid #999999 0.1rem;
+			border-radius:0.2rem;
+			display:inline-block;
+			vertical-align:middle;
+			margin-right:1rem;
+		}
+		.checkbox.checked::before{
+			content:"√";
+			font-size:0.5rem;
+			height:0.5rem;
+			width:0.5rem;
+			vertical-align:top;
+		}
+	</style>
+</body>
+<script>
+	function showSelectTableListCover(elem){
+		var selObjs4 = {
+			ths:[ "th1", "th2", "th3", "th4" ],
+			items:[
+				{colTxts:["text11","text12","text13","text14"], text:"text11", value:"proLvlA",onclick:"",checked:true},
+				{colTxts:["text21","text22","text23","text24"], text:"text21", value:"proLvlB",onclick:"",checked:false},
+				{colTxts:["text31","text32","text33","text34"], text:"text31", value:"proLvlC",onclick:"",checked:false},
+				{colTxts:["text41","text42","text43","text44"], text:"text41", value:"proLvlD",onclick:"",checked:false}
+			]
+		};
+		buildCoverSelectByTableList(selObjs4, elem);
+		
+		$(".cover").height(document.documentElement.scrollHeight+"px");
+		$(".float-cover").removeClass("hidden");
+	}
+	
+	function checkboxSelect(elem){
+		var jqElem = $(elem);
+		jqElem.find(".checkbox").toggleClass("checked");
+		
+		var jqParent = $(jqElem.parents(".select")[0]);
+		var selectValElem = $("#"+jqParent.data("valueid"));
+		var selectTxtElem = $("#"+jqParent.data("textid"));
+		var selectValStr = "";
+		var selectTxtStr = "";
+		
+		var opts = jqParent.find(".option");
+		for(var i = 0; i < opts.length; i++){
+			if($(opts[i]).find(".checked").length>0){
+				var v = $(opts[i]).data("value");
+				var txt = $(opts[i]).text();
+				selectValStr += (v+",");
+				selectTxtStr += (txt+",");
+			}
+		}
+		if(selectValStr.length>0){
+			selectValElem.val(selectValStr.substr(0, selectValStr.length-1));
+			selectTxtElem.html(selectTxtStr.substr(0, selectTxtStr.length-1));
+		}
+		else{
+			selectValElem.val("");
+			selectTxtElem.html("请选择");
+		}
+	}
+	function buildCoverSelectByCheckList(options, elem)
+	{
+		var text_id = $(elem).find(".select-text").attr("id");
+		var value_id = $(elem).find(".select-value").attr("id");
+		
+		var selInHtml = "<div data-valueid='"+value_id+"' data-textid='"+text_id+"' class='select' data-data='"+escape(JSON.stringify(options))+"'>";
+		var val = $(elem).find(".select-value").val();
+		
+		for(var i = 0; i < options.length;i++){
+			if(options[i].value==val){
+				selInHtml += "<div class='option' data-value='"+options[i].value+"'><div class='checkbox checked'></div>"+options[i].text+"</div>";//onclick='checkboxSelect(this)' 
+			}
+			else{
+				selInHtml += "<div class='option' data-value='"+options[i].value+"'><div class='checkbox'></div>"+options[i].text+"</div>";//onclick='checkboxSelect(this)' 
+			}
+		}
+		selInHtml += "</div>";
+		$(".float-cover .float-content").html(selInHtml);
+		$(".float-cover .float-content .option").click(function(event){
+			checkboxSelect(this);
+			
+            event.stopPropagation();
+			return false;
+        });
+	}
+	function showSelectCheckListCover(elem, retvalSelector){
+		var opts = [
+			{text:"text11", value:"proLvlA",onclick:"",checked:true},
+			{text:"text21", value:"proLvlB",onclick:"",checked:false},
+			{text:"text31", value:"proLvlC",onclick:"",checked:false},
+			{text:"text41", value:"proLvlD",onclick:"",checked:false}
+		];
+		buildCoverSelectByCheckList(opts, elem);
+		
+		$(".cover").height(document.documentElement.scrollHeight+"px");
+		$(".float-cover").removeClass("hidden");
+	}
+	
+	var ajaxs = {
+		ajax1:{
+			url:"11111111111111111111",
+			next:"ajax2"
+		},
+		ajax2:{
+			url:"2222222222222222222",
+			next:"ajax3"
+		},
+		ajax3:{
+			url:"3333333333333333333",
+			next:"ajax4"
+		},
+		ajax4:{
+			url:"4444444444444444444",
+			next:"ajax5"
+		},
+		ajax5:{
+			url:"5555555555555555555",
+			next:"ajax6"
+		},
+		ajax6:{
+			url:"6666666666666666666",
+			next:"ajax7"
+		},
+		ajax7:{
+			url:"7777777777777777777",
+			next:null
+		}
+	}
+	function getAjaxRlt(url, callback){
+		//ajax: data => select options
+		var selOpts = [{value:"value1",text:"选择1"},{value:"value2",text:"选择2"},{value:"value3",text:"选择3"}];
+		callback(selOpts);
+	}
+</script>
+</html>

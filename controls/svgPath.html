@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title>SVG样例积累</title>
+	<style type="text/css">
+		svg { margin-left:4rem; }
+		.bgimg-test{
+			background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><rect x='95' y='0' width='10' height='200'></rect><rect x='0' y='95' width='200' height='10'></rect></svg>");
+			background-position:left center;
+			background-repeat:no-repeat;
+			background-size:1rem 1rem;
+			padding:1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<h3>加号</h3>
+		<svg width="200" height="200"  viewBox="0 0 200 200" style="width:100px;height:100px;">
+			<rect x="95" y="0" width="10" height="200"></rect>
+			<rect x="0" y="95" width="200" height="10"></rect>
+		</svg>
+		<h3>减号</h3>
+		<svg width="200" height="200"  viewBox="0 0 200 200" style="width:100px;height:100px;">
+			<rect x="0" y="95" width="200" height="10"></rect>
+		</svg>
+		<h3 class='bgimg-test'>背景图标测试</h3>
+	</div>
+	<div class="footer"></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function jsontostring(json){
+            if("string" === typeof(json) 
+                || "number" === typeof(json) 
+                || "boolean" === typeof(json) 
+                || "function" === typeof(json)){
+                return json;
+            }
+			var s = null;
+            if("undefined" !== typeof(json.length)){
+                //array
+                s = "[";
+                for(var i = 0; i < json.length; i++){
+                    s += (jsontostring(json[i]) + ",");
+                }
+                s = s.substr(0, s.length - 1);
+                s = s + "]";
+            }
+            else{
+                //object
+                s = "{";
+                for(var attr in json){
+                    s += (attr + ":" + jsontostring(json[attr]) + ",");
+                }
+                s = s.substr(0, s.length - 1);
+                s = s + "}";
+            }
+            return s;
+        }
+		json = [
+			{attr1:111,attr2:112,attr3:113},
+			{attr1:121,attr2:122,attr3:123},
+			{attr1:131,attr2:132,attr3:133}
+		]
+		
+		alert(jsontostring(json));
+	</script>
+</body>
+</html>

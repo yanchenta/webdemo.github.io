@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta charset="utf-8"/>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="control.css" />
+	<script src="jquery-2.0.3.js"></script>
+	<script src="control.js"></script>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body" style="margin-top:15px;">
+		<div>
+			<div class="tabheaders">
+				<nobr>
+				<div class="tabheader left-tabheader selected" onclick="tabSelect(this, 'wholesale_list')">基本信息</div>
+				<div class="tabheader" onclick="tabSelect(this, 'terminal_list')">问题信息</div>
+				<div class="tabheader right-tabheader" onclick="tabSelect(this, 'store_list')">零部件信息</div>
+				</nobr>
+			</div>
+			<div class="tabcontents">
+				<div class="tabcontent" id="wholesale_list">
+					<div class="collapsible listview">
+						<div class="content">
+							<ul class="listview">
+								<!--<li class="tip">1.正在加载...</li>-->
+								<li class="seperator"></li>
+								<li>
+									<span class="caption">整车编号</span>
+									<span class="content">1026V3JV6-D1D0017V</span>
+								</li>
+								<li>
+									<span class="caption">班次</span>
+									<span class="content"><div id="span_turnNo"></div></span>
+								</li>
+								<li>
+									<span class="caption">一级质量门</span>
+									<span class="content"><input type="text" placeholder="请填写"/></span>
+								</li>
+								<li>
+									<span class="caption">二级质量门</span>
+									<span class="content"><input type="text" placeholder="请填写"/></span>
+								</li>
+								<li>
+									<span class="caption">检验员</span>
+									<span class="content"><input type="text" placeholder="请填写"/></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="tabcontent hidden"  id="terminal_list">
+					<div class="collapsible listview">
+						<div class="content">
+							<ul class="listview">
+								<!--<li class="tip">2.正在加载...</li>-->
+								<li class="seperator"></li>
+								<li>
+									<span class="caption">订单号</span>
+									<span class="content">ALDMS/2601005925/1</span>
+								</li>
+								<li>
+									<span class="caption">VIN号</span>
+									<span class="content">LVAV2JVB7GE111200</span>
+								</li>
+								<li>
+									<span class="caption">是否接车</span>
+									<span class="content"><div id="span_doAcceptCar">
+										<span class="radio">
+											<input type="hidden" name="acceptCar" value="doAcceptCar">
+											<label value="doAcceptCar" onclick=";toselect(this);">是</label>
+											<label value="donotAcceptCar" onclick=";toselect(this);">否</label>
+										</span>
+									</div></span>
+								</li>
+								<li>
+									<span class="caption">检验日期</span>
+									<span class="content"><input type="text" value="2016-05-05 08:59:14"></span>
+								</li>
+								<li>
+									<span class="caption">问题描述</span>
+									<span class="content"><input type="text" value="2016-05-05 08:59:14"></span>
+								</li>
+								<li class="seperator"></li>
+								<li>
+									<span class="caption">问题等级</span>
+									<span class="content"><div id="span_proLvl"></div></span>
+								</li>
+								<li class="li-select" onclick="showSelectTableListCover(this);">
+									<span class="caption">责任属性</span>
+									<span class="content">
+										<span class="select-text" id="select_responisble_text">请选择</span>
+										<input class="select-value" id="select_responisble_value" type="hidden"/>&nbsp;&gt;
+									</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="tabcontent hidden" id="store_list">
+					<div class="collapsible listview">
+						<div class="content">
+							<ul class="listview">
+								<!--<li class="tip">3.正在加载...</li>-->
+								<li class="seperator">零部件结构</li>
+								<li class="li-select" onclick="showSelectCover(this);" id="li_buwei" data-select="ajax1" data-subselect="ajax2">
+									<span class="caption">部位</span>
+									<span class="content">
+										<span class="select-text" id="select_buwei_text">请选择</span>
+										<input class="select-value" id="select_buwei_value" type="hidden"/>&nbsp;&gt;
+									</span>
+								</li>
+								<!--<li class="li-select" onclick="showSelectCover('select', this);">
+									<span class="caption">根据上面选择逐步增加</span>
+									<span class="content">
+										<span class="select-text" id="select_responisble_text">请选择</span>
+										<input class="select-value" id="select_responisble_value" type="hidden"/>&nbsp;&gt;
+									</span>
+								</li>-->
+								<li class="seperator">零部件缺陷</li>
+								<li class="li-select" onclick="showSelectCover(this);" id="li_quexian" data-select="ajax1" data-subselect="ajax2">
+									<span class="caption">缺陷</span>
+									<span class="content">
+										<span class="select-text" id="select_quexian_text">请选择</span>
+										<input class="select-value" id="select_quexian_value" type="hidden"/>&nbsp;&gt;
+									</span>
+								</li>
+								<!--<li class="li-select" onclick="showSelectCover('select', this);">
+									<span class="caption">根据上面选择逐步增加</span>
+									<span class="content">
+										<span class="select-text" id="select_responisble_text">请选择</span>
+										<input class="select-value" id="select_responisble_value" type="hidden"/>&nbsp;&gt;
+									</span>
+								</li>-->
+							</ul>
+						</div>
+						<div class="panel">
+							<nobr>
+								<input class="button btn-disable col2" type="button" value="上一辆车" style="margin:0;padding:0;"/>
+								<input class="button btn-enable col2" type="button" value="下一辆车" style="margin:0;padding:0;margin-left:1%;"/>
+							</nobr>
+							<input class="button btn-enable" type="button" value="常见的其他问题" style="width:62%;margin-top:0.5rem;"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+	<div class="float-cover hidden">
+		<div class="cover"></div>
+		<div class="float-content-outer">
+			<div class="float-content">
+			</div>
+		</div>
+	<div>
+</body>
+<script>
+	var selObjs = [
+		{id:"A",name:"turnNo",value:"A",onclick:"",checked:true,text:"A"},
+		{id:"B",name:"turnNo",value:"B",onclick:"",checked:false,text:"B"},
+		{id:"C",name:"turnNo",value:"C",onclick:"",checked:false,text:"C"}
+	];
+	buildSelectByRadioList(selObjs, "#span_turnNo");
+	
+	/*var selObjs2 = [
+		{id:"doAcceptCar",name:"acceptCar",value:"doAcceptCar",onclick:"",checked:true,text:"是"},
+		{id:"donotAcceptCar",name:"acceptCar",value:"donotAcceptCar",onclick:"",checked:false,text:"否"}
+	];
+	buildSelectByRadioList(selObjs2, "#span_doAcceptCar");*/
+	
+	var selObjs3 = [
+		{id:"proLvlA",name:"proLvl",value:"proLvlA",onclick:"",checked:true,text:"A"},
+		{id:"proLvlB",name:"proLvl",value:"proLvlB",onclick:"",checked:false,text:"B"},
+		{id:"proLvlC",name:"proLvl",value:"proLvlC",onclick:"",checked:false,text:"C"},
+		{id:"proLvlD",name:"proLvl",value:"proLvlD",onclick:"",checked:false,text:"D"}
+	];
+	buildSelectByRadioList(selObjs3, "#span_proLvl");
+	
+	function showSelectTableListCover(elem){
+		var selObjs4 = {
+			ths:[ "th1", "th2", "th3", "th4" ],
+			items:[
+				{colTxts:["text11","text12","text13","text14"], text:"text11", value:"proLvlA",onclick:"",checked:true},
+				{colTxts:["text21","text22","text23","text24"], text:"text21", value:"proLvlB",onclick:"",checked:false},
+				{colTxts:["text31","text32","text33","text34"], text:"text31", value:"proLvlC",onclick:"",checked:false},
+				{colTxts:["text41","text42","text43","text44"], text:"text41", value:"proLvlD",onclick:"",checked:false}
+			]
+		};
+		buildCoverSelectByTableList(selObjs4, elem);
+		$(".float-cover").removeClass("hidden");
+	}
+	
+	var ajaxs = {
+		ajax1:{
+			url:"11111111111111111111",
+			next:"ajax2"
+		},
+		ajax2:{
+			url:"2222222222222222222",
+			next:"ajax3"
+		},
+		ajax3:{
+			url:"3333333333333333333",
+			next:"ajax4"
+		},
+		ajax4:{
+			url:"4444444444444444444",
+			next:"ajax5"
+		},
+		ajax5:{
+			url:"5555555555555555555",
+			next:"ajax6"
+		},
+		ajax6:{
+			url:"6666666666666666666",
+			next:"ajax7"
+		},
+		ajax7:{
+			url:"7777777777777777777",
+			next:null
+		}
+	}
+	function getAjaxRlt(url, callback){
+		//ajax: data => select options
+		var selOpts = [{value:"value1",text:"选择1"},{value:"value2",text:"选择2"},{value:"value3",text:"选择3"}];
+		callback(selOpts);
+	}
+</script>
+</html>

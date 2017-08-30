@@ -1,0 +1,13 @@
+外设事件
+1.click
+  double-click
+  mousedown/mousemove/mouseup
+  
+2.touchdown/touchmove/touchup
+  
+3.from move: enter/hover/leave
+  
+4.drag/drop(selected text/file/self-app-piece)
+  
+5.
+  

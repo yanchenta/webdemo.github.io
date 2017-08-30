@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<script src="jquery-2.0.3.js"></script>
+	<script src="layer.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="skin/default/layer.css" />
+</head>
+<body>
+	<!--<div class="banner"></div>
+	<div class="main-body">
+		<input type="button" onclick="func1()" value="alert的layer测试"/>
+		<input type="button" onclick="func2()" value="confirm的layer测试"/>
+	</div>
+	<div class="footer"></div>-->
+<script>
+	function func1(){
+		$.layer({
+			area : [ 'auto', 'auto' ],
+			title : [ '信息提示'],
+			closeBtn : [ 0, true ],
+			dialog : {
+				btns : 1,
+				btn : [ '确定'],
+				type : 1,
+				yes : function(index) {
+					console.log("11111111111111111111");
+				},
+				msg : 'alert的layer测试'
+			}
+		});
+	}
+		
+	function func2(){
+		$.layer({
+			area : [ '300', '130' ],
+			title : [ '信息提示'],
+			closeBtn : [ 0, true ],
+			dialog : {
+				btns : 2,
+				btn : [ '确定','取消' ],
+				type : 1,
+				yes : function(index) {
+					console.log("3333333333333333333");
+				},
+				no : function(index){
+					console.log("4444444444444444444");
+				},
+				msg : "confirm的layer测试"
+			},
+			close : function(index){
+				
+			}
+		});
+	}
+</script>
+</body>
+</html>

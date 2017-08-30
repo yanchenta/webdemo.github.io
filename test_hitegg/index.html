@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+	<title>blob-img方向检测</title>
+	<style type="text/css">
+		html body{
+			overflow:hidden;
+			padding:0px 0px;
+			margin:0px 0px;
+		}
+		#origin_img{
+			position:absolute;
+			left:-10000px;
+			top:-1000px;
+		}
+	</style>
+</head>
+<body>
+	<div class="header"></div>
+	<div class="main-body">
+		<input type="file" id="input_file"/>
+		<img id="origin_img"/>
+		<img id="tmp_img" width="320"/>
+		<canvas id="tmp_canvas"></canvas>
+	</div>
+	<div class="footer"></div>
+	<script type="text/javascript">
+		document.getElementById("input_file").onchange = function(){
+			var URL = window.URL && window.URL.createObjectURL ? window.URL :
+                window.webkitURL && window.webkitURL.createObjectURL ? window.webkitURL :
+                null;
+			if (!URL) { throw Error("No createObjectURL function found to create blob url"); }
+			var file = this.files[0];
+			document.getElementById("origin_img").src = URL.createObjectURL(file);
+			document.getElementById("tmp_img").src = URL.createObjectURL(file);
+			
+		}
+		document.getElementById("tmp_img").onload = function(){
+			var canv = document.getElementById("tmp_canvas");
+			
+			var rlt = detectVerticalSquash(this, canv);
+			//console.log(JSON.stringify(rlt) + "," + this.offsetHeight);
+			document.getElementsByClassName("footer")[0].innerHTML = JSON.stringify(rlt) + "," + this.offsetHeight + "," + document.getElementById("origin_img").offsetHeight;
+		}
+		var detectVerticalSquash = function(img, canvas) {
+			//var iw = img.naturalWidth, ih = img.naturalHeight;
+			var iw = img.offsetWidth, ih = img.offsetHeight;
+			canvas.width = img.offsetWidth;
+			canvas.height = img.offsetHeight;
+			//var canvas = document.createElement('tmp_canvas');
+			//canvas.width = 1;
+			//canvas.height = ih;
+			var ctx = canvas.getContext('2d');
+			var scale = document.getElementById("tmp_img").offsetHeight / document.getElementById("origin_img").offsetHeight;
+			ctx.scale(scale, scale);
+			ctx.drawImage(img, 0, 0);
+			var data = ctx.getImageData(0, 0, 1, ih).data;
+			// search image edge pixel position in case it is squashed vertically.
+			var sy = 0;
+			var ey = ih;
+			var py = ih;
+			while (py > sy) {
+				var alpha = data[(py - 1) * 4 + 3];
+				if (alpha === 0) {
+					ey = py;
+				} else {
+					sy = py;
+				}
+				py = (ey + sy) >> 1;//除2取整  => 两头查找 startY (pointY) endY 折半查找算法, py == sy时; 到达边界
+			}
+			var ratio = (py / ih);
+			
+			var rlt = {
+				ratio:1,
+				height:py
+			}
+			if(ratio == 0) rlt.ratio = 1;
+			return rlt;
+		}
+		
+		function resetPage() {
+			var deviceWidth = document.documentElement.clientWidth,
+			scale = deviceWidth/320;
+			document.body.style.zoom = scale;
+		}
+
+		window.onresize = function(){
+			resetPage();
+		}
+
+		window.onload = function(){
+			resetPage();
+		}
+	</script>
+</body>

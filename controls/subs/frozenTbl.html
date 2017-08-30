@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+	<meta charset="utf-8"/>
+	<title>部件信息填写</title>
+	
+	<script src="../jquery-2.0.3.js"></script>
+	<script src="../control.js"></script>
+	<link rel="stylesheet" type="text/css" href="../control.css" />
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<h3>尚未支持屏幕旋转</h3>
+		<div style="overflow-x:hidden;">
+			<h3>可冻结的table</h3>
+			<div id="mytable2" class="frozen-tbl-con2">
+				<div class="frozen-left">
+					<table></table>
+				</div>
+				<div class="frozen-right">
+					<table></table>
+				</div>
+				<div class="panel small">
+					<button class="radius-btn btn-lastPage" ></button>
+					<span style="color:#8EC8F0;"><span class="curPage">1</span>/<span class="maxPage">1</span></span>
+					<button class="radius-btn btn-nextPage" ></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script>
+	function pageLoad(pageSelector, pageNo){//pageNo从1开始
+		var tblData = {
+			thDatas:["("+Math.floor(Math.random()*1000)+")列1","列2","列3","列4","列5","列6","列7","列8","列9"],
+			tdDatas:[
+				{rData:["a11--","a12--","a13","a14","a15","a16","a17","a18","a19"],rClick:"alert(1);",ckClick:"console.log(1);"},
+				{rData:["a21","a22","a23---------------------","a24-----------------","a25","a26","a27","a28","a29"],rClick:"alert(1);",ckClick:"console.log(2);"},
+				{rData:["a31","a32","a33","a34","a35------------------","a36------------------------","a37","a38","a39"],rClick:"alert(2);",ckClick:"console.log(3);"},
+				{rData:["a41","a42","a43","a44","a45","a46","a47--------------------","a48------------------------","a49"],rClick:"alert(3);",ckClick:"console.log(4);"},
+				{rData:["a51--","a52","a53","a54","a55","a56","a57","a58","a59--------------------------------"],rClick:"alert(4);",ckClick:"console.log(5);"},
+				{rData:["a61","a62--","a63","a64","a65","a66","a67","a68-------------------------------------","a69"],rClick:"alert(5);",ckClick:"console.log(6);"},
+				{rData:["a71","a72","a73-------------------------","a74","a75","a76","a77------------------------------","a78","a79"],rClick:"alert(6);",ckClick:"console.log(7);"},
+				{rData:["a81","a82","a83","a84-----------------------","a85","a86-------------------------","a87","a88","a89"],rClick:"alert(7);",ckClick:"console.log(8);"},
+				{rData:["a91","a92","a93","a94","a95-------------------------------","a96","a97","a98","a99"],rClick:"alert(8);",ckClick:"console.log(9);"}
+			]
+		};
+		//total总条数, maxResults每页
+		var tblFooter = {pageNo:pageNo,allItemsCnt:50,pageSize:10};
+		buildFrozenTbl3(tblData, pageSelector, 2)
+		InitPageFooter(tblFooter, pageSelector);
+		frozenTblResize();
+	}
+	pageLoad("#mytable2", 1);
+</script>
+</html>

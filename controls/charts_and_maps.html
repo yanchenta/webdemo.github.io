@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title></title>
+	<script src="jquery-2.0.3.js"></script>
+	<script src="control.js"></script>
+	<link rel="stylesheet" type="text/css" href="control.css" />
+	<style>
+		.frozen-con .frozen-left{
+			float: left;
+			width:8rem;
+			
+			min-height:100px;
+			font-size:1rem;
+			color:black;
+		}
+		.frozen-con .right{
+			margin-left: 8rem;
+			
+			min-height:100px;
+			font-size:1rem;
+			color:black;
+			
+			position:relative;
+			overflow-x:auto;
+			overflow-y:hidden;
+		}
+		.frozen-con .frozen-left .header,.frozen-con .right .gante-item{
+			height:2rem;
+			position:relative;
+		}
+		.frozen-con .frozen-left .header span{
+			vertical-align:middle;
+		}
+		.frozen-con .right .gante-item div{
+			position:absolute;
+			top:50%;
+			left:0;
+			margin-top:-0.5rem;
+			
+			height:1rem;
+			border-radius:0.5rem;
+			opacity:1;
+		}
+		.frozen-con .right .gante-item::before{
+			position:absolute;
+			top:50%;
+			left:0;
+			
+			height:1px;
+			border:dashed black 0px;
+			border-top-width:1px;
+			
+			width:100%;
+			
+			content:" ";
+		}
+		.ver-seperators{
+			position:absolute;
+			left:0;
+			top:0;
+			
+			height:100%;
+			width:100%;
+			overflow:hidden;
+		}
+		.ver-seperator{
+			position:absolute;
+			left:0;
+			top:0;
+			width:1px;
+			height:10000px;
+			display:inline-block;
+			border:dashed blue 0px;
+			border-right-width:1px;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<h3>甘特图</h3>
+		<div id="gante" class="frozen-con">
+			<div class="frozen-left">
+				<div class="header">
+					<span>1.绿色正常</span>
+				</div>
+				<div class="header">
+					<span>2.橙色完成</span>
+				</div>
+				<div class="header">
+					<span>3.红色逾期</span>
+				</div>
+			</div>
+			<div class="right">
+				<div class="right-in">
+					<div class="horizon-area">
+						<div class="gante-item">
+							<div onclick="showMsg('', '')" style="width:10rem;background-color:orange;border:solid orange 1px;"></div>
+						</div>
+						<div class="gante-item">
+							<div onclick="showMsg('', '')" style="left:10rem;width:15rem;background-color:green;border:solid green 1px;"></div>
+						</div>
+						<div class="gante-item">
+							<div onclick="showMsg('', '')" style="left:10rem;width:20rem;background-color:red;border:solid red 1px;"></div>
+						</div>
+					</div>
+					<!--<div class="ver-seperators" style="position:absolute;">-->
+						<div class="ver-seperator" id="ver-seperator1" style="left:10rem;"></div>
+						<div class="ver-seperator" id="ver-seperator2" style="left:15rem;"></div>
+						<div class="ver-seperator" id="ver-seperator3" style="left:20rem;"></div>
+						<!--里程碑关键线-->
+						<div class="ver-seperator" id="ver-seperator3" style="left:28rem;border-style:solid;border-right-width:2px;"></div>
+					<!--</div>-->
+				</div>
+			</div>
+		</div>
+		
+		<h3>图论图</h3>
+		<div style="overflow-x:hidden;">
+			<div id="tuluntu_tbl" class="frozen-tbl-con2">
+				<div class="frozen-left">
+					<table></table>
+				</div>
+				<div class="right frozen-right">
+					<table></table>
+				</div>
+				<div class="panel small">
+					<button class="radius-btn btn-lastPage" ></button>
+					<span style="color:#8EC8F0;"><span class="curPage">1</span>/<span class="maxPage">1</span></span>
+					<button class="radius-btn btn-nextPage" ></button>
+				</div>
+			</div>
+		</div>
+		<div id="tuluntu_blocks" style="position:relative;width:500px;height:500px;">
+			
+		</div>
+	</div>
+	<div class="footer"></div>
+	<script>
+		//svg 画
+		//border-radius 用div画
+		
+		//一.甘特图
+		//1.每行的头和时间虚线
+		//2.每行的各种样式的进度实条
+		//3.每行的[先行/后行]关系
+		//  描述先行后行的数据结构(先行items的与/非/或的关系, 时间驱动型/事件驱动型/交互驱动型)
+		//  lastDateOfPrevs(), firstDateOfPrevs(), 或其他运算方式
+		var data = {
+			"id1":{id:"id1",value:"10",msgheader:"msgheader1",msgcontent:"msgcontent1",Prev:null},
+			"id2":{id:"id2",value:"15",msgheader:"msgheader2",msgcontent:"msgcontent2",Prev:null},
+			"id3":{id:"id3",value:"20",msgheader:"msgheader3",msgcontent:"msgcontent3",Prev:{type:"lastDateOfPrevs", items:["id1","id2"]}},
+			"id4":{id:"id4",value:"18",msgheader:"msgheader4",msgcontent:"msgcontent4",Prev:{type:"lastDateOfPrevs", items:["id3"]}},
+			"id5":{id:"id5",value:"16",msgheader:"msgheader5",msgcontent:"msgcontent5",Prev:{type:"lastDateOfPrevs", items:["id3"]}},
+			"id6":{id:"id6",value:"14",msgheader:"msgheader6",msgcontent:"msgcontent6",Prev:{type:"firstDateOfPrevs", items:["id4","id5"]}}
+		};
+		function getValue(node){
+			var val = parseInt(node.value);
+			if(!node.Prev) return val;
+			var type = node.Prev.type;
+			var items = node.Prev.items;
+			
+			var vals = [];
+			for(var i = 0; i < items.length; i++){
+				vals.push(getValue(data[items[i]]));
+			}
+			
+			if(type=="lastDateOfPrevs"){
+				return val + Math.max.apply(null,vals);
+			}
+			else if(type=="firstDateOfPrevs"){
+				return val + Math.min.apply(null,vals);
+			}
+			return 0;
+		}
+		
+		function buildGante(data){
+			var endVals = [];
+			for(var attr in data){
+				data[attr].end=getValue(data[attr]);
+				data[attr].start=data[attr].end-parseInt(data[attr].value);
+				endVals.push(data[attr].end);
+			}
+			var maxWidth = Math.max.apply(null, endVals);
+			
+			for(var attr in data){
+				var header = document.createElement("div");
+				header.className="header";
+				header.innerHTML="<span>"+data[attr].msgheader+"</span>";
+				document.querySelector("#gante .frozen-left").appendChild(header);
+				
+				var ganteItem = document.createElement("div");
+				ganteItem.className="gante-item";
+				ganteItem.innerHTML="<div title='"+data[attr].msgcontent+"' onclick=\"showMsg('"+data[attr].msgheader+"', '"+data[attr].msgcontent+"')\" style='left:"+data[attr].start+"rem;width:"+data[attr].value+"rem;background-color:green;border:solid green 1px;'></div>";
+				document.querySelector("#gante .right .horizon-area").appendChild(ganteItem);
+			}
+			
+			if(document.styleSheets.length > 1){
+				document.styleSheets[0].innerHTML = document.styleSheets[0].innerHTML;
+				document.styleSheets[1].innerHTML = "#gante .right .gante-item::before{width:"+(maxWidth + 10)+"rem}";
+			}
+			else{
+				document.styleSheets[0].innerHTML = document.styleSheets[0].innerHTML;
+				var style = document.createElement("style");
+				style.innerHTML = "#gante .right .gante-item::before{width:"+(maxWidth + 10)+"rem}";
+				document.head.appendChild(style);
+			}
+			
+			for(var attr in data){
+				var verSeper = document.createElement("div");
+				verSeper.className="ver-seperator";
+				verSeper.style.left=data[attr].end+"rem";
+				document.querySelector("#gante .right").appendChild(verSeper);
+			}
+		}
+		buildGante(data);
+		//4.截止与延期的表示
+		function showMsg(title, content){ alert(title+"\n"+content); }
+	</script>
+	<script>
+		//二.图论图
+		function pageLoad(pageSelector, pageNo){//pageNo从1开始
+			var tblData = {
+				thDatas:["节点","节点1","节点2","节点3","节点4","节点5","节点6","节点7","节点8"],
+				tdDatas:[
+					{rData:["节点1","0","0","0","0","0","0","0","0"],rClick:"alert(0);",ckClick:null},
+					{rData:["节点2","0","0","0","0","0","0","0","0"],rClick:"alert(1);",ckClick:null},
+					{rData:["节点3","0","0","0","0","0","0","0","0"],rClick:"alert(2);",ckClick:null},
+					{rData:["节点4","0","0","0","0","0","0","0","0"],rClick:"alert(3);",ckClick:null},
+					{rData:["节点5","0","0","0","0","0","0","0","0"],rClick:"alert(4);",ckClick:null},
+					{rData:["节点6","0","0","0","0","0","0","0","0"],rClick:"alert(5);",ckClick:null},
+					{rData:["节点7","0","0","0","0","0","0","0","0"],rClick:"alert(6);",ckClick:null},
+					{rData:["节点8","0","0","0","0","0","0","0","0"],rClick:"alert(7);",ckClick:null}
+				]
+			};
+			//total总条数, maxResults每页
+			buildFrozenTbl3(tblData, pageSelector, 2);
+			var tblFooter = {pageNo:pageNo,allItemsCnt:tblData.tdDatas.length,pageSize:10};
+			InitPageFooter(tblFooter, pageSelector);
+			frozenTblResize();
+		}
+		pageLoad("#tuluntu_tbl", 1);
+		
+		//节点绘制在一个圆环上
+		function pageBlocks(selector, data){
+			//标记起始位置
+			var tblData = {
+				thDatas:["节点","节点1","节点2","节点3","节点4","节点5","节点6","节点7","节点8"],
+				tdDatas:[
+					{rData:["节点1","0","0","0","0","0","0","0","0"],rClick:"alert(0);",ckClick:null},
+					{rData:["节点2","0","0","0","0","0","0","0","0"],rClick:"alert(1);",ckClick:null},
+					{rData:["节点3","0","0","0","0","0","0","0","0"],rClick:"alert(2);",ckClick:null},
+					{rData:["节点4","0","0","0","0","0","0","0","0"],rClick:"alert(3);",ckClick:null},
+					{rData:["节点5","0","0","0","0","0","0","0","0"],rClick:"alert(4);",ckClick:null},
+					{rData:["节点6","0","0","0","0","0","0","0","0"],rClick:"alert(5);",ckClick:null},
+					{rData:["节点7","0","0","0","0","0","0","0","0"],rClick:"alert(6);",ckClick:null},
+					{rData:["节点8","0","0","0","0","0","0","0","0"],rClick:"alert(7);",ckClick:null}
+				]
+			};
+			var arr = [];
+			var names = [];
+			var container = document.querySelector(selector);
+			for(var i = 0; i < tblData.tdDatas.length; i++){
+				var row = tblData.tdDatas[i].rData;
+				names.push(row[0]);
+				arr.push(row.splice(1,row.length-1));
+				
+				var div = document.createElement("div");
+				div.setAttribute("style", "position:absolute;top:0px;left:0px;background-color:grey;color:white;width:50px;height:50px;");
+				div.innerHTML = "("+arr.join(',')+")";
+				container.appendChild(div);
+			}
+		}
+		pageBlocks("#tuluntu_blocks");
+	</script>
+	<script>
+		//三.结构图
+	</script>
+	<script>
+		//四.树状分形图
+	</script>
+</body>
+</html>

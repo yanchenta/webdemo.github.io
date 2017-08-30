@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<title>css3-3d(外视视角)</title>
+	<style type="text/css">
+		.scene{
+			position:relative;
+			perspective: 400px;
+			height:400px;
+			
+			-moz-user-select:none;
+			-webkit-user-select:none;
+			user-select:none;  
+		}
+		.scene-elem{
+			height:50px;
+			width:50px;
+			background-color:green;
+			position:absolute;
+			left:50%;
+			margin-left:-25px;
+			top:50%;
+			margin-top:-25px;
+		}
+		#elem1{
+			-webkit-transform: translate3d(-86px, 50px, 0) rotateY(300deg) scale(0.67);
+			-moz-transform: translate3d(-86px, 50px, 0) rotateY(300deg) scale(0.67);
+			-ms-transform: translate3d(-86px, 50px, 0) rotateY(300deg) scale(0.67);
+			-o-transform: translate3d(-86px, 50px, 0) rotateY(300deg) scale(0.67);
+			transform: translate3d(-86px, 50px, 0) rotateY(300deg) scale(0.67);
+		}
+		#elem2{
+			-webkit-transform: translate3d(-86px, -50px, 0) rotateY(120deg) scale(0.57);
+			-moz-transform: translate3d(-86px, -50px, 0) rotateY(120deg) scale(0.57);
+			-ms-transform: translate3d(-86px, -50px, 0) rotateY(120deg) scale(0.57);
+			-o-transform: translate3d(-86px, -50px, 0) rotateY(120deg) scale(0.57);
+			transform: translate3d(-86px, -50px, 0) rotateY(120deg) scale(0.57);
+		}
+		#elem3{
+			-webkit-transform: translate3d(0, -100px, 0) rotateY(180deg) scale(0.5);
+			-moz-transform: translate3d(0, -100px, 0) rotateY(180deg) scale(0.5);
+			-ms-transform: translate3d(0, -100px, 0) rotateY(180deg) scale(0.5);
+			-o-transform: translate3d(0, -100px, 0) rotateY(180deg) scale(0.5);
+			transform: translate3d(0, -100px, 0) rotateY(180deg) scale(0.5);
+		}
+		#elem4{
+			-webkit-transform: translate3d(86px, -50px, 0) rotateY(240deg) scale(0.57);
+			-moz-transform: translate3d(86px, -50px, 0) rotateY(240deg) scale(0.57);
+			-ms-transform: translate3d(86px, -50px, 0) rotateY(240deg) scale(0.57);
+			-o-transform: translate3d(86px, -50px, 0) rotateY(240deg) scale(0.57);
+			transform: translate3d(86px, -50px, 0) rotateY(240deg) scale(0.57);
+		}
+		#elem5{
+			-webkit-transform: translate3d(86px, 50px, 0) rotateY(60deg) scale(0.67);
+			-moz-transform: translate3d(86px, 50px, 0) rotateY(60deg) scale(0.67);
+			-ms-transform: translate3d(86px, 50px, 0) rotateY(60deg) scale(0.67);
+			-o-transform: translate3d(86px, 50px, 0) rotateY(60deg) scale(0.67);
+			transform: translate3d(86px, 50px, 0) rotateY(60deg) scale(0.67);
+		}
+		#elem6{
+			-webkit-transform: translate3d(0, 100px, 0) rotateY(360deg) scale(1);
+			-moz-transform: translate3d(0, 100px, 0) rotateY(360deg) scale(1);
+			-ms-transform: translate3d(0, 100px, 0) rotateY(360deg) scale(1);
+			-o-transform: translate3d(0, 100px, 0) rotateY(360deg) scale(1);
+			transform: translate3d(0, 100px, 0) rotateY(360deg) scale(1);
+		}
+		
+		
+		* { padding: 0; margin: 0; }
+		img{border:0;}
+		li{list-style:none;}
+		ul{width:200px;height:200px;margin:100px auto;position:relative;-webkit-transform-style:preserve-3d;}    
+		/*如果在ul里设置：-webkit-perspective:400px;-webkit-perspective-origin:0% 50%; 则会有透视、景深的效果*/
+		li{width:200px;height:200px;position:absolute;text-align:center;line-height:200px;font-size:80px;font-weight:bold;color:#fff;}
+		li:nth-child(1){background:rgba(255,0,0,1);-webkit-transform:rotateX(90deg)   translateZ(100px);}
+		li:nth-child(2){background:rgba(0,255,255,1);-webkit-transform:rotateX(270deg)  translateZ(100px);}
+		li:nth-child(3){background:rgba(255,0,255,1);-webkit-transform:rotateY(90deg) translateZ(100px);}
+		li:nth-child(4){background:rgba(0,255,0,1);-webkit-transform:rotateY(270deg) translateZ(100px);}
+		li:nth-child(5){background:rgba(200,200,0,1);-webkit-transform:translateZ(-100px);}
+		li:nth-child(6){background:rgba(0,0,255,1);-webkit-transform: translateZ(100px) ;}
+		.button{width:200px;margin:20px auto;position:relative;}
+		input{width:50px;height:30px;position:absolute;cursor:pointer;}
+		input:nth-child(1){left:100px;top:0;}
+		input:nth-child(2){left:200px;top:50px;}
+		input:nth-child(3){left:0px;top:50px;}
+		input:nth-child(4){left:100px;top:100px;}
+		input:nth-child(5){left:100px;top:50px;}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="scene">
+			<div id="elem1" class="scene-elem">EEE111</div>
+			<div id="elem2" class="scene-elem">EEE222</div>
+			<div id="elem3" class="scene-elem">EEE333</div>
+			<div id="elem4" class="scene-elem">EEE444</div>
+			<div id="elem5" class="scene-elem">EEE555</div>
+			<div id="elem6" class="scene-elem">EEE666</div>
+		</div>
+		
+		<ul id="ul">
+			<li id="li1">1</li>
+			<li id="li2">2</li>
+			<li id="li3">3</li>
+			<li id="li4">4</li>
+			<li id="li5">5</li>
+			<li id="li6">6</li>
+		</ul>
+		<div class="button">
+			<input type="button" value="上">
+			<input type="button" value="右">
+			<input type="button" value="左">
+			<input type="button" value="下">
+			<input type="button" value="重置">
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script>
+	var scenne = document.getElementsByClassName("scene")[0];
+	var canrotate = false;
+	var angle = 0;
+	var oldLoc = {x:0,y:0};
+	var curAngle = 0;
+	var angle2PI = Math.PI/180;
+	function resetRotate(){
+		var radius = 100;
+		var orignAngle = [300, 240, 180, 120, 60, 0];
+		for(var i = 0; i < orignAngle.length; i++){
+			var _angle = orignAngle[i]+curAngle;
+			var piAngle = _angle*angle2PI;
+			var changeX = radius*Math.sin(piAngle);//x:sin(angle)
+			var changey = radius*Math.cos(piAngle);//y:cos(angle)
+			var scale = (changey+200)/700*(7/1);
+			
+			var styleStr = "-webkit-transform: translate3d("+changeX+"px, "+changey+"px, 0) rotateY("+_angle+"deg) scale("+scale+");";
+			styleStr += "-moz-transform: translate3d("+changeX+"px, "+changey+"px, 0) rotateY("+_angle+"deg) scale("+scale+");";
+			styleStr += "-ms-transform: translate3d("+changeX+"px, "+changey+"px, 0) rotateY("+_angle+"deg) scale("+scale+");";
+			styleStr += "-o-transform: translate3d("+changeX+"px, "+changey+"px, 0) rotateY("+_angle+"deg) scale("+scale+");";
+			styleStr += "transform: translate3d("+changeX+"px, "+changey+"px, 0) rotateY("+_angle+"deg) scale("+scale+");";
+			document.getElementById("elem"+(i+1)).setAttribute("style", styleStr);
+		}
+		console.log(curAngle);
+		//document.getElementById("elem2").setAttribute("style", "");
+		//document.getElementById("elem3").setAttribute("style", "");
+		//document.getElementById("elem4").setAttribute("style", "");
+		//document.getElementById("elem5").setAttribute("style", "");
+		//document.getElementById("elem6").setAttribute("style", "");
+	}
+	scenne.onmousemove = function(e){
+		if(canrotate){
+			resetRotate(e.clientX-oldLoc.x);
+			curAngle+=(e.clientX-oldLoc.x);
+			oldLoc.x = e.clientX;
+		}
+	};
+	scenne.onmousedown = function(e){
+		canrotate = true;
+		oldLoc.x = e.clientX;
+		oldLoc.y = e.clientY;
+	};
+	scenne.onmouseup = scenne.onmouseout = function(){
+		canrotate = false;
+	};
+	resetRotate();
+	
+	//.........................................立方体
+    var ul=document.getElementById('ul');
+    var inputs=document.getElementsByTagName('input');
+    var x=0,y=0;
+    /////////////////////////鼠标控制
+    for(var i=0;i<inputs.length;i++){
+        inputs[i].onclick=run;
+    }
+    function run(){
+        ul.style.webkitTransition='-webkit-transform 3s linear';  //设置立方体变换的属性、持续时间、动画类型
+        if(inputs[0]==this){x+=90;}
+        if(inputs[1]==this){y+=90;}
+        if(inputs[2]==this){y-=90;}
+        if(inputs[3]==this){x-=90;}
+        if(inputs[4]==this){x=0;y=0; ul.style.webkitTransition='-webkit-transform 0.1s linear';}    //当点击重置按钮时，迅速转回到初始状态。
+        ul.style.webkitTransform = "rotateX("+x+"deg) rotateY("+y+"deg)";    //变换效果（沿X轴和Y轴旋转）
+    }
+    ////////////////////////键盘控制    
+    document.addEventListener('keydown', function(e){
+        ul.style.webkitTransition='-webkit-transform 3s linear';
+        switch(e.keyCode){
+            case 37:    y -= 90;    //左箭头
+                        break;
+            case 38:    x += 90;    //上箭头
+                        break;
+            case 39:    y += 90;    //下箭头
+                        break;
+            case 40:    x -= 90;    //右箭头
+                        break;
+            case 13:    x=0; y=0;    //回车 （当回车时，迅速转回初始状态）
+                        ul.style.webkitTransition='-webkit-transform 0.1s linear';
+                        break;
+        }
+        ul.style.webkitTransform = "rotateX("+x+"deg) rotateY("+y+"deg)"; //变换效果（沿X轴和Y轴旋转）
+    }, false);
+</script>
+</script>
+</html>

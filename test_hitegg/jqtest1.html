@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body"></div>
+<script type="text/javascript" src="jquery-1.6.4.js"></script>
+<script type="text/javascript">
+	var div1 = document.createElement("div");
+	div1.innerHTML = "hello1!";
+	document.getElementsByClassName('main-body')[0].appendChild(div1);
+	
+	var div2 = $("<div></div>");
+	div2[0].innerHTML = "hello2!";
+	document.getElementsByClassName('main-body')[0].appendChild(div2[0]);
+	
+	/*
+	var div3 = $("<div></div>");
+	div3.text("hello3!");
+	$('.main-body').appendChild(div3);
+	*/
+	
+	function replace(s, ochr, nchr){    
+            if(("" + ochr).length != 1 || ("" + ochr).length != ("" + nchr).length) {
+                return s;
+            }
+
+            var i = 0;
+			var ns = "";
+            while(i < s.length){
+                if(s.charAt(i) == ochr){
+                    ns += nchr;
+                }
+				else{
+					ns += s.charAt(i);
+				}
+                i++;
+            }
+            
+            return ns;
+    }
+
+	document.getElementsByClassName("banner")[0].innerHTML = replace("1927/06/35 07:07:07", '/', '-');
+</script>
+</body>
+</html>

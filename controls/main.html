@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="control.css"></link>
+	<script src="jquery-2.0.3.js"></script>
+	<style>
+		html,body{
+			width:100%;
+			height:100%;
+			padding:0;
+			margin:0;
+			overflow:auto;
+		}
+		.hidden{
+            display: none !important;
+        }
+		.banner{
+            width:100%;background-color:#3388CC;padding:0.2rem 0rem;
+        }
+        .select-area{
+            padding-left:5%;margin:0px 0px;background-color:#3388CC;
+        }
+        .select-area .diyselect{
+            height:2rem;
+			position:relative;
+            border:solid white 0px;
+            font-size:0.9rem;
+			border-radius:2px;
+            cursor:pointer;
+        }
+        .select-area .diyselect .p1{
+            background-image:url('Images/project_detail.png');
+            background-position:0rem -4.5rem;
+            background-size:1.5rem 6rem;
+            background-repeat:no-repeat;
+            
+            position:absolute;
+            top:0.2rem;
+            left:0.2rem;
+            z-index:2;
+            
+            width:1.5rem;
+            height:1.5rem;
+        }
+        .select-area .diyselect .p2{
+            background-image:url('Images/project_detail.png');
+            background-position:0rem -3rem;
+            background-size:1.5rem 6rem;
+            background-repeat:no-repeat;
+            
+            position:absolute;
+            bottom:0.2rem;
+            right:0.2rem;
+            z-index:2;
+            
+            width:1.5rem;
+            height:1.5rem;
+        }
+        .select-area .diyselect .triangle1{
+            width:0.6rem;height:0.6rem;background-color:black;position:absolute;right:0rem;top:0.9rem;overflow:hidden;
+        }
+        .select-area .diyselect .triangle2{
+            width:0.9rem;height:0.9rem;background-color:white;position:absolute;right:0.11rem;top:0.5rem;transform:rotate(45deg);overflow:hidden;
+        }
+        .select-area .diyselect .diyselect-text{
+            position:absolute;
+			top:0;
+			left:50%;
+			margin-left:-1.3rem;
+			letter-spacing:0.2rem;
+			
+            height:2rem;
+            line-height:2rem;
+            vertical-align:middle;
+			color:white;
+        }
+        .select-area .diyselect .diyselect-options{
+            position:absolute;top:2rem;background-color:white;border:solid grey 1px;z-index:1;
+        }
+        .select-area .diyselect .diyselect-options .diyselect-option{
+            vertical-align:middle;
+            height:2rem;
+            line-height:2rem;
+            margin:0 2rem 0 2rem;
+			letter-spacing:0.2rem;
+            cursor:pointer;
+            color:black;
+        }
+	</style>
+</head>
+<body>
+	<div class="banner">
+		<div class="select-area">
+            <!--新的选择方式-->
+            <div id="diyselect1" class="diyselect-comp diyselect">
+                <div class="p1"></div>
+                <div class="p2"></div>
+                <!--下三角-->
+                <div class="diyselect-comp diyselect-text">选择</div>
+                <!--选项-->
+                <div class="diyselect-comp diyselect-options">
+                    <div class="diyselect-comp diyselect-option" onclick="diySelect(this);"><nobr>选项卡</nobr></div>
+                    <div class="diyselect-comp diyselect-option" onclick="diySelect(this);"><nobr>冻结表格</nobr></div>
+					<div class="diyselect-comp diyselect-option" onclick="diySelect(this);"><nobr>列表</nobr></div>
+					<div class="diyselect-comp diyselect-option" onclick="diySelect(this);"><nobr>输入控件</nobr></div>
+					<div class="diyselect-comp diyselect-option" onclick="diySelect(this);"><nobr>甘特图</nobr></div>
+					<div class="diyselect-comp diyselect-option" onclick="diySelect(this);"><nobr>福田综合</nobr></div>
+				</div>
+			</div>
+        </div>
+	</div>
+	<div class="main-body">
+		<iframe id="my_iframe" style="border-width:0;width:100%;margin:0;padding:0"></iframe>
+	</div>
+	<div class="footer"></div>
+</body>
+<script>
+	document.body.onclick = function(event){//select冒泡处理 关闭
+		if(event.target instanceof HTMLDivElement){
+			var tarClass = $(event.target).attr("class")+"";
+            if(tarClass.indexOf("diyselect-comp") > -1){
+				return;
+            }
+        }
+        $('.diyselect-options').removeClass('hidden').addClass('hidden');
+	};
+	$(".diyselect").off().on("click",function(e){
+		$('.diyselect-options').toggleClass('hidden');
+		e.stopPropagation();
+	});
+	$(".diyselect").width($(".diyselect-options").width());
+	$(".diyselect-options").removeClass("hidden").addClass("hidden");
+	//content的高度
+	$("#my_iframe").height((document.documentElement.scrollHeight - ($(".footer").height() + $(".banner").height()) - 10) + "px");
+	//select选择
+    function diySelect(optElem){
+		var txt = $(optElem).text();
+		$(".diyselect-text").html(txt);
+		$(".diyselect-text").css("margin-left" , (-0.1-txt.length*0.5) + "rem");
+		var url = "";
+		if(txt == "选项卡"){
+			url = "subs/tabControl.html";
+		}
+		else if(txt=="冻结表格"){
+			url = "subs/frozenTbl.html";
+		}
+		else if(txt=="列表"){
+			url = "subs/list.html";
+		}
+		else if(txt=="输入控件"){
+			url = "subs/inputs.html";
+		}
+		else if(txt=="甘特图"){
+			url = "subs/gantt.html";
+		}
+		else if(txt=="福田综合"){
+			url = "futian.html";
+		}
+		$("#my_iframe")[0].src = url;
+    }
+</script>
+</html>

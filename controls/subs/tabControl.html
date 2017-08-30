@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../control.css"></link>
+	<script src="../jquery-2.0.3.js"></script>
+</head>
+<body>
+	<div class="tabcontrol-box">
+		<div class="tabheaders" style="margin-top:1rem;">
+			<nobr>
+			<div class="tabheader left-tabheader selected" onclick="tabSelect(this, 'content1')"><span>Tab1</span></div>
+			<div class="tabheader" onclick="tabSelect(this, 'content2')"><span>Tab2</span></div>
+			<div class="tabheader right-tabheader" onclick="tabSelect(this, 'content3')"><span>Tab3</span></div>
+			</nobr>
+		</div>
+		<div class="tabcontents">
+			<div class="tabcontent">
+				<div class="collapsible listview" id="content1">
+					<div class="content">
+						<ul id="caretasks_list" class="listview">
+							<li class="tip">正在加载(content1)...</li>
+						</ul>
+					</div>
+					<div class="panel small">
+						<button class="button primary col2 confirm btn-lastPage">上一页</button>
+						<span><span class="curPage">1</span>/<span class="maxPage">1</span></span>
+						<button class="button primary col2 confirm btn-nextPage">下一页</button>
+					</div>
+				</div>
+			</div>
+			<div class="tabcontent hidden">
+				<div class="collapsible listview" id="content2">
+					<div class="content">
+						<ul id="responsetasks_list" class="listview">
+							<li class="tip">正在加载(content2)...</li>
+						</ul>
+					</div>
+					<div class="panel small">
+						<button class="button primary col2 confirm btn-lastPage">上一页</button>
+						<span><span class="curPage">1</span>/<span class="maxPage">1</span></span>
+						<button class="button primary col2 confirm btn-nextPage">下一页</button>
+					</div>
+				</div>
+			</div>
+			<div class="tabcontent hidden">
+				<div class="collapsible listview" id="content3">
+					<div class="content">
+						<ul id="assigntasks_list" class="listview">
+							<li class="tip">正在加载(content3)...</li>
+						</ul>
+					</div>
+					<div class="panel small">
+						<button class="button primary col2 confirm btn-lastPage">上一页</button>
+						<span><span class="curPage">1</span>/<span class="maxPage">1</span></span>
+						<button class="button primary col2 confirm btn-nextPage">下一页</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+<script>
+	//tab-select选择
+    function tabSelect(elem, tabContentId){
+		$('#'+tabContentId).parents('.tabcontrol-box').find('.tabheader').removeClass('selected');
+        $(elem).removeClass('selected').addClass('selected');
+        $('#'+tabContentId).parents('.tabcontrol-box').find('.tabcontent').removeClass('hidden').addClass('hidden');
+        $('#'+tabContentId).parents('.tabcontent').removeClass('hidden');
+    }
+</script>
+</html>

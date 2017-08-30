@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<title></title>
+	<script src="jquery-2.0.3.js"></script>
+	<link rel="stylesheet" type="text/css" href="diydate2.css" />
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<input id="mydate" type="text" value="" readonly onclick="runtime.diydate2.showdate(this, $(this).val())"/>
+	</div>
+	<div class="footer"></div>
+	<div class="layermbox dateui hidden">
+		<div class="laymshade"></div>
+		<div class="layermmain">
+			<div style="display:table-cell;text-align:center;vertical-align:middle;padding:0;margin:0;">
+				<div class="date-surface" style="width:300px;background-color: white;display: inline-block;">
+					<div class="incenter-layout fore-diyblue">
+						<div class="inblock" style=""><span class='year-top'>2016</span>年<span class='month-top'>7</span>月<span class='day-top'>30</span>日</div>
+						<div class="inblock weekday-top" style="margin-left:0.5rem;">周六</div>
+					</div>
+					<div class="data-seperator"></div>
+					<div class="cols-list" style="text-align:center;padding-top:2px;">
+						<div class="diyselect-comp col3-cell inblock yearList pos-rel diyborder" onclick="runtime.diydate2.showSelect(this, 'year')"><!--年份-->
+							<div class='diyselect-comp cell fore-grey year-top' style="margin-left:-0.5rem;">2016</div>
+							<div class="diyselect-comp btn-open-select pos-abs" style="top:50%;margin-top:-0.5rem;right:0.5rem;width:1rem;height:1rem;"></div>
+							<div class="diyselect-comp diyselect-options hidden" style="z-index:3"></div>
+						</div>
+						<div class="diyselect-comp col3-cell inblock monthList pos-rel diyborder diyborder-noleft" onclick="runtime.diydate2.showSelect(this, 'month')"><!--月份-->
+							<div class='diyselect-comp cell fore-grey month-top' style="margin-left:-0.5rem;">7</div>
+							<div class="diyselect-comp btn-open-select pos-abs" style="top:50%;margin-top:-0.5rem;right:0.5rem;width:1rem;height:1rem;"></div>
+							<div class="diyselect-comp diyselect-options hidden" style="z-index:3"></div>
+						</div>
+						<div class="diyselect-comp col3-cell inblock dayList pos-rel diyborder diyborder-noleft" onclick="runtime.diydate2.showSelect(this, 'day')"><!--日-->
+							<div class='diyselect-comp cell fore-grey day-top' style="margin-left:-0.5rem;">29</div>
+							<div class="diyselect-comp btn-open-select pos-abs" style="top:50%;margin-top:-0.5rem;right:0.5rem;width:1rem;height:1rem;"></div>
+							<div class="diyselect-comp diyselect-options hidden" style="z-index:3"></div>
+						</div>
+					</div>
+					<div class="cols-list">
+						<div class="col3-cell inblock fore-diyblue" onclick="runtime.diydate2.dateBtnClick(this, setDateCallback)">取消</div>
+						<div class="col3-cell inblock fore-diyblue" onclick="runtime.diydate2.dateBtnClick(this, setDateCallback)">清除</div>
+						<div class="col3-cell inblock fore-diyblue" onclick="runtime.diydate2.dateBtnClick(this, setDateCallback)">设置</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="diydate2.js"></script>
+<script>
+	function setDateCallback(date, weekday){
+		var from = $(".layermbox.dateui").attr("from");
+		$(from).val(date + " " + weekday);
+	}
+</script>
+</html>

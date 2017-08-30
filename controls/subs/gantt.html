@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<style>
+		.frozen-con .frozen-left{
+			float: left;
+			width:8rem;
+			
+			min-height:100px;
+			font-size:1rem;
+			color:black;
+		}
+		.frozen-con .right{
+			margin-left: 8rem;
+			
+			min-height:100px;
+			font-size:1rem;
+			color:black;
+			
+			position:relative;
+			overflow-x:auto;
+			overflow-y:hidden;
+		}
+		.frozen-con .frozen-left .header,.frozen-con .right .gante-item{
+			height:2rem;
+			position:relative;
+		}
+		.frozen-con .frozen-left .header span{
+			vertical-align:middle;
+		}
+		.frozen-con .right .gante-item div{
+			position:absolute;
+			top:50%;
+			left:0;
+			margin-top:-0.5rem;
+			
+			height:1rem;
+			border-radius:0.5rem;
+			opacity:1;
+		}
+		.frozen-con .right .gante-item::before{
+			position:absolute;
+			top:50%;
+			left:0;
+			
+			height:1px;
+			border:dashed black 0px;
+			border-top-width:1px;
+			
+			width:100%;
+			
+			content:" ";
+		}
+		.ver-seperators{
+			position:absolute;
+			left:0;
+			top:0;
+			
+			height:100%;
+			width:100%;
+			overflow:hidden;
+		}
+		.ver-seperator{
+			position:absolute;
+			left:0;
+			top:0;
+			width:1px;
+			height:10000px;
+			display:inline-block;
+			border:dashed blue 0px;
+			border-right-width:1px;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div id="gante" class="frozen-con">
+			<div class="frozen-left">
+				<div class="header">
+					<span>1.绿色正常</span>
+				</div>
+				<div class="header">
+					<span>2.橙色完成</span>
+				</div>
+				<div class="header">
+					<span>3.红色逾期</span>
+				</div>
+			</div>
+			<div class="right">
+				<div class="right-in">
+					<div class="horizon-area">
+						<div class="gante-item">
+							<div onclick="showMsg('', '')" style="left:10rem;width:15rem;background-color:green;border:solid green 1px;"></div>
+						</div>
+						<div class="gante-item">
+							<div onclick="showMsg('', '')" style="width:10rem;background-color:orange;border:solid orange 1px;"></div>
+						</div>
+						<div class="gante-item">
+							<div onclick="showMsg('', '')" style="left:10rem;width:20rem;background-color:red;border:solid red 1px;"></div>
+						</div>
+					</div>
+					<!--<div class="ver-seperators" style="position:absolute;">-->
+						<div class="ver-seperator" id="ver-seperator1" style="left:10rem;"></div>
+						<div class="ver-seperator" id="ver-seperator2" style="left:15rem;"></div>
+						<div class="ver-seperator" id="ver-seperator3" style="left:20rem;"></div>
+						<!--里程碑关键线-->
+						<div class="ver-seperator" id="ver-seperator3" style="left:28rem;border-style:solid;border-right-width:2px;"></div>
+					<!--</div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+	<script>
+		//svg 画
+		//border-radius 用div画
+		
+		//一.甘特图
+		//1.每行的头和时间虚线
+		//2.每行的各种样式的进度实条
+		//3.每行的[先行/后行]关系
+		//  描述先行后行的数据结构(先行items的与/非/或的关系, 时间驱动型/事件驱动型/交互驱动型)
+		//  lastDateOfPrevs(), firstDateOfPrevs(), 或其他运算方式
+		var data = {
+			"id1":{id:"id1",value:"10",msgheader:"msgheader1",msgcontent:"msgcontent1",Prev:null},
+			"id2":{id:"id2",value:"15",msgheader:"msgheader2",msgcontent:"msgcontent2",Prev:null},
+			"id3":{id:"id3",value:"20",msgheader:"msgheader3",msgcontent:"msgcontent3",Prev:{type:"lastDateOfPrevs", items:["id1","id2"]}},
+			"id4":{id:"id4",value:"18",msgheader:"msgheader4",msgcontent:"msgcontent4",Prev:{type:"lastDateOfPrevs", items:["id3"]}},
+			"id5":{id:"id5",value:"16",msgheader:"msgheader5",msgcontent:"msgcontent5",Prev:{type:"lastDateOfPrevs", items:["id3"]}},
+			"id6":{id:"id6",value:"14",msgheader:"msgheader6",msgcontent:"msgcontent6",Prev:{type:"firstDateOfPrevs", items:["id4","id5"]}}
+		};
+		function getValue(node){
+			var val = parseInt(node.value);
+			if(!node.Prev) return val;
+			var type = node.Prev.type;
+			var items = node.Prev.items;
+			
+			var vals = [];
+			for(var i = 0; i < items.length; i++){
+				vals.push(getValue(data[items[i]]));
+			}
+			
+			if(type=="lastDateOfPrevs"){
+				return val + Math.max.apply(null,vals);
+			}
+			else if(type=="firstDateOfPrevs"){
+				return val + Math.min.apply(null,vals);
+			}
+			return 0;
+		}
+		
+		function buildGante(data){
+			var endVals = [];
+			for(var attr in data){
+				data[attr].end=getValue(data[attr]);
+				data[attr].start=data[attr].end-parseInt(data[attr].value);
+				endVals.push(data[attr].end);
+			}
+			var maxWidth = Math.max.apply(null, endVals);
+			
+			for(var attr in data){
+				var header = document.createElement("div");
+				header.className="header";
+				header.innerHTML="<span>"+data[attr].msgheader+"</span>";
+				document.querySelector("#gante .frozen-left").appendChild(header);
+				
+				var ganteItem = document.createElement("div");
+				ganteItem.className="gante-item";
+				ganteItem.innerHTML="<div title='"+data[attr].msgcontent+"' onclick=\"showMsg('"+data[attr].msgheader+"', '"+data[attr].msgcontent+"')\" style='left:"+data[attr].start+"rem;width:"+data[attr].value+"rem;background-color:green;border:solid green 1px;'></div>";
+				document.querySelector("#gante .right .horizon-area").appendChild(ganteItem);
+			}
+			
+			if(document.styleSheets.length > 1){
+				document.styleSheets[0].innerHTML = document.styleSheets[0].innerHTML;
+				document.styleSheets[1].innerHTML = "#gante .right .gante-item::before{width:"+(maxWidth + 10)+"rem}";
+			}
+			else{
+				document.styleSheets[0].innerHTML = document.styleSheets[0].innerHTML;
+				var style = document.createElement("style");
+				style.innerHTML = "#gante .right .gante-item::before{width:"+(maxWidth + 10)+"rem}";
+				document.head.appendChild(style);
+			}
+			
+			for(var attr in data){
+				var verSeper = document.createElement("div");
+				verSeper.className="ver-seperator";
+				verSeper.style.left=data[attr].end+"rem";
+				document.querySelector("#gante .right").appendChild(verSeper);
+			}
+		}
+		buildGante(data);
+		//4.截止与延期的表示
+		function showMsg(title, content){ alert(title+"\n"+content); }
+		
+		//二.图论图
+		
+		//三.结构图
+		
+		//四.树状分形图
+	</script>
+</body>
+</html>

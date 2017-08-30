@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<style>
+		.frozen-tbl-con{
+			font-size:0;
+			position:relative;
+		}
+		.frozen-tbl-con .frozen-left{
+			float: left;
+			width:8rem;
+			
+			min-height:100px;
+			font-size:1rem;
+			color:black;
+		}
+		.frozen-tbl-con .right{
+			margin-left: 8rem;
+			
+			min-height:100px;
+			font-size:1rem;
+			color:black;
+		}
+		.frozen-tbl-con .right-in{
+			overflow-x:auto;
+		}
+		.frozen-tbl-con .tbl-row1 span,.frozen-tbl-con .tbl-row2 span,.frozen-tbl-con .tbl-row3 span{
+			display:inline-block;
+			width:5rem;
+			overflow-x:hidden;
+			height:2rem;
+			line-height:2rem;
+			vertical-align:middle;
+			text-align:right;
+			padding-right:0.5rem;
+		}
+		.frozen-tbl-con .frozen-left .tbl-row1 span,.frozen-tbl-con .frozen-left .tbl-row2 span,.frozen-tbl-con .frozen-left .tbl-row3 span{
+			display:inline-block;
+			width:3.5rem;
+			text-align:center;
+		}
+		.frozen-tbl-con .tbl-row1 span,.frozen-tbl-con div.tbl-row1{
+			background-color:#E0FFFF;
+		}
+		.frozen-tbl-con .tbl-row2 span,.frozen-tbl-con div.tbl-row2{
+			background-color:aliceblue;
+		}
+		.frozen-tbl-con .tbl-row3 span,.frozen-tbl-con div.tbl-row3{
+			background-color:white;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<h3>可移动的table</h3>
+		<div id="mytable" class="frozen-tbl-con">
+			<div class="frozen-left"></div>
+			<div class="right">
+				<div class="right-in"></div>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+	<script>
+		tblData={
+			thDatas:["列1","列2","列3","列4","列5","列6","列7","列8","列9"],
+			tdDatas:[
+				["a11","a12","a13","a14","a15","a16","a17","a18","a19"],
+				["a21","a22","a23","a24","a25","a26","a27","a28","a29"],
+				["a31","a32","a33","a34","a35","a36","a37","a38","a39"],
+				["a41","a42","a43","a44","a45","a46","a47","a48","a49"],
+				["a51","a52","a53","a54","a55","a56","a57","a58","a59"],
+				["a61","a62","a63","a64","a65","a66","a67","a68","a69"],
+				["a71","a72","a73","a74","a75","a76","a77","a78","a79"],
+				["a81","a82","a83","a84","a85","a86","a87","a88","a89"],
+				["a91","a92","a93","a94","a95","a96","a97","a98","a99"]
+			]
+		};
+		function buildFrozenTbl(tblData, id, leftFrozenColCnt){
+			//第1-2列
+			document.querySelector("#"+id+".frozen-tbl-con .frozen-left").style.width=(3.5*leftFrozenColCnt)+"rem";
+			document.querySelector("#"+id+".frozen-tbl-con .right").style.marginLeft=(3.5*leftFrozenColCnt)+"rem";
+			var left = document.querySelector("#"+id+".frozen-tbl-con .frozen-left");
+			var rowCon = document.createElement("div");
+			rowCon.className="tbl-row1";
+			for(var i = 0; i < leftFrozenColCnt; i++){
+				var elem = document.createElement("span");
+				elem.innerHTML=tblData.thDatas[i];
+				rowCon.appendChild(elem);
+			}
+			var nobr = document.createElement("nobr");
+			nobr.appendChild(rowCon);
+			left.appendChild(nobr);
+			for(var i=0; i<tblData.tdDatas.length; i++){
+				var row = tblData.tdDatas[i];
+				var rowCon = document.createElement("div");
+				if(i%2==1) rowCon.className="tbl-row2";
+				else rowCon.className="tbl-row3";
+				for(var j = 0; j < leftFrozenColCnt; j++){
+					var elem = document.createElement("span");
+					elem.innerHTML=row[j];
+					rowCon.appendChild(elem);
+				}
+				var nobr = document.createElement("nobr");
+				nobr.appendChild(rowCon);
+				left.appendChild(nobr);
+			}
+			
+			//3-n列
+			var right = document.querySelector("#"+id+".frozen-tbl-con .right-in");
+			var rowCon = document.createElement("div");
+			rowCon.className="tbl-row1";
+			for(var i = leftFrozenColCnt; i < tblData.thDatas.length;i++){
+				var elem = document.createElement("span");
+				elem.innerHTML=tblData.thDatas[i];
+				rowCon.appendChild(elem);
+			}
+			var nobr = document.createElement("nobr");
+			nobr.appendChild(rowCon);
+			right.appendChild(nobr);
+			
+			for(var i=0; i<tblData.tdDatas.length; i++){
+				var row = tblData.tdDatas[i];
+				var rowCon = document.createElement("div");
+				if(i%2==1) rowCon.className="tbl-row2";
+				else rowCon.className="tbl-row3";
+				for(var j = leftFrozenColCnt; j < tblData.thDatas.length;j++){
+					var elem = document.createElement("span");
+					elem.innerHTML=row[j];
+					rowCon.appendChild(elem);
+				}
+				var nobr = document.createElement("nobr");
+				nobr.appendChild(rowCon);
+				right.appendChild(nobr);
+			}
+		}
+		buildFrozenTbl(tblData, "mytable", 2);
+	</script>
+</body>
+</html>

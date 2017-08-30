@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<script src="jquery-2.0.3.js"></script>
+	<style type="text/css">
+		.date-surface{
+			border:solid #3388cc 2px;
+			width:100%;max-width:300px;line-height:2rem;
+		}
+		.seperator{
+			width:100%;
+			height:2px;
+			background-color:#3388cc;
+		}
+		.incenter-layout{
+			text-align:center;
+			vertical-align:middle;
+		}
+		.inblock{
+			display:inline-block;
+		}
+		.overflow-hidden{
+			overflow-y:hidden;
+		}
+		.cols-list{
+			font-size:0;
+		}
+		.col3-cell{
+			font-size:1rem;
+			cursor:pointer;
+			width:32.5%;
+			text-align:center;
+			border:solid #EEEEEE 1px;
+		}
+		.fore-diyblue{
+			color:#3388cc;
+			font-weight:700;
+		}
+		.fore-grey{
+			color:#888888;
+		}
+		.bold{
+			font-weight:700;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<div class="date-surface">
+			<div class="incenter-layout fore-diyblue">
+				<div class="inblock" style="">2016年7月30日</div>
+				<div class="inblock" style="margin-left:0.5rem;">周六</div>
+			</div>
+			<div class="seperator"></div>
+			<div class="cols-list">
+				<div class="tranlateZone col3-cell inblock overflow-hidden yearList"><!--年份滚动区-->
+				<!--style='-webkit-transform:translate(0, 0);'-->
+					<div class='cell fore-grey' data-value='-2' style="-webkit-transform:translate(0,0px);">2014</div>
+					<div class='cell fore-grey' data-value='-1' style="-webkit-transform:translate(0,0px);">2015</div><!--上一年份-->
+					<div class='cell fore-grey' data-value='0' style="-webkit-transform:translate(0,0px);">2016</div><!--当前年份-->
+					<div class='cell fore-grey' data-value='1' style="-webkit-transform:translate(0,0px);">2017</div><!--下一年份-->
+					<div class='cell fore-grey' data-value='2' style="-webkit-transform:translate(0,0px);">2018</div>
+				</div>
+				<div class="tranlateZone col3-cell inblock overflow-hidden monthList"><!--月份滚动区-->
+					<div class='cell fore-grey' data-value='-2' style="-webkit-transform:translate(0,0px);">5</div>
+					<div class='cell fore-grey' data-value='-1' style="-webkit-transform:translate(0,0px);">6</div><!--上一月份-->
+					<div class='cell fore-grey' data-value='0' style="-webkit-transform:translate(0,0px);">7</div><!--当前月份-->
+					<div class='cell fore-grey' data-value='1' style="-webkit-transform:translate(0,0px);">8</div><!--下一月份-->
+					<div class='cell fore-grey' data-value='2' style="-webkit-transform:translate(0,0px);">9</div>
+				</div>
+				<div class="tranlateZone col3-cell inblock overflow-hidden dayList"><!--日的滚动区-->
+					<div class='cell fore-grey' data-value='-2' style="-webkit-transform:translate(0,0px);">27</div>
+					<div class='cell fore-grey' data-value='-1' style="-webkit-transform:translate(0,0px);">28</div><!--上一日-->
+					<div class='cell fore-grey' data-value='0' style="-webkit-transform:translate(0,0px);">29</div><!--当前日-->
+					<div class='cell fore-grey' data-value='1' style="-webkit-transform:translate(0,0px);">30</div><!--下一日-->
+					<div class='cell fore-grey' data-value='2' style="-webkit-transform:translate(0,0px);">31</div>
+				</div>
+			</div>
+			<div class="cols-list">
+				<div class="col3-cell inblock fore-diyblue" onclick=";console.log(getDateResult());">取消</div>
+				<div class="col3-cell inblock fore-diyblue" onclick=";console.log(getDateResult());">清除</div>
+				<div class="col3-cell inblock fore-diyblue" onclick=";console.log(getDateResult());">设置</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script>
+	//$(".main-body").html("");
+	runtime={};
+	runtime.diyDate = function(divElem, curDate){
+		this.getLoopCurDivQueue = [];
+		this.curContainer=divElem;
+		this.curDate=curDate;
+		this.getYear=function(){return parseInt(curDate.split('-')[0])};
+		this.getMonth=function(){};
+		this.getDay=function(){};
+		
+		this.getViewYear=function(){
+			var divs = $(".yearList>div");
+			
+			var minTransYDiv = divs[0];
+			var minAbsTransY = Math.abs(getTransY($(divs[0]).attr("style")));
+			//console.log("minAbsTransY:"+minAbsTransY);
+			var divHgt = divs[0].offsetHeight;
+			var centerYLine=divHgt*2.5;
+			
+			for(var i = 0; i < divs.length; i++){//中心判断规则有误
+				var style=$(divs[i]).attr("style");
+				var absTransY = Math.abs(getTransY(style));
+				console.log("absTransY:"+absTransY + ";" + minAbsTransY);
+				var dis = centerYLine-divHgt*i+absTransY;
+				if(dis < divHgt/2 && dis > 0){
+					minAbsTransY = absTransY;
+					minTransYDiv = divs[i];
+				}
+			}
+			var curDate=this.getYear() + parseInt($(minTransYDiv).data("value"));
+			console.log("curDate:" + curDate);
+			return curDate;
+		};
+		this.updateYearUI=function(){
+			this.curViewYear=this.getViewYear();
+			//console.log("this.curViewYear:" + this.curViewYear);
+			
+			var yearItems = $(".yearList>div");
+			//删除
+			var vList={};
+			for(var i=0;i<yearItems.length;i++){
+				var v=yearItems[i].getAttribute("data-value")
+				var dis = this.curViewYear-v;
+				if(dis<3 || dis>-3){
+					vList["_"+dis]=yearItems[i].outerHTML;
+				}
+			}
+			
+			//添加
+			var needAttrs = {"_-2":-2, "_-1":-1, "_0":0, "_1":1, "_2":2};
+			var newHTML="";
+			for(var attr in needAttrs){
+				if(!vList[attr]){
+					newHTML += "<div class='cell fore-grey' data-value='"+needAttrs[attr]+"' style='-webkit-transform:translate(0, "+lastLoc.curTranslateY+"px);'>"+(this.curViewYear+needAttrs[attr])+"</div>";
+				}
+				else{
+					newHTML += vList[attr];
+					console.log("vList["+attr+"]:" + vList[attr]);
+				}
+			}
+			
+			$(".yearList").html(newHTML);
+		};
+		this.getViewMonth=function(){
+			return 1;
+		};
+		this.updateMonthUI=function(){
+			//删除
+			
+			//添加
+		};
+		this.getViewDay=function(){
+			return 1;
+		};
+		this.updateDayUI=function(){
+		};
+		//五个: 
+		//先删除(添加上两个，两个以上删除；添加下两个，两个以下删除); 
+		//再添加
+		return this;
+	}
+	var date1 = new runtime.diyDate($(".main-body")[0], "2014-12-09");
+	
+	//滚动 mouse逻辑
+	var canTranslate = false;
+	var lastLoc={};
+	$(".tranlateZone").on("mouseup", function(){
+		canTranslate = false;
+	});
+	$(".tranlateZone").on("mouseleave", function(){
+		canTranslate = false;
+	});
+	$(".tranlateZone").on("mousedown", function(e){
+		canTranslate = true;
+		var e = e||window.event; 
+		var x=e.clientX+document.body.scrollLeft + document.documentElement.scrollLeft;
+		var y=e.clientY+document.body.scrollTop + document.documentElement.scrollTop;
+		lastLoc.x=x;
+		lastLoc.y=y;
+	});
+	$(".tranlateZone").on("mousemove", function(e){
+		if(!canTranslate)return;
+		var e = e||window.event; 
+		var x=e.clientX+document.body.scrollLeft + document.documentElement.scrollLeft;
+		var y=e.clientY+document.body.scrollTop + document.documentElement.scrollTop;
+		
+		var disy=y-lastLoc.y;
+		lastLoc.x=x;
+		lastLoc.y=y;
+		
+		var curY = getTransY($(this).find(".cell").attr("style"));
+		lastLoc.curTranslateY=curY+disy;
+		
+		$(this).find(".cell").attr("style", "-webkit-transform:translate(0,"+lastLoc.curTranslateY+"px);");
+		date1.updateYearUI();
+	});
+	function getTransY(style){
+		var p1s = style.split('px');
+		var curY=parseFloat(p1s[0].split(',')[1]);
+		return curY;
+	}
+	//滚动 touch逻辑
+	$(".tranlateZone").on("touchend", function(){
+		canTranslate = false;
+	});
+	$(".tranlateZone").on("touchleave", function(){
+		canTranslate = false;
+	});
+	$(".tranlateZone").on("touchstart", function(){
+		canTranslate = true;
+	});
+	$(".tranlateZone").on("touchmove", function(e){
+		if(!canTranslate)return;
+		var e = e||window.event; 
+		var x=e.clientX+document.body.scrollLeft + document.documentElement.scrollLeft;
+		var y=e.clientY+document.body.scrollTop + document.documentElement.scrollTop;
+		console.log("x:" + x + "; y:" + y);
+	});
+	//
+</script>
+</html>

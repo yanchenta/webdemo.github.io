@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<script src="jquery-2.0.3.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css"/>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<h3>自定义-datepicker</h3>
+		<div><input type="text" id="datepicker1" size="30"></div>
+		
+		<h3>jq-DatePicker</h3>
+		<div><input type="text" id="datepicker2" size="30"></div>
+		
+		<h3>js-date对象全释</h3>
+		<div>in console</div>
+		
+		<h3>input-date全释</h3>
+		<div><input type="date" autocomplete autofocus style="opacity:0.1;"/></div>
+	</div>
+	<div class="footer"></div>
+</body>
+<script>
+	//本月有多少天
+	//var d=new Date();console.log(new Date(d.getFullYear(), (d.getMonth()+1), 0).getDate())
+	//第一天星期几/几号: getDay()/getDate()
+	//var d=new Date();console.log(new Date(d.getFullYear(), (d.getMonth()+1), 0).getDate())
+	
+	$( "#datepicker2" ).datepicker();
+	
+	//js-date
+	var date = new Date();
+	//	Date()	返回当日的日期和时间。
+	var v1 = date.getDate();
+	console.log("getDate=>type:" + typeof(v1) +", value:"+ v1);
+	//	getDate()	从 Date 对象返回一个月中的某一天 (1 ~ 31)。
+	var v2 = date.getDay();
+	console.log("getDay=>type:" + typeof(v2) +", value:"+ v2);
+	//	getDay()	从 Date 对象返回一周中的某一天 (0 ~ 6)。
+	var v3 = date.getMonth();
+	console.log("getMonth()=>type:" + typeof(v3) +", value:"+ v3);
+	//	getMonth()	从 Date 对象返回月份 (0 ~ 11)。
+	var v4 = date.getFullYear();
+	console.log("getFullYear=>type:" + typeof(v4) +", value:"+ v4);
+	//	getFullYear()	从 Date 对象以四位数字返回年份。
+	var v5 = date.getYear();
+	console.log("getYear=>type:" + typeof(v5) +", value:"+ v5);
+	//	getYear()	请使用 getFullYear() 方法代替。
+	var v6 = date.getHours();
+	console.log("getHours()=>type:" + typeof(v6) +", value:"+ v6);
+	//	getHours()	返回 Date 对象的小时 (0 ~ 23)。
+	var v7 = date.getMinutes();
+	console.log("getMinutes()=>type:" + typeof(v7) +", value:"+ v7);
+	//	getMinutes()	返回 Date 对象的分钟 (0 ~ 59)。
+	var v8 = date.getSeconds();
+	console.log("getSeconds()=>type:" + typeof(v8) +", value:"+ v8);
+	//	getSeconds()	返回 Date 对象的秒数 (0 ~ 59)。
+	var v9 = date.getMilliseconds();
+	console.log("getMilliseconds()=>type:" + typeof(v9) +", value:"+ v9);
+	//	getMilliseconds()	返回 Date 对象的毫秒(0 ~ 999)。
+	var v10 = date.getTime();
+	console.log("getTime()=>type:" + typeof(v10) +", value:"+ v10);
+	//	getTime()	返回 1970 年 1 月 1 日至今的毫秒数。
+	var v11 = date.getTimezoneOffset();
+	console.log("getTimezoneOffset()=>type:" + typeof(v11) +", value:"+ v11);
+	//	getTimezoneOffset()	返回本地时间与格林威治标准时间 (GMT) 的分钟差。
+	var v12 = date.getUTCDate();
+	console.log("getUTCDate()=>type:" + typeof(v12) +", value:"+ v12);
+	//	getUTCDate()	根据世界时从 Date 对象返回月中的一天 (1 ~ 31)。
+	var v13 = date.getUTCDay();
+	console.log("getUTCDay()=>type:" + typeof(v13) +", value:"+ v13);
+	//	getUTCDay()	根据世界时从 Date 对象返回周中的一天 (0 ~ 6)。
+	var v14 = date.getUTCMonth();
+	console.log("getUTCMonth()=>type:" + typeof(v14) +", value:"+ v14);
+	//	getUTCMonth()	根据世界时从 Date 对象返回月份 (0 ~ 11)。
+	var v15 = date.getUTCFullYear();
+	console.log("getUTCFullYear()=>type:" + typeof(v15) +", value:"+ v15);
+	//	getUTCFullYear()	根据世界时从 Date 对象返回四位数的年份。
+	var v16 = date.getUTCHours();
+	console.log("getUTCHours()=>type:" + typeof(v16) +", value:"+ v16);
+	//	getUTCHours()	根据世界时返回 Date 对象的小时 (0 ~ 23)。
+	var v17 = date.getUTCMinutes();
+	console.log("getUTCMinutes()=>type:" + typeof(v17) +", value:"+ v17);
+	//	getUTCMinutes()	根据世界时返回 Date 对象的分钟 (0 ~ 59)。
+	var v18 = date.getUTCSeconds();
+	console.log("getUTCSeconds()=>type:" + typeof(v18) +", value:"+ v18);
+	//	getUTCSeconds()	根据世界时返回 Date 对象的秒钟 (0 ~ 59)。
+	var v19 = date.getUTCMilliseconds();
+	console.log("getUTCMilliseconds()=>type:" + typeof(v19) +", value:"+ v19);
+	//	getUTCMilliseconds()	根据世界时返回 Date 对象的毫秒(0 ~ 999)。
+	//var v20 = date.parse();
+	//console.log("parse()=>type:" + typeof(v20) +", value:"+ v20);
+	//	parse()	返回1970年1月1日午夜到指定日期（字符串）的毫秒数。
+	var v21 = date.setDate();
+	console.log("setDate()=>type:" + typeof(v21) +", value:"+ v21);
+	//	setDate()	设置 Date 对象中月的某一天 (1 ~ 31)。
+	var v22 = date.setMonth();
+	console.log("setMonth()=>type:" + typeof(v22) +", value:"+ v22);
+	//	setMonth()	设置 Date 对象中月份 (0 ~ 11)。
+	var v23 = date.setFullYear();
+	console.log("setFullYear()=>type:" + typeof(v23) +", value:"+ v23);
+	//	setFullYear()	设置 Date 对象中的年份（四位数字）。
+	var v24 = date.setYear();
+	console.log("setYear()=>type:" + typeof(v24) +", value:"+ v24);
+	//	setYear()	请使用 setFullYear() 方法代替。
+	var v25 = date.setHours();
+	console.log("setHours()=>type:" + typeof(v25) +", value:"+ v25);
+	//	setHours()	设置 Date 对象中的小时 (0 ~ 23)。
+	var v26 = date.setMinutes();
+	console.log("setMinutes()=>type:" + typeof(v26) +", value:"+ v26);
+	//	setMinutes()	设置 Date 对象中的分钟 (0 ~ 59)。
+	var v27 = date.setSeconds();
+	console.log("setSeconds()=>type:" + typeof(v27) +", value:"+ v27);
+	//	setSeconds()	设置 Date 对象中的秒钟 (0 ~ 59)。
+	var v28 = date.setMilliseconds();
+	console.log("setMilliseconds()=>type:" + typeof(v28) +", value:"+ v28);
+	//	setMilliseconds()	设置 Date 对象中的毫秒 (0 ~ 999)。
+	var v29 = date.setTime();
+	console.log("setTime()=>type:" + typeof(v29) +", value:"+ v29);
+	//	setTime()	以毫秒设置 Date 对象。
+	var v30 = date.setUTCDate();
+	console.log("setUTCDate()=>type:" + typeof(v30) +", value:"+ v30);
+	//	setUTCDate()	根据世界时设置 Date 对象中月份的一天 (1 ~ 31)。
+	var v31 = date.setUTCMonth();
+	console.log("setUTCMonth()=>type:" + typeof(v31) +", value:"+ v31);
+	//	setUTCMonth()	根据世界时设置 Date 对象中的月份 (0 ~ 11)。
+	var v32 = date.setUTCFullYear();
+	console.log("setUTCFullYear()=>type:" + typeof(v32) +", value:"+ v32);
+	//	setUTCFullYear()	根据世界时设置 Date 对象中的年份（四位数字）。
+	var v33 = date.setUTCHours();
+	console.log("setUTCHours()=>type:" + typeof(v33) +", value:"+ v33);
+	//	setUTCHours()	根据世界时设置 Date 对象中的小时 (0 ~ 23)。
+	var v34 = date.setUTCMinutes();
+	console.log("setUTCMinutes()=>type:" + typeof(v34) +", value:"+ v34);
+	//	setUTCMinutes()	根据世界时设置 Date 对象中的分钟 (0 ~ 59)。
+	var v35 = date.setUTCSeconds();
+	console.log("setUTCSeconds()=>type:" + typeof(v35) +", value:"+ v35);
+	//	setUTCSeconds()	根据世界时设置 Date 对象中的秒钟 (0 ~ 59)。
+	var v36 = date.setUTCMilliseconds();
+	console.log("setUTCMilliseconds()=>type:" + typeof(v36) +", value:"+ v36);
+	//	setUTCMilliseconds()	根据世界时设置 Date 对象中的毫秒 (0 ~ 999)。
+	//var v37 = date.toSource();
+	//console.log("toSource()=>type:" + typeof(v37) +", value:"+ v37);
+	//	toSource()	返回该对象的源代码。
+	var v38 = date.toString();
+	console.log("toString()=>type:" + typeof(v38) +", value:"+ v38);
+	//	toString()	把 Date 对象转换为字符串。
+	var v39 = date.toTimeString();
+	console.log("toTimeString()=>type:" + typeof(v39) +", value:"+ v39);
+	//	toTimeString()	把 Date 对象的时间部分转换为字符串。
+	var v40 = date.toDateString();
+	console.log("toDateString()=>type:" + typeof(v40) +", value:"+ v40);
+	//	toDateString()	把 Date 对象的日期部分转换为字符串。
+	var v41 = date.toGMTString();
+	console.log("toGMTString()=>type:" + typeof(v41) +", value:"+ v41);
+	//	toGMTString()	请使用 toUTCString() 方法代替。
+	var v42 = date.toUTCString();
+	console.log("toUTCString()=>type:" + typeof(v42) +", value:"+ v42);
+	//	toUTCString()	根据世界时，把 Date 对象转换为字符串。
+	var v43 = date.toLocaleString();
+	console.log("toLocaleString()=>type:" + typeof(v43) +", value:"+ v43);
+	//	toLocaleString()	根据本地时间格式，把 Date 对象转换为字符串。
+	var v44 = date.toLocaleTimeString();
+	console.log("toLocaleTimeString()=>type:" + typeof(v44) +", value:"+ v44);
+	//	toLocaleTimeString()	根据本地时间格式，把 Date 对象的时间部分转换为字符串。
+	var v45 = date.toLocaleDateString();
+	console.log("toLocaleDateString()=>type:" + typeof(v45) +", value:"+ v45);
+	//	toLocaleDateString()	根据本地时间格式，把 Date 对象的日期部分转换为字符串。
+	//var v46 = date.UTC();
+	//console.log("UTC()=>type:" + typeof(v46) +", value:"+ v46);
+	//	UTC()	根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数。
+	var v47 = date.valueOf();
+	console.log("valueOf()=>type:" + typeof(v47) +", value:"+ v47);
+	//	valueOf()	返回 Date 对象的原始值。
+</script>
+</html>

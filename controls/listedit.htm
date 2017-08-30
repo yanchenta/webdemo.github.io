@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+	<title></title>
+	<style type="text/css">
+		.row{
+			min-height:2rem;
+			line-height:2rem;
+			vertical-align:middle;
+		}
+		.row>.caption{
+			width:25%;
+			display:inline-block;
+			text-align:right;
+			padding-right:0.2rem;
+			font-weight:700;
+		}
+		.row>.content{
+			padding-left:0.2rem;
+			width:70%;
+			display:inline-block;
+		}
+		.inline{
+			display:inline-block;
+			width:2rem;
+			text-align:center;
+		}
+		.tominus1,.toplus1{
+			width:1rem;
+		}
+		.large-btn,.small-btn{
+			background-color:green;
+			border:solid green 1px;
+			color:white;
+		}
+		.small-btn{
+			width:3rem;
+		}
+		.delete{
+			background-color:#cc0000;
+			border:solid #cc0000 1px;
+			border-radius:0.1rem;
+		}
+		.btn-panel{
+			text-align:center;
+		}
+		.large-btn{
+			width:60%;
+			margin-top:1rem;
+			height:2rem;
+			inline-height:2rem;
+			border-radius:0.2rem;
+		}
+		.grey-top-border{
+			border-top:solid grey 2px;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner">
+	</div>
+	<div class="main-body">
+		<div class="main-body-header">
+			<div class="row">
+				<div class="caption">反馈点数</div>
+				<div class="content">
+					<div class="inline tominus1" onclick="minus1()">－</div>
+					<input id="count" class="inline" type="text" value="1" onchange="changecount()"/>
+					<div class="inline toplus1" onclick="plus1()">＋</div>
+				</div>
+			</div>
+		</div>
+		<div style="max-height:400px;overflow-y:auto;">
+			<div class="list">
+				<!--第一个node-->
+				<div class="grey-top-border">
+					<div class="row grey-top-border">
+						<div class="caption">序号</div>
+						<div class="content">
+							<span class="index">&nbsp;1/1</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="caption">节点时间</div>
+						<div class="content">
+							<input class="task_time" type="date" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="caption">阶段性目标</div>
+						<div class="content">
+							<textarea class="task_target"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="caption">操作</div>
+						<div class="content">
+							<input class="inline small-btn delete" type="button" onclick="delete1(this)" value="删除"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="btn-panel">
+			<input class="inline large-btn" type="button" value="确定" onclick="docallback();"/>
+			<input class="inline large-btn" type="button" value="取消" onclick="window.close();"/>
+		</div>
+	</div>
+	<div class="footer">
+	</div>
+</body>
+<script>
+	function plus1(){
+		var cntElem = document.querySelector("#count");
+		var curCnt = parseInt(cntElem.value);
+		cntElem.value = curCnt + 1;
+		
+		document.querySelector("#count").onchange();
+	}
+	function builElem(time, target){
+		var html = '<div class="row"><div class="caption">序号</div><div class="content"><span class="index">1/1</span></div></div>';
+		html += '<div class="row"><div class="caption">节点时间</div><div class="content"><input type="date" value="' + time + '"/></div></div>';
+		html += '<div class="row"><div class="caption">阶段性目标</div><div class="content"><textarea>' + target + '</textarea></div></div>';
+		html += '<div class="row"><div class="caption">操作</div><div class="content"><input class="inline small-btn delete" onclick="delete1(this)" type="button" value="删除"/></div></div>';
+		
+		var elem = document.createElement("div");
+		elem.setAttribute("class", "grey-top-border");
+		elem.innerHTML = html;
+		
+		return elem;
+	}
+	function changecount(){
+		var elemDoms = document.querySelectorAll(".list>.grey-top-border");
+		var parentNode = elemDoms[0].parentNode;
+		
+		var cntElem = document.querySelector("#count");
+		var curCnt = parseInt(cntElem.value);
+		
+		//先删除
+		if(curCnt < 1){
+			cntElem.value = 1; 
+			return;
+		}
+		for(var i = elemDoms.length - 1; i > -1; i--){
+			if(i >= curCnt){
+				parentNode.removeChild(elemDoms[i]);
+			}
+		}
+		
+		//再添加
+		elemDoms = document.querySelectorAll(".list>.grey-top-border");
+		var moreCnt = curCnt - elemDoms.length;
+		for(var i = 0; i < moreCnt; i++){
+			
+			parentNode.appendChild(builElem("", ""));
+		}
+		
+		//整理序号
+		var indexs = document.querySelectorAll(".list .index");
+		var cnt = indexs.length;
+		for(var i = 0; i < cnt; i++){
+			indexs[i].innerHTML = ("&nbsp;" + (i+1) + "/" + cnt);
+		}
+	}
+	function delete1(elem){
+		var elemDoms = document.querySelectorAll(".list>.grey-top-border");
+		var cntElem = document.querySelector("#count");
+		if(elemDoms.length < 2){
+			cntElem.value = 1; 
+			return;
+		}
+		
+		var item = elem.parentNode.parentNode.parentNode;
+		var list = item.parentNode;
+		list.removeChild(item);
+		
+		//整理序号
+		var indexs = document.querySelectorAll(".list .index");
+		var cnt = indexs.length;
+		for(var i = 0; i < cnt; i++){
+			indexs[i].innerHTML = ("&nbsp;" + (i+1) + "/" + cnt);
+		}
+		
+		cntElem.value = cnt;
+	}
+	function minus1(){
+		var cntElem = document.querySelector("#count");
+		var curCnt = parseInt(cntElem.value);
+		if(curCnt>1){
+			cntElem.value = (curCnt - 1);
+		}
+		document.querySelector("#count").onchange();
+	}
+	
+	function docallback(){
+		var items = document.querySelectorAll(".list .grey-top-border");
+		console.log("items.length:" + items.length);
+		
+		//检测
+		for(var i = 0; i < items.length; i++){
+			var date = items[i].querySelector("input[type='date']").value;
+			var target = items[i].querySelector("textarea").value;
+			if(!date || !target){
+				alert("日期或阶段性目标不能为空");
+				return;
+			}
+		}
+		
+		var datas = [];
+		for(var i = 0; i < items.length; i++){
+			console.log(items[i].querySelector("input[type='date']"));
+			var date = items[i].querySelector("input[type='date']").value;
+			var target = items[i].querySelector("textarea").value;
+			var obj = {"task_time":date,"task_target":target,"imp_flag":""};
+			datas.push(obj);
+		}
+		window.opener.buildFeedBackTasks(datas);
+		//window.close();
+	}
+	
+	//使用数据回调生成
+	function show(listData){  //回调main
+		var listData = {
+			"taskMainBean":{
+				"deduct_flag":"",
+				"f_state":null,
+				"feedback":null,
+				"handle_userid":null,
+				"handle_username":null,
+				"imp_flag":"",
+				"partion_code":"0",
+				"progress_evaluation":null,
+				"quality_evaluation":null,
+				"return_time":null,
+				"s_createtime":null,
+				"s_orgid":null,
+				"s_orgname":null,
+				"s_updatetime":null,
+				"s_userid":null,
+				"s_username":null,
+				"targetid":"c67ef3cf87e1455a9fb5849c41e7bb83",
+				"task_rtime":null,
+				"task_target":null,
+				"task_time":null,
+				"task_type":null,
+				"tid":null
+			},"taskMainBeanList":[
+				{
+					"deduct_flag":"",
+					"f_state":"00",
+					"feedback":"",
+					"handle_userid":"",
+					"handle_username":null,
+					"imp_flag":"",
+					"partion_code":null,
+					"progress_evaluation":null,
+					"quality_evaluation":null,
+					"return_time":null,
+					"s_createtime":null,
+					"s_orgid":null,
+					"s_orgname":null,
+					"s_updatetime":null,
+					"s_userid":null,
+					"s_username":null,
+					"targetid":null,
+					"task_rtime":-28800000,
+					"task_target":"测试虚拟退回0003",
+					"task_time":1482854400000,
+					"task_type":null,
+					"tid":"1c50285c4b894dc39ac05c00b2214453"
+				}]
+		};
+		if(listData.taskMainBeanList.length>0){
+			var list = document.querySelector(".list");
+			list.innerHTML = "";
+			for(var i = 0; i < listData.taskMainBeanList.length; i++){
+				var date = new Date(listData.taskMainBeanList[i].task_time);
+				var year = 1900 + date.getYear();
+				var month = date.getMonth() + 1;
+				if((month+"").length==1) month = "0" + month;
+				var day = date.getDate();
+				if((day+"").length==1) day = "0" + day;
+				
+				var target = listData.taskMainBeanList[i].task_target;
+				
+				list.appendChild(builElem(year + "-" + month +"-" + day, target));
+			}
+		}
+	}
+	show(null);
+</script>
+</html>
