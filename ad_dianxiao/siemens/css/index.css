@@ -1,8 +1,0 @@
-@charset "utf-8";
-/* CSS Document */
-body,html{ background:#000;}
-.container{min-width:320px;max-width:768px;margin:0 auto;-webkit-text-size-adjust:none; position:relative;}
-figure img{ display:block;width:100%;}
-
-#video-con{ position:absolute; top:80px;left:0;}
-
