@@ -30,6 +30,7 @@
 		.frozen-con .frozen-left .header,.frozen-con .right .gante-item{
 			height:2rem;
 			position:relative;
+			width:10000px;
 		}
 		.frozen-con .frozen-left .header span{
 			vertical-align:middle;
@@ -53,13 +54,18 @@
 			border:dashed black 0px;
 			border-top-width:1px;
 			
-			width:100%;
+			width:10000px;
 			
 			content:" ";
 		}
 		.frozen-con .right .right-in{
 			overflow-y:hidden;
 		}
+		
+		.horizon-area{
+			position:relative;
+		}
+		
 		.ver-seperators{
 			position:absolute;
 			left:0;
@@ -75,7 +81,6 @@
 			top:0;
 			width:1px;
 			height:10000px;
-			display:inline-block;
 			border:dashed blue 0px;
 			border-right-width:1px;
 		}
@@ -100,6 +105,8 @@
 			<div class="right">
 				<div class="right-in">
 					<div class="horizon-area">
+						<!--里程碑关键线-->
+						<div class="ver-seperator" id="ver-seperator3" style="left:28rem;border-style:solid;border-right-width:2px;z-index:10000;"></div>
 						<div class="gante-item">
 							<div onclick="showMsg('', '')" style="width:10rem;background-color:orange;border:solid orange 1px;"></div>
 						</div>
@@ -110,13 +117,11 @@
 							<div onclick="showMsg('', '')" style="left:10rem;width:20rem;background-color:red;border:solid red 1px;"></div>
 						</div>
 					</div>
-					<!--<div class="ver-seperators" style="position:absolute;">-->
+					<!--<div class="ver-seperators" style="position:absolute;">
 						<div class="ver-seperator" id="ver-seperator1" style="left:10rem;"></div>
 						<div class="ver-seperator" id="ver-seperator2" style="left:15rem;"></div>
 						<div class="ver-seperator" id="ver-seperator3" style="left:20rem;"></div>
-						<!--里程碑关键线-->
-						<div class="ver-seperator" id="ver-seperator3" style="left:28rem;border-style:solid;border-right-width:2px;"></div>
-					<!--</div>-->
+					</div>-->
 				</div>
 			</div>
 		</div>
@@ -198,6 +203,7 @@
 				var ganteItem = document.createElement("div");
 				ganteItem.className="gante-item";
 				ganteItem.innerHTML="<div title='"+data[attr].msgcontent+"' onclick=\"showMsg('"+data[attr].msgheader+"', '"+data[attr].msgcontent+"')\" style='left:"+data[attr].start+"rem;width:"+data[attr].value+"rem;background-color:green;border:solid green 1px;'></div>";
+				
 				document.querySelector("#gante .right .horizon-area").appendChild(ganteItem);
 			}
 			
@@ -216,7 +222,7 @@
 				var verSeper = document.createElement("div");
 				verSeper.className="ver-seperator";
 				verSeper.style.left=data[attr].end+"rem";
-				document.querySelector("#gante .right").appendChild(verSeper);
+				document.querySelector("#gante .horizon-area").appendChild(verSeper);
 			}
 		}
 		buildGante(data);
