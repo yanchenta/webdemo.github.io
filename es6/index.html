@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<title>[ES6-js测试]</title>
+	<style type="text/css">
+		input[type='button']{
+			height:3rem;
+			width:6rem;
+			margin:0.5rem 0.5rem 0.5rem 0;
+			font-size:1.2rem;
+		}
+		textarea{
+			width:100%;height:15rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<textarea id='txt1' placeholder='输入代码'></textarea>
+		<input id='btn1' type="button" value="运行"/>
+		<input id='btn2' type="button" value="清空结果"/>
+		<textarea id='txt2' placeholder='输出结果'></textarea>
+	</div>
+	<div class="footer"></div>
+	<script>
+		var btnElem1 = document.getElementById('btn1');
+		var btnElem2 = document.getElementById('btn2');
+		var txtElem1 = document.getElementById('txt1');
+		var txtElem2 = document.getElementById('txt2');
+		
+		console.log = function(s){
+			var newVal = txtElem2.value;
+			newVal += "\n" + s;
+			txtElem2.value = newVal;
+		};
+		btnElem1.onclick=function(){
+			var txt1 = txtElem1.value;
+			try{
+				eval(txt1);
+			}
+			catch(ex){
+				console.log(ex.message);
+			}
+		};
+		btnElem2.onclick = function(){
+			txtElem2 = value;
+		}
+	</script>
+</body>
+</html>
