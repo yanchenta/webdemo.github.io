@@ -14,20 +14,57 @@
 		textarea{
 			width:100%;height:15rem;
 		}
+		
+		.codeInsertPanel{
+			display:block;
+			position:absolute;
+			left:0;
+			top:0;
+			width:100%;
+			background-color:white;
+			border:solid gold 2px;
+		}
+		.hidden{
+			display:none;
+		}
+		.codeInsertPanel input[type='button']{
+			width:12rem;
+		}
 	</style>
 </head>
 <body>
 	<div class="banner"></div>
 	<div class="main-body">
+		<div class="codeInsertPanel hidden"></div>
 		<textarea id='txt1' placeholder='输入代码'></textarea>
 		<input id='btn1' type="button" value="运行"/>
 		<input id='btn2' type="button" value="清空结果"/>
+		<input id='btn3' type="button" value="插入代码"/>
 		<textarea id='txt2' placeholder='输出结果'></textarea>
 	</div>
 	<div class="footer"></div>
 	<script>
+		var codeInserts = ["console.log();", "var ", "let ", "for(var elem in obj){};", "for(var elem of obj){};", "function(){};", "new {};"];
+		var codeInsertInhtml = "";
+		for(var i = 0; i < codeInserts.length; i++){
+			codeInsertInhtml += '<input id="btnCodeInsert'+(i+1)+'" type="button" value="['+codeInserts[i]+']" tag="'+codeInserts[i]+'">'
+		}
+		document.querySelector(".codeInsertPanel").innerHTML = codeInsertInhtml;
+		var codeBtns = document.querySelectorAll(".codeInsertPanel input[type='button']");
+		for(var i = 0; i < codeBtns.length; i++){
+			codeBtns[i].onclick = function(){
+				var newCode = txtElem1.value;
+				newCode += this.getAttribute("tag");
+				txtElem1.value = newCode;
+				document.querySelector(".codeInsertPanel").className="codeInsertPanel hidden";
+			}
+		}
+		
+		
 		var btnElem1 = document.getElementById('btn1');
 		var btnElem2 = document.getElementById('btn2');
+		var btnElem3 = document.getElementById('btn3');
+		
 		var txtElem1 = document.getElementById('txt1');
 		var txtElem2 = document.getElementById('txt2');
 		
@@ -47,6 +84,9 @@
 		};
 		btnElem2.onclick = function(){
 			txtElem2.value = "";
+		}
+		btnElem3.onclick = function(){
+			document.querySelector(".codeInsertPanel").className="codeInsertPanel";
 		}
 	</script>
 </body>
