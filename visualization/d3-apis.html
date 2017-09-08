@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title>d3-v4的api</title>
+	<script src="d3.v4.min.js"></script>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body"></div>
+	<div class="footer"></div>
+	<script>
+		var idx = 1;
+		var h3 = document.createElement("h3");
+		var div = document.createElement("div");
+		var mainArea = document.querySelector(".main-body");
+		for(var attr in d3){
+			var node = h3.cloneNode();
+			node.innerHTML = (idx + "." + attr + "=>[" + typeof(d3[attr])+"]");
+			mainArea.appendChild(node);
+			idx++;
+			
+			var subObj = d3[attr];
+			for(var attr2 in subObj){
+				var subsubObj = subObj[attr2];
+				var node2 = div.cloneNode();
+				node2.innerHTML = ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + attr + "." + attr2 + "=>[" + typeof(subsubObj) + "]");
+				mainArea.appendChild(node2);
+			}
+		}
+	</script>
+</body>
+</html>
