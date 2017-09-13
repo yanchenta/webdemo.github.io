@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title>排列组合计算</title>
+</head>
+<body>
+	<div class="banner"></div>
+	<div class="main-body">
+		<h3>Permutation and combination</h3>
+		<p>
+			<div>pcA(<input id='pcaParam1' type='number' placeholder='n'/>)</div>
+			<div><input type='button' value='计算' onclick="document.getElementById('pcaRlt').innerHTML=(pcA(getIntValById('pcaParam1')))"/></div>
+			<div>结果:<label id='pcaRlt' style="color:red;"></label></div>
+		</p>
+		<p>
+			<div>pcC(<input id='pccParam1' type='number' placeholder='m'/>,<input id='pccParam2' type="number" placeholder='n'/>)</div>
+			<div><input type='button' value='计算' onclick="document.getElementById('pccRlt').innerHTML=(pcC(getIntValById('pccParam1'),getIntValById('pccParam2')))"/></div>
+			<div>结果:<label id='pccRlt' style="color:red;"></label></div>
+		</p>
+		<p>
+			<div>bernoulliExpression(<input id='berExpParam1' type='number' placeholder='m'/>,<input id='berExpParam2' type="number" placeholder='n'/>,<input id='berExpParam3' type="number" placeholder='p'/>)</div>
+			<div><input type='button' value='计算' onclick="document.getElementById('sumBerExpParam').innerHTML=(bernoulliExpression(getIntValById('berExpParam1'),getIntValById('berExpParam2'),getFloatValById('berExpParam3')))"/></div>
+			<div>结果:<label id='sumBerExpParam' style="color:red;"></label></div>
+		</p>
+		<p>
+			<div>
+				<span>less than m(contain m) of bernoulli sum:</span>
+				<input id='sumBerExpParam1' type='number' placeholder='m'/>,<input id='sumBerExpParam2' type="number" placeholder='n'/>,<input id='sumBerExpParam3' type="number" placeholder='p'/>
+			</div>
+			<div>
+				<input type='button' value='计算' onclick="document.getElementById('sumBerExpRlt1').innerHTML=(sumBernoulliExpression(getIntValById('sumBerExpParam1'),getIntValById('sumBerExpParam2'),getFloatValById('sumBerExpParam3'), 'lessthancontain'))"/>
+			</div>
+			<div>结果:<label id='sumBerExpRlt1' style="color:red;"></label></div>
+		</p>
+		<p>
+			<div>
+				<span>more than m(contain m) of bernoulli sum:</span>
+				<input id='sumBerExpParam4' type='number' placeholder='m'/>,<input id='sumBerExpParam5' type="number" placeholder='n'/>,<input id='sumBerExpParam6' type="number" placeholder='p'/>
+			</div>
+			<div>
+				<input type='button' value='计算' onclick="document.getElementById('sumBerExpRlt2').innerHTML=(sumBernoulliExpression(getIntValById('sumBerExpParam4'),getIntValById('sumBerExpParam5'),getFloatValById('sumBerExpParam6'), 'morethancontain'))"/>
+			</div>
+			<div>结果:<label id='sumBerExpRlt2' style="color:red;"></label></div>
+		</p>
+	</div>
+	
+	<script>
+		var getIntValById=function(id){
+			return parseInt(document.getElementById(id).value);
+		}
+		var getFloatValById=function(id){
+			return parseFloat(document.getElementById(id).value);
+		}
+	
+		var pcA = function(n){
+			if(arguments.length!=1){
+				throw new Error('only one arg!');
+				return;
+			}
+			var rlt = 1;
+			for(var i = 1; i <= n; i++){
+				rlt*=i;
+			}
+			return rlt;
+		};
+		var pcC = function(m, n){
+			if(arguments.length!=2){
+				throw new Error('only tow args=>(m,n)!');
+				return;
+			}
+			if(m<1 || m>=n) return 1;
+			var rlt = 1;
+			if(m > (n/2)){
+				for(var i = (m+1); i <= n; i++){
+					rlt*=i;
+				}
+				return rlt/pcA(n-m);
+			}
+			else{
+				for(var i = (n-m+1); i <= n; i++){
+					rlt*=i;
+				}
+				return rlt/pcA(m);
+			}
+		};
+		var bernoulliExpression = function(m, n, p, q){
+			if(arguments.length<3||arguments.length>4){
+				throw new Error('arguments cnt:3 or 4.');
+				return;
+			}
+			if(typeof(q)=="undefined") q = 1-p;
+			return parseFloat(pcC(m,n)*Math.pow(p, m)*Math.pow(q, n-m));
+		}
+		var sumBernoulliExpression = function(m,n,p,type){
+			var rlt = 0;
+			if(type=="lessthancontain"){
+				for(var i = 0; i <= m; i++){
+					var itemRlt = bernoulliExpression(i,n,p);
+					console.log("1:" + itemRlt +"-["+ i + "," + n + "," + p + "]");
+					rlt += itemRlt;
+				}
+			}
+			else if(type=="morethancontain"){
+				for(var i = m; i <= n; i++){
+					var itemRlt = bernoulliExpression(i,n,p);
+					console.log("2:" + itemRlt + "-[" + i + "," + n + "," + p + "]");
+					rlt += itemRlt;
+				}
+			}
+			return rlt;
+		}
+	</script>
+</body>
+</html>
