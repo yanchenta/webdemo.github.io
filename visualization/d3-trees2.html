@@ -3,23 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>画一个树图(Tree)</title>
-	<script type="text/javascript" src="js/d3.js"></script>
+	<script type="text/javascript" src="d3.v3.min.js"></script>
+	<style>
+		.node circle {
+			/*fill: #fff;*/
+			stroke: steelblue;
+			stroke-width: 1px;
+		}
+		.node {
+			font: 12px sans-serif;
+		}
+		.link {
+			fill: none;
+			stroke: #ccc;
+			stroke-width: 1px;
+		}
+	</style>
 </head>
-<style>
-.node circle {
-	/*fill: #fff;*/
-	stroke: steelblue;
-	stroke-width: 1px;
-}
-.node {
-	font: 12px sans-serif;
-}
-.link {
-	fill: none;
-	stroke: #ccc;
-	stroke-width: 1px;
-}
-</style>
 <body>
 <script type="text/javascript">
 	//图像区域大小
@@ -35,7 +35,7 @@
 		.attr("height", h)
 		.append("g");
 	//根据JSON数据生成树
-	d3.json("treeData.php", function(error, data) {
+	d3.json("a.json", function(error, data) {
 		//根据数据生成nodes集合
 		var nodes = tree.nodes(data);
 		//获取node集合的关系集合
