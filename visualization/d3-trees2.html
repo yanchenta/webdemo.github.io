@@ -23,11 +23,11 @@
 <body>
 <script type="text/javascript">
 	//图像区域大小
-	var w = 1960;
+	var w = 3960;
 	var h = 800;
 	//定义一个Tree对象
 	var tree = d3.layout.tree()
-		.size([w,h-50])//30高度为最后一行文字
+		.size([w,h])//30高度为最后一行文字
 		.separation(function(a,b) { return a.parent == b.parent ? 1 : 2;});
 	//新建画布
 	var svg = d3.select("body").append("svg")
