@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<title>基础日期/数字的转换</title>
+</head>
+<body>
+	<script>
+		var intPart = "1234567892345678923456789";
+		console.log(intPart);
+		
+		var intPart2 = "";
+		for(var i = intPart.length-1; i > -1; i--){
+			intPart2 += intPart[i];
+		}
+		intPart2 = intPart;
+		
+		var units = [];
+		for(let i = 0; i < intPart2.length; i++){
+		  var dis = intPart2.length - i;
+		  switch(dis%9){
+			case 8:
+			  units.push(intPart2[i]+'亿');
+			case 7:
+			  units.push(intPart2[i]+'仟');
+			  break;
+			case 6:
+			  units.push(intPart2[i]+'佰');
+			  break;
+			case 5:
+			  units.push(intPart2[i]+'拾');
+			  break;
+			case 4:
+			  units.push(intPart2[i]+'万');
+			  break;
+			case 3:
+			  units.push(intPart2[i]+'仟');
+			  break;
+			case 2:
+			  units.push(intPart2[i]+'佰');
+			  break;
+			case 1:
+			  units.push(intPart2[i]+'拾');
+			  break;
+			case 0:
+			  break;
+		  }
+		};
+		console.log(units.join(''));
+		
+		/*/*,
+  toBigText(numStr){
+    //亿,万,
+    let numParts = numStr.split('.');
+    let intPart = numParts[0];
+    let deciPart = numParts[1];
+    var units = [];
+    for(let i = 0; i < intPart.length; i++){
+      switch(i%9){
+        case 8:
+          units.push('亿');
+          break;
+        case 7:
+          units.push('仟');
+          break;
+        case 6:
+          units.push('佰');
+          break;
+        case 5:
+          units.push('拾');
+          break;
+        case 4:
+          units.push('万');
+          break;
+        case 3:
+          units.push('仟');
+          break;
+        case 2:
+          units.push('佰');
+          break;
+        case 1:
+          units.push('拾');
+          break;
+        case 0:
+          break;
+      }
+    }
+    var allStr = "";
+    switch(char){
+      case ".":
+        allStr += '点';
+        break;
+      case "0":
+        allStr += '零';
+        break;
+      case "1":
+        allStr += '壹';
+        break;
+      case "2":
+        allStr += '贰';
+        break;
+      case "3":
+        allStr += '叁';
+        break;
+      case "4":
+        allStr += '肆';
+        break;
+      case "5":
+        allStr += '伍';
+        break;
+      case "6":
+        allStr += '陆';
+        break;
+      case "7":
+        allStr += '柒';
+        break;
+      case "8":
+        allStr += '捌';
+        break;
+      case "9":
+        allStr += '玖';
+        break;
+      default:
+        break;
+    }
+  }*/
+	</script>
+</body>
+</html>
